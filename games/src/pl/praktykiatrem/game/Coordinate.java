@@ -7,6 +7,11 @@
 
 package pl.praktykiatrem.game;
 
+/**
+ * 
+ * @author Wiktor
+ *
+ */
 class Coordinate
 {
     private int x;
