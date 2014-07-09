@@ -38,8 +38,8 @@ public class GameFactory {
             
         }
         
-        A.placeShips();
-        B.placeShips();
+        //A.placeShips();
+        //B.placeShips();
     }
     
     public Player getA()
