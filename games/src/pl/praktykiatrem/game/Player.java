@@ -25,4 +25,9 @@ public class Player {
     {
         this.name = name;
     }
+    
+    public void placeShips(int id, int polesNumber, char direction, int x, int y)
+    {
+        ships[id-1] = new Ship(polesNumber);
+    }
 }

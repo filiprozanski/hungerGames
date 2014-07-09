@@ -31,4 +31,25 @@ public class ConsoleInterface {
     {
         System.out.println(message);
     }
+    
+    public static boolean isPlaceValid(char direction, int x, int y, int polesNumber)
+    {
+        if (direction == 'H' || direction == 'h')
+        {
+            if (x + polesNumber <= 9)
+                return true;
+            else
+                return false;
+        }
+        else if (direction == 'V' || direction == 'v')
+        {
+            if (y + polesNumber <= 9)
+                return true;
+            else
+                return false;
+        }
+        else
+            return false;
+        }
+    }
 }
