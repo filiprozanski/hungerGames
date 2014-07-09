@@ -26,19 +26,8 @@ public class Player {
         this.name = name;
     }
     
-  
     public void placeShips(int id, int polesNumber, char direction, int x, int y)
     {
         ships[id-1] = new Ship(polesNumber);
-        if (direction == 'H' || direction == 'h')
-        {
-            //plansza = new Board(10,10);
-            plansza.gameBoard[x][y]=id+48;
-        }
-        else if (direction == 'V' || direction == 'v')
-        {
-           //elod
-        }
-        
     }
 }
