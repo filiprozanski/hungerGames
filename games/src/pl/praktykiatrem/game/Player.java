@@ -37,7 +37,7 @@ public class Player {
         }
         else if (direction == 'V' || direction == 'v')
         {
-           //elo
+           //elod
         }
         
     }
