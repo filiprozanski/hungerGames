@@ -1,7 +1,5 @@
 package pl.praktykiatrem.game;
 
-import java.util.Scanner;
-
 public class Ship
 {
     private int polesNumber;

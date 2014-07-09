@@ -20,26 +20,44 @@ public class GameFactory {
     {
         A = new Player(ConsoleInterface.scanString());
         B = new Player(ConsoleInterface.scanString());
-        char dir;
-        int x;
-        int y;
         int polesNumber;
         
         polesNumber = 6;
-        ConsoleInterface.printlnMessage("Ustawiasz 6-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo)");
-        dir = ConsoleInterface.scanString().charAt(0);
-        ConsoleInterface.printlnMessage("Podaj wspó³rzêdn± poziom±. (1 - 10)");
-        x = ConsoleInterface.scanInt();
-        ConsoleInterface.printlnMessage("Podaj wspó³rzêdn± pionow±. (1 - 10)");
-        y = ConsoleInterface.scanInt();
+        doDirtyStuff(polesNumber, 0);
         
-        if(ConsoleInterface.isPlaceValid(dir, x, y, polesNumber))
+        polesNumber = 4;
+        
+        for (int i = 1; i < 7; i++)
         {
-            
+            doDirtyStuff(polesNumber, i);
+            i++;
+            doDirtyStuff(polesNumber, i);
+            polesNumber--;
         }
+            //A.placeShips();
+            //B.placeShips();
+    }
+    
+    private void doDirtyStuff(int polesNumber, int id)
+    {
+        char dir;
+        int x;
+        int y;
         
-        //A.placeShips();
-        //B.placeShips();
+        while(true) {
+            ConsoleInterface.printlnMessage("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo)");
+            dir = ConsoleInterface.scanString().charAt(0);
+            ConsoleInterface.printlnMessage("Podaj wspó³rzêdn± poziom±. (1 - 10)");
+            x = ConsoleInterface.scanInt();
+            ConsoleInterface.printlnMessage("Podaj wspó³rzêdn± pionow±. (1 - 10)");
+            y = ConsoleInterface.scanInt();
+        
+            if(ConsoleInterface.isPlaceValid(dir, x, y, polesNumber))
+            {
+                A.placeShips(id, polesNumber, dir, x, y);
+                break;
+            }
+        }
     }
     
     public Player getA()
