@@ -32,7 +32,6 @@ public class Player {
         ships[id-1] = new Ship(polesNumber);
         if (direction == 'H' || direction == 'h')
         {
-            //plansza = new Board(10,10);
             plansza.gameBoard[x][y]=id+48;
         }
         else if (direction == 'V' || direction == 'v')
