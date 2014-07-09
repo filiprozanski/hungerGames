@@ -1,7 +1,7 @@
 package pl.praktykiatrem.game;
 
 public class Board {
-    private char[][] gameBoard;
+    public char[][] gameBoard;
     private int placesHorizontal;
     private int placesVertical;
     
