@@ -19,5 +19,6 @@ public class NewGame {
     private void initializePlayers()
     {
         A.setName(ConsoleInterface.scanString());
+        B.setName(ConsoleInterface.scanString());
     }
 }
