@@ -8,5 +8,10 @@
 package pl.praktykiatrem.game;
 
 public class PlayerStatus {
-
+    
+	public static void countShips(int shipsNumber)
+    {
+		ConsoleInterface.printlnMessage("Poda³e¶ b³êdne dane, spróbuj jeszcze raz.");
+    }
+    
 }
