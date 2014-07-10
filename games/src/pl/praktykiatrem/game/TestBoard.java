@@ -33,6 +33,9 @@ public class TestBoard {
         System.out.println();
         BoardDrawing.drawGameBoardForPlayer(wiktor.getPlansza());
         System.out.println();
+		
+		Game newGame = new Game();
+		newGame.gameInProgress();
     }
 
 }

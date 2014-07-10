@@ -34,7 +34,7 @@ public class Player {
   
     public void placeShips(int id, int polesNumber, char direction, int x, int y)
     {
-        ships[id-1] = new Ship(polesNumber);
+        ships[id] = new Ship(polesNumber);
         if (direction == 'H' || direction == 'h')
         {
             plansza.gameBoard[y][x]=(char)(id+'0');
@@ -59,8 +59,8 @@ public class Player {
         else
         {
             char cShipID = plansza.gameBoard[y][x];
-            int shipID = (int)cShipID-49;
-            if(shipID>=0&&shipID<=6)
+            int shipID = (int)cShipID-50;
+            if(shipID >= 0 && shipID <= 6)
             {
             	plansza.gameBoard[y][x] = 'H';
                 ships[shipID].reducePolesNumber();

@@ -35,7 +35,8 @@ public class Game {
             BoardDrawing.drawGameBoardForOpponent(changePlayer(currentPlayer).getPlansza());
             cords = pointRifle();
             currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza());
-            
+            enemy = currentPlayer;
+            currentPlayer = changePlayer(currentPlayer);
         }
     }
     
@@ -70,7 +71,7 @@ public class Game {
         
             for (int i = 1; i < 7; i++)
             {
-                fetchShipCoords(polesNumber, i, gamer);
+                //fetchShipCoords(polesNumber, i, gamer);
                 i++;
                 fetchShipCoords(polesNumber, i, gamer);
                 polesNumber--;
