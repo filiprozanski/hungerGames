@@ -28,4 +28,18 @@ public class BoardDrawing {
             System.out.println();
         }
     }
+    
+    public static void drawGameBoardForPlayer(Board gamePlace)
+    {
+        char[][] tab = gamePlace.gameBoard;
+        
+        for (char[] a : tab)
+        {
+            for (char b : a)
+            {
+                System.out.print(b);
+            }
+            System.out.println();
+        }
+    }
 }
