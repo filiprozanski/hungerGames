@@ -40,16 +40,6 @@ public class ConsoleInterface implements Comunicatable{
         System.out.println("Poda³e¶ b³êdne dane, spróbuj jeszcze raz.");
     }
     
-    public static void printMessage(String message)
-    {
-        System.out.print(message);
-    }
-    
-    public static void printlnMessage(String message)
-    {
-        System.out.println(message);
-    }
-    
     public static boolean isPlaceValid(char direction, int x, int y, int polesNumber)
     {
         if (direction == 'H' || direction == 'h')
@@ -75,6 +65,22 @@ public class ConsoleInterface implements Comunicatable{
     	System.out.println(" statków.");    	
     }
     
+    public static void showYourMove()
+    {
+    	System.out.println("Twój ruch !");
+    }
+    public static void showYouWon()
+    {
+    	System.out.println("Wygra³e¶ !");
+    }
+    public static void showYouLost()
+    {
+    	System.out.println("Przegra³e¶ !");
+    }
+    public static void showGameOver()
+    {
+    	System.out.println("Koniec gry !");
+    }
     public static void showYourMove()
     {
     	System.out.println("Twój ruch !");
