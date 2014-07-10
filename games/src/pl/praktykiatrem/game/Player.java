@@ -33,12 +33,15 @@ public class Player {
         if (direction == 'H' || direction == 'h')
         {
             plansza.gameBoard[x][y]=(char)(id+'0');
+            for(int i=1;i<polesNumber;i++)
+        		plansza.gameBoard[x+i][y]=(char)(id+'0');
         }
         else if (direction == 'V' || direction == 'v')
         {
-           //a teraz ?
+        	plansza.gameBoard[x][y]=(char)(id+'0');
+        	for(int i=1;i<polesNumber;i++)
+        		plansza.gameBoard[x][y+i]=(char)(id+'0');
         }
-        
     }
     
     public boolean makeMove(int x, int y, Board plansza)
