@@ -21,7 +21,7 @@ public class Board {
         {
             for (char a : gameBoard[i])
             {
-                a = '0';
+                a = 'C';
             }
         }
     }

@@ -8,6 +8,7 @@ public class TestBoard {
 	    System.out.println(plansza);
 	    
 	    BoardDrawing.drawGameBoardForOpponent(plansza);
+	    BoardDrawing.drawGameBoardForPlayer(plansza);
 	    
 	    
     }
