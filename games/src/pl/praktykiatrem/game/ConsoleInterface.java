@@ -12,9 +12,10 @@ import java.util.Scanner;
 public class ConsoleInterface {
     private static Scanner in = new Scanner(System.in);
     
-    public static String scanString()
+    public static char scanDirection()
     {
-        return in.nextLine();
+        System.out.println("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo)");
+        return in.nextLine().at
     }
     
     public static int scanInt()

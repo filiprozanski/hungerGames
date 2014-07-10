@@ -20,22 +20,24 @@ public class GameFactory {
     {
         A = new Player(ConsoleInterface.scanString());
         B = new Player(ConsoleInterface.scanString());
+    }
+    
+    private void initializeShips()
+    {
         int polesNumber;
         
-        polesNumber = 6;
-        doDirtyStuff(polesNumber, 0);
+            polesNumber = 6;
+            doDirtyStuff(polesNumber, 0);
         
-        polesNumber = 4;
+            polesNumber = 4;
         
-        for (int i = 1; i < 7; i++)
-        {
-            doDirtyStuff(polesNumber, i);
-            i++;
-            doDirtyStuff(polesNumber, i);
-            polesNumber--;
-        }
-            //A.placeShips();
-            //B.placeShips();
+            for (int i = 1; i < 7; i++)
+            {
+                doDirtyStuff(polesNumber, i);
+                i++;
+                doDirtyStuff(polesNumber, i);
+                polesNumber--;
+            }
     }
     
     private void doDirtyStuff(int polesNumber, int id)

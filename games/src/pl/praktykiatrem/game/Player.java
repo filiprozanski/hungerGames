@@ -41,12 +41,41 @@ public class Player {
         
     }
     
-    public void makeMove(int x, int y, Board plansza)
+    public boolean makeMove(int x, int y, Board plansza)
     {
         if (plansza.gameBoard[y][x] == 'c' || plansza.gameBoard[y][x] == 'C')
         {
             plansza.gameBoard[y][x] = 'M';
-            System.
+            return false;
+        }
+        else
+        {
+            char shipID = plansza.gameBoard[y][x];
+            switch (shipID)
+            {
+            case '1':
+                plansza.gameBoard[y][x] = 'H';
+                return true;
+            case '2':
+                plansza.gameBoard[y][x] = 'H';
+                return true;
+            case '3':
+                plansza.gameBoard[y][x] = 'H';
+                return true;
+            case '4':
+                plansza.gameBoard[y][x] = 'H';
+                return true;
+            case '5':
+                plansza.gameBoard[y][x] = 'H';
+                return true;
+            case '6':
+                plansza.gameBoard[y][x] = 'H';
+                return true;
+            case '7':
+                plansza.gameBoard[y][x] = 'H';
+                return true;
+            
+            }
         }
     }
 }
