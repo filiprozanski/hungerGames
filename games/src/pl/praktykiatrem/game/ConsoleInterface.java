@@ -30,6 +30,16 @@ public class ConsoleInterface implements Comunicatable{
         return in.nextInt();
     }
     
+    public static String scanName()
+    {
+        return in.nextLine();
+    }
+    
+    public static void showErrorMessage1()
+    {
+        System.out.println("Poda³e¶ b³êdne dane, spróbuj jeszcze raz.");
+    }
+    
     public static void printMessage(String message)
     {
         System.out.print(message);

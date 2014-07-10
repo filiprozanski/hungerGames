@@ -24,4 +24,43 @@ public class Game {
     {
         
     }
+    
+    private void initializeShips()
+    {
+        int polesNumber;
+        
+            polesNumber = 6;
+            fetchShipCoords(polesNumber, 0);
+        
+            polesNumber = 4;
+        
+            for (int i = 1; i < 7; i++)
+            {
+                fetchShipCoords(polesNumber, i);
+                i++;
+                fetchShipCoords(polesNumber, i);
+                polesNumber--;
+            }
+    }
+    
+    private void fetchShipCoords(int polesNumber, int id, Player gamer)
+    {
+        char dir;
+        int x;
+        int y;
+        
+        while(true) {
+            dir = ConsoleInterface.scanDirection(polesNumber);
+            x = ConsoleInterface.scanXCoordinate();
+            y = ConsoleInterface.scanYCoordinate();
+        
+            if(ConsoleInterface.isPlaceValid(dir, x, y, polesNumber))
+            {
+                gamer.placeShips(id, polesNumber, dir, x, y);
+                break;
+            }
+            
+            ConsoleInterface.showErrorMessage1();
+        }
+    }
 }
