@@ -19,9 +19,9 @@ public class Board {
     {
         for (int i = 0; i < placesVertical; i++)
         {
-            for (char a : gameBoard[i])
+            for (int j = 0; j < placesHorizontal; j++)
             {
-                a = 'C';
+                gameBoard[j][i] = 'C';
             }
         }
     }
