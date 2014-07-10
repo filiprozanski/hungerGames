@@ -20,7 +20,8 @@ public class ConsoleInterface implements Comunicatable{
     public static char scanDirection(int polesNumber)
     {
         System.out.println("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo)");
-        return in.nextLine().charAt(0);
+        String input = in.next();
+        return input.charAt(0);
     }
     
     public static int scanXCoordinate()
