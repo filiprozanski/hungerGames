@@ -23,7 +23,8 @@ public class Game {
     public void gameInProgress()
     {
         ConsoleInterface.showMenu();
-        ConsoleInterface.
+        initializeShips(A);
+        initializeShips(B);
     }
     
     private void initializeShips(Player gamer)

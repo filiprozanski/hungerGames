@@ -12,6 +12,7 @@ public class Player {
     private Ship[] ships;
     private int shipsNumber;
     private String name;
+    private PlayerStatus stats;
     
     public Player(String name)
     {
@@ -21,9 +22,9 @@ public class Player {
         ships = new Ship[shipsNumber];
     }
     
-    public void setName(String name)
+    public String getName()
     {
-        this.name = name;
+        return name;
     }
     
     public Board getPlansza()
@@ -70,6 +71,19 @@ public class Player {
             	return false;
             }
         }
+    }
+    
+    public int shipNumber()
+    {
+        int count = 0; 
+        
+        for (Ship a : ships)
+        {
+            if (a.getPolesNumber() != 0)
+                count++;
+        }
+        
+        return count;
     }
 }
 

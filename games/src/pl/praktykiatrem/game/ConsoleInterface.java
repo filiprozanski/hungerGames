@@ -70,17 +70,17 @@ public class ConsoleInterface implements Comunicatable{
     	System.out.println(" statków.");    	
     }
     
-    public static void showYourMove()
+    public static void showYourMove(Player gamer)
     {
-    	System.out.println("Twój ruch !");
+    	System.out.println("Twój ruch: " + gamer.getName());
     }
-    public static void showYouWon()
+    public static void showYouWon(Player gamer)
     {
-    	System.out.println("Wygra³e¶ !");
+    	System.out.println("Wygra³e¶ " + gamer.getName() + "!");
     }
-    public static void showYouLost()
+    public static void showYouLost(Player gamer)
     {
-    	System.out.println("Przegra³e¶ !");
+    	System.out.println("Przegra³e¶ " + gamer.getName() + "!");
     }
     public static void showGameOver()
     {

@@ -13,9 +13,9 @@ public class PlayerStatus {
     {	
 		ConsoleInterface.showCountShips(shipsNumber);
     }
-	public static void showYourMove()
+	public static void showYourMove(Player p)
     {
-    	ConsoleInterface.showYourMove();
+    	ConsoleInterface.showYourMove(p);
     }
 	public static void showYouWon()
     {

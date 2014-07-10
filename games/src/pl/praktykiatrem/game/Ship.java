@@ -15,13 +15,13 @@ public class Ship
         
     }
     
-    public Coordinate getDirection()
-    {
-        return null;
-    }
-    
     public void reducePolesNumber()
     {
         polesNumber--;
+    }
+    
+    public int getPolesNumber()
+    {
+        return polesNumber;
     }
 }
