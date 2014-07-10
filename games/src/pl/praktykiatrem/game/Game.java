@@ -22,7 +22,8 @@ public class Game {
     
     public void gameInProgress()
     {
-        
+        ConsoleInterface.showMenu();
+        ConsoleInterface.
     }
     
     private void initializeShips(Player gamer)

@@ -12,6 +12,11 @@ import java.util.Scanner;
 public class ConsoleInterface implements Comunicatable{
     private static Scanner in = new Scanner(System.in);
     
+    public static void showMenu()
+    {
+        System.out.println("Witamy w grze w statki, za chwile zostaniesz przeniesiony na pole bitwy!");
+    }
+    
     public static char scanDirection(int polesNumber)
     {
         System.out.println("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo)");
@@ -80,10 +85,6 @@ public class ConsoleInterface implements Comunicatable{
     public static void showGameOver()
     {
     	System.out.println("Koniec gry !");
-    }
-    public static void showYourMove()
-    {
-    	System.out.println("Twój ruch !");
     }
 }
 
