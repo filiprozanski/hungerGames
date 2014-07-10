@@ -25,6 +25,21 @@ public class Game {
         ConsoleInterface.showMenu();
         initializeShips(A);
         initializeShips(B);
+        
+        Player currentPlayer = A;
+        
+        while (true)
+        {
+            
+        }
+    }
+    
+    private Player changePlayer(Player X)
+    {
+        if (X.getName() == A.getName())
+            return B;
+        else
+            return A;
     }
     
     private void initializeShips(Player gamer)
