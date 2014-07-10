@@ -36,15 +36,15 @@ public class Player {
         ships[id-1] = new Ship(polesNumber);
         if (direction == 'H' || direction == 'h')
         {
-            plansza.gameBoard[x][y]=(char)(id+'0');
-            /*for(int i=1;i<polesNumber;i++)
-        		plansza.gameBoard[y][x+i]=(char)(id+'0');*/
+            plansza.gameBoard[y][x]=(char)(id+'0');
+            for(int i=1;i<polesNumber;i++)
+        		plansza.gameBoard[y][x+i]=(char)(id+'0');
         }
         else if (direction == 'V' || direction == 'v')
         {
-        	plansza.gameBoard[x][y]=(char)(id+'0');
-        	/*for(int i=1;i<polesNumber;i++)
-        		plansza.gameBoard[x+i][y]=(char)(id+'0');*/
+        	plansza.gameBoard[y][x]=(char)(id+'0');
+        	for(int i=1;i<polesNumber;i++)
+        		plansza.gameBoard[y+i][x]=(char)(id+'0');
         }
     }
     
