@@ -13,8 +13,16 @@ public class PlayerStatus {
     {	
 		ConsoleInterface.showCountShips(shipsNumber);
     }
-    public static void showYourMove()
+	public static void showYourMove()
     {
     	ConsoleInterface.showYourMove();
+    }
+	public static void showYouWon()
+    {
+    	ConsoleInterface.showYouWon();
+    }
+	public static void showYouLost()
+    {
+    	ConsoleInterface.showYouLost();
     }
 }
