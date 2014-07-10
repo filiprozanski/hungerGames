@@ -46,6 +46,12 @@ public class ConsoleInterface implements Comunicatable{
         System.out.println("Poda³e¶ b³êdne dane, spróbuj jeszcze raz.");
     }
     
+    public static void clearConsole()
+    {
+    	for (int i = 0; i < 20; i++)
+    		System.out.println();
+    }
+    
     public static boolean isPlaceValid(char direction, int x, int y, int polesNumber)
     {
         if (direction == 'H' || direction == 'h')

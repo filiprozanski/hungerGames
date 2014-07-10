@@ -27,6 +27,11 @@ public class Player {
         return name;
     }
     
+    public int getShipsNumber()
+    {
+    	return shipsNumber;
+    }
+    
     public Board getPlansza()
     {
         return plansza;
@@ -89,18 +94,5 @@ public class Player {
     {
         shipsNumber--;
     }
-    
-    /*public int shipNumber()
-    {
-        int count = 0; 
-        
-        for (Ship a : ships)
-        {
-            if (a.getPolesNumber() != 0)
-                count++;
-        }
-        
-        return count;
-    }*/
 }
 

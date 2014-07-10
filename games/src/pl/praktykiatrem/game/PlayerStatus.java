@@ -8,25 +8,29 @@
 package pl.praktykiatrem.game;
 
 public class PlayerStatus {
+	private Player gamer;
+	
+	public PlayerStatus(Player g)
     
-	public static void showCountShips(int shipsNumber)
+	public void showCountShips()
     {	
-		ConsoleInterface.showCountShips(shipsNumber);
+		ConsoleInterface.showCountShips(gamer.getShipsNumber());
     }
-	public static void showEnemyCountShips(int shipsNumber)
-    {	
-		ConsoleInterface.showEnemyCountShips(shipsNumber);
-    }
-	public static void showYourMove(Player p)
+	public void showYourMove()
     {
-    	ConsoleInterface.showYourMove(p);
+    	ConsoleInterface.showYourMove(gamer);
     }
-	public static void showYouWon(Player p)
+	public void showYouWon()
     {
-    	ConsoleInterface.showYouWon(p);
+    	ConsoleInterface.showYouWon(gamer);
     }
-	public static void showYouLost(Player p)
+	public void showYouLost()
     {
-    	ConsoleInterface.showYouLost(p);
+    	ConsoleInterface.showYouLost(gamer);
     }
+	
+	public void doGameSummary()
+	{
+		showCountShips();
+	}
 }
