@@ -32,21 +32,31 @@ public class Player {
         return plansza;
     }
   
-    public void placeShips(int id, int polesNumber, char direction, int x, int y)
+    public boolean placeShips(int id, int polesNumber, char direction, int x, int y)
     {
         ships[id] = new Ship(polesNumber);
         if (direction == 'H' || direction == 'h')
         {
-            plansza.gameBoard[y][x]=(char)(id+'0');
-            for(int i=1;i<polesNumber;i++)
-        		plansza.gameBoard[y][x+i]=(char)(id+'0');
+            for(int i = 0; i < polesNumber; i++)
+            	if (plansza.gameBoard[y][x + i] == 'C')
+            	{
+            		plansza.gameBoard[y][x + i]=(char)(id+'0');
+            	}
+            	else
+            		return false;
         }
         else if (direction == 'V' || direction == 'v')
         {
-        	plansza.gameBoard[y][x]=(char)(id+'0');
-        	for(int i=1;i<polesNumber;i++)
-        		plansza.gameBoard[y+i][x]=(char)(id+'0');
+        	for(int i = 0; i < polesNumber; i++)
+        		if (plansza.gameBoard[y + i][x] == 'C')
+        		{
+        			plansza.gameBoard[y + i][x]=(char)(id+'0');
+        		}
+        		else
+        			return false;
         }
+        
+        return true;
     }
     
     public int makeMove(int x, int y, Board plansza)

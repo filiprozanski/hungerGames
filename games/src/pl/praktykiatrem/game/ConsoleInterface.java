@@ -32,7 +32,7 @@ public class ConsoleInterface implements Comunicatable{
     
     public static int scanYCoordinate()
     {
-        System.out.println("Podaj wspó³rzêdn± poziom±. (1 - 10)\nY = ");
+        System.out.println("Podaj wspó³rzêdn± pionow±. (1 - 10)\nY = ");
         return in.nextInt();
     }
     

@@ -23,7 +23,9 @@ public class Game {
     public void gameInProgress()
     {
         ConsoleInterface.showMenu();
+        ConsoleInterface.showYourMove(A);
         initializeShips(A);
+        ConsoleInterface.showYourMove(B);
         initializeShips(B);
         
         Player currentPlayer = A;
@@ -33,6 +35,7 @@ public class Game {
         while (true)
         {
             BoardDrawing.drawGameBoardForOpponent(changePlayer(currentPlayer).getPlansza());
+            ConsoleInterface.showYourMove(currentPlayer);
             cords = pointRifle();
             currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza());
             enemy = currentPlayer;
@@ -89,11 +92,8 @@ public class Game {
             x = ConsoleInterface.scanXCoordinate();
             y = ConsoleInterface.scanYCoordinate();
         
-            if(ConsoleInterface.isPlaceValid(dir, x, y, polesNumber))
-            {
-                gamer.placeShips(id, polesNumber, dir, x, y);
+            if(ConsoleInterface.isPlaceValid(dir, x, y, polesNumber) && gamer.placeShips(id, polesNumber, dir, x, y))
                 break;
-            }
             
             ConsoleInterface.showErrorMessage1();
         }
