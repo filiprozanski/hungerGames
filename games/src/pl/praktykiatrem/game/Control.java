@@ -7,5 +7,6 @@
 
 package pl.praktykiatrem.game;
 
-public interface Comunicatable {
+public class Control {
+
 }

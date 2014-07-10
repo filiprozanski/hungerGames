@@ -9,17 +9,24 @@ package pl.praktykiatrem.game;
 
 import java.util.Scanner;
 
-public class ConsoleInterface {
+public class ConsoleInterface implements Comunicatable{
     private static Scanner in = new Scanner(System.in);
     
-    public static char scanDirection()
+    public static char scanDirection(int polesNumber)
     {
         System.out.println("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo)");
-        return in.nextLine().at
+        return in.nextLine().charAt(0);
     }
     
-    public static int scanInt()
+    public static int scanXCoordinate()
     {
+        System.out.println("Podaj wspó³rzêdn± poziom±. (1 - 10)\nX = ");
+        return in.nextInt();
+    }
+    
+    public static int scanYCoordinate()
+    {
+        System.out.println("Podaj wspó³rzêdn± poziom±. (1 - 10)\nY = ");
         return in.nextInt();
     }
     

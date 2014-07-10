@@ -47,12 +47,9 @@ public class GameFactory {
         int y;
         
         while(true) {
-            ConsoleInterface.printlnMessage("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo)");
-            dir = ConsoleInterface.scanString().charAt(0);
-            ConsoleInterface.printlnMessage("Podaj wspó³rzêdn± poziom±. (1 - 10)");
-            x = ConsoleInterface.scanInt();
-            ConsoleInterface.printlnMessage("Podaj wspó³rzêdn± pionow±. (1 - 10)");
-            y = ConsoleInterface.scanInt();
+            dir = ConsoleInterface.scanDirection(polesNumber);
+            x = ConsoleInterface.scanXCoordinate();
+            y = ConsoleInterface.scanYCoordinate();
         
             if(ConsoleInterface.isPlaceValid(dir, x, y, polesNumber))
             {

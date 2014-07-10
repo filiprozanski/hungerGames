@@ -77,7 +77,8 @@ public class Player {
             case '7':
                 plansza.gameBoard[y][x] = 'H';
                 return true;
-            
+            default:
+                return false;
             }
         }
     }
