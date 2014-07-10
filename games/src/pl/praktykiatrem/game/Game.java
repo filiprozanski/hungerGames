@@ -25,20 +25,20 @@ public class Game {
         
     }
     
-    private void initializeShips()
+    private void initializeShips(Player gamer)
     {
         int polesNumber;
         
             polesNumber = 6;
-            fetchShipCoords(polesNumber, 0);
+            fetchShipCoords(polesNumber, 0, gamer);
         
             polesNumber = 4;
         
             for (int i = 1; i < 7; i++)
             {
-                fetchShipCoords(polesNumber, i);
+                fetchShipCoords(polesNumber, i, gamer);
                 i++;
-                fetchShipCoords(polesNumber, i);
+                fetchShipCoords(polesNumber, i, gamer);
                 polesNumber--;
             }
     }
