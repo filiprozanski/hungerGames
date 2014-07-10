@@ -57,39 +57,14 @@ public class Player {
         }
         else
         {
-            char shipID = plansza.gameBoard[y][x];
-            switch (shipID)
-            {
-            case '1':
-                plansza.gameBoard[y][x] = 'H';
-                ships[(int)('1'-'1')].reducePolesNumber();
+            char cShipID = plansza.gameBoard[y][x];
+            int shipID = (int)cShipID-49;
+            if(shipID>=0&&shipID<=6){
+            	plansza.gameBoard[y][x] = 'H';
+                ships[shipID].reducePolesNumber();
                 return true;
-            case '2':
-                plansza.gameBoard[y][x] = 'H';
-                ships[(int)('2'-'1')].reducePolesNumber();
-                return true;
-            case '3':
-                plansza.gameBoard[y][x] = 'H';
-                ships[(int)('3'-'1')].reducePolesNumber();
-                return true;
-            case '4':
-                plansza.gameBoard[y][x] = 'H';
-                ships[(int)('4'-'1')].reducePolesNumber();
-                return true;
-            case '5':
-                plansza.gameBoard[y][x] = 'H';
-                ships[(int)('5'-'1')].reducePolesNumber();
-                return true;
-            case '6':
-                plansza.gameBoard[y][x] = 'H';
-                ships[(int)('6'-'1')].reducePolesNumber();
-                return true;
-            case '7':
-                plansza.gameBoard[y][x] = 'H';
-                ships[(int)('7'-'1')].reducePolesNumber();
-                return true;
-            default:
-                return false;
+            } else {
+            	return false;
             }
         }
     }
