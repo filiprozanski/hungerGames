@@ -19,6 +19,11 @@ public class Ship
     {
         return null;
     }
+    
+    public void reducePolesNumber()
+    {
+        polesNumber--;
+    }
 }
 
 /*public class Ship {

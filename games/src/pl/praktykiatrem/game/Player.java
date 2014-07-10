@@ -26,6 +26,10 @@ public class Player {
         this.name = name;
     }
     
+    public Board getPlansza()
+    {
+        return plansza;
+    }
   
     public void placeShips(int id, int polesNumber, char direction, int x, int y)
     {
@@ -58,24 +62,31 @@ public class Player {
             {
             case '1':
                 plansza.gameBoard[y][x] = 'H';
+                ships[(int)('1'-'1')].reducePolesNumber();
                 return true;
             case '2':
                 plansza.gameBoard[y][x] = 'H';
+                ships[(int)('2'-'1')].reducePolesNumber();
                 return true;
             case '3':
                 plansza.gameBoard[y][x] = 'H';
+                ships[(int)('3'-'1')].reducePolesNumber();
                 return true;
             case '4':
                 plansza.gameBoard[y][x] = 'H';
+                ships[(int)('4'-'1')].reducePolesNumber();
                 return true;
             case '5':
                 plansza.gameBoard[y][x] = 'H';
+                ships[(int)('5'-'1')].reducePolesNumber();
                 return true;
             case '6':
                 plansza.gameBoard[y][x] = 'H';
+                ships[(int)('6'-'1')].reducePolesNumber();
                 return true;
             case '7':
                 plansza.gameBoard[y][x] = 'H';
+                ships[(int)('7'-'1')].reducePolesNumber();
                 return true;
             default:
                 return false;
