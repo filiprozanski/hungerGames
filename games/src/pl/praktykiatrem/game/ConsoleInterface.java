@@ -69,5 +69,11 @@ public class ConsoleInterface implements Comunicatable{
         else
             return false;
     }
+    public static void countShips(int shipsNumber){
+    	System.out.print("Masz ");
+    	System.out.print(shipsNumber);
+    	System.out.println(" statków.");
+    	
+    }
 }
 
