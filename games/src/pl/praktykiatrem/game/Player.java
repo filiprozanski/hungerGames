@@ -59,11 +59,14 @@ public class Player {
         {
             char cShipID = plansza.gameBoard[y][x];
             int shipID = (int)cShipID-49;
-            if(shipID>=0&&shipID<=6){
+            if(shipID>=0&&shipID<=6)
+            {
             	plansza.gameBoard[y][x] = 'H';
                 ships[shipID].reducePolesNumber();
                 return true;
-            } else {
+            }
+            else 
+            {
             	return false;
             }
         }
