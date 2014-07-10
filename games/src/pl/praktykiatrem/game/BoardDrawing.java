@@ -37,7 +37,7 @@ public class BoardDrawing {
         {
             for (char b : a)
             {
-                System.out.print(b);
+                System.out.print();
             }
             System.out.println();
         }
