@@ -27,9 +27,14 @@ public class Game {
         initializeShips(B);
         
         Player currentPlayer = A;
+        Player enemy = B;
+        int[] cords = {0, 0};
         
         while (true)
         {
+            BoardDrawing.drawGameBoardForOpponent(changePlayer(currentPlayer).getPlansza());
+            cords = pointRifle();
+            currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza());
             
         }
     }
@@ -40,6 +45,18 @@ public class Game {
             return B;
         else
             return A;
+    }
+    
+    private int[] pointRifle()
+    {
+        int[] tab = {0, 0};
+        
+        while (true)
+        {
+            tab = ConsoleInterface.scanDropCoords();
+            if (tab[0] >= 0 && tab[0] <= 9 && tab[1] >= 0 && tab[1] <= 9)
+                return tab;
+        }
     }
     
     private void initializeShips(Player gamer)

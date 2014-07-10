@@ -91,5 +91,16 @@ public class ConsoleInterface implements Comunicatable{
     {
     	System.out.println("Koniec gry !");
     }
+    public static int[] scanDropCoords()
+    {
+        int[] tab = {0, 0};
+        
+        System.out.print("Podaj kordynaty uderzenia:\nX = ");
+        tab[0] = in.nextInt();
+        System.out.print("Y = ");
+        tab[1] = in.nextInt();
+        
+        return tab;
+    }
 }
 
