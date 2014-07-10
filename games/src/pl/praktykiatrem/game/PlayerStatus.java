@@ -13,6 +13,10 @@ public class PlayerStatus {
     {	
 		ConsoleInterface.showCountShips(shipsNumber);
     }
+	public static void showEnemyCountShips(int shipsNumber)
+    {	
+		ConsoleInterface.showEnemyCountShips(shipsNumber);
+    }
 	public static void showYourMove(Player p)
     {
     	ConsoleInterface.showYourMove(p);
