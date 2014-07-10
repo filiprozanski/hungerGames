@@ -40,5 +40,14 @@ public class Player {
         }
         
     }
+    
+    public void makeMove(int x, int y, Board plansza)
+    {
+        if (plansza.gameBoard[y][x] == 'c' || plansza.gameBoard[y][x] == 'C')
+        {
+            plansza.gameBoard[y][x] = 'M';
+            System.
+        }
+    }
 }
 
