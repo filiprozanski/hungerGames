@@ -17,12 +17,12 @@ public class PlayerStatus {
     {
     	ConsoleInterface.showYourMove(p);
     }
-	public static void showYouWon()
+	public static void showYouWon(Player p)
     {
-    	ConsoleInterface.showYouWon();
+    	ConsoleInterface.showYouWon(p);
     }
-	public static void showYouLost()
+	public static void showYouLost(Player p)
     {
-    	ConsoleInterface.showYouLost();
+    	ConsoleInterface.showYouLost(p);
     }
 }

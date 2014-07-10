@@ -15,13 +15,25 @@ public class Ship
         
     }
     
-    public void reducePolesNumber()
+    public boolean reducePolesNumber()
     {
         polesNumber--;
+        if (polesNumber == 0)
+            return true;
+        else
+            return false;
     }
     
     public int getPolesNumber()
     {
         return polesNumber;
+    }
+    
+    public boolean isShipSunk()
+    {
+        if (polesNumber == 0)
+            return true;
+        else
+            return false;
     }
 }

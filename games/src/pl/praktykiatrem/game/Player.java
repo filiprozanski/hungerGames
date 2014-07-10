@@ -64,6 +64,8 @@ public class Player {
             {
             	plansza.gameBoard[y][x] = 'H';
                 ships[shipID].reducePolesNumber();
+                if (ships[shipID].isShipSunk())
+                    reduceShipsNumber();
                 return true;
             }
             else 
@@ -73,7 +75,12 @@ public class Player {
         }
     }
     
-    public int shipNumber()
+    private void reduceShipsNumber()
+    {
+        shipsNumber--;
+    }
+    
+    /*public int shipNumber()
     {
         int count = 0; 
         
@@ -84,6 +91,6 @@ public class Player {
         }
         
         return count;
-    }
+    }*/
 }
 
