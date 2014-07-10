@@ -8,8 +8,24 @@
 package pl.praktykiatrem.game;
 
 public class BoardDrawing {
-    public static void drawGameBoardForOpponent(Board gameBoard)
+    public static void drawGameBoardForOpponent(Board gamePlace)
     {
+        char[][] tab = gamePlace.gameBoard;
         
+        for (char[] a : tab)
+        {
+            for (char b : a)
+            {
+                if (b == 'M' || b == 'H')
+                {
+                    System.out.print(b);
+                }
+                else
+                {
+                    System.out.print("C");
+                }
+            }
+            System.out.println();
+        }
     }
 }
