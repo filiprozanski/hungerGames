@@ -32,27 +32,27 @@ public class ConsoleInterface implements Comunicatable{
     
     public static int scanInterafaceChoice()
     {
-        System.out.println("Decyzja: ");
+        System.out.print("Decyzja: ");
         int input = in.nextInt();
         return input;
     }
     
     public static char scanDirection(int polesNumber)
     {
-        System.out.println("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo)");
+        System.out.print("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo):");
         String input = in.next();
         return input.charAt(0);
     }
     
     public static int scanXCoordinate()
     {
-        System.out.println("Podaj wspó³rzêdn± poziom±. (1 - 10)\nX = ");
+        System.out.print("Podaj wspó³rzêdn± poziom±. (1 - 10)\nX = ");
         return in.nextInt();
     }
     
     public static int scanYCoordinate()
     {
-        System.out.println("Podaj wspó³rzêdn± pionow±. (1 - 10)\nY = ");
+        System.out.print("Podaj wspó³rzêdn± pionow±. (1 - 10)\nY = ");
         return in.nextInt();
     }
     
