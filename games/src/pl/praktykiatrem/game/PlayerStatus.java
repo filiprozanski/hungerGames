@@ -16,15 +16,6 @@ public class PlayerStatus {
     {
     	ConsoleInterface.showYourMove(g);
     }
-	public void showYouWon(Player g)
-    {
-    	ConsoleInterface.showYouWon(g);
-    }
-	public void showYouLost(Player g)
-    {
-    	ConsoleInterface.showYouLost(g);
-    }
-	
 	public void doGameSummary(Player g, Player h)
 	{
 		showCountShips(g);

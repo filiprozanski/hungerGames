@@ -7,17 +7,15 @@
 
 package pl.praktykiatrem.game;
 
-public class Game {
+public class Game{
     private Player A;
     private Player B;
-    private boolean gameOver;
     
-    public Game() {
+    public Game()
+    {
         GameFactory start = new GameFactory();
         A = start.getA();
         B = start.getB();
-        
-        gameOver = false;
     }
     
     public void gameInProgress()
@@ -34,22 +32,20 @@ public class Game {
         Player enemy = B;
         int[] cords = {0, 0};
         
-        while (true)
-        {
-            BoardDrawing.drawGameBoardForOpponent(changePlayer(currentPlayer).getPlansza());
+        while (!isGameOver())
+        {	
+        	ConsoleInterface.clearConsole();
+            BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
             ConsoleInterface.showYourMove(currentPlayer);
             cords = Coordinate.pointRifle();
-            if (currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza()) == 1)
-                continue;
-            else if (currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza()) == 0)
+            if (currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza()) == 0)
             {
                 enemy = currentPlayer;
                 currentPlayer = changePlayer(currentPlayer);
             }
-            //else if (currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza()) == 2)
         }
-        
-        
+        ConsoleInterface.showGameOver(currentPlayer);
+        ConsoleInterface.showGameOver();
     }
     
     private Player changePlayer(Player X)
@@ -58,6 +54,14 @@ public class Game {
             return B;
         else
             return A;
+    }
+    
+    private boolean isGameOver(Player X)
+    {
+    	if (X.getShipsNumber()>0)
+    		return false;
+    	else
+    		return true;
     }
     
     private void initializeShips(Player gamer)

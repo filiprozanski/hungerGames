@@ -87,17 +87,13 @@ public class ConsoleInterface implements Comunicatable{
     {
     	System.out.println("Twój ruch: " + gamer.getName());
     }
-    public static void showYouWon(Player gamer)
-    {
-    	System.out.println("Wygra³e¶ " + gamer.getName() + "!");
-    }
-    public static void showYouLost(Player gamer)
-    {
-    	System.out.println("Przegra³e¶ " + gamer.getName() + "!");
-    }
     public static void showGameOver()
     {
     	System.out.println("Koniec gry !");
+    }
+    public static void showGameOver(Player gamer)
+    {
+   		System.out.println("Wygra³: " + gamer.getName());		
     }
     public static int[] scanDropCoords()
     {

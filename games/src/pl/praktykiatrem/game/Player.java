@@ -69,12 +69,12 @@ public class Player {
         return true;
     }
     
-    public int makeMove(int x, int y, Board plansza)
+    public boolean makeMove(int x, int y, Board plansza)
     {
         if (plansza.gameBoard[y][x] == 'c' || plansza.gameBoard[y][x] == 'C')
         {
             plansza.gameBoard[y][x] = 'M';
-            return 0;
+            return false;
         }
         else
         {
@@ -86,11 +86,11 @@ public class Player {
                 ships[shipID].reducePolesNumber();
                 if (ships[shipID].isShipSunk())
                     reduceShipsNumber();
-                return 1;
+                return true;
             }
             else 
             {
-            	return 0;
+            	return false;
             }
         }
     }
