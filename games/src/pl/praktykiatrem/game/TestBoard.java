@@ -3,7 +3,7 @@ package pl.praktykiatrem.game;
 public class TestBoard {
 	
 	public static void main(String[] args) {
-	    /*Board plansza = new Board(10, 10);
+	    Board plansza = new Board(10, 10);
 	    
 	    System.out.println(plansza);
 	    
@@ -12,10 +12,10 @@ public class TestBoard {
 	    BoardDrawing.drawGameBoardForPlayer(plansza);
 	    System.out.println();
 	    
-	    Player filip = new Player("Filip");
+	    Player filip = new Player();
 	    filip.placeShips(1, 6, 'H', 4, 2);
 	    
-	    Player wiktor = new Player("Filip");
+	    Player wiktor = new Player();
         wiktor.placeShips(1, 3, 'H', 4, 2);
 	    
 	    BoardDrawing.drawGameBoardForOpponent(filip.getPlansza());
@@ -32,7 +32,7 @@ public class TestBoard {
 	    BoardDrawing.drawGameBoardForOpponent(wiktor.getPlansza());
         System.out.println();
         BoardDrawing.drawGameBoardForPlayer(wiktor.getPlansza());
-        System.out.println();*/
+        System.out.println();
 		
 		Game newGame = new Game();
 		newGame.gameInProgress();

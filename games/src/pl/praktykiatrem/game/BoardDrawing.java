@@ -12,13 +12,20 @@ public class BoardDrawing {
     {
         char[][] tab = gamePlace.gameBoard;
         
-        for (char[] a : tab)
+        System.out.print(" ");
+        for (int i = 0; i < gamePlace.getPlacesHorizontal(); i++)
+            System.out.print(i);
+        
+        System.out.println();
+        
+        for (int i = 0; i < gamePlace.getPlacesVertical(); i++)
         {
-            for (char b : a)
+            System.out.print(i);
+            for (int j = 0; j < gamePlace.getPlacesHorizontal(); j++)
             {
-                if (b == 'M' || b == 'H')
+                if (tab[i][j] == 'M' || tab[i][j] == 'H')
                 {
-                    System.out.print(b);
+                    System.out.print(tab[i][j]);
                 }
                 else
                 {
@@ -33,11 +40,18 @@ public class BoardDrawing {
     {
         char[][] tab = gamePlace.gameBoard;
         
-        for (char[] a : tab)
+        System.out.print(" ");
+        for (int i = 0; i < gamePlace.getPlacesHorizontal(); i++)
+            System.out.print(i);
+        
+        System.out.println();
+        
+        for (int i = 0; i < gamePlace.getPlacesVertical(); i++)
         {
-            for (char b : a)
+            System.out.print(i);
+            for (int j = 0; j < gamePlace.getPlacesHorizontal(); j++)
             {
-                System.out.print(b);
+                System.out.print(tab[i][j]);
             }
             System.out.println();
         }

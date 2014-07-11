@@ -4,7 +4,16 @@ public class Board {
     public char[][] gameBoard;
     private int placesHorizontal;
     private int placesVertical;
-    
+
+    public int getPlacesVertical()
+    {
+        return placesVertical;
+    }
+
+    public int getPlacesHorizontal()
+    {
+        return placesHorizontal;
+    }
    
     Board(int horizontal, int vertical)
     {
