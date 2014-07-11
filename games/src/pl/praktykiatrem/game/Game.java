@@ -39,10 +39,17 @@ public class Game {
             BoardDrawing.drawGameBoardForOpponent(changePlayer(currentPlayer).getPlansza());
             ConsoleInterface.showYourMove(currentPlayer);
             cords = Coordinate.pointRifle();
-            currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza());
-            enemy = currentPlayer;
-            currentPlayer = changePlayer(currentPlayer);
+            if (currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza()) == 1)
+                continue;
+            else if (currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza()) == 0)
+            {
+                enemy = currentPlayer;
+                currentPlayer = changePlayer(currentPlayer);
+            }
+            //else if (currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza()) == 2)
         }
+        
+        
     }
     
     private Player changePlayer(Player X)
