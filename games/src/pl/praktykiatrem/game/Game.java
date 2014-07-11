@@ -23,6 +23,8 @@ public class Game {
     public void gameInProgress()
     {
         ConsoleInterface.showMenu();
+        A.setName(ConsoleInterface.scanName());
+        B.setName(ConsoleInterface.scanName());
         ConsoleInterface.showYourMove(A);
         initializeShips(A);
         ConsoleInterface.showYourMove(B);
@@ -62,12 +64,10 @@ public class Game {
         
             for (int i = 1; i < 7; i++)
             {
-                fetchShipCoords(polesNumber, i, gamer);
+                Coordinate.fetchShipCoords(polesNumber, i, gamer);
                 i++;
-                fetchShipCoords(polesNumber, i, gamer);
+                Coordinate.fetchShipCoords(polesNumber, i, gamer);
                 polesNumber--;
             }
     }
-    
-    
 }

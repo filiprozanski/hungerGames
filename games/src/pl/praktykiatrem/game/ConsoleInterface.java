@@ -38,6 +38,7 @@ public class ConsoleInterface implements Comunicatable{
     
     public static String scanName()
     {
+        System.out.print("Podaj swoje imiê: ");
         return in.nextLine();
     }
     

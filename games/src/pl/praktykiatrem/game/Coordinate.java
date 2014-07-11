@@ -21,7 +21,7 @@ class Coordinate
         }
     }
     
-    private static void fetchShipCoords(int polesNumber, int id, Player gamer)
+    public static void fetchShipCoords(int polesNumber, int id, Player gamer)
     {
         char dir;
         int x;

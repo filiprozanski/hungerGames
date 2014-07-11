@@ -14,10 +14,10 @@ public class Player {
     private String name;
     private PlayerStatus stats;
     
-    public Player(String name)
+    public Player(/*String name*/)
     {
         shipsNumber = 7;
-        this.name = name;
+        //this.name = name;
         plansza = new Board(10, 10);
         ships = new Ship[shipsNumber];
     }
