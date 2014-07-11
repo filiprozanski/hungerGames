@@ -53,7 +53,7 @@ public class Game{
         {	
         	
             BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
-            PlayerStatus.showYourMove(currentPlayer);
+            ConsoleInterface.showYourMove(currentPlayer);
             cords = pointRifle();
             if (!currentPlayer.makeMove(cords[0], cords[1], enemy))
             {
@@ -68,7 +68,7 @@ public class Game{
                 ConsoleInterface.showHitMessage();
             }
                 
-            PlayerStatus.doGameSummary(currentPlayer, enemy);
+            ConsoleInterface.showGameSummary(currentPlayer, enemy);
         }
         ConsoleInterface.showGameOver(currentPlayer);
         ConsoleInterface.showGameOver();

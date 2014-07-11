@@ -108,6 +108,12 @@ public class ConsoleInterface implements Comunicatable{
     	System.out.println(" statków.");    	
     }
     
+	public static void showGameSummary(Player g, Player h)
+	{
+		ConsoleInterface.showCountShips(g);
+		ConsoleInterface.showCountShips(h);
+	}
+	
     public static void showYourMove(Player gamer)
     {
     	System.out.println("Twój ruch: " + gamer.getName());
