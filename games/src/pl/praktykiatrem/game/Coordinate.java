@@ -7,8 +7,23 @@
 
 package pl.praktykiatrem.game;
 
+/**
+ * 
+ *	Klasa <code>Coordinate</code> zawiera funkcje statyczne obs³uguj±ce pobieranie wspó³rzêdnych do ustawiania i strzelania
+ *
+ *
+ * @author filipr
+ * @version 11 lip 2014 12:41:12
+ *
+ */
 class Coordinate
 {
+    /**
+     * 
+     * Metoda <code>pointRifle</code> pobiera wspó³rzêdne do strza³u
+     *
+     * @return tablica int[], gdzie [0] to wspó³rzêdna x, a [1] to wspó³rzêdna y
+     */
     public static int[] pointRifle()
     {
         int[] tab = {0, 0};
@@ -21,6 +36,14 @@ class Coordinate
         }
     }
     
+    /**
+     * 
+     * Metoda <code>fetchShipCoords</code> pobiera dane do ustawienia statku
+     *
+     * @param polesNumber liczba masztów
+     * @param id
+     * @param gamer gracz, którego statki s± ustawiane
+     */
     public static void fetchShipCoords(int polesNumber, int id, Player gamer)
     {
         char dir;

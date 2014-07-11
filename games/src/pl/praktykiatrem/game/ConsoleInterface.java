@@ -9,6 +9,14 @@ package pl.praktykiatrem.game;
 
 import java.util.Scanner;
 
+/**
+ * 
+ *	Klasa <code>ConsoleInterface</code> zawiera funkcje statyczne wy¶wietlaj±ce w konsoli komunikaty, oraz pobieraj±ce od u¿ytkownika niezbêdnê dane
+ *
+ * @author filipr
+ * @version 11 lip 2014 12:36:18
+ *
+ */
 public class ConsoleInterface implements Comunicatable{
     private static Scanner in = new Scanner(System.in);
     
@@ -53,6 +61,16 @@ public class ConsoleInterface implements Comunicatable{
     		System.out.println();
     }
     
+    /**
+     * 
+     * Metoda <code>isPlaceValid</code> sprawdza, czy statek o danych parametrach mie¶ci siê na polu gry 
+     *
+     * @param direction okre¶la czy statek bêdzie poziomo 'h', czy pionowo 'v'
+     * @param x wspó³rzêdna pozioma pocz±tku statku
+     * @param y wspó³rzêdna pionowa pocz±tku statku
+     * @param polesNumber liczba masztów (wielko¶æ statku)
+     * @return true je¿eli statek zmie¶ci siê na planszy, false je¿eli nie
+     */
     public static boolean isPlaceValid(char direction, int x, int y, int polesNumber)
     {
         if (direction == 'H' || direction == 'h')

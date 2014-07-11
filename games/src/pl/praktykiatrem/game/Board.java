@@ -1,6 +1,18 @@
 package pl.praktykiatrem.game;
 
+/**
+ * 
+ *	Klasa <code>Board</code> reprezentuje planszê do gry
+ *
+ * @author filipr
+ * @version 11 lip 2014 12:31:46
+ *
+ */
 public class Board {
+    /**
+     * tablica dwuwymiarowa[y][x] przechowujaca stany poszczególnych pól
+     * C - puste pole; '0' - '6' - ustawiony statek; M - oddany niecelny strza³; H - oddany celny strza³
+     */
     public char[][] gameBoard;
     private int placesHorizontal;
     private int placesVertical;
@@ -34,35 +46,9 @@ public class Board {
             }
         }
     }
-    public int getState(int horizontal, int vertical){
-        return gameBoard[horizontal][vertical];
-    }
     
-    public String toString()
-    {
-        String wyjscie = "";
-        
-        for (int i = 0; i < placesHorizontal; i++)
-        {
-            wyjscie = wyjscie + "-";
-        }
-        
-        wyjscie = wyjscie + "\n";
-        
-        for (int i = 0; i < placesVertical; i++)
-        {
-            for (int j = 0; j < placesHorizontal; j++)
-                wyjscie = wyjscie + gameBoard[i][j];
-            wyjscie = wyjscie + "\n";
-        }
-        
-        for (int i = 0; i < placesHorizontal; i++)
-        {
-            wyjscie = wyjscie + "-";
-        }
-        
-        wyjscie = wyjscie + "\n";
-        
-        return wyjscie;
+    
+    public int getState(int horizontal, int vertical){
+        return gameBoard[vertical][horizontal];
     }
 }

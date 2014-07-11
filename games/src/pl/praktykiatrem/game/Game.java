@@ -25,10 +25,11 @@ public class Game{
         ConsoleInterface.showMenu();
         A.setName(ConsoleInterface.scanName());
         B.setName(ConsoleInterface.scanName());
-        ConsoleInterface.showYourMove(A);
+       
         initializeShipsFromFile(A);
-        ConsoleInterface.showYourMove(B);
         initializeShipsFromFile(B);
+        //initializeShips(A);
+        //initializeShips(B);
         
         Player currentPlayer = A;
         Player enemy = B;
@@ -77,13 +78,13 @@ public class Game{
     
     private void initializeShips(Player gamer)
     {
-        int polesNumber;
-        
+            int polesNumber;
+            ConsoleInterface.showYourMove(gamer);
             polesNumber = 6;
             Coordinate.fetchShipCoords(polesNumber, 0, gamer);
         
             polesNumber = 4;
-        
+            
             for (int i = 1; i < 7; i++)
             {
                 Coordinate.fetchShipCoords(polesNumber, i, gamer);
@@ -105,6 +106,6 @@ public class Game{
         	}
         }
         odczyt.close();  
-        BoardDrawing.drawGameBoardForPlayer(gamer.getPlansza());    		 
+          		 
     }
 }
