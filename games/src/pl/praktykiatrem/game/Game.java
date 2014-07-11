@@ -26,8 +26,8 @@ public class Game{
         A.setName(ConsoleInterface.scanName());
         B.setName(ConsoleInterface.scanName());
        
-        initializeShipsFromFile(A);
-        initializeShipsFromFile(B);
+        initializeShips(A);
+        initializeShips(B);
         //initializeShips(A);
         //initializeShips(B);
         
@@ -60,6 +60,24 @@ public class Game{
         ConsoleInterface.showGameOver();
     }
     
+    /**
+     * 
+     * Metoda <code>pointRifle</code> pobiera wspó³rzêdne do strza³u
+     *
+     * @return tablica int[], gdzie [0] to wspó³rzêdna x, a [1] to wspó³rzêdna y
+     */
+    private static int[] pointRifle()
+    {
+        int[] tab = {0, 0};
+        
+        while (true)
+        {
+            tab = ConsoleInterface.scanDropCoords();
+            if (tab[0] >= 0 && tab[0] <= 9 && tab[1] >= 0 && tab[1] <= 9)
+                return tab;
+        }
+    }
+    
     private Player changePlayer(Player X)
     {
         if (X.getName() == A.getName())
@@ -76,36 +94,5 @@ public class Game{
     		return true;
     }
     
-    private void initializeShips(Player gamer)
-    {
-            int polesNumber;
-            ConsoleInterface.showYourMove(gamer);
-            polesNumber = 6;
-            Coordinate.fetchShipCoords(polesNumber, 0, gamer);
-        
-            polesNumber = 4;
-            
-            for (int i = 1; i < 7; i++)
-            {
-                Coordinate.fetchShipCoords(polesNumber, i, gamer);
-                i++;
-                Coordinate.fetchShipCoords(polesNumber, i, gamer);
-                polesNumber--;
-            }
-    }
     
-    public void initializeShipsFromFile(Player gamer) throws FileNotFoundException {
-        File plik1=new File("src/pl/praktykiatrem/game/"+gamer.getName()+".txt");
-        Scanner odczyt=new Scanner(plik1);
-        String temp;
-        while (odczyt.hasNextLine()){
-        	for(int i=0;i<7;i++){    	
-        		temp=odczyt.nextLine();
-        		gamer.placeShips(i, (int)temp.charAt(0)-48, temp.charAt(2), (int)temp.charAt(4)-48, (int)temp.charAt(6)-48);    		
-        	
-        	}
-        }
-        odczyt.close();  
-          		 
-    }
 }
