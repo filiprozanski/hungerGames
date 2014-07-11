@@ -12,7 +12,6 @@ public class Player {
     private Ship[] ships;
     private int shipsNumber;
     private String name;
-    private PlayerStatus stats;
     
     public Player(/*String name*/)
     {
@@ -71,16 +70,17 @@ public class Player {
     
     public boolean makeMove(int x, int y, Player enemy)
     {
-        if (enemy.getPlansza().gameBoard[y][x] == 'c' || enemy.getPlansza().gameBoard[y][x] == 'C')
+        if (ValidationInstruments.isPlaceClear(enemy.getPlansza().gameBoard, x, y))
         {
             enemy.getPlansza().gameBoard[y][x] = 'M';
             return false;
         }
         else
         {
+            
             char cShipID = enemy.getPlansza().gameBoard[y][x];
             int shipID = (int)cShipID-48;
-            if(shipID >= 0 && shipID <= 6)
+            if(ValidationInstruments.isShipOnPlace(enemy.getPlansza().gameBoard, x, y, shipID))
             {
                 enemy.getPlansza().gameBoard[y][x] = 'H';
                 ships[shipID].reducePolesNumber();
@@ -88,10 +88,8 @@ public class Player {
                     enemy.reduceShipsNumber();
                 return true;
             }
-            else 
-            {
+            else
             	return false;
-            }
         }
     }
     
