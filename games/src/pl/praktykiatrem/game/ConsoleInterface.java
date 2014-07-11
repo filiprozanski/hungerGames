@@ -25,6 +25,18 @@ public class ConsoleInterface implements Comunicatable{
         System.out.println("Witamy w grze w statki, za chwile zostaniesz przeniesiony na pole bitwy!");
     }
     
+    public static void showChooseInterface()
+    {
+        System.out.println("Wybierz 1 aby wczytaæ statki z pliku lub 2 aby wpisaæ je rêcznie");
+    }
+    
+    public static int scanInterafaceChoice()
+    {
+        System.out.println("Decyzja: ");
+        int input = in.nextInt();
+        return input;
+    }
+    
     public static char scanDirection(int polesNumber)
     {
         System.out.println("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo)");

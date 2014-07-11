@@ -23,7 +23,8 @@ public class Game{
     public void gameInProgress() throws FileNotFoundException
     {
         ConsoleInterface.showMenu();
-        int decision = ConsoleInterface.getInterfaceDecision();
+        ConsoleInterface.showChooseInterface();
+        int decision = ConsoleInterface.scanInterafaceChoice();
         ShipLoadingInterface loader;
         
         switch (decision)
@@ -53,7 +54,7 @@ public class Game{
         	
             BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
             PlayerStatus.showYourMove(currentPlayer);
-            cords = Coordinate.pointRifle();
+            cords = pointRifle();
             if (!currentPlayer.makeMove(cords[0], cords[1], enemy))
             {
                 ConsoleInterface.clearConsole();
