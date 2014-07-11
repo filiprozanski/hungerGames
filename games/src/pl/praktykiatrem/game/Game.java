@@ -23,13 +23,26 @@ public class Game{
     public void gameInProgress() throws FileNotFoundException
     {
         ConsoleInterface.showMenu();
+        int decision = ConsoleInterface.getInterfaceDecision();
+        ShipLoadingInterface loader;
+        
+        switch (decision)
+        {
+            case 1:
+                loader = new FileShipLoader();
+                break;
+            case 2:
+                loader = new ManualShipLoader();
+                break;
+            default:
+                loader = new ManualShipLoader();
+        }
+            
         A.setName(ConsoleInterface.scanName());
         B.setName(ConsoleInterface.scanName());
        
-        initializeShips(A);
-        initializeShips(B);
-        //initializeShips(A);
-        //initializeShips(B);
+        loader.initializeShips(A);
+        loader.initializeShips(B);
         
         Player currentPlayer = A;
         Player enemy = B;
