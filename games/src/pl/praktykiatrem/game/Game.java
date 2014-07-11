@@ -36,7 +36,7 @@ public class Game {
         {
             BoardDrawing.drawGameBoardForOpponent(changePlayer(currentPlayer).getPlansza());
             ConsoleInterface.showYourMove(currentPlayer);
-            cords = pointRifle();
+            cords = Coordinate.pointRifle();
             currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza());
             enemy = currentPlayer;
             currentPlayer = changePlayer(currentPlayer);
@@ -51,24 +51,12 @@ public class Game {
             return A;
     }
     
-    private int[] pointRifle()
-    {
-        int[] tab = {0, 0};
-        
-        while (true)
-        {
-            tab = ConsoleInterface.scanDropCoords();
-            if (tab[0] >= 0 && tab[0] <= 9 && tab[1] >= 0 && tab[1] <= 9)
-                return tab;
-        }
-    }
-    
     private void initializeShips(Player gamer)
     {
         int polesNumber;
         
             polesNumber = 6;
-            fetchShipCoords(polesNumber, 0, gamer);
+            Coordinate.fetchShipCoords(polesNumber, 0, gamer);
         
             polesNumber = 4;
         
@@ -81,21 +69,5 @@ public class Game {
             }
     }
     
-    private void fetchShipCoords(int polesNumber, int id, Player gamer)
-    {
-        char dir;
-        int x;
-        int y;
-        
-        while(true) {
-            dir = ConsoleInterface.scanDirection(polesNumber);
-            x = ConsoleInterface.scanXCoordinate();
-            y = ConsoleInterface.scanYCoordinate();
-        
-            if(ConsoleInterface.isPlaceValid(dir, x, y, polesNumber) && gamer.placeShips(id, polesNumber, dir, x, y))
-                break;
-            
-            ConsoleInterface.showErrorMessage1();
-        }
-    }
+    
 }

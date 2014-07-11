@@ -9,27 +9,35 @@ package pl.praktykiatrem.game;
 
 class Coordinate
 {
-    private int x;
-    private int y;
-    
-    Coordinate(int aX, int aY)
+    public static int[] pointRifle()
     {
-        x = aX;
-        y = aY;
+        int[] tab = {0, 0};
+        
+        while (true)
+        {
+            tab = ConsoleInterface.scanDropCoords();
+            if (tab[0] >= 0 && tab[0] <= 9 && tab[1] >= 0 && tab[1] <= 9)
+                return tab;
+        }
     }
     
-    public int getX()
+    private static void fetchShipCoords(int polesNumber, int id, Player gamer)
     {
-        return x;
-    }
-    
-    public int getY()
-    {
-        return y;
-    }
-    
-    public String toString()
-    {
-        return "X = " + x + "; Y = " + y;
+        char dir;
+        int x;
+        int y;
+        
+        while(true) {
+            dir = ConsoleInterface.scanDirection(polesNumber);
+            x = ConsoleInterface.scanXCoordinate();
+            y = ConsoleInterface.scanYCoordinate();
+        
+            if(ConsoleInterface.isPlaceValid(dir, x, y, polesNumber) && gamer.placeShips(id, polesNumber, dir, x, y))
+            {
+                BoardDrawing.drawGameBoardForPlayer(gamer.getPlansza());
+                break;
+            }
+            ConsoleInterface.showErrorMessage1();
+        }
     }
 }
