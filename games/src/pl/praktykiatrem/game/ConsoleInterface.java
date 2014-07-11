@@ -57,14 +57,14 @@ public class ConsoleInterface implements Comunicatable{
     {
         if (direction == 'H' || direction == 'h')
         {
-            if (x + polesNumber <= 9)
+            if (x + polesNumber <= 10)
                 return true;
             else
                 return false;
         }
         else if (direction == 'V' || direction == 'v')
         {
-            if (y + polesNumber <= 9)
+            if (y + polesNumber <= 10)
                 return true;
             else
                 return false;
@@ -100,6 +100,16 @@ public class ConsoleInterface implements Comunicatable{
         tab[1] = in.nextInt();
         
         return tab;
+    }
+    
+    public static void showHitMessage()
+    {
+        System.out.println("Brawo! Trafi³e¶!");
+    }
+    
+    public static void showMissMessage()
+    {
+        System.out.println("Pud³o...");
     }
 }
 

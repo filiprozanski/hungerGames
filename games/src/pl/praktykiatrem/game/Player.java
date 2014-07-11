@@ -69,23 +69,23 @@ public class Player {
         return true;
     }
     
-    public boolean makeMove(int x, int y, Board plansza)
+    public boolean makeMove(int x, int y, Player enemy)
     {
-        if (plansza.gameBoard[y][x] == 'c' || plansza.gameBoard[y][x] == 'C')
+        if (enemy.getPlansza().gameBoard[y][x] == 'c' || enemy.getPlansza().gameBoard[y][x] == 'C')
         {
-            plansza.gameBoard[y][x] = 'M';
+            enemy.getPlansza().gameBoard[y][x] = 'M';
             return false;
         }
         else
         {
-            char cShipID = plansza.gameBoard[y][x];
-            int shipID = (int)cShipID-50;
+            char cShipID = enemy.getPlansza().gameBoard[y][x];
+            int shipID = (int)cShipID-48;
             if(shipID >= 0 && shipID <= 6)
             {
-            	plansza.gameBoard[y][x] = 'H';
+                enemy.getPlansza().gameBoard[y][x] = 'H';
                 ships[shipID].reducePolesNumber();
                 if (ships[shipID].isShipSunk())
-                    reduceShipsNumber();
+                    enemy.reduceShipsNumber();
                 return true;
             }
             else 
@@ -95,7 +95,7 @@ public class Player {
         }
     }
     
-    private void reduceShipsNumber()
+    public void reduceShipsNumber()
     {
         shipsNumber--;
     }

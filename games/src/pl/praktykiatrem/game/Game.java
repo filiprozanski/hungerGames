@@ -38,11 +38,13 @@ public class Game{
             BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
             PlayerStatus.showYourMove(currentPlayer);
             cords = Coordinate.pointRifle();
-            if (!currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza()))
+            if (!currentPlayer.makeMove(cords[0], cords[1], enemy))
             {
+                ConsoleInterface.showMissMessage();
                 enemy = currentPlayer;
                 currentPlayer = changePlayer(currentPlayer);
             }
+            ConsoleInterface.showHitMessage();
             PlayerStatus.doGameSummary(currentPlayer, enemy);
         }
         ConsoleInterface.showGameOver(currentPlayer);
