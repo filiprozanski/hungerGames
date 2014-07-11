@@ -59,7 +59,7 @@ public class ConsoleInterface implements Comunicatable{
     public static String scanName()
     {
         System.out.print("Podaj swoje imiê: ");
-        return in.nextLine();
+        return in.next();
     }
     
     public static void showErrorMessage1()
