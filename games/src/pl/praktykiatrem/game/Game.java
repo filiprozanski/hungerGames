@@ -32,7 +32,7 @@ public class Game{
         Player enemy = B;
         int[] cords = {0, 0};
         
-        while ((isGameOver(A) || !isGameOver(B)) && (!isGameOver(A) || isGameOver(B)))
+        while (!isGameOver(enemy))
         {	
         	ConsoleInterface.clearConsole();
             BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
