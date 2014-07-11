@@ -34,18 +34,23 @@ public class Game{
         
         while (!isGameOver(enemy))
         {	
-        	ConsoleInterface.clearConsole();
+        	
             BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
             PlayerStatus.showYourMove(currentPlayer);
             cords = Coordinate.pointRifle();
             if (!currentPlayer.makeMove(cords[0], cords[1], enemy))
             {
+                ConsoleInterface.clearConsole();
                 ConsoleInterface.showMissMessage();
                 enemy = currentPlayer;
                 currentPlayer = changePlayer(currentPlayer);
             }
             else
+            {
+                ConsoleInterface.clearConsole();
                 ConsoleInterface.showHitMessage();
+            }
+                
             PlayerStatus.doGameSummary(currentPlayer, enemy);
         }
         ConsoleInterface.showGameOver(currentPlayer);
