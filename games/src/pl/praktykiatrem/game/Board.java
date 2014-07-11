@@ -41,13 +41,11 @@ public class Board {
         for (int i = 0; i < placesVertical; i++)
         {
             for (int j = 0; j < placesHorizontal; j++)
-            {
                 gameBoard[j][i] = 'C';
-            }
         }
     }
     
-    
+
     public int getState(int horizontal, int vertical){
         return gameBoard[vertical][horizontal];
     }

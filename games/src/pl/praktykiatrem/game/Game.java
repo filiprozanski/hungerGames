@@ -6,9 +6,11 @@
  */
 
 package pl.praktykiatrem.game;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 public class Game{
     private Player A;
     private Player B;

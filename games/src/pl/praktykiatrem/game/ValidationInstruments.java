@@ -25,4 +25,34 @@ public class ValidationInstruments {
         else
             return false;
     }
+    
+    /**
+     * 
+     * Metoda <code>isPlaceValid</code> sprawdza, czy statek o danych parametrach mie¶ci siê na polu gry 
+     *
+     * @param direction okre¶la czy statek bêdzie poziomo 'h', czy pionowo 'v'
+     * @param x wspó³rzêdna pozioma pocz±tku statku
+     * @param y wspó³rzêdna pionowa pocz±tku statku
+     * @param polesNumber liczba masztów (wielko¶æ statku)
+     * @return true je¿eli statek zmie¶ci siê na planszy, false je¿eli nie
+     */
+    public static boolean isPlaceValid(char direction, int x, int y, int polesNumber)
+    {
+        if (direction == 'H' || direction == 'h')
+        {
+            if (x + polesNumber <= 10)
+                return true;
+            else
+                return false;
+        }
+        else if (direction == 'V' || direction == 'v')
+        {
+            if (y + polesNumber <= 10)
+                return true;
+            else
+                return false;
+        }
+        else
+            return false;
+    }
 }

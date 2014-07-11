@@ -45,7 +45,7 @@ public class ManualShipLoader implements ShipLoadingInterface {
             x = ConsoleInterface.scanXCoordinate();
             y = ConsoleInterface.scanYCoordinate();
         
-            if(ConsoleInterface.isPlaceValid(dir, x, y, polesNumber) && gamer.placeShips(id, polesNumber, dir, x, y))
+            if(ValidationInstruments.isPlaceValid(dir, x, y, polesNumber) && gamer.placeShips(id, polesNumber, dir, x, y))
             {
                 BoardDrawing.drawGameBoardForPlayer(gamer.getPlansza());
                 break;

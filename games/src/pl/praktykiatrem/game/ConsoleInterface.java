@@ -46,13 +46,13 @@ public class ConsoleInterface implements Comunicatable{
     
     public static int scanXCoordinate()
     {
-        System.out.print("Podaj wspó³rzêdn± poziom±. (1 - 10)\nX = ");
+        System.out.print("Podaj wspó³rzêdn± poziom±. (0 - 9)\nX = ");
         return in.nextInt();
     }
     
     public static int scanYCoordinate()
     {
-        System.out.print("Podaj wspó³rzêdn± pionow±. (1 - 10)\nY = ");
+        System.out.print("Podaj wspó³rzêdn± pionow±. (0 - 9)\nY = ");
         return in.nextInt();
     }
     
@@ -73,35 +73,6 @@ public class ConsoleInterface implements Comunicatable{
     		System.out.println();
     }
     
-    /**
-     * 
-     * Metoda <code>isPlaceValid</code> sprawdza, czy statek o danych parametrach mie¶ci siê na polu gry 
-     *
-     * @param direction okre¶la czy statek bêdzie poziomo 'h', czy pionowo 'v'
-     * @param x wspó³rzêdna pozioma pocz±tku statku
-     * @param y wspó³rzêdna pionowa pocz±tku statku
-     * @param polesNumber liczba masztów (wielko¶æ statku)
-     * @return true je¿eli statek zmie¶ci siê na planszy, false je¿eli nie
-     */
-    public static boolean isPlaceValid(char direction, int x, int y, int polesNumber)
-    {
-        if (direction == 'H' || direction == 'h')
-        {
-            if (x + polesNumber <= 10)
-                return true;
-            else
-                return false;
-        }
-        else if (direction == 'V' || direction == 'v')
-        {
-            if (y + polesNumber <= 10)
-                return true;
-            else
-                return false;
-        }
-        else
-            return false;
-    }
     public static void showCountShips(Player g){
     	System.out.print(g.getName() + " ma ");
     	System.out.print(g.getShipsNumber());
@@ -118,14 +89,17 @@ public class ConsoleInterface implements Comunicatable{
     {
     	System.out.println("Twój ruch: " + gamer.getName());
     }
+    
     public static void showGameOver()
     {
     	System.out.println("Koniec gry !");
     }
+    
     public static void showGameOver(Player gamer)
     {
    		System.out.println("Wygra³: " + gamer.getName());		
     }
+    
     public static int[] scanDropCoords()
     {
         int[] tab = {0, 0};
