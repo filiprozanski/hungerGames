@@ -32,7 +32,7 @@ public class Game{
         Player enemy = B;
         int[] cords = {0, 0};
         
-        while (!isGameOver(A) || !isGameOver(B))
+        while ((isGameOver(A) || !isGameOver(B)) && (!isGameOver(A) || isGameOver(B)))
         {	
         	ConsoleInterface.clearConsole();
             BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
@@ -44,7 +44,8 @@ public class Game{
                 enemy = currentPlayer;
                 currentPlayer = changePlayer(currentPlayer);
             }
-            ConsoleInterface.showHitMessage();
+            else
+                ConsoleInterface.showHitMessage();
             PlayerStatus.doGameSummary(currentPlayer, enemy);
         }
         ConsoleInterface.showGameOver(currentPlayer);
