@@ -32,17 +32,18 @@ public class Game{
         Player enemy = B;
         int[] cords = {0, 0};
         
-        while (!isGameOver())
+        while (!isGameOver(A) || !isGameOver(B))
         {	
         	ConsoleInterface.clearConsole();
             BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
-            ConsoleInterface.showYourMove(currentPlayer);
+            PlayerStatus.showYourMove(currentPlayer);
             cords = Coordinate.pointRifle();
-            if (currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza()) == 0)
+            if (!currentPlayer.makeMove(cords[0], cords[1], enemy.getPlansza()))
             {
                 enemy = currentPlayer;
                 currentPlayer = changePlayer(currentPlayer);
             }
+            PlayerStatus.doGameSummary(currentPlayer, enemy);
         }
         ConsoleInterface.showGameOver(currentPlayer);
         ConsoleInterface.showGameOver();

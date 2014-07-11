@@ -72,14 +72,9 @@ public class ConsoleInterface implements Comunicatable{
         else
             return false;
     }
-    public static void showCountShips(int shipsNumber){
-    	System.out.print("Masz ");
-    	System.out.print(shipsNumber);
-    	System.out.println(" statków.");    	
-    }
-    public static void showEnemyCountShips(int shipsNumber){
-    	System.out.print("Twój przeciwnik ma ");
-    	System.out.print(shipsNumber);
+    public static void showCountShips(Player g){
+    	System.out.print(g.getName() + " ma ");
+    	System.out.print(g.getShipsNumber());
     	System.out.println(" statków.");    	
     }
     

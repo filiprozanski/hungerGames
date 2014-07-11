@@ -8,15 +8,15 @@
 package pl.praktykiatrem.game;
 
 public class PlayerStatus {
-	public void showCountShips(Player g)
+	public static void showCountShips(Player g)
     {	
-		ConsoleInterface.showCountShips(g.getShipsNumber());
+		ConsoleInterface.showCountShips(g);
     }
-	public void showYourMove(Player g)
+	public static void showYourMove(Player g)
     {
     	ConsoleInterface.showYourMove(g);
     }
-	public void doGameSummary(Player g, Player h)
+	public static void doGameSummary(Player g, Player h)
 	{
 		showCountShips(g);
 		showCountShips(h);
