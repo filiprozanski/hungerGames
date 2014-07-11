@@ -6,7 +6,9 @@
  */
 
 package pl.praktykiatrem.game;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 public class Game{
     private Player A;
     private Player B;
@@ -18,15 +20,15 @@ public class Game{
         B = start.getB();
     }
     
-    public void gameInProgress()
+    public void gameInProgress() throws FileNotFoundException
     {
         ConsoleInterface.showMenu();
         A.setName(ConsoleInterface.scanName());
         B.setName(ConsoleInterface.scanName());
         ConsoleInterface.showYourMove(A);
-        initializeShips(A);
+        initializeShipsFromFile(A);
         ConsoleInterface.showYourMove(B);
-        initializeShips(B);
+        initializeShipsFromFile(B);
         
         Player currentPlayer = A;
         Player enemy = B;
@@ -89,5 +91,20 @@ public class Game{
                 Coordinate.fetchShipCoords(polesNumber, i, gamer);
                 polesNumber--;
             }
+    }
+    
+    public void initializeShipsFromFile(Player gamer) throws FileNotFoundException {
+        File plik1=new File("src/pl/praktykiatrem/game/"+gamer.getName()+".txt");
+        Scanner odczyt=new Scanner(plik1);
+        String temp;
+        while (odczyt.hasNextLine()){
+        	for(int i=0;i<7;i++){    	
+        		temp=odczyt.nextLine();
+        		gamer.placeShips(i, (int)temp.charAt(0)-48, temp.charAt(2), (int)temp.charAt(4)-48, (int)temp.charAt(6)-48);    		
+        	
+        	}
+        }
+        odczyt.close();  
+        BoardDrawing.drawGameBoardForPlayer(gamer.getPlansza());    		 
     }
 }
