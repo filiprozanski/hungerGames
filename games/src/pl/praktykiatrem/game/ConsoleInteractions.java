@@ -121,5 +121,10 @@ public class ConsoleInteractions implements Comunicatable{
     {
         System.out.println("Pud³o...");
     }
+    
+    public void showLegend()
+    {
+        System.out.println("Dawno dawno temu w odleg³ej galaktyce, ¿y³ smok na gwie¼dzie ¶mierci...");
+    }
 }
 
