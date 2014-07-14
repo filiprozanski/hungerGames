@@ -29,26 +29,6 @@ public class ConsoleInteractions implements Comunicatable{
         System.out.println("Witamy w grze w statki, za chwile zostaniesz przeniesiony na pole bitwy!");
     }
     
-    public void showChooseInterface() throws InputMismatchException
-    {
-        System.out.println("Wybierz 1 aby wczytaæ statki z pliku lub 2 aby wpisaæ je rêcznie");
-    }
-    
-    public int scanInterafaceChoice()
-    {
-        System.out.print("Decyzja: ");
-        int input;
-        
-        while (true)
-        {
-           if (in.hasNextInt())
-           {
-               input = in.nextInt();
-               return input;
-           }
-        }
-    }
-    
     public char scanDirection(int polesNumber)
     {
         System.out.print("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo):");
