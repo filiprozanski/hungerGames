@@ -16,7 +16,7 @@ import pl.praktykiatrem.game.battleship.ShipLoadingInterface;
 
 public class FileShipLoader implements ShipLoadingInterface {
     public void initializeShips(Player gamer) throws FileNotFoundException {
-        File plik1=new File("src/pl/praktykiatrem/game/"+gamer.getName()+".txt");
+        File plik1=new File("src/pl/praktykiatrem/game/battleship/"+gamer.getName()+".txt");
         Scanner odczyt=new Scanner(plik1);
         String temp;
         while (odczyt.hasNextLine()){

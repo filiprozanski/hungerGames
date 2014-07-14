@@ -37,8 +37,16 @@ public class ConsoleInteractions implements Comunicatable{
     public int scanInterafaceChoice()
     {
         System.out.print("Decyzja: ");
-        int input = in.nextInt();
-        return input;
+        int input;
+        
+        while (true)
+        {
+           if (in.hasNextInt())
+           {
+               input = in.nextInt();
+               return input;
+           }
+        }
     }
     
     public char scanDirection(int polesNumber)
