@@ -38,17 +38,20 @@ public class ConsoleInteractions implements Comunicatable{
     
     public int scanXCoordinate()
     {
-        System.out.print("Podaj wspó³rzêdn± poziom±. (0 - 9)\nX = ");
+        System.out.println("Podaj wspó³rzêdn± poziom±. (0 - 9)");
         int input;
         
         while (true)
         {
+            System.out.print("X = ");
+            
             try {
                 input = in.nextInt();
                 break;
             }
             catch (InputMismatchException e){
                 in.next();
+                System.out.println("Podaj liczbê ca³kowit±!");
             }
         }
         
@@ -57,17 +60,20 @@ public class ConsoleInteractions implements Comunicatable{
     
     public int scanYCoordinate()
     {
-        System.out.print("Podaj wspó³rzêdn± pionow±. (0 - 9)\nY = ");
+        System.out.println("Podaj wspó³rzêdn± pionow±. (0 - 9)");
         int input;
         
         while (true)
         {
+            System.out.print("Y = ");
+            
             try {
                 input = in.nextInt();
                 break;
             }
             catch (InputMismatchException e){
                 in.next();
+                System.out.println("Podaj liczbê ca³kowit±!");
             }
         }
         
@@ -128,28 +134,33 @@ public class ConsoleInteractions implements Comunicatable{
     {
         int[] tab = {0, 0};
         
-        System.out.print("Podaj kordynaty uderzenia:\nX = ");
+        System.out.println("Podaj kordynaty uderzenia: ");
         
         while (true)
         {
+            System.out.print("X = ");
+            
             try {
                 tab[0] = in.nextInt();
                 break;
             }
             catch (InputMismatchException e){
                 in.next();
+                System.out.println("Podaj liczbê ca³kowit±!");
             }
         }
         
-        System.out.print("Y = ");
         while (true)
         {
+            System.out.print("Y = ");
+            
             try {
                 tab[1] = in.nextInt();
                 break;
             }
             catch (InputMismatchException e){
                 in.next();
+                System.out.println("Podaj liczbê ca³kowit±!");
             }
         }
         
