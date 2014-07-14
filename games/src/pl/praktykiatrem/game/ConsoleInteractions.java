@@ -124,7 +124,11 @@ public class ConsoleInteractions implements Comunicatable{
     
     public void showLegend()
     {
-        System.out.println("Dawno dawno temu w odleg³ej galaktyce, ¿y³ smok na gwie¼dzie ¶mierci...");
+    	System.out.println("LEGENDA:");
+    	System.out.println("\"+\" pole na które nie oddano strza³u");
+    	System.out.println("\"0-6\" numer statku");
+    	System.out.println("\"H\" trafiony maszt statku");
+    	System.out.println("\"M\" chybione pole");
     }
 }
 
