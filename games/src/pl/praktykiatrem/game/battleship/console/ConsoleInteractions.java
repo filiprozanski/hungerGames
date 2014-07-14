@@ -39,13 +39,39 @@ public class ConsoleInteractions implements Comunicatable{
     public int scanXCoordinate()
     {
         System.out.print("Podaj wspó³rzêdn± poziom±. (0 - 9)\nX = ");
-        return in.nextInt();
+        int input;
+        
+        while (true)
+        {
+            try {
+                input = in.nextInt();
+                break;
+            }
+            catch (InputMismatchException e){
+                in.next();
+            }
+        }
+        
+        return input;
     }
     
     public int scanYCoordinate()
     {
         System.out.print("Podaj wspó³rzêdn± pionow±. (0 - 9)\nY = ");
-        return in.nextInt();
+        int input;
+        
+        while (true)
+        {
+            try {
+                input = in.nextInt();
+                break;
+            }
+            catch (InputMismatchException e){
+                in.next();
+            }
+        }
+        
+        return input;
     }
     
     public String[] scanName()
@@ -103,9 +129,29 @@ public class ConsoleInteractions implements Comunicatable{
         int[] tab = {0, 0};
         
         System.out.print("Podaj kordynaty uderzenia:\nX = ");
-        tab[0] = in.nextInt();
+        
+        while (true)
+        {
+            try {
+                tab[0] = in.nextInt();
+                break;
+            }
+            catch (InputMismatchException e){
+                in.next();
+            }
+        }
+        
         System.out.print("Y = ");
-        tab[1] = in.nextInt();
+        while (true)
+        {
+            try {
+                tab[1] = in.nextInt();
+                break;
+            }
+            catch (InputMismatchException e){
+                in.next();
+            }
+        }
         
         return tab;
     }
