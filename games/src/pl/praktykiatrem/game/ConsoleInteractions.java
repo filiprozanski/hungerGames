@@ -20,54 +20,54 @@ import java.util.Scanner;
 public class ConsoleInteractions implements Comunicatable{
     private static Scanner in = new Scanner(System.in);
     
-    public static void showMenu()
+    public void showMenu()
     {
         System.out.println("Witamy w grze w statki, za chwile zostaniesz przeniesiony na pole bitwy!");
     }
     
-    public static void showChooseInterface()
+    public void showChooseInterface()
     {
         System.out.println("Wybierz 1 aby wczytaæ statki z pliku lub 2 aby wpisaæ je rêcznie");
     }
     
-    public static int scanInterafaceChoice()
+    public int scanInterafaceChoice()
     {
         System.out.print("Decyzja: ");
         int input = in.nextInt();
         return input;
     }
     
-    public static char scanDirection(int polesNumber)
+    public char scanDirection(int polesNumber)
     {
         System.out.print("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo):");
         String input = in.next();
         return input.charAt(0);
     }
     
-    public static int scanXCoordinate()
+    public int scanXCoordinate()
     {
         System.out.print("Podaj wspó³rzêdn± poziom±. (0 - 9)\nX = ");
         return in.nextInt();
     }
     
-    public static int scanYCoordinate()
+    public int scanYCoordinate()
     {
         System.out.print("Podaj wspó³rzêdn± pionow±. (0 - 9)\nY = ");
         return in.nextInt();
     }
     
-    public static String scanName()
+    public String scanName()
     {
         System.out.print("Podaj swoje imiê: ");
         return in.next();
     }
     
-    public static void showErrorMessage1()
+    public void showErrorMessage1()
     {
         System.out.println("Poda³e¶ b³êdne dane, spróbuj jeszcze raz.");
     }
     
-    public static void clearConsole()
+    public void clearConsole()
     {
     	for (int i = 0; i < 20; i++)
     		System.out.println();
@@ -79,28 +79,28 @@ public class ConsoleInteractions implements Comunicatable{
     	System.out.println(" statków.");    	
     }
     
-	public static void showGameSummary(Player g, Player h)
+	public void showGameSummary(Player g, Player h)
 	{
 		ConsoleInteractions.showCountShips(g);
 		ConsoleInteractions.showCountShips(h);
 	}
 	
-    public static void showYourMove(Player gamer)
+    public void showYourMove(Player gamer)
     {
     	System.out.println("Twój ruch: " + gamer.getName());
     }
     
-    public static void showGameOver()
+    public void showGameOver()
     {
     	System.out.println("Koniec gry !");
     }
     
-    public static void showGameOver(Player gamer)
+    public void showGameOver(Player gamer)
     {
    		System.out.println("Wygra³: " + gamer.getName());		
     }
     
-    public static int[] scanDropCoords()
+    public int[] scanDropCoords()
     {
         int[] tab = {0, 0};
         
@@ -112,12 +112,12 @@ public class ConsoleInteractions implements Comunicatable{
         return tab;
     }
     
-    public static void showHitMessage()
+    public void showHitMessage()
     {
         System.out.println("Brawo! Trafi³e¶!");
     }
     
-    public static void showMissMessage()
+    public void showMissMessage()
     {
         System.out.println("Pud³o...");
     }
