@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 public class TestBoard {
 	
 	public static void main(String[] args)throws FileNotFoundException {	
-		Game newGame = new Game();
+		BattleshipGame newGame = new BattleshipGame();
 		newGame.gameInProgress();
     }
 }

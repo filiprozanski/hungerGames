@@ -11,11 +11,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Game{
+public class BattleshipGame{
     private Player A;
     private Player B;
     
-    public Game()
+    public BattleshipGame()
     {
         GameFactory start = new GameFactory();
         A = start.getA();
