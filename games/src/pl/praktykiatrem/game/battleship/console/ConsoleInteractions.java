@@ -96,13 +96,15 @@ public class ConsoleInteractions implements Comunicatable{
         {
             System.out.print("X = ");
             
-            try {
+            if (in.hasNextInt())
+            {
                 tab[0] = in.nextInt();
                 break;
             }
-            catch (InputMismatchException e){
-                in.next();
+            else
+            {
                 System.out.println("Podaj liczbê ca³kowit±!");
+                in.next();
             }
         }
         
@@ -110,13 +112,15 @@ public class ConsoleInteractions implements Comunicatable{
         {
             System.out.print("Y = ");
             
-            try {
+            if (in.hasNextInt())
+            {
                 tab[1] = in.nextInt();
                 break;
             }
-            catch (InputMismatchException e){
-                in.next();
+            else
+            {
                 System.out.println("Podaj liczbê ca³kowit±!");
+                in.next();
             }
         }
         
