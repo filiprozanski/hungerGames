@@ -36,50 +36,6 @@ public class ConsoleInteractions implements Comunicatable{
         return input.charAt(0);
     }
     
-    public int scanXCoordinate()
-    {
-        System.out.println("Podaj wspó³rzêdn± poziom±. (0 - 9)");
-        int input;
-        
-        while (true)
-        {
-            System.out.print("X = ");
-            
-            try {
-                input = in.nextInt();
-                break;
-            }
-            catch (InputMismatchException e){
-                in.next();
-                System.out.println("Podaj liczbê ca³kowit±!");
-            }
-        }
-        
-        return input;
-    }
-    
-    public int scanYCoordinate()
-    {
-        System.out.println("Podaj wspó³rzêdn± pionow±. (0 - 9)");
-        int input;
-        
-        while (true)
-        {
-            System.out.print("Y = ");
-            
-            try {
-                input = in.nextInt();
-                break;
-            }
-            catch (InputMismatchException e){
-                in.next();
-                System.out.println("Podaj liczbê ca³kowit±!");
-            }
-        }
-        
-        return input;
-    }
-    
     public String[] scanName()
     {
         String[] names = new String[2];
@@ -130,7 +86,7 @@ public class ConsoleInteractions implements Comunicatable{
    		System.out.println("Wygra³: " + gamer.getName());		
     }
     
-    public int[] scanDropCoords()
+    public int[] scanCoords()
     {
         int[] tab = {0, 0};
         

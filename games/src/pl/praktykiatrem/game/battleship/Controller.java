@@ -17,28 +17,9 @@ public class Controller {
 	{
 		loadinterface.showMenu();
 	}
-	/*
-	public static void showChooseInterface()
-	{
-		loadinterface.showChooseInterface();
-	}
-	
-    public static int scanInterafaceChoice()
-    {
-    	return loadinterface.scanInterafaceChoice();
-    }
-    */
     public static char scanDirection(int polesNumber)
     {
     	return loadinterface.scanDirection(polesNumber);
-    }
-    public static int scanXCoordinate()
-    {
-    	return loadinterface.scanXCoordinate();
-    }
-    public static int scanYCoordinate()
-    {
-    	return loadinterface.scanYCoordinate();
     }
 	public static String[] scanName()
 	{
@@ -68,9 +49,9 @@ public class Controller {
 	{
 		loadinterface.showGameOver(gamer);
 	}
-	public static int[] scanDropCoords()
+	public static int[] scanCoords()
 	{
-		return loadinterface.scanDropCoords();
+		return loadinterface.scanCoords();
 	}
 	public static void showHitMessage()
 	{

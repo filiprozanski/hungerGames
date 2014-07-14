@@ -87,7 +87,7 @@ public class BattleshipGame{
         
         while (true)
         {
-            tab = Controller.scanDropCoords();
+            tab = Controller.scanCoords();
             if (tab[0] >= 0 && tab[0] <= 9 && tab[1] >= 0 && tab[1] <= 9)
                 return tab;
             else

@@ -53,15 +53,13 @@ public class ShipLoader {
     private static void fetchShipCoords(int polesNumber, int id, Player gamer)
     {
         char dir;
-        int x;
-        int y;
+        int[] tab = {0, 0};
         
         while(true) {
             dir = Controller.scanDirection(polesNumber);
-            x = Controller.scanXCoordinate();
-            y = Controller.scanYCoordinate();
-        
-            if(ValidationInstruments.isPlaceValid(dir, x, y, polesNumber) && gamer.placeShips(id, polesNumber, dir, x, y))
+            tab = Controller.scanCoords();
+            
+            if(ValidationInstruments.isPlaceValid(dir, tab[0], tab[1], polesNumber) && gamer.placeShips(id, polesNumber, dir, tab[0], tab[1]))
             {
                 BoardDrawing.drawGameBoardForPlayer(gamer.getPlansza());
                 break;

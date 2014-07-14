@@ -7,15 +7,9 @@
 
 package pl.praktykiatrem.game.battleship;
 
-import java.util.InputMismatchException;
-
 public interface Comunicatable {	 
     public void showMenu();
-    //public void showChooseInterface();
-    //public int scanInterafaceChoice();
     public char scanDirection(int polesNumber);
-    public int scanXCoordinate();
-    public int scanYCoordinate();
 	public String[] scanName();
 	public void showErrorMessage1();
 	public void clearConsole();
@@ -23,7 +17,7 @@ public interface Comunicatable {
 	public void showYourMove(Player gamer);
 	public void showGameOver();
 	public void showGameOver(Player gamer);
-	public int[] scanDropCoords();    
+	public int[] scanCoords();    
 	public void showHitMessage();
 	public void showMissMessage();
 	public void showLegend();
