@@ -24,4 +24,5 @@ public interface Comunicatable {
 	public int[] scanDropCoords();    
 	public void showHitMessage();
 	public void showMissMessage();
+	public void showLegend();
 }

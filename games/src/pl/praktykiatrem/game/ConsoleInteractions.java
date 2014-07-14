@@ -127,5 +127,14 @@ public class ConsoleInteractions implements Comunicatable{
     {
         System.out.println("Pud³o...");
     }
+    
+    public void showLegend()
+    {
+    	System.out.println("LEGENDA:");
+    	System.out.println("\"+\" pole na które nie oddano strza³u");
+    	System.out.println("\"0-6\" numer statku");
+    	System.out.println("\"H\" trafiony maszt statku");
+    	System.out.println("\"M\" chybione pole");
+    }
 }
 

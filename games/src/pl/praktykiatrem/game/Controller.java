@@ -74,4 +74,8 @@ public class Controller {
 	{
 		loadinterface.showMissMessage();
 	}
+	public static void showLegend()
+	{
+		loadinterface.showLegend();
+	}
 	}

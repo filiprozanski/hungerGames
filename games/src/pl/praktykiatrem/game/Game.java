@@ -51,7 +51,7 @@ public class Game{
         Player currentPlayer = A;
         Player enemy = B;
         int[] cords = {0, 0};
-        
+        Controller.showLegend();
         while (!isGameOver(enemy))
         {	
         	
