@@ -7,14 +7,10 @@
 
 package pl.praktykiatrem.game.battleship;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import pl.praktykiatrem.game.battleship.console.BoardDrawing;
-import pl.praktykiatrem.game.battleship.factory.FileShipLoader;
 import pl.praktykiatrem.game.battleship.factory.GameFactory;
-import pl.praktykiatrem.game.battleship.factory.ManualShipLoader;
+import pl.praktykiatrem.game.battleship.factory.ShipLoader;
 
 public class BattleshipGame{
     private Player A;
@@ -27,31 +23,28 @@ public class BattleshipGame{
         B = start.getB();
     }
     
-    public void gameInProgress() throws FileNotFoundException
+    public void gameInProgress()  
     {
-        Controller.showMenu();
-        Controller.showChooseInterface();
-        int decision = Controller.scanInterafaceChoice();
-        ShipLoadingInterface loader;
-        
-        switch (decision)
-        {
-            case 1:
-                loader = new FileShipLoader();
-                break;
-            case 2:
-                loader = new ManualShipLoader();
-                break;
-            default:
-                loader = new ManualShipLoader();
-        }
+        Controller.showMenu();      
+      
         
         String[] names = Controller.scanName();
         A.setName(names[0]);
         B.setName(names[1]);
-       
-        loader.initializeShips(A);
-        loader.initializeShips(B);
+   
+        try {
+        	ShipLoader.initializeShipsFromFile(A);
+          } catch (FileNotFoundException e) {
+        	  ShipLoader.initializeShips(A);
+          }
+        
+        try {
+        	ShipLoader.initializeShipsFromFile(B);
+          } catch (FileNotFoundException e) {
+        	  ShipLoader.initializeShips(B);
+          }
+        
+
         
         Player currentPlayer = A;
         Player enemy = B;
