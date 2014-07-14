@@ -7,6 +7,7 @@
 
 package pl.praktykiatrem.game.battleship.console;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import pl.praktykiatrem.game.battleship.Comunicatable;
@@ -28,7 +29,7 @@ public class ConsoleInteractions implements Comunicatable{
         System.out.println("Witamy w grze w statki, za chwile zostaniesz przeniesiony na pole bitwy!");
     }
     
-    public void showChooseInterface()
+    public void showChooseInterface() throws InputMismatchException
     {
         System.out.println("Wybierz 1 aby wczytaæ statki z pliku lub 2 aby wpisaæ je rêcznie");
     }

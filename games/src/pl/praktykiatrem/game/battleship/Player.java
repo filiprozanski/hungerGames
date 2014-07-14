@@ -54,7 +54,7 @@ public class Player {
             	if (!plansza.getPlaceFromGameBoard(x + i, y).isShipOnPlace())
             	{
             	    plansza.getPlaceFromGameBoard(x + i, y).putShipOnPlace();
-            	    plansza.getPlaceFromGameBoard(x, y + i).setShipID(id);
+            	    plansza.getPlaceFromGameBoard(x + i, y).setShipID(id);
             	}
             	else
             		return false;

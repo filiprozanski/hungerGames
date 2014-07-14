@@ -7,6 +7,8 @@
 
 package pl.praktykiatrem.game.battleship;
 
+import java.util.InputMismatchException;
+
 public interface Comunicatable {	 
     public void showMenu();
     public void showChooseInterface();
