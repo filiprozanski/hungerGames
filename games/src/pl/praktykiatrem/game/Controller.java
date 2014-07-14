@@ -14,63 +14,63 @@ public class Controller {
 	{
 		loadinterface.showMenu();
 	}
-	public void showChooseInterface()
+	public static void showChooseInterface()
 	{
 		loadinterface.showChooseInterface();
 	}
-    public int scanInterafaceChoice()
+    public static int scanInterafaceChoice()
     {
     	return loadinterface.scanInterafaceChoice();
     }
-    public char scanDirection(int polesNumber)
+    public static char scanDirection(int polesNumber)
     {
     	return loadinterface.scanDirection(polesNumber);
     }
-    public int scanXCoordinate()
+    public static int scanXCoordinate()
     {
     	return loadinterface.scanXCoordinate();
     }
-    public int scanYCoordinate()
+    public static int scanYCoordinate()
     {
     	return loadinterface.scanYCoordinate();
     }
-	public String scanName()
+	public static String scanName()
 	{
 		return loadinterface.scanName();
 	}
-	public void showErrorMessage1()
+	public static void showErrorMessage1()
 	{
 		loadinterface.showErrorMessage1();
 	}
-	public void clearConsole()
+	public static void clearConsole()
 	{
 		loadinterface.clearConsole();
 	}
-	public void showGameSummary(Player g, Player h)
+	public static void showGameSummary(Player g, Player h)
 	{
 		loadinterface.showGameSummary(g, h);
 	}
-	public void showYourMove(Player gamer)
+	public static void showYourMove(Player gamer)
 	{
 		loadinterface.showYourMove(gamer);
 	}
-	public void showGameOver()
+	public static void showGameOver()
 	{
 		loadinterface.showGameOver();
 	}
-	public void showGameOver(Player gamer)
+	public static void showGameOver(Player gamer)
 	{
 		loadinterface.showGameOver(gamer);
 	}
-	public int[] scanDropCoords()
+	public static int[] scanDropCoords()
 	{
 		return loadinterface.scanDropCoords();
 	}
-	public void showHitMessage()
+	public static void showHitMessage()
 	{
 		loadinterface.showHitMessage();
 	}
-	public void showMissMessage()
+	public static void showMissMessage()
 	{
 		loadinterface.showMissMessage();
 	}
