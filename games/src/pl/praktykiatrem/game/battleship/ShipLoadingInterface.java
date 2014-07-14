@@ -5,7 +5,7 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship;
 
 import java.io.FileNotFoundException;
 

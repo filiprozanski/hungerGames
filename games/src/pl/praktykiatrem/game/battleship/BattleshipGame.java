@@ -5,11 +5,16 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import pl.praktykiatrem.game.battleship.console.BoardDrawing;
+import pl.praktykiatrem.game.battleship.factory.FileShipLoader;
+import pl.praktykiatrem.game.battleship.factory.GameFactory;
+import pl.praktykiatrem.game.battleship.factory.ManualShipLoader;
 
 public class BattleshipGame{
     private Player A;

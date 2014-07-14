@@ -1,4 +1,5 @@
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship.elements;
+
 
 /**
  * 
@@ -27,7 +28,7 @@ public class Board {
         return horizontalSize;
     }
    
-    Board(int horizontal, int vertical)
+    public Board(int horizontal, int vertical)
     {
         horizontalSize = horizontal;
         verticalSize = vertical;

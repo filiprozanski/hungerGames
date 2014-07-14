@@ -5,7 +5,14 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship.factory;
+
+import pl.praktykiatrem.game.battleship.Controller;
+import pl.praktykiatrem.game.battleship.Player;
+import pl.praktykiatrem.game.battleship.ShipLoadingInterface;
+import pl.praktykiatrem.game.battleship.console.BoardDrawing;
+import pl.praktykiatrem.game.battleship.exceptions.ValidationInstruments;
+
 
 public class ManualShipLoader implements ShipLoadingInterface {
     public void initializeShips(Player gamer)

@@ -5,11 +5,14 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship.factory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import pl.praktykiatrem.game.battleship.Player;
+import pl.praktykiatrem.game.battleship.ShipLoadingInterface;
 
 public class FileShipLoader implements ShipLoadingInterface {
     public void initializeShips(Player gamer) throws FileNotFoundException {

@@ -5,7 +5,11 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship.console;
+
+import pl.praktykiatrem.game.battleship.elements.Board;
+import pl.praktykiatrem.game.battleship.elements.Place;
+
 
 /**
  * 

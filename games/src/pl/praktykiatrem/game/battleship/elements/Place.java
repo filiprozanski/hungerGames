@@ -5,15 +5,15 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship.elements;
 
-class Place
+public class Place
 {
     private int shipID;
     private boolean shipOnPlace;
     private boolean isInGame;
     
-    Place()
+    public Place()
     {
         shipOnPlace = false;
         isInGame = true;

@@ -5,9 +5,12 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship.console;
 
 import java.util.Scanner;
+
+import pl.praktykiatrem.game.battleship.Comunicatable;
+import pl.praktykiatrem.game.battleship.Player;
 
 /**
  * 

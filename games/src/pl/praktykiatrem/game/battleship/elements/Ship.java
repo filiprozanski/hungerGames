@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship.elements;
 
 public class Ship
 {

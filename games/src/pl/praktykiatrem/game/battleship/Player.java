@@ -5,7 +5,12 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship;
+
+import pl.praktykiatrem.game.battleship.elements.Board;
+import pl.praktykiatrem.game.battleship.elements.Place;
+import pl.praktykiatrem.game.battleship.elements.Ship;
+
 
 public class Player {
     private Board plansza;

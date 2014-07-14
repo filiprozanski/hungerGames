@@ -5,7 +5,7 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship;
 
 public interface Comunicatable {	 
     public void showMenu();

@@ -5,7 +5,10 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship;
+
+import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
+
 
 public class Controller {
 	static Comunicatable loadinterface = new ConsoleInteractions();

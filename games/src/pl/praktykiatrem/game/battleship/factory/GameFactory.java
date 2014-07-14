@@ -5,7 +5,9 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game;
+package pl.praktykiatrem.game.battleship.factory;
+
+import pl.praktykiatrem.game.battleship.Player;
 
 public class GameFactory {
     private Player A;
