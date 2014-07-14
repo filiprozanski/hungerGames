@@ -14,7 +14,7 @@ public interface Comunicatable {
     public char scanDirection(int polesNumber);
     public int scanXCoordinate();
     public int scanYCoordinate();
-	public String scanName();
+	public String[] scanName();
 	public void showErrorMessage1();
 	public void clearConsole();
 	public void showGameSummary(Player g, Player h);

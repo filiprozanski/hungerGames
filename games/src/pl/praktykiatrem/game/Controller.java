@@ -34,7 +34,7 @@ public class Controller {
     {
     	return loadinterface.scanYCoordinate();
     }
-	public static String scanName()
+	public static String[] scanName()
 	{
 		return loadinterface.scanName();
 	}

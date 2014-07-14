@@ -40,9 +40,10 @@ public class Game{
             default:
                 loader = new ManualShipLoader();
         }
-            
-        A.setName(Controller.scanName());
-        B.setName(Controller.scanName());
+        
+        String[] names = Controller.scanName();
+        A.setName(names[0]);
+        B.setName(names[1]);
        
         loader.initializeShips(A);
         loader.initializeShips(B);

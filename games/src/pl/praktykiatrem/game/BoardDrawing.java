@@ -42,7 +42,7 @@ public class BoardDrawing {
                 else if (tab[i][j].isShipOnPlace() && !tab[i][j].isPlaceInGame())
                     System.out.print("H");
                 else
-                    System.out.print("C");
+                    System.out.print("+");
             }
             System.out.println();
         }
@@ -72,11 +72,11 @@ public class BoardDrawing {
                 if (tab[i][j].isShipOnPlace() && tab[i][j].isPlaceInGame())
                     System.out.print(tab[i][j].getShipId());
                 else if (tab[i][j].isShipOnPlace() && !tab[i][j].isPlaceInGame())
-                    System.out.print("S");
+                    System.out.print("H");
                 else if (!tab[i][j].isShipOnPlace() && !tab[i][j].isPlaceInGame())
                     System.out.print("M");
                 else
-                    System.out.print("C");
+                    System.out.print("+");
             }
             System.out.println();
         }

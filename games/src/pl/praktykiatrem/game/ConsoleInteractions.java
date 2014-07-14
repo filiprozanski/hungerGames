@@ -56,10 +56,16 @@ public class ConsoleInteractions implements Comunicatable{
         return in.nextInt();
     }
     
-    public String scanName()
+    public String[] scanName()
     {
-        System.out.print("Podaj swoje imiê: ");
-        return in.next();
+        String[] names = new String[2];
+        
+        System.out.print("Podaj imiê Gracz I: ");
+        names[0] = in.next();
+        System.out.print("Podaj imiê Gracz II: ");
+        names[1] = in.next();
+        
+        return names;
     }
     
     public void showErrorMessage1()
