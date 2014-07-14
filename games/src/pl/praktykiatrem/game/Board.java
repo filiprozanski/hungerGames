@@ -14,33 +14,33 @@ public class Board {
      * C - puste pole; '0' - '6' - ustawiony statek; M - oddany niecelny strza³; H - oddany celny strza³
      */
     public char[][] gameBoard;
-    private int placesHorizontal;
-    private int placesVertical;
+    private int horizontalSize;
+    private int verticalSize;
 
-    public int getPlacesVertical()
+    public int getVerticalSize()
     {
-        return placesVertical;
+        return verticalSize;
     }
 
-    public int getPlacesHorizontal()
+    public int getHorizontalSize()
     {
-        return placesHorizontal;
+        return horizontalSize;
     }
    
     Board(int horizontal, int vertical)
     {
-        placesHorizontal = horizontal;
-        placesVertical = vertical;
+        horizontalSize = horizontal;
+        verticalSize = vertical;
         
-        gameBoard = new char[placesVertical][placesHorizontal];
+        gameBoard = new char[verticalSize][horizontalSize];
         fillZeroGameBoard();
     }
     
     private void fillZeroGameBoard()
     {
-        for (int i = 0; i < placesVertical; i++)
+        for (int i = 0; i < verticalSize; i++)
         {
-            for (int j = 0; j < placesHorizontal; j++)
+            for (int j = 0; j < horizontalSize; j++)
                 gameBoard[j][i] = 'C';
         }
     }

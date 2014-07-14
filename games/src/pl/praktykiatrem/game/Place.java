@@ -9,7 +9,7 @@ package pl.praktykiatrem.game;
 
 class Place
 {
-    private Ship shipType;
+    private int shipID;
     private boolean shipOnPlace;
     private boolean isInGame;
     
