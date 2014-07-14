@@ -11,8 +11,8 @@ import java.util.InputMismatchException;
 
 public interface Comunicatable {	 
     public void showMenu();
-    public void showChooseInterface();
-    public int scanInterafaceChoice();
+    //public void showChooseInterface();
+    //public int scanInterafaceChoice();
     public char scanDirection(int polesNumber);
     public int scanXCoordinate();
     public int scanYCoordinate();

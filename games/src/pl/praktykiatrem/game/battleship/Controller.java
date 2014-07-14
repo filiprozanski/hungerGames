@@ -17,14 +17,17 @@ public class Controller {
 	{
 		loadinterface.showMenu();
 	}
+	/*
 	public static void showChooseInterface()
 	{
 		loadinterface.showChooseInterface();
 	}
+	
     public static int scanInterafaceChoice()
     {
     	return loadinterface.scanInterafaceChoice();
     }
+    */
     public static char scanDirection(int polesNumber)
     {
     	return loadinterface.scanDirection(polesNumber);
