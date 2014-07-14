@@ -13,10 +13,9 @@ public class Player {
     private int shipsNumber;
     private String name;
     
-    public Player(/*String name*/)
+    public Player()
     {
         shipsNumber = 7;
-        //this.name = name;
         plansza = new Board(10, 10);
         ships = new Ship[shipsNumber];
     }
@@ -47,9 +46,10 @@ public class Player {
         if (direction == 'H' || direction == 'h')
         {
             for(int i = 0; i < polesNumber; i++)
-            	if (plansza.gameBoard[y][x + i] == 'C')
+            	if (!plansza.getPlaceFromGameBoard(x + i, y).isShipOnPlace())
             	{
-            		plansza.gameBoard[y][x + i]=(char)(id+'0');
+            	    plansza.getPlaceFromGameBoard(x + i, y).putShipOnPlace();
+            	    plansza.getPlaceFromGameBoard(x, y + i).setShipID(id);
             	}
             	else
             		return false;
@@ -57,9 +57,10 @@ public class Player {
         else if (direction == 'V' || direction == 'v')
         {
         	for(int i = 0; i < polesNumber; i++)
-        		if (plansza.gameBoard[y + i][x] == 'C')
+        		if (!plansza.getPlaceFromGameBoard(x, y + i).isShipOnPlace())
         		{
-        			plansza.gameBoard[y + i][x]=(char)(id+'0');
+        		    plansza.getPlaceFromGameBoard(x, y + i).putShipOnPlace();
+        		    plansza.getPlaceFromGameBoard(x, y + i).setShipID(id);
         		}
         		else
         			return false;
@@ -70,19 +71,19 @@ public class Player {
     
     public boolean makeMove(int x, int y, Player enemy)
     {
-        if (ValidationInstruments.isPlaceClear(enemy.getPlansza().gameBoard, x, y))
+        //if (ValidationInstruments.isPlaceClear(enemy.getPlansza().gameBoard, x, y))
+        if (!enemy.getPlansza().getPlaceFromGameBoard(x, y).isShipOnPlace())
         {
-            enemy.getPlansza().gameBoard[y][x] = 'M';
+            enemy.getPlansza().getPlaceFromGameBoard(x, y).takeOut();
             return false;
         }
         else
         {
-            
-            char cShipID = enemy.getPlansza().gameBoard[y][x];
-            int shipID = (int)cShipID-48;
-            if(ValidationInstruments.isShipOnPlace(enemy.getPlansza().gameBoard, x, y, shipID))
+            Place placeUnderMove = enemy.getPlansza().getPlaceFromGameBoard(x, y);
+            if(placeUnderMove.isShipOnPlace() && placeUnderMove.isPlaceInGame())
             {
-                enemy.getPlansza().gameBoard[y][x] = 'H';
+                int shipID = placeUnderMove.getShipId();
+                placeUnderMove.takeOut();
                 ships[shipID].reducePolesNumber();
                 if (ships[shipID].isShipSunk())
                     enemy.reduceShipsNumber();

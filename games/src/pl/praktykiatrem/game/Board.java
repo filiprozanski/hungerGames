@@ -13,7 +13,7 @@ public class Board {
      * tablica dwuwymiarowa[y][x] przechowujaca stany poszczególnych pól
      * C - puste pole; '0' - '6' - ustawiony statek; M - oddany niecelny strza³; H - oddany celny strza³
      */
-    public char[][] gameBoard;
+    private Place[][] gameBoard;
     private int horizontalSize;
     private int verticalSize;
 
@@ -32,21 +32,26 @@ public class Board {
         horizontalSize = horizontal;
         verticalSize = vertical;
         
-        gameBoard = new char[verticalSize][horizontalSize];
-        fillZeroGameBoard();
+        gameBoard = new Place[verticalSize][horizontalSize];
+        fillGameBoard();
     }
     
-    private void fillZeroGameBoard()
+    private void fillGameBoard()
     {
         for (int i = 0; i < verticalSize; i++)
         {
             for (int j = 0; j < horizontalSize; j++)
-                gameBoard[j][i] = 'C';
+                gameBoard[j][i] = new Place();
         }
     }
     
 
-    public int getState(int horizontal, int vertical){
+    public Place getPlaceFromGameBoard(int horizontal, int vertical){
         return gameBoard[vertical][horizontal];
+    }
+    
+    public Place[][] getGameBoard()
+    {
+        return gameBoard;
     }
 }

@@ -24,7 +24,7 @@ public class BoardDrawing {
      */
     public static void drawGameBoardForOpponent(Board gamePlace)
     {
-        char[][] tab = gamePlace.gameBoard;
+        Place[][] tab = gamePlace.getGameBoard();
         
         System.out.print(" ");
         for (int i = 0; i < gamePlace.getHorizontalSize(); i++)
@@ -37,14 +37,12 @@ public class BoardDrawing {
             System.out.print(i);
             for (int j = 0; j < gamePlace.getHorizontalSize(); j++)
             {
-                if (tab[i][j] == 'M' || tab[i][j] == 'H')
-                {
-                    System.out.print(tab[i][j]);
-                }
+                if (!tab[i][j].isShipOnPlace() && !tab[i][j].isPlaceInGame())
+                    System.out.print("M");
+                else if (tab[i][j].isShipOnPlace() && !tab[i][j].isPlaceInGame())
+                    System.out.print("H");
                 else
-                {
                     System.out.print("C");
-                }
             }
             System.out.println();
         }
@@ -58,7 +56,7 @@ public class BoardDrawing {
      */
     public static void drawGameBoardForPlayer(Board gamePlace)
     {
-        char[][] tab = gamePlace.gameBoard;
+        Place[][] tab = gamePlace.getGameBoard();
         
         System.out.print(" ");
         for (int i = 0; i < gamePlace.getHorizontalSize(); i++)
@@ -71,7 +69,14 @@ public class BoardDrawing {
             System.out.print(i);
             for (int j = 0; j < gamePlace.getHorizontalSize(); j++)
             {
-                System.out.print(tab[i][j]);
+                if (tab[i][j].isShipOnPlace() && tab[i][j].isPlaceInGame())
+                    System.out.print(tab[i][j].getShipId());
+                else if (tab[i][j].isShipOnPlace() && !tab[i][j].isPlaceInGame())
+                    System.out.print("S");
+                else if (!tab[i][j].isShipOnPlace() && !tab[i][j].isPlaceInGame())
+                    System.out.print("M");
+                else
+                    System.out.print("C");
             }
             System.out.println();
         }

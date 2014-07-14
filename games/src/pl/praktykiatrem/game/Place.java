@@ -29,8 +29,23 @@ class Place
         return shipOnPlace;
     }
     
-    public boolean getIsInGame()
+    public boolean isPlaceInGame()
     {
         return isInGame;
+    }
+    
+    public void setShipID(int ID)
+    {
+        shipID = ID;
+    }
+    
+    public int getShipId()
+    {
+        return shipID;
+    }
+    
+    public void takeOut()
+    {
+        isInGame = false;
     }
 }

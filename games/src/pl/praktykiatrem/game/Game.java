@@ -91,6 +91,8 @@ public class Game{
             tab = ConsoleInteractions.scanDropCoords();
             if (tab[0] >= 0 && tab[0] <= 9 && tab[1] >= 0 && tab[1] <= 9)
                 return tab;
+            else
+                ConsoleInteractions.showErrorMessage1();
         }
     }
     
