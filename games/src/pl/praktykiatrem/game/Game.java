@@ -24,9 +24,9 @@ public class Game{
     
     public void gameInProgress() throws FileNotFoundException
     {
-        ConsoleInterface.showMenu();
-        ConsoleInterface.showChooseInterface();
-        int decision = ConsoleInterface.scanInterafaceChoice();
+        ConsoleInteractions.showMenu();
+        ConsoleInteractions.showChooseInterface();
+        int decision = ConsoleInteractions.scanInterafaceChoice();
         ShipLoadingInterface loader;
         
         switch (decision)
@@ -41,8 +41,8 @@ public class Game{
                 loader = new ManualShipLoader();
         }
             
-        A.setName(ConsoleInterface.scanName());
-        B.setName(ConsoleInterface.scanName());
+        A.setName(ConsoleInteractions.scanName());
+        B.setName(ConsoleInteractions.scanName());
        
         loader.initializeShips(A);
         loader.initializeShips(B);
@@ -55,25 +55,25 @@ public class Game{
         {	
         	
             BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
-            ConsoleInterface.showYourMove(currentPlayer);
+            ConsoleInteractions.showYourMove(currentPlayer);
             cords = pointRifle();
             if (!currentPlayer.makeMove(cords[0], cords[1], enemy))
             {
-                ConsoleInterface.clearConsole();
-                ConsoleInterface.showMissMessage();
+                ConsoleInteractions.clearConsole();
+                ConsoleInteractions.showMissMessage();
                 enemy = currentPlayer;
                 currentPlayer = changePlayer(currentPlayer);
             }
             else
             {
-                ConsoleInterface.clearConsole();
-                ConsoleInterface.showHitMessage();
+                ConsoleInteractions.clearConsole();
+                ConsoleInteractions.showHitMessage();
             }
                 
-            ConsoleInterface.showGameSummary(currentPlayer, enemy);
+            ConsoleInteractions.showGameSummary(currentPlayer, enemy);
         }
-        ConsoleInterface.showGameOver(currentPlayer);
-        ConsoleInterface.showGameOver();
+        ConsoleInteractions.showGameOver(currentPlayer);
+        ConsoleInteractions.showGameOver();
     }
     
     /**
@@ -88,7 +88,7 @@ public class Game{
         
         while (true)
         {
-            tab = ConsoleInterface.scanDropCoords();
+            tab = ConsoleInteractions.scanDropCoords();
             if (tab[0] >= 0 && tab[0] <= 9 && tab[1] >= 0 && tab[1] <= 9)
                 return tab;
         }

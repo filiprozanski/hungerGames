@@ -18,8 +18,8 @@ public class GameFactory {
     
     private void initializePlayers()
     {
-        A = new Player(/*ConsoleInterface.scanName()*/);
-        B = new Player(/*ConsoleInterface.scanName()*/);
+        A = new Player(/*ConsoleInteractions.scanName()*/);
+        B = new Player(/*ConsoleInteractions.scanName()*/);
     }
     
     public Player getA()

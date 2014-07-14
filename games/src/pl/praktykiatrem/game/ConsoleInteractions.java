@@ -11,13 +11,13 @@ import java.util.Scanner;
 
 /**
  * 
- *	Klasa <code>ConsoleInterface</code> zawiera funkcje statyczne wy¶wietlaj±ce w konsoli komunikaty, oraz pobieraj±ce od u¿ytkownika niezbêdnê dane
+ *	Klasa <code>ConsoleInteractions</code> zawiera funkcje statyczne wy¶wietlaj±ce w konsoli komunikaty, oraz pobieraj±ce od u¿ytkownika niezbêdnê dane
  *
  * @author filipr
  * @version 11 lip 2014 12:36:18
  *
  */
-public class ConsoleInterface implements Comunicatable{
+public class ConsoleInteractions implements Comunicatable{
     private static Scanner in = new Scanner(System.in);
     
     public static void showMenu()
@@ -81,8 +81,8 @@ public class ConsoleInterface implements Comunicatable{
     
 	public static void showGameSummary(Player g, Player h)
 	{
-		ConsoleInterface.showCountShips(g);
-		ConsoleInterface.showCountShips(h);
+		ConsoleInteractions.showCountShips(g);
+		ConsoleInteractions.showCountShips(h);
 	}
 	
     public static void showYourMove(Player gamer)

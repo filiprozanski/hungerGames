@@ -11,7 +11,7 @@ public class ManualShipLoader implements ShipLoadingInterface {
     public void initializeShips(Player gamer)
     {
             int polesNumber;
-            ConsoleInterface.showYourMove(gamer);
+            ConsoleInteractions.showYourMove(gamer);
             polesNumber = 6;
             fetchShipCoords(polesNumber, 0, gamer);
         
@@ -41,16 +41,16 @@ public class ManualShipLoader implements ShipLoadingInterface {
         int y;
         
         while(true) {
-            dir = ConsoleInterface.scanDirection(polesNumber);
-            x = ConsoleInterface.scanXCoordinate();
-            y = ConsoleInterface.scanYCoordinate();
+            dir = ConsoleInteractions.scanDirection(polesNumber);
+            x = ConsoleInteractions.scanXCoordinate();
+            y = ConsoleInteractions.scanYCoordinate();
         
             if(ValidationInstruments.isPlaceValid(dir, x, y, polesNumber) && gamer.placeShips(id, polesNumber, dir, x, y))
             {
                 BoardDrawing.drawGameBoardForPlayer(gamer.getPlansza());
                 break;
             }
-            ConsoleInterface.showErrorMessage1();
+            ConsoleInteractions.showErrorMessage1();
         }
     }
 }
