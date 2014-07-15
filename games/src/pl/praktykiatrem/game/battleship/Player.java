@@ -62,9 +62,9 @@ public class Player {
     	int y_temp=0;
         ships[id] = new Ship(polesNumber);
         for(int i = 0; i < polesNumber; i++){
-        	if (direction == 'H' || direction == 'h')
+        	if (direction == Direction.HORIZONTAL.getAbbreviation())
         		x_temp=x+i;
-        	else if (direction == 'V' || direction == 'v')
+        	else if (direction == Direction.VERTICAL.getAbbreviation())
         		y_temp=y+i;
         	if(!putShipOnPlace(id, x_temp, y_temp))
     			return false;   
@@ -100,6 +100,23 @@ public class Player {
     public void reduceShipsNumber()
     {
         shipsNumber--;
+    }
+}
+
+enum Direction
+{
+    HORIZONTAL('H'), VERTICAL('V');
+    
+    private char abbreviation;
+    
+    private Direction(char abb)
+    {
+        abbreviation = abb;
+    }
+    
+    public char getAbbreviation()
+    {
+        return abbreviation;
     }
 }
 

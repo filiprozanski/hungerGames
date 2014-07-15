@@ -32,7 +32,7 @@ public class ConsoleInteractions implements Comunicatable{
     public char scanDirection(int polesNumber)
     {
         System.out.print("Ustawiasz " + polesNumber + "-masztowiec.\nPodaj kierunek. (h-poziomo, v-pionowo):");
-        String input = in.next();
+        String input = in.next().toUpperCase();
         return input.charAt(0);
     }
     
