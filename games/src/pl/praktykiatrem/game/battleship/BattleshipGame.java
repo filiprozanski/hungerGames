@@ -15,33 +15,35 @@ import pl.praktykiatrem.game.battleship.factory.ShipLoader;
 public class BattleshipGame{
     private Player A;
     private Player B;
+    private Controller gameControl;
     
     public BattleshipGame()
     {
         GameFactory start = new GameFactory();
         A = start.createPlayer();
         B = start.createPlayer();
+        gameControl = new Controller();
     }
     
     public void gameInProgress()  
     {
-        Controller.showMenu();      
+        gameControl.showMenu();      
       
         
-        String[] names = Controller.scanName();
+        String[] names = gameControl.scanName();
         A.setName(names[0]);
         B.setName(names[1]);
    
         try {
         	ShipLoader.initializeShipsFromFile(A);
           } catch (FileNotFoundException e) {
-        	  ShipLoader.initializeShips(A);
+        	  ShipLoader.initializeShips(A, gameControl);
           }
         
         try {
         	ShipLoader.initializeShipsFromFile(B);
           } catch (FileNotFoundException e) {
-        	  ShipLoader.initializeShips(B);
+        	  ShipLoader.initializeShips(B, gameControl);
           }
         
 
@@ -49,30 +51,30 @@ public class BattleshipGame{
         Player currentPlayer = A;
         Player enemy = B;
         int[] cords = {0, 0};
-        Controller.showLegend();
+        gameControl.showLegend();
         while (!isGameOver(enemy))
         {	
         	
             BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
-            Controller.showYourMove(currentPlayer);
+            gameControl.showYourMove(currentPlayer);
             cords = pointRifle();
             if (!currentPlayer.makeMove(cords[0], cords[1], enemy))
             {
-                Controller.clearConsole();
-                Controller.showMissMessage();
+                gameControl.clearConsole();
+                gameControl.showMissMessage();
                 enemy = currentPlayer;
                 currentPlayer = changePlayer(currentPlayer);
             }
             else
             {
-                Controller.clearConsole();
-                Controller.showHitMessage();
+                gameControl.clearConsole();
+                gameControl.showHitMessage();
             }
                 
-            Controller.showGameSummary(currentPlayer, enemy);
+            gameControl.showGameSummary(currentPlayer, enemy);
         }
-        Controller.showGameOver(currentPlayer);
-        Controller.showGameOver();
+        gameControl.showGameOver(currentPlayer);
+        gameControl.showGameOver();
     }
     
     /**
@@ -81,17 +83,17 @@ public class BattleshipGame{
      *
      * @return tablica int[], gdzie [0] to wspó³rzêdna x, a [1] to wspó³rzêdna y
      */
-    private static int[] pointRifle()
+    private int[] pointRifle()
     {
         int[] tab = {0, 0};
         
         while (true)
         {
-            tab = Controller.scanCoords();
+            tab = gameControl.scanCoords();
             if (tab[0] >= 0 && tab[0] <= 9 && tab[1] >= 0 && tab[1] <= 9)
                 return tab;
             else
-                Controller.showErrorMessage1();
+                gameControl.showErrorMessage1();
         }
     }
     

@@ -24,20 +24,20 @@ public class ShipLoader {
         odczyt.close();   
     }
     
-	public static void initializeShips(Player gamer)
+	public static void initializeShips(Player gamer, Controller gameControl)
     {
             int polesNumber;
-            Controller.showYourMove(gamer);
+            gameControl.showYourMove(gamer);
             polesNumber = 6;
-            fetchShipCoords(polesNumber, 0, gamer);
+            fetchShipCoords(polesNumber, 0, gamer, gameControl);
         
             polesNumber = 4;
             
             for (int i = 1; i < 7; i++)
             {
-                fetchShipCoords(polesNumber, i, gamer);
+                fetchShipCoords(polesNumber, i, gamer, gameControl);
                 i++;
-                fetchShipCoords(polesNumber, i, gamer);
+                fetchShipCoords(polesNumber, i, gamer, gameControl);
                 polesNumber--;
             }
     }
@@ -50,21 +50,21 @@ public class ShipLoader {
      * @param id
      * @param gamer gracz, którego statki s± ustawiane
      */
-    private static void fetchShipCoords(int polesNumber, int id, Player gamer)
+    private static void fetchShipCoords(int polesNumber, int id, Player gamer, Controller gameControl)
     {
         char dir;
         int[] tab = {0, 0};
         
         while(true) {
-            dir = Controller.scanDirection(polesNumber);
-            tab = Controller.scanCoords();
+            dir = gameControl.scanDirection(polesNumber);
+            tab = gameControl.scanCoords();
             
             if(ValidationInstruments.isPlaceValid(dir, tab[0], tab[1], polesNumber) && gamer.placeShips(id, polesNumber, dir, tab[0], tab[1]))
             {
                 BoardDrawing.drawGameBoardForPlayer(gamer.getPlansza());
                 break;
             }
-            Controller.showErrorMessage1();
+            gameControl.showErrorMessage1();
         }
     }
     

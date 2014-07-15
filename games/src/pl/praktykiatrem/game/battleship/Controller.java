@@ -13,55 +13,55 @@ import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 public class Controller {
 	static Comunicatable loadinterface = new ConsoleInteractions();
 
-	public static void showMenu()
+	public void showMenu()
 	{
 		loadinterface.showMenu();
 	}
-    public static char scanDirection(int polesNumber)
+    public char scanDirection(int polesNumber)
     {
     	return loadinterface.scanDirection(polesNumber);
     }
-	public static String[] scanName()
+	public String[] scanName()
 	{
 		return loadinterface.scanName();
 	}
-	public static void showErrorMessage1()
+	public void showErrorMessage1()
 	{
 		loadinterface.showErrorMessage1();
 	}
-	public static void clearConsole()
+	public void clearConsole()
 	{
 		loadinterface.clearConsole();
 	}
-	public static void showGameSummary(Player g, Player h)
+	public void showGameSummary(Player g, Player h)
 	{
 		loadinterface.showGameSummary(g, h);
 	}
-	public static void showYourMove(Player gamer)
+	public void showYourMove(Player gamer)
 	{
 		loadinterface.showYourMove(gamer);
 	}
-	public static void showGameOver()
+	public void showGameOver()
 	{
 		loadinterface.showGameOver();
 	}
-	public static void showGameOver(Player gamer)
+	public void showGameOver(Player gamer)
 	{
 		loadinterface.showGameOver(gamer);
 	}
-	public static int[] scanCoords()
+	public int[] scanCoords()
 	{
 		return loadinterface.scanCoords();
 	}
-	public static void showHitMessage()
+	public void showHitMessage()
 	{
 		loadinterface.showHitMessage();
 	}
-	public static void showMissMessage()
+	public void showMissMessage()
 	{
 		loadinterface.showMissMessage();
 	}
-	public static void showLegend()
+	public void showLegend()
 	{
 		loadinterface.showLegend();
 	}
