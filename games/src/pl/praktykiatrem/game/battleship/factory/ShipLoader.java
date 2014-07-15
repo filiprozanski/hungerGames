@@ -16,7 +16,7 @@ public class ShipLoader {
         String temp;
         while (odczyt.hasNextLine()){
             for(int i=0;i<7;i++){       
-                temp=odczyt.nextLine();
+                temp=odczyt.nextLine().toUpperCase();
                 gamer.placeShips(i, (int)temp.charAt(0)-48, temp.charAt(2), (int)temp.charAt(4)-48, (int)temp.charAt(6)-48);            
             
             }
