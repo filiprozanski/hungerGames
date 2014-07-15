@@ -58,8 +58,8 @@ public class Player {
     }
     public boolean placeShips(int id, int polesNumber, char direction, int x, int y)
     {
-    	int x_temp = x;
-    	int y_temp = y;
+    	int x_temp=x;
+    	int y_temp=y;
         ships[id] = new Ship(polesNumber);
         for(int i = 0; i < polesNumber; i++){
         	if (direction == Direction.HORIZONTAL.getAbbreviation())
