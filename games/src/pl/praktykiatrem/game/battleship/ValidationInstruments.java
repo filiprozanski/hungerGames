@@ -5,7 +5,7 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game.battleship.exceptions;
+package pl.praktykiatrem.game.battleship;
 
 public class ValidationInstruments {
     public static boolean isPlaceClear(char[][] tab, int x, int y)

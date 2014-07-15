@@ -10,27 +10,8 @@ package pl.praktykiatrem.game.battleship.factory;
 import pl.praktykiatrem.game.battleship.Player;
 
 public class GameFactory {
-    private Player A;
-    private Player B;
-    
-    public GameFactory()
+    public Player createPlayer()
     {
-        initializePlayers();
-    }
-    
-    private void initializePlayers()
-    {
-        A = new Player();
-        B = new Player();
-    }
-    
-    public Player getA()
-    {
-        return A;
-    }
-    
-    public Player getB()
-    {
-        return B;
+        return new Player();
     }
 }

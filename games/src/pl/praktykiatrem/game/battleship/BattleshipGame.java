@@ -19,8 +19,8 @@ public class BattleshipGame{
     public BattleshipGame()
     {
         GameFactory start = new GameFactory();
-        A = start.getA();
-        B = start.getB();
+        A = start.createPlayer();
+        B = start.createPlayer();
     }
     
     public void gameInProgress()  

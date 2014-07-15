@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 import pl.praktykiatrem.game.battleship.Controller;
 import pl.praktykiatrem.game.battleship.Player;
+import pl.praktykiatrem.game.battleship.ValidationInstruments;
 import pl.praktykiatrem.game.battleship.console.BoardDrawing;
-import pl.praktykiatrem.game.battleship.exceptions.ValidationInstruments;
 
 public class ShipLoader {
     public static void initializeShipsFromFile(Player gamer) throws FileNotFoundException {
