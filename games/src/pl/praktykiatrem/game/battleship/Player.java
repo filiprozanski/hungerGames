@@ -44,33 +44,31 @@ public class Player {
     {
         return plansza;
     }
-  
+    
+    private boolean putShipOnPlace(int id, int x, int y)
+    {
+    	if (!plansza.getPlaceFromGameBoard(x, y).isShipOnPlace())
+		{
+		    plansza.getPlaceFromGameBoard(x, y).setShipOnPlace();
+		    plansza.getPlaceFromGameBoard(x, y).setShipID(id);
+		}
+		else
+			return false;
+    	return true;
+    }
     public boolean placeShips(int id, int polesNumber, char direction, int x, int y)
     {
+    	int x_temp=0;
+    	int y_temp=0;
         ships[id] = new Ship(polesNumber);
-        if (direction == 'H' || direction == 'h')
-        {
-            for(int i = 0; i < polesNumber; i++)
-            	if (!plansza.getPlaceFromGameBoard(x + i, y).isShipOnPlace())
-            	{
-            	    plansza.getPlaceFromGameBoard(x + i, y).putShipOnPlace();
-            	    plansza.getPlaceFromGameBoard(x + i, y).setShipID(id);
-            	}
-            	else
-            		return false;
+        for(int i = 0; i < polesNumber; i++){
+        	if (direction == 'H' || direction == 'h')
+        		x_temp=x+i;
+        	else if (direction == 'V' || direction == 'v')
+        		y_temp=y+i;
+        	if(!putShipOnPlace(id, x_temp, y_temp))
+    			return false;   
         }
-        else if (direction == 'V' || direction == 'v')
-        {
-        	for(int i = 0; i < polesNumber; i++)
-        		if (!plansza.getPlaceFromGameBoard(x, y + i).isShipOnPlace())
-        		{
-        		    plansza.getPlaceFromGameBoard(x, y + i).putShipOnPlace();
-        		    plansza.getPlaceFromGameBoard(x, y + i).setShipID(id);
-        		}
-        		else
-        			return false;
-        }
-        
         return true;
     }
     
