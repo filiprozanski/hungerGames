@@ -19,7 +19,7 @@ public class Place
         isInGame = true;
     }
     
-    public void putShipOnPlace()
+    public void setShipOnPlace()
     {
         shipOnPlace = true;
     }
