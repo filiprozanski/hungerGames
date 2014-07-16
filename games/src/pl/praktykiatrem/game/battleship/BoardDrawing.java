@@ -30,9 +30,7 @@ public class BoardDrawing {
         createImages();
 
         //template, grid
-        board = new JPanel(new GridLayout(11, 11)) {
-        	
-        };
+        board = new JPanel(new GridLayout(11, 11));
         
         //board.setBorder(new CompoundBorder(new EmptyBorder(8,8,8,8), new LineBorder(Color.PINK)));
         Color backGround = new Color(255,255,0);
