@@ -46,17 +46,12 @@ public class Board {
         }
     }
     
-
-    public Place getPlaceFromGameBoard(int horizontal, int vertical){
-        return gameBoard[vertical][horizontal];
-    }
-    
     public Place[][] getGameBoard()
     {
         return gameBoard;
     }
     
-    public void setShip(int x, int y, int id)
+    public void placeShip(int x, int y, int id)
     {
     	gameBoard[y][x].setShipOnPlace();
     	gameBoard[y][x].setShipID(id);

@@ -49,7 +49,7 @@ public class Player {
     {
     	if (!plansza.isShipOnPlace(x, y))
 		{
-		    plansza.setShip(x, y, id);
+		    plansza.placeShip(x, y, id);
 		    return true;
 		}
 		else
