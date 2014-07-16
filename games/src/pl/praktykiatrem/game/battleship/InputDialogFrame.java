@@ -6,9 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.Icon;
 import java.awt.EventQueue;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.lang.reflect.Field;
+
 
 public class InputDialogFrame extends JFrame{
     
@@ -52,12 +50,7 @@ public class InputDialogFrame extends JFrame{
         //If an icon is used then it overrides the icon from the
         //message type. Likewise if a null is entered for the selection values
         //the dialog box will use a text field
-        String entered = (String)JOptionPane.showInputDialog(this
-                , "Podaj imiê pierwszego gracza:"
-                , "Text Field Dialog", JOptionPane.QUESTION_MESSAGE
-                , optionIcon, null, null);
         
-        TrackResponse(entered);
            
         String entered1 = (String)JOptionPane.showInputDialog(this
                 , "Podaj imiê pdrugiego gracza:"

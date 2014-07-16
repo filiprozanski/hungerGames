@@ -101,7 +101,7 @@ public class BoardDrawing {
             place[x][y].setIcon(new ImageIcon(elements[type]));
    }
 
-  
+  /*
     public static void main(String[] args) {
         Runnable r = new Runnable() {
 
@@ -132,4 +132,5 @@ public class BoardDrawing {
         // http://docs.oracle.com/javase/tutorial/uiswing/concurrency
         SwingUtilities.invokeLater(r);
     }
+    */
 }

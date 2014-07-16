@@ -2,6 +2,9 @@ package pl.praktykiatrem.game.battleship;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.Icon;
 
 import pl.praktykiatrem.game.battleship.Comunicatable;
 import pl.praktykiatrem.game.battleship.Player;
@@ -9,7 +12,7 @@ import pl.praktykiatrem.game.battleship.Player;
 
 public class SwingInteractions implements Comunicatable{
     private static Scanner in = new Scanner(System.in);
-    
+    private Icon optionIcon = UIManager.getIcon("FileView.computerIcon");
     public void showMenu()
     {
         System.out.println("Witamy w grze w statki, za chwile zostaniesz przeniesiony na pole bitwy!");
@@ -24,8 +27,7 @@ public class SwingInteractions implements Comunicatable{
     
     public String scanName(int gamerNumber)
     {
-        System.out.print("Podaj imiê Gracz " + gamerNumber + ".: ");
-        return in.next();
+        return "";
     }
     
     public void showErrorMessage1()
