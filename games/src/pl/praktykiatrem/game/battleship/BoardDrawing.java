@@ -5,19 +5,19 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 
 import javax.swing.*;
-import javax.swing.Box.Filler;
+//import javax.swing.Box.Filler;
 import javax.swing.border.*;
 import javax.imageio.ImageIO;
 
 import java.io.File;
 
 public class BoardDrawing {
-
-    private JButton[][] place = new JButton[10][10];
+	private static final int SIZEH = 10;
+	private static final int SIZEV = 10;
+    private JButton[][] place = new JButton[SIZEH][SIZEV];
     private Image[] elements = new Image[4];
     private JPanel board;    
-    public static final int sizeH = 10;
-    public static final int sizeV = 10;
+
 
     BoardDrawing() {
         initializeBoard();
@@ -28,10 +28,11 @@ public class BoardDrawing {
         createImages();
 
         //template, grid
-        board = new JPanel(new GridLayout(11, 11)) {        	
+        board = new JPanel(new GridLayout(SIZEH+1, SIZEV+1)) {
+			private static final long serialVersionUID = -5186594490530296738L;        	
         };
         
-        //board.setBorder(new CompoundBorder(new EmptyBorder(8,8,8,8), new LineBorder(Color.PINK)));
+        board.setBorder(new CompoundBorder(new EmptyBorder(8,8,8,8), new LineBorder(Color.PINK)));
         Color backGround = new Color(255,255,0);
         board.setBackground(backGround);
         JPanel boardConstrain = new JPanel(new GridBagLayout());
@@ -66,12 +67,12 @@ public class BoardDrawing {
         
         board.add(new JLabel(""));
         // pierwszy rz±d cyfr
-        for (int i = 0; i < 10; i++) 
+        for (int i = 0; i < SIZEH; i++) 
             board.add(new JLabel("" + i,SwingConstants.CENTER));
         
         // pierwsza kolumna to SwingConstant cyfry
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        for (int i = 0; i < SIZEH; i++) {
+            for (int j = 0; j < SIZEV; j++) {
                 switch (j) {
                     case 0:
                         board.add(new JLabel("" + i,SwingConstants.CENTER));
@@ -82,8 +83,7 @@ public class BoardDrawing {
         }
     }
 
-    public final JComponent getBoard() {
-    	
+    public final JComponent getBoard() {    	
         return board;
     }
 
