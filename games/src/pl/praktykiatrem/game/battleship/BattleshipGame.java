@@ -8,7 +8,9 @@
 package pl.praktykiatrem.game.battleship;
 
 import java.io.FileNotFoundException;
+
 import pl.praktykiatrem.game.battleship.console.BoardDrawing;
+import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 import pl.praktykiatrem.game.battleship.factory.GameFactory;
 import pl.praktykiatrem.game.battleship.factory.ShipLoader;
 
@@ -17,12 +19,16 @@ public class BattleshipGame{
     private Player B;
     private Controller gameControl;
     
-    public BattleshipGame()
+    public BattleshipGame(Boolean swing)
     {
         GameFactory start = new GameFactory();
         A = start.createPlayer();
         B = start.createPlayer();
-        gameControl = new Controller();
+        if(swing==true)
+        	gameControl = new Controller(true);
+		else
+			gameControl = new Controller(false);
+        
     }
     
     public void gameInProgress()  

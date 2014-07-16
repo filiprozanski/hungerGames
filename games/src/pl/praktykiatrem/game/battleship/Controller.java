@@ -7,11 +7,21 @@
 
 package pl.praktykiatrem.game.battleship;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 
 
 public class Controller {
-	static Comunicatable loadinterface = new ConsoleInteractions();
+	static Comunicatable loadinterface;
+	public Controller(Boolean swing)
+	{
+		if(swing==true)
+			loadinterface = new SwingInteractions();
+		else
+			loadinterface = new ConsoleInteractions();	
+	}
+	
 
 	public void showMenu()
 	{
