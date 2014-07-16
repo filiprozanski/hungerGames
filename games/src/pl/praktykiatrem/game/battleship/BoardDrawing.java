@@ -82,13 +82,6 @@ public class BoardDrawing {
         }
     }
 
-
-	public void someNonStandardEntryPoint() {
-		JFrame board = new JFrame();
-		
-	}
-
-
     public final JComponent getBoard() {
     	
         return board;
