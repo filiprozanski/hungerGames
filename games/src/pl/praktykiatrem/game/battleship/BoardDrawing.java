@@ -11,8 +11,6 @@ import javax.imageio.ImageIO;
 
 import java.io.File;
 
-
-
 public class BoardDrawing {
 
     private JButton[][] place = new JButton[10][10];
@@ -24,7 +22,7 @@ public class BoardDrawing {
     BoardDrawing() {
         initializeBoard();
     }
-    
+
     public final void initializeBoard() {
         // stwórz obrazki statków z plików
         createImages();
@@ -38,23 +36,7 @@ public class BoardDrawing {
         JPanel boardConstrain = new JPanel(new GridBagLayout());
         boardConstrain.setBackground(backGround);
         boardConstrain.add(board);
-        /*
-        private class fetchCoords implements ActionListener
-        {
-        	public fetchCoords(int x, int y)
-        	{
-        		fillGameBoard(1, x, y);
-        	}
-        }
-        Action fetchCoords(int x, int y) = new fetchCoords(x,y);
-        {
-        
-			@Override
-            public void actionPerformed(ActionEvent e) {
-               fillGameBoard(1, 8, 8);
-            }
-        };
-*/
+    
         class PlaceListener implements ActionListener {
         	private final int x;
         	private final int y;
