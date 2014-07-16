@@ -36,16 +36,10 @@ public class ConsoleInteractions implements Comunicatable{
         return input.charAt(0);
     }
     
-    public String[] scanName()
+    public String scanName(int gamerNumber)
     {
-        String[] names = new String[2];
-        
-        System.out.print("Podaj imiê Gracz I: ");
-        names[0] = in.next();
-        System.out.print("Podaj imiê Gracz II: ");
-        names[1] = in.next();
-        
-        return names;
+        System.out.print("Podaj imiê Gracz " + gamerNumber + ".: ");
+        return in.next();
     }
     
     public void showErrorMessage1()
@@ -53,7 +47,7 @@ public class ConsoleInteractions implements Comunicatable{
         System.out.println("Poda³e¶ b³êdne dane, spróbuj jeszcze raz.");
     }
     
-    public void clearConsole()
+    private void clearConsole()
     {
     	for (int i = 0; i < 20; i++)
     		System.out.println();
@@ -129,11 +123,13 @@ public class ConsoleInteractions implements Comunicatable{
     
     public void showHitMessage()
     {
+    	clearConsole();
         System.out.println("Brawo! Trafi³e¶!");
     }
     
     public void showMissMessage()
     {
+    	clearConsole();
         System.out.println("Pud³o...");
     }
     

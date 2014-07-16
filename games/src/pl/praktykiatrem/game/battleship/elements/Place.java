@@ -7,7 +7,7 @@
 
 package pl.praktykiatrem.game.battleship.elements;
 
-public class Place
+class Place
 {
     private int shipID;
     private boolean shipOnPlace;

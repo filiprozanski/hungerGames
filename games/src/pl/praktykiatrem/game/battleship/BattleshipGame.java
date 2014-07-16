@@ -29,24 +29,11 @@ public class BattleshipGame{
     {
         gameControl.showMenu();      
       
-        
-        String[] names = gameControl.scanName();
-        A.setName(names[0]);
-        B.setName(names[1]);
+        A.setName(gameControl.scanName(1));
+        B.setName(gameControl.scanName(2));
    
-        try {
-        	ShipLoader.initializeShipsFromFile(A);
-          } catch (FileNotFoundException e) {
-        	  ShipLoader.initializeShips(A, gameControl);
-          }
-        
-        try {
-        	ShipLoader.initializeShipsFromFile(B);
-          } catch (FileNotFoundException e) {
-        	  ShipLoader.initializeShips(B, gameControl);
-          }
-        
-
+        setShips(A);
+        setShips(B);
         
         Player currentPlayer = A;
         Player enemy = B;
@@ -60,14 +47,12 @@ public class BattleshipGame{
             cords = pointRifle();
             if (!currentPlayer.makeMove(cords[0], cords[1], enemy))
             {
-                gameControl.clearConsole();
                 gameControl.showMissMessage();
                 enemy = currentPlayer;
                 currentPlayer = changePlayer(currentPlayer);
             }
             else
             {
-                gameControl.clearConsole();
                 gameControl.showHitMessage();
             }
                 
@@ -111,6 +96,15 @@ public class BattleshipGame{
     		return false;
     	else
     		return true;
+    }
+    
+    private void setShips(Player gamer)
+    {
+    	try {
+        	ShipLoader.initializeShipsFromFile(gamer);
+          } catch (FileNotFoundException e) {
+        	  ShipLoader.initializeShips(gamer, gameControl);
+          }
     }
     
     

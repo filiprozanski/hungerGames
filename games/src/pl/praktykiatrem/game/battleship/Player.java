@@ -8,7 +8,7 @@
 package pl.praktykiatrem.game.battleship;
 
 import pl.praktykiatrem.game.battleship.elements.Board;
-import pl.praktykiatrem.game.battleship.elements.Place;
+//import pl.praktykiatrem.game.battleship.elements.Place;
 import pl.praktykiatrem.game.battleship.elements.Ship;
 
 
@@ -47,14 +47,14 @@ public class Player {
     
     private boolean putShipOnPlace(int id, int x, int y)
     {
-    	if (!plansza.getPlaceFromGameBoard(x, y).isShipOnPlace())
+    	if (!plansza.isShipOnPlace(x, y))
 		{
-		    plansza.getPlaceFromGameBoard(x, y).setShipOnPlace();
-		    plansza.getPlaceFromGameBoard(x, y).setShipID(id);
+		    plansza.setShip(x, y, id);
+		    return true;
 		}
 		else
 			return false;
-    	return true;
+    	
     }
     public boolean placeShips(int id, int polesNumber, char direction, int x, int y)
     {
@@ -75,18 +75,17 @@ public class Player {
     public boolean makeMove(int x, int y, Player enemy)
     {
         //if (ValidationInstruments.isPlaceClear(enemy.getPlansza().gameBoard, x, y))
-        if (!enemy.getPlansza().getPlaceFromGameBoard(x, y).isShipOnPlace())
+        if (!enemy.getPlansza().isShipOnPlace(x, y))
         {
-            enemy.getPlansza().getPlaceFromGameBoard(x, y).takeOut();
+            enemy.getPlansza().takeOut(x, y);
             return false;
         }
         else
         {
-            Place placeUnderMove = enemy.getPlansza().getPlaceFromGameBoard(x, y);
-            if(placeUnderMove.isShipOnPlace() && placeUnderMove.isPlaceInGame())
+            if(enemy.getPlansza().isShipOnPlaceAndActive(x, y))
             {
-                int shipID = placeUnderMove.getShipId();
-                placeUnderMove.takeOut();
+                int shipID = enemy.getPlansza().getShipID(x, y);
+                enemy.getPlansza().takeOut(x, y);
                 ships[shipID].reducePolesNumber();
                 if (ships[shipID].isShipSunk())
                     enemy.reduceShipsNumber();

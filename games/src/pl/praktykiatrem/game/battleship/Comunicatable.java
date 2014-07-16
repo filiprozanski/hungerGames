@@ -10,9 +10,8 @@ package pl.praktykiatrem.game.battleship;
 public interface Comunicatable {	 
     public void showMenu();
     public char scanDirection(int polesNumber);
-	public String[] scanName();
+	public String scanName(int i);
 	public void showErrorMessage1();
-	public void clearConsole();
 	public void showGameSummary(Player g, Player h);
 	public void showYourMove(Player gamer);
 	public void showGameOver();

@@ -55,4 +55,35 @@ public class Board {
     {
         return gameBoard;
     }
+    
+    public void setShip(int x, int y, int id)
+    {
+    	gameBoard[y][x].setShipOnPlace();
+    	gameBoard[y][x].setShipID(id);
+    }
+    
+    public boolean isShipOnPlace(int x, int y)
+    {
+    	return gameBoard[y][x].isShipOnPlace();
+    }
+    
+    public boolean isPlaceActive(int x, int y)
+    {
+    	return gameBoard[y][x].isPlaceInGame();
+    }
+    
+    public void takeOut(int x, int y)
+    {
+    	gameBoard[y][x].takeOut();
+    }
+    
+    public int getShipID(int x, int y)
+    {
+    	return gameBoard[y][x].getShipId();
+    }
+    
+    public boolean isShipOnPlaceAndActive(int x, int y)
+    {
+    	return (isShipOnPlace(x, y) && gameBoard[y][x].isPlaceInGame());
+    }
 }

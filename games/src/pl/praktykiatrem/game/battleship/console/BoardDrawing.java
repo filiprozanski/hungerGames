@@ -8,7 +8,7 @@
 package pl.praktykiatrem.game.battleship.console;
 
 import pl.praktykiatrem.game.battleship.elements.Board;
-import pl.praktykiatrem.game.battleship.elements.Place;
+//import pl.praktykiatrem.game.battleship.elements.Place;
 
 
 /**
@@ -28,7 +28,7 @@ public class BoardDrawing {
      */
     public static void drawGameBoardForOpponent(Board gamePlace)
     {
-        Place[][] tab = gamePlace.getGameBoard();
+        //Place[][] tab = gamePlace.getGameBoard();
         
         System.out.print(" ");
         for (int i = 0; i < gamePlace.getHorizontalSize(); i++)
@@ -41,9 +41,9 @@ public class BoardDrawing {
             System.out.print(i);
             for (int j = 0; j < gamePlace.getHorizontalSize(); j++)
             {
-                if (!tab[i][j].isShipOnPlace() && !tab[i][j].isPlaceInGame())
+                if (!gamePlace.isShipOnPlace(j, i) && !gamePlace.isPlaceActive(j, i))
                     System.out.print("M");
-                else if (tab[i][j].isShipOnPlace() && !tab[i][j].isPlaceInGame())
+                else if (gamePlace.isShipOnPlace(j, i) && !gamePlace.isPlaceActive(j, i))
                     System.out.print("H");
                 else
                     System.out.print("+");
@@ -60,7 +60,7 @@ public class BoardDrawing {
      */
     public static void drawGameBoardForPlayer(Board gamePlace)
     {
-        Place[][] tab = gamePlace.getGameBoard();
+        //Place[][] tab = gamePlace.getGameBoard();
         
         System.out.print(" ");
         for (int i = 0; i < gamePlace.getHorizontalSize(); i++)
@@ -73,11 +73,11 @@ public class BoardDrawing {
             System.out.print(i);
             for (int j = 0; j < gamePlace.getHorizontalSize(); j++)
             {
-                if (tab[i][j].isShipOnPlace() && tab[i][j].isPlaceInGame())
-                    System.out.print(tab[i][j].getShipId());
-                else if (tab[i][j].isShipOnPlace() && !tab[i][j].isPlaceInGame())
+                if (gamePlace.isShipOnPlace(j, i) && gamePlace.isPlaceActive(j, i))
+                    System.out.print(gamePlace.getShipID(j, i));
+                else if (gamePlace.isShipOnPlace(j, i) && !gamePlace.isPlaceActive(j, i))
                     System.out.print("H");
-                else if (!tab[i][j].isShipOnPlace() && !tab[i][j].isPlaceInGame())
+                else if (!gamePlace.isShipOnPlace(j, i) && !gamePlace.isPlaceActive(j, i))
                     System.out.print("M");
                 else
                     System.out.print("+");

@@ -21,17 +21,13 @@ public class Controller {
     {
     	return loadinterface.scanDirection(polesNumber);
     }
-	public String[] scanName()
+	public String scanName(int i)
 	{
-		return loadinterface.scanName();
+		return loadinterface.scanName(i);
 	}
 	public void showErrorMessage1()
 	{
 		loadinterface.showErrorMessage1();
-	}
-	public void clearConsole()
-	{
-		loadinterface.clearConsole();
 	}
 	public void showGameSummary(Player g, Player h)
 	{
