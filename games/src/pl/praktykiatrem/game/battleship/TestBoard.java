@@ -18,27 +18,28 @@ public class TestBoard {
             @Override
             public void run() {
                 BoardDrawing cg = new BoardDrawing();
+                BoardDrawing cg2 = new BoardDrawing();
 
                 JFrame f = new JFrame("plansza");
                 
                 f.getContentPane().add(cg.getBoard());
-                // Ensures JVM closes after frame(s) closed and
-                // all non-daemon threads are finished
+                f.getContentPane().add(cg2.getBoard());
+                
+                //ustawianie w³aœciwoœci g³ównego okna
                 f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                // See http://stackoverflow.com/a/7143398/418556 for demo.
                 f.setLocationByPlatform(true);
+                f.setResizable(false);
 
                 // ensures the frame is the minimum size it needs to be
                 // in order display the components within it
                 f.pack();
                 // ensures the minimum size is enforced.
                 f.setMinimumSize(f.getSize());
-                cg.fillGameBoard(3, 6, 5);
                 f.setVisible(true);
                 
                 //////////////////////////////////
                 
-                BoardDrawing cg2 = new BoardDrawing();
+                /*BoardDrawing cg2 = new BoardDrawing();
                 
                 JFrame f2 = new JFrame("plansza");
                 
@@ -55,7 +56,7 @@ public class TestBoard {
                 // ensures the minimum size is enforced.
                 f2.setMinimumSize(f2.getSize());
                 cg2.fillGameBoard(3, 6, 5);
-                f2.setVisible(true);
+                f2.setVisible(true);*/
                 
             }
         });
