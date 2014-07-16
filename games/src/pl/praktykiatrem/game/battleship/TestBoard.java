@@ -11,8 +11,6 @@ public class TestBoard {
 		//BattleshipGame newGame = new BattleshipGame();
 		//newGame.gameInProgress();
 	    
-	    //basicElements.startWindow();
-		
 		 SwingUtilities.invokeLater(new Runnable() {
 
             @Override
@@ -39,7 +37,6 @@ public class TestBoard {
                 
                 //////////////////////////////////
                 
-                /*BoardDrawing cg2 = new BoardDrawing();
                 
                 JFrame f2 = new JFrame("plansza");
                 
@@ -56,7 +53,7 @@ public class TestBoard {
                 // ensures the minimum size is enforced.
                 f2.setMinimumSize(f2.getSize());
                 cg2.fillGameBoard(3, 6, 5);
-                f2.setVisible(true);*/
+                f2.setVisible(true);
                 
             }
         });
