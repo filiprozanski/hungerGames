@@ -5,30 +5,3 @@
 3 v 4 0
 2 v 5 0
 2 v 6 0
-
-    @Test
-    public void testLukasza() {
-        assertTrue("Test £ukasza", PESEL.isValid("44051401359"));
-    }
-    @Test
-    public void testLukasza2() {
-        assertFalse("Test £ukasza2", PESEL.isValid("80131607617"));
-    }
-    @Test
-    public void testLukasza3() {
-        assertFalse("Test £ukasza3", PESEL.isValid("80063101355"));
-    }
-    @Test
-    public void testLukasza4() {
-        assertFalse("Test £ukasza4", PESEL.isValid("00022901356"));
-    }
-    
-    @Test
-    public void testLukasza5() {
-        assertTrue("Test £ukasza5", PESEL.isValid("00222901352"));
-    }
-    
-    @Test
-    public void testLukasza6() {
-        assertTrue("Test £ukasza6", PESEL.isValid("96022901359"));
-    }
