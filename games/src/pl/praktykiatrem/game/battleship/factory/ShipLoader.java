@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import pl.praktykiatrem.game.battleship.Controller;
-import pl.praktykiatrem.game.battleship.Player;
+import pl.praktykiatrem.game.battleship.GameStatus;
 import pl.praktykiatrem.game.battleship.ValidationInstruments;
 import pl.praktykiatrem.game.battleship.console.BoardDrawing;
 
 public class ShipLoader {
-    public static void initializeShipsFromFile(Player gamer) throws FileNotFoundException {
+    public static void initializeShipsFromFile(GameStatus gamer) throws FileNotFoundException {
         File plik1=new File("src/pl/praktykiatrem/game/battleship/"+gamer.getName()+".txt");
         Scanner odczyt=new Scanner(plik1);
         String temp;
@@ -24,7 +24,7 @@ public class ShipLoader {
         odczyt.close();   
     }
     
-	public static void initializeShips(Player gamer, Controller gameControl)
+	public static void initializeShips(GameStatus gamer, Controller gameControl)
     {
             int polesNumber;
             gameControl.showYourMove(gamer);
@@ -50,7 +50,7 @@ public class ShipLoader {
      * @param id
      * @param gamer gracz, którego statki s± ustawiane
      */
-    private static void fetchShipCoords(int polesNumber, int id, Player gamer, Controller gameControl)
+    private static void fetchShipCoords(int polesNumber, int id, GameStatus gamer, Controller gameControl)
     {
         char dir;
         int[] tab = {0, 0};

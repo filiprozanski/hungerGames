@@ -12,13 +12,13 @@ import pl.praktykiatrem.game.battleship.elements.Board;
 import pl.praktykiatrem.game.battleship.elements.Ship;
 
 
-public class Player {
+public class GameStatus {
     private Board plansza;
     private Ship[] ships;
     private int shipsNumber;
     private String name;
     
-    public Player()
+    public GameStatus()
     {
         shipsNumber = 7;
         plansza = new Board(10, 10);
@@ -72,7 +72,7 @@ public class Player {
         return true;
     }
     
-    public boolean makeMove(int x, int y, Player enemy)
+    public boolean makeMove(int x, int y, GameStatus enemy)
     {
         //if (ValidationInstruments.isPlaceClear(enemy.getPlansza().gameBoard, x, y))
         if (!enemy.getPlansza().isShipOnPlace(x, y))

@@ -27,8 +27,8 @@ public class BattleshipGame2 {
 	public JFrame frame;
 	private JTextArea trackerA;
 	private JTextArea trackerB;
-	private Player A;
-    private Player B;
+	private GameStatus A;
+    private GameStatus B;
     private Controller gameControl;
     
     public BattleshipGame2(Boolean swing)
@@ -87,8 +87,8 @@ public class BattleshipGame2 {
         setShips(A);
         setShips(B);
         
-        Player currentPlayer = A;
-        Player enemy = B;
+        GameStatus currentPlayer = A;
+        GameStatus enemy = B;
         int[] cords = {0, 0};
         /*
         gameControl.showLegend();
@@ -135,7 +135,7 @@ public class BattleshipGame2 {
         }
     }
     
-    private Player changePlayer(Player X)
+    private GameStatus changePlayer(GameStatus X)
     {
         if (X.getName() == A.getName())
             return B;
@@ -143,7 +143,7 @@ public class BattleshipGame2 {
             return A;
     }
     
-    private boolean isGameOver(Player X)
+    private boolean isGameOver(GameStatus X)
     {
     	if (X.getShipsNumber()>0)
     		return false;
@@ -151,7 +151,7 @@ public class BattleshipGame2 {
     		return true;
     }
     
-    private void setShips(Player gamer)
+    private void setShips(GameStatus gamer)
     {
     	try {
         	ShipLoader.initializeShipsFromFile(gamer);

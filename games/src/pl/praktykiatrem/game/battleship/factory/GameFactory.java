@@ -7,11 +7,11 @@
 
 package pl.praktykiatrem.game.battleship.factory;
 
-import pl.praktykiatrem.game.battleship.Player;
+import pl.praktykiatrem.game.battleship.GameStatus;
 
 public class GameFactory {
-    public Player createPlayer()
+    public GameStatus createPlayer()
     {
-        return new Player();
+        return new GameStatus();
     }
 }
