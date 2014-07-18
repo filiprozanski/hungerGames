@@ -49,7 +49,7 @@ public class BoardDrawing {
             }
             public void actionPerformed(ActionEvent evt) {
             	
-            	gracz.getPlansza().gameboard[x][y];
+            	
             	fillGameBoard(2,x,y);
             }
         }
