@@ -5,6 +5,12 @@ import javax.swing.JButton;
 
 public class ShipButton extends JButton {
 	private int callNumber;
+	private boolean shipIsSet;
+	
+	public ShipButton()
+	{
+		shipIsSet = false;
+	}
 	
 	public int getCallNumber()
 	{
@@ -23,4 +29,14 @@ public class ShipButton extends JButton {
 		ShipIcons.createImages();
         setIcon(ShipIcons.getIcon(type));
     }
+	
+	public boolean isShipSet()
+	{
+		return shipIsSet;
+	}
+	
+	public void enableShipIsSet()
+	{
+		shipIsSet = true;
+	}
 }
