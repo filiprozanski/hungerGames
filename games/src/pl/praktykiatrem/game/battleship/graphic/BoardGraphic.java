@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship;
+package pl.praktykiatrem.game.battleship.graphic;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,16 +18,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import pl.praktykiatrem.game.battleship.Controller;
+
 public class BoardGraphic extends JPanel {
 	private static final int SIZEH = 10;
 	private static final int SIZEV = 10;
-    private JButton[][] place = new JButton[SIZEH][SIZEV];
-    private Image[] elements = new Image[4];
+    protected JButton[][] place = new JButton[SIZEH][SIZEV];
+    protected Image[] elements = new Image[4];
+    protected Controller control;
     
-    public BoardGraphic()
+    public BoardGraphic(Controller control)
     {
     	super(new GridLayout(SIZEH + 1, SIZEV + 1));
-    	
+    	this.control = control;
         place = new JButton[SIZEH][SIZEV];
         elements = new Image[4];
     	setSize(330, 330);
@@ -77,7 +80,7 @@ public class BoardGraphic extends JPanel {
         {
             for (int j = 0; j < place[i].length; j++)
             {
-                JButton b = new JButton();
+                ShipButton b = new ShipButton();
                 b.addActionListener(new PlaceListener(j,i));
                 b.setMargin(buttonMargin);
                 ImageIcon icon = new ImageIcon(new BufferedImage(30, 30, BufferedImage.TYPE_INT_ARGB));
@@ -115,8 +118,12 @@ public class BoardGraphic extends JPanel {
         	this.x = x;
         	this.y = y;
         }
+        
         public void actionPerformed(ActionEvent evt) {
-            setPlaceIcon(2,x,y);
+        	if (control.killEmAll(x, y))
+        		setPlaceIcon(3,x,y);
+        	else
+        		setPlaceIcon(0,x,y);
         }
     }
     

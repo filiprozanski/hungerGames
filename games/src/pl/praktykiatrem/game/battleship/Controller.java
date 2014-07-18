@@ -28,4 +28,14 @@ public class Controller {
 			break;
 		}
 	}
+	
+	public void showName()
+	{
+		System.out.println(A.getName());
+	}
+	
+	public boolean killEmAll(int x, int y)
+	{
+		return A.makeMove(x, y, B);
+	}
 }
