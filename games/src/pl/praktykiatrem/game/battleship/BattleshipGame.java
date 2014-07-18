@@ -17,17 +17,15 @@ import pl.praktykiatrem.game.battleship.factory.ShipLoader;
 public class BattleshipGame{
     private GameStatus A;
     private GameStatus B;
-    private Controller gameControl;
+    private ConsoleInteractions gameControl;
     
     public BattleshipGame(Boolean swing)
     {
         GameFactory start = new GameFactory();
         A = start.createPlayer();
         B = start.createPlayer();
-        if(swing==true)
-        	gameControl = new Controller(true);
-		else
-			gameControl = new Controller(false);
+        	gameControl = new ConsoleInteractions();
+		
         
     }
     
