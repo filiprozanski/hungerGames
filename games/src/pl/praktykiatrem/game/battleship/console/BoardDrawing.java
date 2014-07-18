@@ -7,8 +7,7 @@
 
 package pl.praktykiatrem.game.battleship.console;
 
-import pl.praktykiatrem.game.battleship.elements.Board;
-//import pl.praktykiatrem.game.battleship.elements.Place;
+import pl.praktykiatrem.game.battleship.gameComponents.Board;
 
 
 /**

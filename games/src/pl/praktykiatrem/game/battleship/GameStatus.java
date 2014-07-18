@@ -7,9 +7,9 @@
 
 package pl.praktykiatrem.game.battleship;
 
-import pl.praktykiatrem.game.battleship.elements.Board;
-//import pl.praktykiatrem.game.battleship.elements.Place;
-import pl.praktykiatrem.game.battleship.elements.Ship;
+//import pl.praktykiatrem.game.battleship.gameComponents.Place;
+import pl.praktykiatrem.game.battleship.gameComponents.Board;
+import pl.praktykiatrem.game.battleship.gameComponents.Ship;
 
 
 public class GameStatus {

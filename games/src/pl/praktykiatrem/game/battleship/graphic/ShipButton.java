@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class ShipButton extends JButton {
@@ -17,4 +18,9 @@ public class ShipButton extends JButton {
 		else
 			callNumber = callNumber + 1;
 	}
+	
+	public void setPlaceIcon(int type, int x, int y) {
+		ShipIcons.createImages();
+        setIcon(ShipIcons.getIcon(type));
+    }
 }

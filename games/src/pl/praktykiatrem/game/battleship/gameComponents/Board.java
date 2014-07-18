@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.elements;
+package pl.praktykiatrem.game.battleship.gameComponents;
 
 
 /**

@@ -81,7 +81,7 @@ public class BoardGraphicSeting extends JPanel {
             for (int j = 0; j < place[i].length; j++)
             {
                 ShipButton b = new ShipButton();
-                b.addActionListener(new PlaceListener(j,i));
+                b.addActionListener(new PlacingListener(j, i));
                 b.setMargin(buttonMargin);
                 ImageIcon icon = new ImageIcon(new BufferedImage(30, 30, BufferedImage.TYPE_INT_ARGB));
                 b.setIcon(icon);
@@ -111,21 +111,7 @@ public class BoardGraphicSeting extends JPanel {
         }
     }
     
-    private class PlaceListener implements ActionListener {
-    	private int x;
-    	private int y;
-        private PlaceListener( int x, int y ) {
-        	this.x = x;
-        	this.y = y;
-        }
-        
-        public void actionPerformed(ActionEvent evt) {
-        	if (control.killEmAll(x, y))
-        		setPlaceIcon(3,x,y);
-        	else
-        		setPlaceIcon(0,x,y);
-        }
-    }
+    
     
     private void setPlaceIcon(int type, int x, int y) {       
         place[x][y].setIcon(new ImageIcon(elements[type]));

@@ -66,7 +66,7 @@ class TestFrame extends JFrame
 	public TestFrame(Controller cont)
 	{
 		setLayout(new GridLayout(2, 2));
-		c = new BoardGraphic(cont);
+		c = new BoardGraphicSeting(cont);
 		d = new ShipSetPanel(cont);
 		e = new BoardGraphic(cont);
 		f = new ReadyPanel(cont);
