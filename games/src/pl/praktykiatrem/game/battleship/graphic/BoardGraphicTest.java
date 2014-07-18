@@ -67,9 +67,9 @@ class TestFrame extends JFrame
 	{
 		setLayout(new GridLayout(2, 2));
 		c = new BoardGraphic(cont);
-		d = new BoardGraphic(cont);
+		d = new ShipSetPanel(cont);
 		e = new BoardGraphic(cont);
-		f = new BoardGraphic(cont);
+		f = new ReadyPanel(cont);
 		getContentPane().add(c);
 		getContentPane().add(d);
 		getContentPane().add(e);
