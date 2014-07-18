@@ -15,19 +15,19 @@ import pl.praktykiatrem.game.battleship.factory.GameFactory;
 import pl.praktykiatrem.game.battleship.factory.ShipLoader;
 
 public class BattleshipGame{
-    private Player A;
-    private Player B;
-    private Controller gameControl;
+    private GameStatus A;
+    private GameStatus B;
+    private ConsoleInteractions gameControl;
     
     public BattleshipGame(Boolean swing)
     {
         GameFactory start = new GameFactory();
         A = start.createPlayer();
         B = start.createPlayer();
-        if(swing==true)
-        	gameControl = new Controller(true);
-		else
-			gameControl = new Controller(false);
+        //if(swing==true)
+        	//gameControl = new Controller(true);
+		//else
+			gameControl = new ConsoleInteractions();
         
     }
     
@@ -41,8 +41,8 @@ public class BattleshipGame{
         setShips(A);
         setShips(B);
         
-        Player currentPlayer = A;
-        Player enemy = B;
+        GameStatus currentPlayer = A;
+        GameStatus enemy = B;
         int[] cords = {0, 0};
         gameControl.showLegend();
         while (!isGameOver(enemy))
@@ -88,7 +88,7 @@ public class BattleshipGame{
         }
     }
     
-    private Player changePlayer(Player X)
+    private GameStatus changePlayer(GameStatus X)
     {
         if (X.getName() == A.getName())
             return B;
@@ -96,7 +96,7 @@ public class BattleshipGame{
             return A;
     }
     
-    private boolean isGameOver(Player X)
+    private boolean isGameOver(GameStatus X)
     {
     	if (X.getShipsNumber()>0)
     		return false;
@@ -104,7 +104,7 @@ public class BattleshipGame{
     		return true;
     }
     
-    private void setShips(Player gamer)
+    private void setShips(GameStatus gamer)
     {
     	try {
         	ShipLoader.initializeShipsFromFile(gamer);

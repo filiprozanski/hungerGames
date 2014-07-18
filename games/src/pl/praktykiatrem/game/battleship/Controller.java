@@ -16,10 +16,10 @@ public class Controller {
 	static Comunicatable loadinterface;
 	public Controller(Boolean swing)
 	{
-		if(swing==true)
-			loadinterface = new SwingInteractions();
-		else
-			loadinterface = new ConsoleInteractions();	
+		//if(swing==true)
+			//loadinterface = new SwingInteractions();
+		//else
+			//loadinterface = new ConsoleInteractions();	
 	}
 	
 
@@ -39,11 +39,11 @@ public class Controller {
 	{
 		loadinterface.showErrorMessage1();
 	}
-	public void showGameSummary(Player g, Player h)
+	public void showGameSummary(GameStatus g, GameStatus h)
 	{
 		loadinterface.showGameSummary(g, h);
 	}
-	public void showYourMove(Player gamer)
+	public void showYourMove(GameStatus gamer)
 	{
 		loadinterface.showYourMove(gamer);
 	}
@@ -51,7 +51,7 @@ public class Controller {
 	{
 		loadinterface.showGameOver();
 	}
-	public void showGameOver(Player gamer)
+	public void showGameOver(GameStatus gamer)
 	{
 		loadinterface.showGameOver(gamer);
 	}

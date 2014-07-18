@@ -31,12 +31,13 @@ public class BoardDrawing {
 			private static final long serialVersionUID = -5186594490530296738L;        	
         };
         
-        board.setBorder(new CompoundBorder(new EmptyBorder(8,8,8,8), new LineBorder(Color.PINK)));
-        Color backGround = new Color(255,255,0);
-        board.setBackground(backGround);
-        JPanel boardConstrain = new JPanel(new GridBagLayout());
-        boardConstrain.setBackground(backGround);
-        boardConstrain.add(board);
+       // board.setBorder(new CompoundBorder(new EmptyBorder(8,8,8,8), new LineBorder(Color.PINK)));
+        //Color backGround = new Color(255,255,0);
+        //board.setBackground(backGround);
+        board.setBackground(Color.LIGHT_GRAY);
+        //JPanel boardConstrain = new JPanel(new GridBagLayout());
+        //boardConstrain.setBackground(backGround);
+        //boardConstrain.add(board);
     
         class PlaceListener implements ActionListener {
         	private final int x;

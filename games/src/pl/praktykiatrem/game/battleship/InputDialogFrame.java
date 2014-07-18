@@ -35,7 +35,7 @@ public class InputDialogFrame extends JFrame{
         //make sure the program exits when the frame closes
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Dialog Box Example");
-        setSize(500,300);
+        setSize(720,480);
         
         //This will center the JFrame in the middle of the screen
         setLocationRelativeTo(null);
@@ -43,7 +43,7 @@ public class InputDialogFrame extends JFrame{
         
         //Using JTextArea to show clicks and responses
         tracker = new JTextArea("Click tracker:");
-        add(tracker);
+        getContentPane().add(tracker);
         setVisible(true);
         
         
