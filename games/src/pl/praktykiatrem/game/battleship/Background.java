@@ -11,10 +11,10 @@ import javax.swing.JPanel;
 public class Background extends JPanel {
 	  private Image img;
 	 
-	  public Background() {
+	  public Background(String name) {
 	    // load the background image
 	    try {
-	      img = ImageIO.read(new File("src/pl/praktykiatrem/game/battleship/background.png"));
+	      img = ImageIO.read(new File("src/pl/praktykiatrem/game/battleship/" + name));
 	    } catch(IOException e) {
 	      e.printStackTrace();
 	    }

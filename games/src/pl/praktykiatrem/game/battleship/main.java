@@ -21,7 +21,7 @@ public class main extends JPanel implements ActionListener {
     final static String MENU = "Menu";
     final static String GoToGame = "Przejd¼ do gry.";
     final static String GoToMenu = "Przejd¼ do menu.";
-    final static String Credits = "O programie";
+    final static String CREDITS = "O programie";
     private Image img;
     
     public main() {    		
@@ -31,18 +31,28 @@ public class main extends JPanel implements ActionListener {
     
     public void inicialize() {
     	Controller controller=new Controller();
-    	Background menu = new Background();
+    	menu menu = new menu();
+    	Background credits = new Background("doge.jpg");
     	JPanel game = new JPanel();
-    	BoardGraphic board = new BoardGraphic(controller);
+    	BoardGraphicSeting board = new BoardGraphicSeting(controller);
     	
-        JButton buttonGoToGame = new JButton(GoToGame);
+    	//menu.setLayout());
+        
+    	JButton buttonGoToGame = new JButton(GoToGame);
         JButton buttonGoToMenu = new JButton(GoToMenu);
+        JButton buttonGoToCredits = new JButton(CREDITS);
         
         buttonGoToGame.addActionListener(this);
         buttonGoToMenu.addActionListener(this);
-
-        menu.add(buttonGoToGame);
-        menu.add(credits);
+        buttonGoToCredits.addActionListener(this);
+        
+        buttonGoToCredits.setAlignmentX(100);
+        buttonGoToCredits.setAlignmentY(100);
+        
+        buttonGoToGame.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+       
+        
         game.add(board, BorderLayout.CENTER);
         game.add(buttonGoToMenu, BorderLayout.PAGE_END);
         
@@ -51,7 +61,7 @@ public class main extends JPanel implements ActionListener {
         cards = new JPanel(new CardLayout());
         cards.add(menu, MENU);
         cards.add(game, GAME);
-        
+        cards.add(credits, CREDITS);
          
         //pane.add(comboBoxPane, BorderLayout.PAGE_START);
         add(cards, BorderLayout.CENTER);
@@ -69,6 +79,8 @@ public class main extends JPanel implements ActionListener {
         	cl.show(cards, GAME);
         if((String)evt.getActionCommand() == GoToMenu) 
         	cl.show(cards, MENU);
+        if((String)evt.getActionCommand() == CREDITS) 
+        	cl.show(cards, CREDITS);
     }
     private static void createAndShowGUI() {
         //Create and set up the window.
