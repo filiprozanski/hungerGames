@@ -12,11 +12,6 @@ import java.io.FileNotFoundException;
 
 import javax.swing.JOptionPane;
 
-
-
-
-
-
 import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 import pl.praktykiatrem.game.battleship.factory.GameFactory;
 import pl.praktykiatrem.game.battleship.factory.ShipLoader;
@@ -48,31 +43,28 @@ public class BattleshipGame2 {
                 , "Podaj imiê " + id + " gracza:"
                 , "Text Field Dialog", JOptionPane.QUESTION_MESSAGE
                 , optionIcon, null, null);
-		return name;		
+		return name;
 	}
-    
+	
     /**
 	 * Initialize the contents of the frame.
 	 */
 	
 	private void initialize() {
-		BoardDrawing g1 = new BoardDrawing();
-		BoardDrawing g2 = new BoardDrawing();
-		BoardDrawing g3 = new BoardDrawing();
-		BoardDrawing g4 = new BoardDrawing();
-		trackerA = new JTextArea("PlayerA:");
-		trackerB = new JTextArea("PlayerB:");
 		
+		BoardDrawing g1 = new BoardDrawing(A);
+		BoardDrawing g2 = new BoardDrawing(A);
+		BoardDrawing g3 = new BoardDrawing(B);
+		BoardDrawing g4 = new BoardDrawing(B);
+			
 		frame = new JFrame("BattleShips of \"hungerGames\" productions");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new GridLayout(2, 3, 0, 0));
+		frame.getContentPane().setLayout(new GridLayout(2, 2, 0, 0));
 		
 		frame.add(g1.getBoard());
 		frame.add(g2.getBoard());
-		frame.add(trackerA);
 		frame.add(g3.getBoard());
 		frame.add(g4.getBoard());
-		frame.add(trackerB);
 		frame.pack();
 		frame.setMinimumSize(frame.getSize());
 	}
@@ -80,7 +72,7 @@ public class BattleshipGame2 {
     {
         gameControl.showMenu();      
         
-        
+        //dialogPopUp(1);
         A.setName(dialogPopUp(1));
         B.setName(dialogPopUp(2));
    

@@ -9,15 +9,17 @@ public class TestBoard2 {
 			public void run() {
 				try {
 					BattleshipGame2 window = new BattleshipGame2(true);
+					//BattleshipGame2 newGame = new BattleshipGame2(true);
+					//newGame.gameInProgress();
 					window.frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}				
 			}
 			
 		});
-		BattleshipGame newGame = new BattleshipGame(true);
-		newGame.gameInProgress();
+		
 	}
 
 }

@@ -16,8 +16,9 @@ public class BoardDrawing {
     private JButton[][] place = new JButton[SIZEH][SIZEV];
     private Image[] elements = new Image[4];
     private JPanel board;    
-
-    BoardDrawing() {
+    private Player gracz;
+    BoardDrawing(Player X) {
+    	gracz=X;
         initializeBoard();
     }
 
@@ -43,9 +44,12 @@ public class BoardDrawing {
             private PlaceListener( int x, int y ) {
             	this.x = x;
             	this.y = y;
+            
             }
             public void actionPerformed(ActionEvent evt) {
-                fillGameBoard(2,x,y);
+            	
+            	gracz.getPlansza().gameboard[x][y];
+            	fillGameBoard(2,x,y);
             }
         }
         
