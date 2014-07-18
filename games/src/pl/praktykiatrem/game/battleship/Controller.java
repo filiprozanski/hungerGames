@@ -13,62 +13,19 @@ import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 
 
 public class Controller {
-	static Comunicatable loadinterface;
-	public Controller(Boolean swing)
-	{
-		//if(swing==true)
-			//loadinterface = new SwingInteractions();
-		//else
-			//loadinterface = new ConsoleInteractions();	
-	}
+	GameStatus A = new GameStatus();
+	GameStatus B = new GameStatus();
 	
-
-	public void showMenu()
+	public void setName(String name, int id)
 	{
-		loadinterface.showMenu();
+		switch (id)
+		{
+		case 1:
+			A.setName(name);
+			break;
+		case 2:
+			B.setName(name);
+			break;
+		}
 	}
-    public char scanDirection(int polesNumber)
-    {
-    	return loadinterface.scanDirection(polesNumber);
-    }
-	public String scanName(int i)
-	{
-		return loadinterface.scanName(i);
-	}
-	public void showErrorMessage1()
-	{
-		loadinterface.showErrorMessage1();
-	}
-	public void showGameSummary(GameStatus g, GameStatus h)
-	{
-		loadinterface.showGameSummary(g, h);
-	}
-	public void showYourMove(GameStatus gamer)
-	{
-		loadinterface.showYourMove(gamer);
-	}
-	public void showGameOver()
-	{
-		loadinterface.showGameOver();
-	}
-	public void showGameOver(GameStatus gamer)
-	{
-		loadinterface.showGameOver(gamer);
-	}
-	public int[] scanCoords()
-	{
-		return loadinterface.scanCoords();
-	}
-	public void showHitMessage()
-	{
-		loadinterface.showHitMessage();
-	}
-	public void showMissMessage()
-	{
-		loadinterface.showMissMessage();
-	}
-	public void showLegend()
-	{
-		loadinterface.showLegend();
-	}
-	}
+}

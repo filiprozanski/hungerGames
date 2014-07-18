@@ -8,7 +8,6 @@ import pl.praktykiatrem.game.battleship.Controller;
 import pl.praktykiatrem.game.battleship.GameStatus;
 import pl.praktykiatrem.game.battleship.ValidationInstruments;
 import pl.praktykiatrem.game.battleship.console.BoardDrawing;
-import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 
 public class ShipLoader {
     public static void initializeShipsFromFile(GameStatus gamer) throws FileNotFoundException {
@@ -25,7 +24,7 @@ public class ShipLoader {
         odczyt.close();   
     }
     
-	public static void initializeShips(GameStatus gamer, ConsoleInteractions gameControl)
+	public static void initializeShips(GameStatus gamer, Controller gameControl)
     {
             int polesNumber;
             gameControl.showYourMove(gamer);
@@ -51,7 +50,7 @@ public class ShipLoader {
      * @param id
      * @param gamer gracz, którego statki s± ustawiane
      */
-    private static void fetchShipCoords(int polesNumber, int id, GameStatus gamer, ConsoleInteractions gameControl)
+    private static void fetchShipCoords(int polesNumber, int id, GameStatus gamer, Controller gameControl)
     {
         char dir;
         int[] tab = {0, 0};
