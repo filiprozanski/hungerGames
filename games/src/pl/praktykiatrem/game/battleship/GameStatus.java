@@ -16,23 +16,26 @@ public class GameStatus {
     private Board plansza;
     private Ship[] ships;
     private int shipsNumber;
-    private String name;
+    private Player gamer;
+    //private String name;
     
     public GameStatus()
     {
         shipsNumber = 7;
         plansza = new Board(10, 10);
         ships = new Ship[shipsNumber];
+        gamer = new Player();
     }
     
     public String getName()
     {
-        return name;
+        //return name;
+        return gamer.getName();
     }
     
     public void setName(String name)
     {
-        this.name = name;
+        gamer.setName(name);
     }
     
     public int getShipsNumber()
