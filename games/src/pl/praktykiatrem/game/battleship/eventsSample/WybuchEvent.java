@@ -9,8 +9,6 @@ public class WybuchEvent extends EventObject {
 	public WybuchEvent(Object source, int poziomZniszczen) {
 		super(source);
 		this.poziomZniszczen = poziomZniszczen;
-
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getPoziomZniszczen() {
