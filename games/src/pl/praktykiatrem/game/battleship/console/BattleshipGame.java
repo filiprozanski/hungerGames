@@ -5,12 +5,11 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game.battleship;
+package pl.praktykiatrem.game.battleship.console;
 
 import java.io.FileNotFoundException;
 
-import pl.praktykiatrem.game.battleship.console.BoardDrawing;
-import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
+import pl.praktykiatrem.game.battleship.PlayerStatus;
 import pl.praktykiatrem.game.battleship.factory.GameFactory;
 import pl.praktykiatrem.game.battleship.factory.ShipLoader;
 import pl.praktykiatrem.game.battleship.rules.Game;
