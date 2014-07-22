@@ -2,12 +2,13 @@ package pl.praktykiatrem.game.battleship;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.Icon;
 
-import pl.praktykiatrem.game.battleship.Comunicatable;
 import pl.praktykiatrem.game.battleship.PlayerStatus;
+import pl.praktykiatrem.game.battleship.console.Comunicatable;
 
 
 public class SwingInteractions implements Comunicatable{

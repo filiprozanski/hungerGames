@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship;
+package pl.praktykiatrem.game.battleship.console;
 import java.io.FileNotFoundException;
 
 import javax.swing.JFrame;

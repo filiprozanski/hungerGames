@@ -8,13 +8,13 @@
 package pl.praktykiatrem.game.battleship;
 
 import javax.swing.text.StyledEditorKit.BoldAction;
-
-import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
+import pl.praktykiatrem.game.battleship.rules.Game;
 
 
 public class Controller {
 	PlayerStatus A = new PlayerStatus();
 	PlayerStatus B = new PlayerStatus();
+	Game gameRules = new Game();
 	
 	public void setName(String name, int id)
 	{
@@ -34,8 +34,8 @@ public class Controller {
 		System.out.println(A.getName());
 	}
 	
-	public boolean killEmAll(int x, int y)
+	public boolean killEmAll(PlayerStatus player, int x, int y)
 	{
-		return A.makeMove(x, y, B);
+		return gameRules.makeMove(player, x, y);
 	}
 }
