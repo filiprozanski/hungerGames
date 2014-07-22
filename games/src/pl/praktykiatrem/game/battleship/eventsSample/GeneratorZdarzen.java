@@ -13,7 +13,7 @@ public class GeneratorZdarzen {
 		//
 		//
 		if (true) {// eksperyment sie nie powiodl {
-			fireWybuch(new Random().nextInt());
+			fireWybuch(new Random().nextInt() % 10);
 		}
 	}
 
