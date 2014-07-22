@@ -37,7 +37,7 @@ class game {
 		f.setVisible(true);
 	}
 	
-	public void dialogPopUp(int id){
+	public void dialogPopUp(int id) {
 		String name = (String)JOptionPane.showInputDialog(f
                 , "Podaj imiê " + id + " gracza:"
                 , "Text Field Dialog", JOptionPane.QUESTION_MESSAGE
