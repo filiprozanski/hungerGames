@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.Controller;
+import pl.praktykiatrem.game.battleship.graphic.listeners.ShipChoiceListener;
 
 public class ShipSetPanel extends JPanel {
 	private final int rowsNumber = 7;
@@ -22,7 +23,7 @@ public class ShipSetPanel extends JPanel {
 	
 	private void initialize()
 	{
-		JButton seven = new JButton("Siedmiomasztowiec");
+		JButton six = new JButton("Szeœciomasztowiec");
 		JButton fourA = new JButton("Czteromasztowiec 1");
 		JButton fourB = new JButton("Czteromasztowiec 2");
 		JButton threeA = new JButton("Trójmasztowiec 1");
@@ -30,7 +31,15 @@ public class ShipSetPanel extends JPanel {
 		JButton twoA = new JButton("Dwumasztowiec 1");
 		JButton twoB = new JButton("Dwumasztowiec 2");
 		
-		add(seven);
+		six.addActionListener(new ShipChoiceListener(6));
+		fourA.addActionListener(new ShipChoiceListener(4));
+		fourB.addActionListener(new ShipChoiceListener(4));
+		threeA.addActionListener(new ShipChoiceListener(3));
+		threeB.addActionListener(new ShipChoiceListener(3));
+		twoA.addActionListener(new ShipChoiceListener(2));
+		twoB.addActionListener(new ShipChoiceListener(2));
+		
+		add(six);
 		add(fourA);
 		add(fourB);
 		add(threeA);

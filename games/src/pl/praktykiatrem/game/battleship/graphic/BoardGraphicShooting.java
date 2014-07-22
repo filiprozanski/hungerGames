@@ -59,8 +59,6 @@ public class BoardGraphicShooting extends JPanel {
     	drawNumbers();	
     }
     
-    
-    
     private void fillGameBoard()
     {
     	Insets buttonMargin = new Insets(0, 0, 0, 0);
@@ -97,9 +95,5 @@ public class BoardGraphicShooting extends JPanel {
                 }
             }
         }
-    }
-    
-    
-    
-    
+    }  
 }
