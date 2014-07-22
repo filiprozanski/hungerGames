@@ -38,15 +38,20 @@ public class MenuView extends JPanel {
 	private void initialize() {
 		// menu.setLayout());
 
-		JButton buttonGoToGame = new JButton();// new StartGameAction());
-
+		JButton buttonGoToGame = new JButton(GAME);
 		JButton buttonGoToCredits = new JButton(CREDITS);
 
 		buttonGoToCredits.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainView.showCredits();
+			}
+		});
+
+		buttonGoToGame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainView.startGame();
 			}
 		});
 
