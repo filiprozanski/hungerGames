@@ -1,0 +1,20 @@
+package pl.praktykiatrem.game.battleship.eventsSample;
+
+import java.util.EventObject;
+
+public class WybuchEvent extends EventObject {
+
+	private int poziomZniszczen;
+
+	public WybuchEvent(Object source, int poziomZniszczen) {
+		super(source);
+		this.poziomZniszczen = poziomZniszczen;
+
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getPoziomZniszczen() {
+		return poziomZniszczen;
+	}
+
+}
