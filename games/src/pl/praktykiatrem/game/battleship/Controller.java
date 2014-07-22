@@ -8,6 +8,8 @@
 package pl.praktykiatrem.game.battleship;
 
 import javax.swing.text.StyledEditorKit.BoldAction;
+
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 

@@ -7,7 +7,7 @@
 
 package pl.praktykiatrem.game.battleship.console;
 
-import pl.praktykiatrem.game.battleship.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
 public interface Comunicatable {	 
     public void showMenu();

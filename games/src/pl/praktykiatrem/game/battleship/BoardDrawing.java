@@ -8,6 +8,8 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.imageio.ImageIO;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Player;
+
 import java.io.File;
 
 public class BoardDrawing {

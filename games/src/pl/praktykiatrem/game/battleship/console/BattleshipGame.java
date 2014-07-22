@@ -9,9 +9,9 @@ package pl.praktykiatrem.game.battleship.console;
 
 import java.io.FileNotFoundException;
 
-import pl.praktykiatrem.game.battleship.PlayerStatus;
 import pl.praktykiatrem.game.battleship.factory.GameFactory;
 import pl.praktykiatrem.game.battleship.factory.ShipLoader;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class BattleshipGame{

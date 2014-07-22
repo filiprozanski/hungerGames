@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.rules;
 
-import pl.praktykiatrem.game.battleship.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
 public interface RulesInterface {
 	public boolean placeShips(PlayerStatus p, int id, int polesNumber, char direction, int x, int y);

@@ -5,11 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import pl.praktykiatrem.game.battleship.Controller;
-import pl.praktykiatrem.game.battleship.PlayerStatus;
-import pl.praktykiatrem.game.battleship.ValidationInstruments;
 import pl.praktykiatrem.game.battleship.console.BoardDrawing;
 import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.ValidationInstruments;
 
 public class ShipLoader {
 	private Game gameRules;

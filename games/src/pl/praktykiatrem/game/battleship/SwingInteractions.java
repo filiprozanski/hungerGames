@@ -7,8 +7,8 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.Icon;
 
-import pl.praktykiatrem.game.battleship.PlayerStatus;
 import pl.praktykiatrem.game.battleship.console.Comunicatable;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
 
 public class SwingInteractions implements Comunicatable{

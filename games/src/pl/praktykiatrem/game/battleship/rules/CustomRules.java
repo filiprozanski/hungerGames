@@ -1,7 +1,7 @@
 package pl.praktykiatrem.game.battleship.rules;
 
-import pl.praktykiatrem.game.battleship.PlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Board;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
 public class CustomRules implements RulesInterface{
 	private boolean putShipOnPlace(Board plansza, int id, int x, int y)

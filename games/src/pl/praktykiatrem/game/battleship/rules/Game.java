@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.rules;
 
-import pl.praktykiatrem.game.battleship.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
 public class Game {
 	RulesInterface rules;

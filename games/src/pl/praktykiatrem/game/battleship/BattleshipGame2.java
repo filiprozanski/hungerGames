@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 import pl.praktykiatrem.game.battleship.factory.GameFactory;
 import pl.praktykiatrem.game.battleship.factory.ShipLoader;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.BoardDrawing;
 
 public class BattleshipGame2 {

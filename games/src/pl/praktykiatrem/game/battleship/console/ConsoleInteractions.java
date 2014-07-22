@@ -10,7 +10,7 @@ package pl.praktykiatrem.game.battleship.console;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import pl.praktykiatrem.game.battleship.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
 /**
  * 

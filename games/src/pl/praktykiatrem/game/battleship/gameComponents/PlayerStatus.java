@@ -5,11 +5,9 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game.battleship;
+package pl.praktykiatrem.game.battleship.gameComponents;
 
 //import pl.praktykiatrem.game.battleship.gameComponents.Place;
-import pl.praktykiatrem.game.battleship.gameComponents.Board;
-import pl.praktykiatrem.game.battleship.gameComponents.Ship;
 
 
 public class PlayerStatus {
