@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import pl.praktykiatrem.game.battleship.Comunicatable;
-import pl.praktykiatrem.game.battleship.GameStatus;
+import pl.praktykiatrem.game.battleship.PlayerStatus;
 
 /**
  * 
@@ -53,19 +53,19 @@ public class ConsoleInteractions implements Comunicatable{
     		System.out.println();
     }
     
-    public static void showCountShips(GameStatus g){
+    public static void showCountShips(PlayerStatus g){
     	System.out.print(g.getName() + " ma ");
     	System.out.print(g.getShipsNumber());
     	System.out.println(" statków.");    	
     }
     
-	public void showGameSummary(GameStatus g, GameStatus h)
+	public void showGameSummary(PlayerStatus g, PlayerStatus h)
 	{
 		ConsoleInteractions.showCountShips(g);
 		ConsoleInteractions.showCountShips(h);
 	}
 	
-    public void showYourMove(GameStatus gamer)
+    public void showYourMove(PlayerStatus gamer)
     {
     	System.out.println("Twój ruch: " + gamer.getName());
     }
@@ -75,7 +75,7 @@ public class ConsoleInteractions implements Comunicatable{
     	System.out.println("Koniec gry !");
     }
     
-    public void showGameOver(GameStatus gamer)
+    public void showGameOver(PlayerStatus gamer)
     {
    		System.out.println("Wygra³: " + gamer.getName());		
     }

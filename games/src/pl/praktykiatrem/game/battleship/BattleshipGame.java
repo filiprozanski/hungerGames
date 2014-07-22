@@ -13,11 +13,14 @@ import pl.praktykiatrem.game.battleship.console.BoardDrawing;
 import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 import pl.praktykiatrem.game.battleship.factory.GameFactory;
 import pl.praktykiatrem.game.battleship.factory.ShipLoader;
+import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class BattleshipGame{
-    private GameStatus A;
-    private GameStatus B;
+    private PlayerStatus A;
+    private PlayerStatus B;
     private ConsoleInteractions gameControl;
+    private Game gameRules;
+    private ShipLoader load;
     
     public BattleshipGame(Boolean swing)
     {
@@ -25,7 +28,8 @@ public class BattleshipGame{
         A = start.createPlayer();
         B = start.createPlayer();
         	gameControl = new ConsoleInteractions();
-		
+		gameRules = new Game();
+		load = new ShipLoader(gameRules);
         
     }
     
@@ -39,8 +43,8 @@ public class BattleshipGame{
         setShips(A);
         setShips(B);
         
-        GameStatus currentPlayer = A;
-        GameStatus enemy = B;
+        PlayerStatus currentPlayer = A;
+        PlayerStatus enemy = B;
         int[] cords = {0, 0};
         gameControl.showLegend();
         while (!isGameOver(enemy))
@@ -49,7 +53,7 @@ public class BattleshipGame{
             BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
             gameControl.showYourMove(currentPlayer);
             cords = pointRifle();
-            if (!currentPlayer.makeMove(cords[0], cords[1], enemy))
+            if (!gameRules.makeMove(enemy, cords[0], cords[1]))
             {
                 gameControl.showMissMessage();
                 enemy = currentPlayer;
@@ -86,7 +90,7 @@ public class BattleshipGame{
         }
     }
     
-    private GameStatus changePlayer(GameStatus X)
+    private PlayerStatus changePlayer(PlayerStatus X)
     {
         if (X.getName() == A.getName())
             return B;
@@ -94,7 +98,7 @@ public class BattleshipGame{
             return A;
     }
     
-    private boolean isGameOver(GameStatus X)
+    private boolean isGameOver(PlayerStatus X)
     {
     	if (X.getShipsNumber()>0)
     		return false;
@@ -102,12 +106,12 @@ public class BattleshipGame{
     		return true;
     }
     
-    private void setShips(GameStatus gamer)
+    private void setShips(PlayerStatus gamer)
     {
     	try {
-        	ShipLoader.initializeShipsFromFile(gamer);
+        	load.initializeShipsFromFile(gamer);
           } catch (FileNotFoundException e) {
-        	  ShipLoader.initializeShips(gamer, gameControl);
+        	  load.initializeShips(gamer, gameControl, gameRules);
           }
     }
     

@@ -13,8 +13,8 @@ import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 
 
 public class Controller {
-	GameStatus A = new GameStatus();
-	GameStatus B = new GameStatus();
+	PlayerStatus A = new PlayerStatus();
+	PlayerStatus B = new PlayerStatus();
 	
 	public void setName(String name, int id)
 	{

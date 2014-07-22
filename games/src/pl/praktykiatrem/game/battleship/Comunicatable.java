@@ -12,10 +12,10 @@ public interface Comunicatable {
     public char scanDirection(int polesNumber);
 	public String scanName(int i);
 	public void showErrorMessage1();
-	public void showGameSummary(GameStatus g, GameStatus h);
-	public void showYourMove(GameStatus gamer);
+	public void showGameSummary(PlayerStatus g, PlayerStatus h);
+	public void showYourMove(PlayerStatus gamer);
 	public void showGameOver();
-	public void showGameOver(GameStatus gamer);
+	public void showGameOver(PlayerStatus gamer);
 	public int[] scanCoords();    
 	public void showHitMessage();
 	public void showMissMessage();
