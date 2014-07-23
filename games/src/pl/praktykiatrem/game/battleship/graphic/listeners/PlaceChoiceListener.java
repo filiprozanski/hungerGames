@@ -1,17 +1,19 @@
 package pl.praktykiatrem.game.battleship.graphic.listeners;
 
-import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
-import pl.praktykiatrem.game.battleship.graphic.events.PlaceChoiceEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PlaceChoiceListener {
+import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
+
+public class PlaceChoiceListener implements ActionListener {
 
 	public PlaceChoiceListener() {
 	}
 
-	public void actionPerformed(PlaceChoiceEvent evt) {
-		ShipButton b = evt.getSource();
-		int[] tab = evt.getCoords();
+	@Override
+	public void actionPerformed(ActionEvent evt) {
+		ShipButton b = (ShipButton) evt.getSource();
 
-		b.setPlaceIcon(1, tab[0], tab[1]);
+		b.setPlaceIcon(1);
 	}
 }

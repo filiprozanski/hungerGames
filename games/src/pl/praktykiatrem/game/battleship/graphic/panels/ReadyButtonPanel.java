@@ -7,15 +7,9 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import pl.praktykiatrem.game.battleship.Controller;
-
-public class ReadyPanel extends JPanel {
-	Controller control;
-	
-	public ReadyPanel(Controller control)
-	{
+public class ReadyButtonPanel extends JPanel {
+	public ReadyButtonPanel() {
 		super(new GridLayout(1, 0));
-		this.control = control;
 		initialize();
 	}
 
@@ -23,14 +17,12 @@ public class ReadyPanel extends JPanel {
 		JButton ready = new JButton("Gotowy!");
 		add(ready, BorderLayout.CENTER);
 	}
-	
-	public Dimension gerPrefferedSize()
-	{
+
+	public Dimension gerPrefferedSize() {
 		return new Dimension(150, 150);
 	}
-	
-	public Dimension gerMinumumSize()
-	{
+
+	public Dimension gerMinumumSize() {
 		return new Dimension(150, 150);
 	}
 }

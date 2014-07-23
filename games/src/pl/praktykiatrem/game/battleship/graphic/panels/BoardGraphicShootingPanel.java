@@ -21,14 +21,14 @@ import javax.swing.SwingConstants;
 import pl.praktykiatrem.game.battleship.Controller;
 import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
 
-public class BoardGraphicShooting extends JPanel {
+public class BoardGraphicShootingPanel extends JPanel {
 	private static final int SIZEH = 10;
 	private static final int SIZEV = 10;
     protected JButton[][] place = new JButton[SIZEH][SIZEV];
     
     protected Controller control;
     
-    public BoardGraphicShooting(Controller control)
+    public BoardGraphicShootingPanel(Controller control)
     {
     	super(new GridLayout(SIZEH + 1, SIZEV + 1));
     	this.control = control;
