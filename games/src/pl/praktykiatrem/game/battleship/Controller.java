@@ -7,21 +7,16 @@
 
 package pl.praktykiatrem.game.battleship;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
-
 
 public class Controller {
 	PlayerStatus A = new PlayerStatus();
 	PlayerStatus B = new PlayerStatus();
 	Game gameRules = new Game();
-	
-	public void setName(String name, int id)
-	{
-		switch (id)
-		{
+
+	public void setName(String name, int id) {
+		switch (id) {
 		case 1:
 			A.setName(name);
 			break;
@@ -30,14 +25,12 @@ public class Controller {
 			break;
 		}
 	}
-	
-	public void showName()
-	{
+
+	public void showName() {
 		System.out.println(A.getName());
 	}
-	
-	public boolean killEmAll(PlayerStatus player, int x, int y)
-	{
+
+	public boolean killEmAll(PlayerStatus player, int x, int y) {
 		return gameRules.makeMove(player, x, y);
 	}
 }

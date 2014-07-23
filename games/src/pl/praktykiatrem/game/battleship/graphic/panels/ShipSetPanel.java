@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic;
+package pl.praktykiatrem.game.battleship.graphic.panels;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;

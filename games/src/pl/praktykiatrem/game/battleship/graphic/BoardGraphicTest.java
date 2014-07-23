@@ -9,6 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 import pl.praktykiatrem.game.battleship.Controller;
+import pl.praktykiatrem.game.battleship.graphic.panels.BoardGraphic;
+import pl.praktykiatrem.game.battleship.graphic.panels.BoardGraphicSeting;
+import pl.praktykiatrem.game.battleship.graphic.panels.ReadyPanel;
+import pl.praktykiatrem.game.battleship.graphic.panels.ShipSetPanel;
 
 public class BoardGraphicTest {
 	public static void main(String[] args) {

@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import pl.praktykiatrem.game.battleship.graphic.BoardGraphicSeting;
+import pl.praktykiatrem.game.battleship.graphic.panels.BoardGraphicSeting;
 
 public class Main extends JPanel implements ActionListener, IMainView {
 	JPanel cards; // a panel that uses CardLayout

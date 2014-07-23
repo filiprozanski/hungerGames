@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic;
+package pl.praktykiatrem.game.battleship.graphic.panels;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,19 +19,21 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import pl.praktykiatrem.game.battleship.Controller;
-import pl.praktykiatrem.game.battleship.graphic.listeners.PlacingListener;
+import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
 
-public class BoardGraphicSeting extends JPanel {
+public class BoardGraphicShooting extends JPanel {
 	private static final int SIZEH = 10;
 	private static final int SIZEV = 10;
-    protected ShipButton[][] place = new ShipButton[SIZEH][SIZEV];
+    protected JButton[][] place = new JButton[SIZEH][SIZEV];
+    
     protected Controller control;
     
-    public BoardGraphicSeting(Controller control)
+    public BoardGraphicShooting(Controller control)
     {
     	super(new GridLayout(SIZEH + 1, SIZEV + 1));
     	this.control = control;
-        place = new ShipButton[SIZEH][SIZEV];
+        place = new JButton[SIZEH][SIZEV];
+        elements = new Image[4];
     	setSize(330, 330);
     	initializeBoard();
     }
@@ -58,25 +60,6 @@ public class BoardGraphicSeting extends JPanel {
     	drawNumbers();	
     }
     
-    public void enableButtons()
-    {
-    	for (int i = 0; i < SIZEH; i++)
-    	{
-    		for (int j = 0; j < SIZEV; j++)
-    			if (place[j][i].isShipSet() == false)
-    				place[j][i].setEnabled(true);
-    	}
-    }
-    
-    public void disableButtons()
-    {
-    	for (int i = 0; i < SIZEH; i++)
-    	{
-    		for (int j = 0; j < SIZEV; j++)
-    			place[j][i].setEnabled(false);
-    	}
-    }
-    
     private void fillGameBoard()
     {
     	Insets buttonMargin = new Insets(0, 0, 0, 0);
@@ -85,12 +68,11 @@ public class BoardGraphicSeting extends JPanel {
             for (int j = 0; j < place[i].length; j++)
             {
                 ShipButton b = new ShipButton();
-                b.addActionListener(new PlacingListener(j, i)); 
+                b.addActionListener(new PlaceListener(j,i));
                 b.setMargin(buttonMargin);
                 ImageIcon icon = new ImageIcon(new BufferedImage(30, 30, BufferedImage.TYPE_INT_ARGB));
                 b.setIcon(icon);
-                b.setBackground(Color.WHITE);
-                b.setEnabled(false);
+                b.setBackground(Color.WHITE);                
                 place[j][i] = b;
             }
         }
@@ -114,5 +96,5 @@ public class BoardGraphicSeting extends JPanel {
                 }
             }
         }
-    }
+    }  
 }
