@@ -62,4 +62,12 @@ public class PlayerStatus {
 	public int getShipTypes(int i) {
 		return shipTypes[i];
 	}
+
+	private Place getPlace(int x, int y) {
+		return plansza.getPlace(x, y);
+	}
+
+	public void reducePolesNumber(int x, int y) {
+		plansza.getPlace(x, y).getShip().reducePolesNumber();
+	}
 }

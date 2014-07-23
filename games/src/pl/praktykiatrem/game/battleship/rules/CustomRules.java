@@ -19,6 +19,7 @@ public class CustomRules implements RulesInterface {
 
 	}
 
+	@Override
 	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		Board plansza = player.getPlansza();
@@ -36,6 +37,7 @@ public class CustomRules implements RulesInterface {
 		return true;
 	}
 
+	@Override
 	public boolean makeMove(PlayerStatus enemy, int x, int y) {
 		// if (ValidationInstruments.isPlaceClear(enemy.getPlansza().gameBoard,
 		// x, y))
@@ -46,7 +48,7 @@ public class CustomRules implements RulesInterface {
 			if (enemy.getPlansza().isShipOnPlaceAndActive(x, y)) {
 				int shipID = enemy.getPlansza().getShipID(x, y);
 				enemy.takeOutShip(x, y);
-				enemy.getShip(shipID).reducePolesNumber();
+				enemy.reducePolesNumber(x, y);
 				if (enemy.getShip(shipID).isShipSunk())
 					enemy.reduceShipsNumber();
 				return true;
