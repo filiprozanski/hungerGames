@@ -24,10 +24,10 @@ public class BasicPresenter implements IBasicPresenter {
 	@Override
 	public void putInVerticalDirection(int x, int y) {
 		direction = 'v';
-		
-		if(gameRules.placeShips(player, id, y, direction, x, y))
-			
-		
+
+		if (gameRules.placeShips(player, id, y, direction, x, y))
+			;
+
 	}
 
 	@Override

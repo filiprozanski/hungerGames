@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 
 import pl.praktykiatrem.game.battleship.Controller;
 import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
-import pl.praktykiatrem.game.battleship.graphic.listeners.PlacingListener;
+import pl.praktykiatrem.game.battleship.graphic.listeners.PlaceChoiceListener;
 
 public class BoardGraphicSetting extends JPanel {
 	private static final int SIZEH = 10;
@@ -48,19 +48,12 @@ public class BoardGraphicSetting extends JPanel {
 		drawNumbers();
 	}
 
-	public void enableButtons() {
-		for (int i = 0; i < SIZEH; i++) {
-			for (int j = 0; j < SIZEV; j++)
-				if (place[j][i].isShipSet() == false)
-					place[j][i].setEnabled(true);
-		}
+	public void enableButton() {
+
 	}
 
-	public void disableButtons() {
-		for (int i = 0; i < SIZEH; i++) {
-			for (int j = 0; j < SIZEV; j++)
-				place[j][i].setEnabled(false);
-		}
+	public void disableButton() {
+
 	}
 
 	private void fillGameBoard() {
@@ -68,13 +61,13 @@ public class BoardGraphicSetting extends JPanel {
 		for (int i = 0; i < place.length; i++) {
 			for (int j = 0; j < place[i].length; j++) {
 				ShipButton b = new ShipButton();
-				b.addActionListener(new PlacingListener(j, i));
+				b.addPlaceChoiceLListener(new PlaceChoiceListener());
 				b.setMargin(buttonMargin);
 				ImageIcon icon = new ImageIcon(new BufferedImage(30, 30,
 						BufferedImage.TYPE_INT_ARGB));
 				b.setIcon(icon);
 				b.setBackground(Color.WHITE);
-				b.setEnabled(false);
+				// b.setEnabled(false);
 				place[j][i] = b;
 			}
 		}

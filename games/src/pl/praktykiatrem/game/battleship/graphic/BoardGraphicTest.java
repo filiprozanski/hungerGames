@@ -10,7 +10,7 @@ import javax.swing.UIManager;
 
 import pl.praktykiatrem.game.battleship.Controller;
 import pl.praktykiatrem.game.battleship.graphic.panels.BoardGraphic;
-import pl.praktykiatrem.game.battleship.graphic.panels.BoardGraphicSeting;
+import pl.praktykiatrem.game.battleship.graphic.panels.BoardGraphicSetting;
 import pl.praktykiatrem.game.battleship.graphic.panels.ReadyPanel;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSetPanel;
 
@@ -21,7 +21,6 @@ public class BoardGraphicTest {
 		a.dialogPopUp(1);
 		a.showName();
 	}
-
 }
 
 class game {
@@ -61,7 +60,7 @@ class TestFrame extends JFrame {
 
 	public TestFrame(Controller cont) {
 		setLayout(new GridLayout(2, 2));
-		c = new BoardGraphicSeting(cont);
+		c = new BoardGraphicSetting(cont);
 		d = new ShipSetPanel(cont);
 		e = new BoardGraphic(cont);
 		f = new ReadyPanel(cont);

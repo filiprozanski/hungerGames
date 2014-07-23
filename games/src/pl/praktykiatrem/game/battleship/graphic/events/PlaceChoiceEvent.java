@@ -2,19 +2,24 @@ package pl.praktykiatrem.game.battleship.graphic.events;
 
 import java.util.EventObject;
 
+import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
+
 public class PlaceChoiceEvent extends EventObject {
+	private int[] coords;
+	ShipButton source;
 
-	private int x;
-	private int y;
-
-	public PlaceChoiceEvent(Object source, int x, int y) {
+	public PlaceChoiceEvent(Object source) {
 		super(source);
-		this.x = x;
-		this.y = y;
+		this.source = (ShipButton) source;
+		this.coords = this.source.getCoords();
 	}
 
-	public int[] getCords() {
-		int[] coords = { x.y };
-		return;
+	public int[] getCoords() {
+		return coords;
+	}
+
+	@Override
+	public ShipButton getSource() {
+		return (ShipButton) super.getSource();
 	}
 }
