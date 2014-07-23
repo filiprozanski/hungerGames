@@ -8,6 +8,7 @@
 package pl.praktykiatrem.game.battleship.rules;
 
 public class ValidationInstruments {
+<<<<<<< HEAD
 	public static boolean isPlaceClear(char[][] tab, int x, int y) {
 		if (tab[y][x] == 'c' || tab[y][x] == 'C')
 			return true;
@@ -24,6 +25,8 @@ public class ValidationInstruments {
 			return false;
 	}
 
+=======
+>>>>>>> origin/master
 	/**
 	 * 
 	 * Metoda <code>isPlaceValid</code> sprawdza, czy statek o danych
@@ -39,14 +42,24 @@ public class ValidationInstruments {
 	 *            liczba masztów (wielko¶æ statku)
 	 * @return true je¿eli statek zmie¶ci siê na planszy, false je¿eli nie
 	 */
+<<<<<<< HEAD
 	public static boolean isPlaceValid(Direction direction, int x, int y,
 			int polesNumber) {
 		if (direction == Direction.HORIZONTAL) {
+=======
+	public static boolean isPlaceValid(char direction, int x, int y,
+			int polesNumber) {
+		if (direction == 'H' || direction == 'h') {
+>>>>>>> origin/master
 			if (x + polesNumber <= 10)
 				return true;
 			else
 				return false;
+<<<<<<< HEAD
 		} else if (direction == Direction.VERTICAL) {
+=======
+		} else if (direction == 'V' || direction == 'v') {
+>>>>>>> origin/master
 			if (y + polesNumber <= 10)
 				return true;
 			else

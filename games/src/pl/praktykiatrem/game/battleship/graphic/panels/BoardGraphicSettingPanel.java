@@ -18,12 +18,17 @@ public class BoardGraphicSettingPanel extends JPanel {
 	private static final int SIZEH = 10;
 	private static final int SIZEV = 10;
 	protected ShipButton[][] place = new ShipButton[SIZEH][SIZEV];
+	private BoardSettingsObserver observer;
 
 	public BoardGraphicSettingPanel() {
 		super(new GridLayout(SIZEH + 1, SIZEV + 1));
 		place = new ShipButton[SIZEH][SIZEV];
 		setSize(330, 330);
 		initializeBoard();
+	}
+
+	public void setBoardSettingsObserver(BoardSettingsObserver observer) {
+		this.observer = observer;
 	}
 
 	@Override
@@ -58,7 +63,8 @@ public class BoardGraphicSettingPanel extends JPanel {
 		for (int i = 0; i < place.length; i++) {
 			for (int j = 0; j < place[i].length; j++) {
 				ShipButton b = new ShipButton();
-				b.addActionListener(new PlaceChoiceListener());
+
+				b.addActionListener(new PlaceChoiceListener(i, j, observer));
 				b.setMargin(buttonMargin);
 				ImageIcon icon = new ImageIcon(new BufferedImage(30, 30,
 						BufferedImage.TYPE_INT_ARGB));

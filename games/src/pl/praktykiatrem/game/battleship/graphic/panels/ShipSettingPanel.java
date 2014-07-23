@@ -5,7 +5,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
-public class ShipSettingPanel extends JPanel {
+public class ShipSettingPanel extends JPanel implements BoardSettingsObserver {
 	private BoardGraphicSettingPanel boardPanel;
 	private ShipChoicePanel choicePanel;
 	private ReadyButtonPanel readyPanel;
@@ -13,6 +13,7 @@ public class ShipSettingPanel extends JPanel {
 	public ShipSettingPanel() {
 		setLayout(new GridLayout(2, 2));
 		boardPanel = new BoardGraphicSettingPanel();
+		boardPanel.setBoardSettingsObserver(this);
 		choicePanel = new ShipChoicePanel();
 		readyPanel = new ReadyButtonPanel();
 
@@ -29,5 +30,10 @@ public class ShipSettingPanel extends JPanel {
 	@Override
 	public Dimension getMinimumSize() {
 		return new Dimension(660, 660);
+	}
+
+	@Override
+	public void clicked(int x, int y) {
+
 	}
 }
