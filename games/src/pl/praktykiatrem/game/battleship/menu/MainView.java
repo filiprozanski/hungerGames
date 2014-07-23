@@ -6,7 +6,6 @@ package pl.praktykiatrem.game.battleship.menu;
  */
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,16 +16,11 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import pl.praktykiatrem.game.battleship.Controller;
+//import pl.praktykiatrem.game.battleship.graphic.BoardGraphicSeting;
 import pl.praktykiatrem.game.battleship.graphic.BoardGraphicSeting;
 
 public class MainView extends JPanel implements IMainView {
 	JPanel cards; // a panel that uses CardLayout
-	final static String GAME = "Plansza";
-	final static String MENU = "Menu";
-	final static String GoToGame = "Przejd¼ do gry.";
-	final static String GoToMenu = "Przejd¼ do menu.";
-	final static String CREDITS = "O programie";
-	private Image img;
 	CardLayout cl;
 
 	public MainView() {
@@ -36,7 +30,8 @@ public class MainView extends JPanel implements IMainView {
 	public void inicialize() {
 		Controller controller = new Controller();
 		MenuView menuView = new MenuView(this);
-		Background credits = new Background("doge.jpg");
+		CreditsView creditsView = new CreditsView(this);
+		GameOverView gameOverView = new GameOverView(this);
 		JPanel game = new JPanel();
 		BoardGraphicSeting board = new BoardGraphicSeting(controller);
 
@@ -54,7 +49,8 @@ public class MainView extends JPanel implements IMainView {
 		cards = new JPanel(new CardLayout());
 		cards.add(menuView, MENU);
 		cards.add(game, GAME);
-		cards.add(credits, CREDITS);
+		cards.add(gameOverView, GAMEOVER);
+		cards.add(creditsView, CREDITS);
 
 		add(cards, BorderLayout.CENTER);
 	}
@@ -80,7 +76,7 @@ public class MainView extends JPanel implements IMainView {
 		} catch (ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
-		/* Turn off metal's use of bold fonts */
+
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -106,5 +102,10 @@ public class MainView extends JPanel implements IMainView {
 	public void showMenu() {
 		cl = (CardLayout) (cards.getLayout());
 		cl.show(cards, MENU);
+	}
+
+	public void showGameOver() {
+		cl = (CardLayout) (cards.getLayout());
+		cl.show(cards, GAMEOVER);
 	}
 }

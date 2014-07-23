@@ -14,11 +14,6 @@ import javax.swing.JPanel;
 public class MenuView extends JPanel {
 
 	private Image img;
-	final static String GAME = "Plansza";
-	final static String MENU = "Menu";
-	final static String GoToGame = "Przejd¼ do gry.";
-	final static String GoToMenu = "Przejd¼ do menu.";
-	final static String CREDITS = "O programie";
 
 	private IMainView mainView;
 
@@ -36,10 +31,9 @@ public class MenuView extends JPanel {
 	}
 
 	private void initialize() {
-		// menu.setLayout());
 
-		JButton buttonGoToGame = new JButton(GAME);
-		JButton buttonGoToCredits = new JButton(CREDITS);
+		JButton buttonGoToGame = new JButton(mainView.GAME);
+		JButton buttonGoToCredits = new JButton(mainView.CREDITS);
 
 		buttonGoToCredits.addActionListener(new ActionListener() {
 			@Override
