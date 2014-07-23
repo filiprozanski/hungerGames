@@ -24,9 +24,9 @@ public class ShipLoader {
 		Scanner odczyt = new Scanner(plik1);
 		String temp;
 		while (odczyt.hasNextLine()) {
-			for (int i = 0; i < 7; i++) {
+			for (int i = 0; i < gamer.getShipsNumber(); i++) {
 				temp = odczyt.nextLine().toUpperCase();
-				gameRules.placeShips(gamer, i, (int) temp.charAt(0) - 48,
+				gameRules.placeShips(gamer, i, gamer.getShipTypes(i),
 						temp.charAt(2), (int) temp.charAt(4) - 48,
 						(int) temp.charAt(6) - 48);
 
@@ -37,18 +37,12 @@ public class ShipLoader {
 
 	public void initializeShips(PlayerStatus gamer,
 			ConsoleInteractions gameControl, Game gameRules) {
-		int polesNumber;
 		gameControl.showYourMove(gamer);
-		polesNumber = 6;
-		fetchShipCoords(polesNumber, 0, gamer, gameControl);
 
-		polesNumber = 4;
-
-		for (int i = 1; i < 7; i++) {
-			fetchShipCoords(polesNumber, i, gamer, gameControl);
-			i++;
-			fetchShipCoords(polesNumber, i, gamer, gameControl);
-			polesNumber--;
+		for (int i = 0; i < gamer.getShipsNumber(); i++) {
+			fetchShipCoords(gamer.getShipTypes(i), i, gamer, gameControl);
+			// i++;
+			// fetchShipCoords(gamer.getShipTypes(i), i, gamer, gameControl);
 		}
 	}
 
