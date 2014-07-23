@@ -20,18 +20,16 @@ public class BattleshipGame {
 	private ConsoleInteractions gameControl;
 	private Game gameRules;
 	private ShipLoader load;
-	private final static int BOARDSIZE_X = 10;
-	private final static int BOARDSIZE_Y = 10;
-	private final static int SHIPSNUMBER = 7;
-	private final static int SHIPTYPES[] = { 6, 4, 4, 3, 3, 2, 2 };
 
 	public BattleshipGame(Boolean swing) {
-		GameFactory start = new GameFactory(BOARDSIZE_X, BOARDSIZE_Y,
-				SHIPSNUMBER, SHIPTYPES);
+		gameRules = new Game();
+		GameFactory start = new GameFactory(gameRules.getBoardSize_X(),
+				gameRules.getBoardSize_Y(), gameRules.getShipsNumber(),
+				gameRules.getShipTypes());
 		A = start.createPlayer();
 		B = start.createPlayer();
 		gameControl = new ConsoleInteractions();
-		gameRules = new Game();
+
 		load = new ShipLoader(gameRules);
 
 	}

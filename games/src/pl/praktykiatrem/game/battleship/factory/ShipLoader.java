@@ -7,6 +7,7 @@ import java.util.Scanner;
 import pl.praktykiatrem.game.battleship.console.BoardDrawing;
 import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.rules.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.ValidationInstruments;
 
@@ -27,8 +28,8 @@ public class ShipLoader {
 			for (int i = 0; i < gamer.getShipsNumber(); i++) {
 				temp = odczyt.nextLine().toUpperCase();
 				gameRules.placeShips(gamer, i, gamer.getShipTypes(i),
-						temp.charAt(2), (int) temp.charAt(4) - 48,
-						(int) temp.charAt(6) - 48);
+						Direction.getDirection(temp.charAt(2)),
+						(int) temp.charAt(4) - 48, (int) temp.charAt(6) - 48);
 
 			}
 		}
@@ -58,7 +59,7 @@ public class ShipLoader {
 	 */
 	private void fetchShipCoords(int polesNumber, int id, PlayerStatus gamer,
 			ConsoleInteractions gameControl) {
-		char dir;
+		Direction dir;
 		int[] tab = { 0, 0 };
 
 		while (true) {

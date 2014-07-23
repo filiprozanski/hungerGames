@@ -1,17 +1,13 @@
 package pl.praktykiatrem.game.battleship.rules;
 
 public enum Direction {
-	HORIZONTAL('H'), VERTICAL('V');
-    
-    private char abbreviation;
-    
-    private Direction(char abb)
-    {
-        abbreviation = abb;
-    }
-    
-    public char getAbbreviation()
-    {
-        return abbreviation;
-    }
+	HORIZONTAL, VERTICAL;
+
+	public static Direction getDirection(char a) {
+		if (a == 'h' || a == 'H') {
+			return HORIZONTAL;
+		} else {
+			return VERTICAL;
+		}
+	}
 }
