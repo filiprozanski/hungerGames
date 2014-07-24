@@ -10,9 +10,6 @@ public class ShipButton extends JButton {
 	private int x;
 	private int y;
 
-	// private List<PlaceChoiceListener> listeneryWyboruMiejsca = new
-	// ArrayList<PlaceChoiceListener>();
-
 	public ShipButton() {
 		shipIsSet = false;
 	}
@@ -34,27 +31,10 @@ public class ShipButton extends JButton {
 	}
 
 	/*
-	 * public void addPlaceChoiceLListener(PlaceChoiceListener listener) {
-	 * listeneryWyboruMiejsca.add(listener); }
+	 * public int[] getCoords() { int[] tab = { x, y }; return tab; }
 	 * 
-	 * public void removePlaceChoiceListener(PlaceChoiceListener listener) {
-	 * listeneryWyboruMiejsca.remove(listener); }
+	 * public boolean isShipSet() { return shipIsSet; }
 	 * 
-	 * protected void fireActionPerformed() { PlaceChoiceEvent event = new
-	 * PlaceChoiceEvent(this); for (PlaceChoiceListener choiceListener :
-	 * listeneryWyboruMiejsca) { choiceListener.actionPerformed(event); } }
+	 * public void enableShipIsSet() { shipIsSet = true; }
 	 */
-
-	public int[] getCoords() {
-		int[] tab = { x, y };
-		return tab;
-	}
-
-	public boolean isShipSet() {
-		return shipIsSet;
-	}
-
-	public void enableShipIsSet() {
-		shipIsSet = true;
-	}
 }

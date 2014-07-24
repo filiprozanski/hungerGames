@@ -9,6 +9,7 @@ package pl.praktykiatrem.game.battleship.gameComponents;
 
 class Place {
 	private int shipID;
+	private Ship boat;
 	private boolean shipOnPlace;
 	private boolean isInGame;
 
@@ -43,7 +44,15 @@ class Place {
 		return shipID;
 	}
 
+	public int getShipID() {
+		return boat.getID();
+	}
+
 	public void takeOut() {
 		isInGame = false;
+	}
+
+	public Ship getShip() {
+		return boat;
 	}
 }

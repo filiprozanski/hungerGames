@@ -72,7 +72,7 @@ public class CustomRules implements RulesInterface {
 			if (enemy.getPlansza().isShipOnPlaceAndActive(x, y)) {
 				int shipID = enemy.getPlansza().getShipID(x, y);
 				enemy.takeOutShip(x, y);
-				enemy.getShip(shipID).reducePolesNumber();
+				enemy.reducePolesNumber(x, y);
 				if (enemy.getShip(shipID).isShipSunk())
 					enemy.reduceShipsNumber();
 				return true;

@@ -73,4 +73,9 @@ public class Board {
 	public boolean isShipOnPlaceAndActive(int x, int y) {
 		return (isShipOnPlace(x, y) && gameBoard[y][x].isPlaceInGame());
 	}
+
+	Place getPlace(int x, int y) {
+		return gameBoard[y][x];
+
+	}
 }

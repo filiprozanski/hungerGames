@@ -1,10 +1,10 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.rules.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class BasicPresenter implements IBasicPresenter {
-	char direction;
 	int x;
 	int y;
 	int polesNumber;
@@ -12,8 +12,8 @@ public class BasicPresenter implements IBasicPresenter {
 	Game gameRules;
 	PlayerStatus player;
 
-	public BasicPresenter() {
-		gameRules = new Game();
+	public BasicPresenter(Game gameRules) {
+		this.gameRules = gameRules;
 	}
 
 	@Override
@@ -22,22 +22,36 @@ public class BasicPresenter implements IBasicPresenter {
 	}
 
 	@Override
-	public void putInVerticalDirection(int x, int y) {
-		direction = 'v';
+	public void placeShip(int x, int y, int freq) {
+		switch (freq) {
+		case 1:
+			putInHorizontalDirection(x, y);
+			break;
+		case 2:
+			clearLastChoice(x, y, polesNumber, Direction.HORIZONTAL);
+			putInVerticalDirection(x, y);
+			break;
+		case 0:
+			clearLastChoice(x, y, polesNumber, Direction.VERTICAL);
+			break;
+		}
+	}
 
-		if (gameRules.placeShips(player, id, y, direction, x, y))
+	private void putInVerticalDirection(int x, int y) {
+		if (gameRules.placeShips(player, id, polesNumber, Direction.VERTICAL,
+				x, y))
 			;
 
 	}
 
-	@Override
-	public void putInHorizontalDirection(int x, int y) {
-		// TODO Auto-generated method stub
+	private void putInHorizontalDirection(int x, int y) {
+		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
+				x, y))
+			;
 
 	}
 
-	@Override
-	public void clearLastPlacing(int x, int y) {
+	public void clearLastChoice(int x, int y, int polesNumber, Direction dir) {
 		// TODO Auto-generated method stub
 
 	}
