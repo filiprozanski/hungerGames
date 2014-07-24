@@ -11,13 +11,39 @@ import pl.praktykiatrem.game.battleship.rules.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.ValidationInstruments;
 
+/**
+ * 
+ * Klasa <code>ShipLoader</code> jest odpowiedzialna za ³adowanie reprezantacji
+ * statków do tablicy
+ *
+ * @author hungerGames
+ *
+ */
 public class ShipLoader {
 	private Game gameRules;
 
+	/**
+	 * 
+	 * Konstruktor <code>ShipLoader</code> przypisuje referencjê na obiekt
+	 * gameRules
+	 *
+	 * @param gameRules
+	 *            obiekt gry z zaimplementowanymi regu³ami
+	 */
 	public ShipLoader(Game gameRules) {
 		this.gameRules = gameRules;
 	}
 
+	/**
+	 * 
+	 * Metoda <code>initializeShipsFromFile</code> ³aduje plik w którym zawarta
+	 * jest reprezentacja statków w formie [ilo¶æ_masztów]
+	 * [orientacja(pion/poziom)] [wspó³rzêdna_x] [wspó³rzêdna_y] nowa linia w
+	 * pliku to nowy statek.
+	 *
+	 * @param gamer
+	 *            gracz, w którego tablicy bêdziemy ustawiaæ statki
+	 */
 	public void initializeShipsFromFile(PlayerStatus gamer)
 			throws FileNotFoundException {
 		File plik1 = new File("src/pl/praktykiatrem/game/battleship/files/"
@@ -36,6 +62,19 @@ public class ShipLoader {
 		odczyt.close();
 	}
 
+	/**
+	 * 
+	 * Metoda <code>initializeShips</code> ³aduje plik w którym zawarta jest
+	 * reprezentacja statków w formie [ilo¶æ_masztów] [orientacja(pion/poziom)]
+	 * [wspó³rzêdna_x] [wspó³rzêdna_y] nowa linia w pliku to nowy statek.
+	 *
+	 * @param gamer
+	 *            gracz, w którego tablicy bêdziemy ustawiaæ statki
+	 * @param gameControl
+	 *            instancja interfejsu konsoli
+	 * @param gameRules
+	 *            instncja regu³ gry
+	 */
 	public void initializeShips(PlayerStatus gamer,
 			ConsoleInteractions gameControl, Game gameRules) {
 		gameControl.showYourMove(gamer);
@@ -49,13 +88,17 @@ public class ShipLoader {
 
 	/**
 	 * 
-	 * Metoda <code>fetchShipCoords</code> pobiera dane do ustawienia statku
+	 * Metoda <code>fetchShipCoords</code> pobiera dane do ustawienia statku i
+	 * ustawia statek.
 	 *
 	 * @param polesNumber
 	 *            liczba masztów
 	 * @param id
+	 *            id statku który jest aktualnie ustawiamy
 	 * @param gamer
 	 *            gracz, którego statki s± ustawiane
+	 * @param gameControl
+	 *            instancja interfejsu konsoli
 	 */
 	private void fetchShipCoords(int polesNumber, int id, PlayerStatus gamer,
 			ConsoleInteractions gameControl) {
