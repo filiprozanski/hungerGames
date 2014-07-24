@@ -8,6 +8,7 @@ package pl.praktykiatrem.game.battleship.gameComponents;
  * @version 11 lip 2014 12:31:46
  *
  */
+
 public class Board {
 	/**
 	 * tablica dwuwymiarowa[y][x] przechowujaca stany poszczególnych pól C -
