@@ -5,15 +5,17 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
-import pl.praktykiatrem.game.battleship.graphic.IBasicPresenter;
+import pl.praktykiatrem.game.battleship.graphic.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.ISettingView;
 
-public class ShipSettingPanel extends JPanel implements IBoardSettingsObserver {
+public class ShipSettingPanel extends JPanel implements IBoardSettingsObserver,
+		ISettingView {
 	private BoardGraphicSettingPanel boardPanel;
 	private ShipChoicePanel choicePanel;
 	private ReadyButtonPanel readyPanel;
-	private IBasicPresenter presenter;
+	private ISettingPresenter presenter;
 
-	public ShipSettingPanel(IBasicPresenter presenter) {
+	public ShipSettingPanel(ISettingPresenter presenter) {
 		this.presenter = presenter;
 	}
 
@@ -27,6 +29,10 @@ public class ShipSettingPanel extends JPanel implements IBoardSettingsObserver {
 		add(boardPanel);
 		add(choicePanel);
 		add(readyPanel);
+	}
+
+	public void changePlaceIcon(int x, int y, int type) {
+		boardPanel.changePlaceIcon(x, y, type);
 	}
 
 	@Override

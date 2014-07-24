@@ -31,6 +31,10 @@ public class BoardGraphicSettingPanel extends JPanel {
 		this.observer = observer;
 	}
 
+	public void changePlaceIcon(int x, int y, int type) {
+		place[y][x].setPlaceIcon(type);
+	}
+
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(330, 330);

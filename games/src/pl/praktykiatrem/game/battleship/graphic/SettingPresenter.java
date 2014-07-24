@@ -1,19 +1,39 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.rules.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
-public class BasicPresenter implements IBasicPresenter {
+public class SettingPresenter implements ISettingPresenter {
 	int x;
 	int y;
 	int polesNumber;
 	int id;
 	Game gameRules;
 	PlayerStatus player;
+	ISettingView view;
 
-	public BasicPresenter(Game gameRules) {
+	public SettingPresenter(Game gameRules, PlayerStatus player,
+			ISettingView view) {
 		this.gameRules = gameRules;
+		this.player = player;
+		this.view = view;
+	}
+
+	public SettingPresenter(Game gameRules) {
+		this.gameRules = gameRules;
+		initializePlayer();
+		view = new ShipSettingPanel(this);
+	}
+
+	private void initializePlayer() {
+		int sizeX = gameRules.getBoardSize_X();
+		int sizeY = gameRules.getBoardSize_Y();
+		int shipsNumber = gameRules.getShipsNumber();
+		int[] shipsType = gameRules.getShipTypes();
+
+		player = new PlayerStatus(sizeX, sizeY, shipsNumber, shipsType);
 	}
 
 	@Override
@@ -52,7 +72,6 @@ public class BasicPresenter implements IBasicPresenter {
 	}
 
 	public void clearLastChoice(int x, int y, int polesNumber, Direction dir) {
-		// TODO Auto-generated method stub
 
 	}
 }
