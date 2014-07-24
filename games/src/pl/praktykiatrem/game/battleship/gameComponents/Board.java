@@ -50,6 +50,10 @@ public class Board {
 		gameBoard[y][x].setShipID(id);
 	}
 
+	public void displaceShip(int x, int y) {
+		gameBoard[y][x].setPlaceClean();
+	}
+
 	public boolean isShipOnPlace(int x, int y) {
 		return gameBoard[y][x].isShipOnPlace();
 	}
@@ -63,7 +67,7 @@ public class Board {
 	}
 
 	public int getShipID(int x, int y) {
-		return gameBoard[y][x].getShipID();
+		return gameBoard[y][x].getShipId();
 	}
 
 	public boolean isShipOnPlaceAndActive(int x, int y) {
@@ -72,5 +76,6 @@ public class Board {
 
 	Place getPlace(int x, int y) {
 		return gameBoard[y][x];
+
 	}
 }

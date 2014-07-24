@@ -8,6 +8,7 @@
 package pl.praktykiatrem.game.battleship.gameComponents;
 
 class Place {
+	private int shipID;
 	private Ship boat;
 	private boolean shipOnPlace;
 	private boolean isInGame;
@@ -15,6 +16,12 @@ class Place {
 	public Place() {
 		shipOnPlace = false;
 		isInGame = true;
+	}
+
+	public void setPlaceClean() {
+		shipOnPlace = false;
+		isInGame = true;
+		shipID = -1;
 	}
 
 	public void setShipOnPlace() {
@@ -30,7 +37,11 @@ class Place {
 	}
 
 	public void setShipID(int ID) {
-		boat.setID(ID);
+		shipID = ID;
+	}
+
+	public int getShipId() {
+		return shipID;
 	}
 
 	public int getShipID() {

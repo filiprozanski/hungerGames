@@ -19,7 +19,15 @@ public class CustomRules implements RulesInterface {
 
 	}
 
-	@Override
+	private boolean takeShipOfPlace(Board plansza, int id, int x, int y) {
+		if (plansza.getShipID(x, y) == id) {
+			plansza.displaceShip(x, y);
+			return true;
+		} else
+			return false;
+
+	}
+
 	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		Board plansza = player.getPlansza();
@@ -37,7 +45,23 @@ public class CustomRules implements RulesInterface {
 		return true;
 	}
 
-	@Override
+	public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
+			Direction direction, int x, int y) {
+		Board plansza = player.getPlansza();
+		int x_temp = x;
+		int y_temp = y;
+		player.setShip(id, polesNumber);
+		for (int i = 0; i < polesNumber; i++) {
+			if (direction == Direction.HORIZONTAL)
+				x_temp = x + i;
+			else if (direction == Direction.VERTICAL)
+				y_temp = y + i;
+			if (!takeShipOfPlace(plansza, id, x_temp, y_temp))
+				return false;
+		}
+		return true;
+	}
+
 	public boolean makeMove(PlayerStatus enemy, int x, int y) {
 		// if (ValidationInstruments.isPlaceClear(enemy.getPlansza().gameBoard,
 		// x, y))
