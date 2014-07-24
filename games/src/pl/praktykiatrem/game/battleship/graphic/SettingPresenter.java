@@ -6,10 +6,9 @@ import pl.praktykiatrem.game.battleship.rules.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class SettingPresenter implements ISettingPresenter {
-	int x;
-	int y;
-	int polesNumber;
-	int id;
+	private int polesNumber;
+	private int id;
+
 	Game gameRules;
 	PlayerStatus player;
 	ISettingView view;

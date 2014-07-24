@@ -6,6 +6,7 @@ public class StartGraphic {
 
 	public static void main(String[] args) {
 		Game g = new Game();
+		SettingPresenter pres = new SettingPresenter(g);
 
 	}
 
