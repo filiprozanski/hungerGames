@@ -3,7 +3,7 @@ package pl.praktykiatrem.game.battleship.rules;
 import pl.praktykiatrem.game.battleship.gameComponents.Board;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
-public class CustomRules implements RulesInterface {
+public class CustomRules implements IRules {
 
 	private static final int BOARDSIZE_X = 10;
 	private static final int BOARDSIZE_Y = 10;
@@ -28,6 +28,7 @@ public class CustomRules implements RulesInterface {
 
 	}
 
+	@Override
 	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		Board plansza = player.getPlansza();
@@ -62,6 +63,7 @@ public class CustomRules implements RulesInterface {
 		return true;
 	}
 
+	@Override
 	public boolean makeMove(PlayerStatus enemy, int x, int y) {
 		// if (ValidationInstruments.isPlaceClear(enemy.getPlansza().gameBoard,
 		// x, y))

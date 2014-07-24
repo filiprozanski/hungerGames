@@ -3,7 +3,7 @@ package pl.praktykiatrem.game.battleship.rules;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
 public class Game {
-	private RulesInterface rules;
+	private IRules rules;
 	private boolean isGameOver;
 	private PlayerStatus currentPlayer;
 
@@ -35,6 +35,11 @@ public class Game {
 	public boolean placeShips(PlayerStatus p, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		return rules.placeShips(p, id, polesNumber, direction, x, y);
+	}
+
+	public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
+			Direction direction, int x, int y) {
+		return rules.displaceShips(player, id, polesNumber, direction, x, y);
 	}
 
 	public boolean getIsGameOver() {

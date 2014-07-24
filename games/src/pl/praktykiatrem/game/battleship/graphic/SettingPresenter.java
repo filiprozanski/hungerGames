@@ -39,6 +39,7 @@ public class SettingPresenter implements ISettingPresenter {
 	@Override
 	public void shipChoiceDone(int polesNumber, int id) {
 		this.polesNumber = polesNumber;
+		this.id = id;
 	}
 
 	@Override
@@ -48,11 +49,11 @@ public class SettingPresenter implements ISettingPresenter {
 			putInHorizontalDirection(x, y);
 			break;
 		case 2:
-			clearLastChoice(x, y, polesNumber, Direction.HORIZONTAL);
+			clearLastChoice(x, y, Direction.HORIZONTAL);
 			putInVerticalDirection(x, y);
 			break;
 		case 0:
-			clearLastChoice(x, y, polesNumber, Direction.VERTICAL);
+			clearLastChoice(x, y, Direction.VERTICAL);
 			break;
 		}
 	}
@@ -71,7 +72,7 @@ public class SettingPresenter implements ISettingPresenter {
 
 	}
 
-	public void clearLastChoice(int x, int y, int polesNumber, Direction dir) {
-
+	public void clearLastChoice(int x, int y, Direction dir) {
+		gameRules.displaceShips(player, id, polesNumber, dir, x, y);
 	}
 }
