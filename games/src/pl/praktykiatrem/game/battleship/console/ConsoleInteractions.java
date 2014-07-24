@@ -15,11 +15,9 @@ import pl.praktykiatrem.game.battleship.rules.Direction;
 /**
  * 
  * Klasa <code>ConsoleInteractions</code> zawiera funkcje statyczne
- * wy¶wietlaj±ce w konsoli komunikaty, oraz pobieraj±ce od u¿ytkownika niezbêdnê
- * dane
+ * wy¶wietlaj±ce w konsoli komunikaty, oraz pobieraj±ce od u¿ytkownika dane
  *
- * @author filipr
- * @version 11 lip 2014 12:36:18
+ * @author hungerGames
  *
  */
 public class ConsoleInteractions implements Comunicatable {

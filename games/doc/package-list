@@ -1,1 +1,11 @@
+pl.praktykiatrem.game.battleship
+pl.praktykiatrem.game.battleship.console
+pl.praktykiatrem.game.battleship.factory
+pl.praktykiatrem.game.battleship.gameComponents
+pl.praktykiatrem.game.battleship.graphic
+pl.praktykiatrem.game.battleship.graphic.buttons
+pl.praktykiatrem.game.battleship.graphic.events
+pl.praktykiatrem.game.battleship.graphic.listeners
+pl.praktykiatrem.game.battleship.graphic.panels
 pl.praktykiatrem.game.battleship.menu
+pl.praktykiatrem.game.battleship.rules

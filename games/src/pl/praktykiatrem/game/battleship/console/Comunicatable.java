@@ -10,6 +10,13 @@ package pl.praktykiatrem.game.battleship.console;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Direction;
 
+/**
+ * 
+ * Interfejs <code>Comunicatable</code> odpowiedzalny za konsole.
+ *
+ * @author hungerGames
+ *
+ */
 public interface Comunicatable {
 	public void showMenu();
 

@@ -14,6 +14,14 @@ import pl.praktykiatrem.game.battleship.factory.ShipLoader;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
+/**
+ * 
+ * Klasa <code>BattleshipGame</code> przechowuje obiekty graczy oraz gry. Jest
+ * odpowiedzialna za inicializacjê i przegieg gry.
+ *
+ * @author hungerGames
+ *
+ */
 public class BattleshipGame {
 	private PlayerStatus A;
 	private PlayerStatus B;
@@ -34,6 +42,12 @@ public class BattleshipGame {
 
 	}
 
+	/**
+	 * 
+	 * Metoda <code>gameInProgress</code> rozpoczyna grê i jest odpowiedzialna
+	 * za przebieg gry (od pocz±tku do koñca). *
+	 * 
+	 */
 	public void gameInProgress() {
 		gameControl.showMenu();
 
@@ -84,6 +98,15 @@ public class BattleshipGame {
 		}
 	}
 
+	/**
+	 * 
+	 * Metoda <code>changePlayer</code> zmienia aktualnego gracza na
+	 * przeciwnikia
+	 *
+	 * @param X
+	 *            aktualny gracz l
+	 * @return A lub B, czyli przeciwnika
+	 */
 	private PlayerStatus changePlayer(PlayerStatus X) {
 		if (X.getName() == A.getName())
 			return B;
@@ -91,6 +114,14 @@ public class BattleshipGame {
 			return A;
 	}
 
+	/**
+	 * 
+	 * Metoda <code>isGameOver</code> pobiera dane do ustawienia statku
+	 *
+	 * @param X
+	 *            gracz
+	 * @return true, je¿eli gra zosta³a zakoñczona (wykonano wszystkie ruchy)
+	 */
 	private boolean isGameOver(PlayerStatus X) {
 		if (X.getShipsNumber() > 0)
 			return false;
@@ -98,6 +129,15 @@ public class BattleshipGame {
 			return true;
 	}
 
+	/**
+	 * 
+	 * Metoda <code>setShips</code> próbuje wy³o³aæ metodê
+	 * initializeShipsFromFile, w przypadku wyj±tku FileNotFoundException
+	 * wywo³uje initializeShips
+	 *
+	 * @param gamer
+	 *            gracz
+	 */
 	private void setShips(PlayerStatus gamer) {
 		try {
 			load.initializeShipsFromFile(gamer);

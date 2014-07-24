@@ -14,8 +14,7 @@ import pl.praktykiatrem.game.battleship.gameComponents.Board;
  * Klasa <code>BoardDrawing</code> przechowuje statyczne metody do wy¶wietlania
  * w konsoli planszy do gry
  *
- * @author filipr
- * @version 11 lip 2014 12:26:12
+ * @author hungerGames
  *
  */
 public class BoardDrawing {
@@ -26,11 +25,9 @@ public class BoardDrawing {
 	 * wy¶wietlaj± siê normalnie
 	 *
 	 * @param gamePlace
-	 *            reprezentuje tablice do wypisania
+	 *            tablica do wypisania w konsoli
 	 */
 	public static void drawGameBoardForOpponent(Board gamePlace) {
-		// Place[][] tab = gamePlace.getGameBoard();
-
 		System.out.print(" ");
 		for (int i = 0; i < gamePlace.getHorizontalSize(); i++)
 			System.out.print(i);
