@@ -11,8 +11,9 @@ import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class Controller {
-	PlayerStatus A = new PlayerStatus(10, 10, 7);
-	PlayerStatus B = new PlayerStatus(10, 10, 7);
+	int tab[] = { 6, 4, 4, 3, 3, 2, 2 };
+	PlayerStatus A = new PlayerStatus(10, 10, 7, tab);
+	PlayerStatus B = new PlayerStatus(10, 10, 7, tab);
 	Game gameRules = new Game();
 
 	public void setName(String name, int id) {

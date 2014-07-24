@@ -16,8 +16,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import pl.praktykiatrem.game.battleship.Controller;
+import pl.praktykiatrem.game.battleship.graphic.panels.BoardGraphicPanel;
+
 //import pl.praktykiatrem.game.battleship.graphic.BoardGraphicSeting;
-import pl.praktykiatrem.game.battleship.graphic.BoardGraphicSeting;
 
 public class MainView extends JPanel implements IMainView {
 	JPanel cards; // a panel that uses CardLayout
@@ -33,7 +34,7 @@ public class MainView extends JPanel implements IMainView {
 		CreditsView creditsView = new CreditsView(this);
 		GameOverView gameOverView = new GameOverView(this);
 		JPanel game = new JPanel();
-		BoardGraphicSeting board = new BoardGraphicSeting(controller);
+		BoardGraphicPanel board = new BoardGraphicPanel(controller);
 
 		JButton buttonGoToMenu = new JButton(GoToMenu);
 		game.add(board, BorderLayout.CENTER);
