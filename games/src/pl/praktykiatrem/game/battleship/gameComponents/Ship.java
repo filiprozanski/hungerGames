@@ -1,15 +1,35 @@
 package pl.praktykiatrem.game.battleship.gameComponents;
 
+import java.util.ArrayList;
+
+/**
+ * reprezentuje statek ustawiany na planszy
+ * @author Filip Ró¿añski
+ *
+ */
 public class Ship {
 	private int shipID;
 	private int polesNumber;
+	/**
+	 * przechowuje wszystkie koordynaty, na których statek jest umieszczony
+	 */
+	private ArrayList<Coordinates> coords;
 
 	// private Coordinate direction;
 
+	/**
+	 * 
+	 * @param polesNumber liczba masztów tworzonego statku
+	 */
 	public Ship(int polesNumber) {
 		this.polesNumber = polesNumber;
+		coords = new ArrayList<Coordinates>(polesNumber);
 	}
 
+	/**
+	 * zmniejsza liczbê masztów
+	 * @return je¿eli statek zostaje zatopiony zwraca true
+	 */
 	public boolean reducePolesNumber() {
 		polesNumber--;
 		if (polesNumber == 0)
@@ -18,22 +38,28 @@ public class Ship {
 			return false;
 	}
 
+	/**
+	 * 
+	 * @return liczba masztów
+	 */
 	public int getPolesNumber() {
 		return polesNumber;
 	}
 
-	public boolean isShipSunk() {
-		if (polesNumber == 0)
-			return true;
-		else
-			return false;
-	}
-
-	public void setID(int id) {
-		shipID = id;
-	}
-
+	/**
+	 * 
+	 * @return id wybranego statku
+	 */
 	public int getID() {
 		return shipID;
+	}
+	
+	/**
+	 * Dodaje do listy koordynaty
+	 * @param c dodawane koordynaty
+	 */
+	void addCoordinate(Coordinates c)
+	{
+		coords.add(c);
 	}
 }

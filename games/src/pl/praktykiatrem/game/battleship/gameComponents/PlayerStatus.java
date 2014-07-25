@@ -7,8 +7,12 @@
 
 package pl.praktykiatrem.game.battleship.gameComponents;
 
-//import pl.praktykiatrem.game.battleship.gameComponents.Place;
-
+/**
+ * Klasa odpowadia za przchowywanie informacji o statusie gracza m.in. liczbie stakow.
+ * Przechowuje tez jego plansze, oraz tablice statków
+ * @author Filip Ró¿añski
+ *
+ */
 public class PlayerStatus {
 	private Board plansza;
 	private Ship[] ships;
@@ -17,7 +21,14 @@ public class PlayerStatus {
 	private Player gamer;
 
 	// private String name;
-
+	
+	/**
+	 * 
+	 * @param boardSize_x liczba miejsc planszy w poziome
+	 * @param boardSize_y liczba miejsc planszy w pionie
+	 * @param shipsNumber liczba statków gracza pozosta³a do zbicia na planszy
+	 * @param shipTypes tablica przechowuj¹ca informacje o typie statków u¿ywanych w rozgrywce
+	 */
 	public PlayerStatus(int boardSize_x, int boardSize_y, int shipsNumber,
 			int shipTypes[]) {
 		this.shipsNumber = shipsNumber;
@@ -27,47 +38,98 @@ public class PlayerStatus {
 		gamer = new Player();
 	}
 
+	/**
+	 * 
+	 * @return imiê gracza
+	 */
 	public String getName() {
 		return gamer.getName();
 	}
 
+	/**
+	 * Ustawia imiê gracza
+	 * @param name
+	 */
 	public void setName(String name) {
 		gamer.setName(name);
 	}
 
+	
+	/**
+	 * 
+	 * @return liczbe statków gracza pozosta³ych na planszy
+	 */
 	public int getShipsNumber() {
 		return shipsNumber;
 	}
 
+	/**
+	 * 
+	 * @return zwraca plansze gracza
+	 */
 	public Board getPlansza() {
 		return plansza;
 	}
 
+	/**
+	 * zmniejsza liczbê statków po zbiciu o 1
+	 */
 	public void reduceShipsNumber() {
 		shipsNumber--;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param polesNumber liczba masztów statku
+	 */
 	public void setShip(int id, int polesNumber) {
 		ships[id] = new Ship(polesNumber);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return statek o podanym id
+	 */
 	public Ship getShip(int id) {
 		return ships[id];
 	}
 
+	/**
+	 * deaktywuje na planszy miejsce opisane parametrami
+	 * @param x wspó³rzêdna pozioma
+	 * @param y wspó³rzêdna pionowa
+	 */
 	public void takeOutShip(int x, int y) {
 		plansza.takeOut(x, y);
 	}
 
+	/**
+	 * 
+	 * @param i
+	 * @return zwraca liczbe masztów statku znajduj¹cego siê w tablicy pod indeksem i
+	 */
 	public int getShipTypes(int i) {
 		return shipTypes[i];
 	}
 
-	private Place getPlace(int x, int y) {
-		return plansza.getPlace(x, y);
+	/**
+	 * zmniejsza liczbe masztów o jeden
+	 * @param x
+	 * @param y
+	 */
+	public boolean reducePolesNumber(int x, int y) {
+		return plansza.getPlace(x, y).getShip().reducePolesNumber();
 	}
-
-	public void reducePolesNumber(int x, int y) {
-		plansza.getPlace(x, y).getShip().reducePolesNumber();
+	
+	/**
+	 * dodaje koordynaty do listy znajduj¹cej siê w statku
+	 * @param ID
+	 * @param c
+	 */
+	public void addCoordinates(int ID, Coordinates c)
+	{
+		ships[ID].addCoordinate(c);
 	}
 }

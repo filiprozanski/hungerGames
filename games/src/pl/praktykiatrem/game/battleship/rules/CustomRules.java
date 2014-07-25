@@ -32,13 +32,13 @@ public class CustomRules implements IRules {
 	public boolean shipPlacingValidation(Board plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
-			for (; x < 10; x++) {
-				if (plansza.isShipOnPlace(x, y))
+			for (int i = 0; i < polesNumber; i++) {
+				if (plansza.isShipOnPlace(x + i, y))
 					return false;
 			}
 		} else {
-			for (; x < 10; x++) {
-				if (plansza.isShipOnPlace(x, y))
+			for (int i = 0; i < polesNumber; i++) {
+				if (plansza.isShipOnPlace(x, y + i))
 					return false;
 			}
 		}
@@ -94,7 +94,7 @@ public class CustomRules implements IRules {
 				int shipID = enemy.getPlansza().getShipID(x, y);
 				enemy.takeOutShip(x, y);
 				enemy.reducePolesNumber(x, y);
-				if (enemy.getShip(shipID).isShipSunk())
+				if (enemy.reducePolesNumber(x, y))
 					enemy.reduceShipsNumber();
 				return true;
 			} else
