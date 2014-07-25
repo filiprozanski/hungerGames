@@ -33,12 +33,12 @@ public class CustomRules implements IRules {
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
 			for (int i = 0; i < polesNumber; i++) {
-				if (plansza.isShipOnPlace(x + i, y))
+				if (plansza.isShipOnPlace(x, y + i))
 					return false;
 			}
 		} else {
 			for (int i = 0; i < polesNumber; i++) {
-				if (plansza.isShipOnPlace(x, y + i))
+				if (plansza.isShipOnPlace(x + i, y))
 					return false;
 			}
 		}
@@ -49,19 +49,23 @@ public class CustomRules implements IRules {
 	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		Board plansza = player.getPlansza();
-		int x_temp = x;
-		int y_temp = y;
-		player.setShip(id, polesNumber);
-		for (int i = 0; i < polesNumber; i++) {
-			if (direction == Direction.HORIZONTAL)
-				x_temp = x + i;
-			else if (direction == Direction.VERTICAL)
-				y_temp = y + i;
-			if (!putShipOnPlace(plansza, id, x_temp, y_temp))
-				return false;
-		}
-		BoardDrawing.drawGameBoardForPlayer(plansza);
-		return true;
+		if (shipPlacingValidation(plansza, polesNumber, direction, x, y)) {
+			int x_temp = x;
+			int y_temp = y;
+
+			player.setShip(id, polesNumber);
+			for (int i = 0; i < polesNumber; i++) {
+				if (direction == Direction.HORIZONTAL)
+					y_temp = y + i;
+				else if (direction == Direction.VERTICAL)
+					x_temp = x + i;
+				if (!putShipOnPlace(plansza, id, x_temp, y_temp))
+					return false;
+			}
+			BoardDrawing.drawGameBoardForPlayer(plansza);
+			return true;
+		} else
+			return false;
 	}
 
 	@Override
@@ -73,12 +77,13 @@ public class CustomRules implements IRules {
 		player.setShip(id, polesNumber);
 		for (int i = 0; i < polesNumber; i++) {
 			if (direction == Direction.HORIZONTAL)
-				x_temp = x + i;
-			else if (direction == Direction.VERTICAL)
 				y_temp = y + i;
+			else if (direction == Direction.VERTICAL)
+				x_temp = x + i;
 			if (!takeShipOfPlace(plansza, id, x_temp, y_temp))
 				return false;
 		}
+		BoardDrawing.drawGameBoardForPlayer(plansza);
 		return true;
 	}
 
