@@ -1,81 +1,65 @@
 package pl.praktykiatrem.game.battleship.gameComponents;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 
 /**
- * reprezentuje statek ustawiany na planszy
- * @author Filip Ró¿añski
- *
- */
+* reprezentuje statek ustawiany na planszy
+* @author Filip Rózanski
+*
+*/
 public class Ship {
-	private int shipID;
-	private int polesNumber;
-	/**
-	 * przechowuje wszystkie koordynaty, na których statek jest umieszczony
-	 */
-	private ArrayList<Coordinates> coords;
-=======
-import java.io.Serializable;
->>>>>>> refs/remotes/origin/sru
+private int shipID;
+private int polesNumber;
+/**
+* przechowuje wszystkie koordynaty, na których statek jest umieszczony
+*/
+private ArrayList<Coordinates> coords;
 
-public class Ship implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+// private Coordinate direction;
 
-	@Override
-	public String toString() {
-		return "Ship [shipID=" + shipID + ", polesNumber=" + polesNumber + "]";
-	}
+/**
+*
+* @param polesNumber liczba masztów tworzonego statku
+*/
+public Ship(int polesNumber) {
+this.polesNumber = polesNumber;
+coords = new ArrayList<Coordinates>(polesNumber);
+}
 
-	private transient int polesNumber;
-	private int shipID;
+/**
+* zmniejsza liczbe masztów
+* @return jezeli statek zostaje zatopiony zwraca true
+*/
+public boolean reducePolesNumber() {
+polesNumber--;
+if (polesNumber == 0)
+return true;
+else
+return false;
+}
 
-	/**
-	 * 
-	 * @param polesNumber liczba masztów tworzonego statku
-	 */
-	public Ship(int polesNumber) {
-		this.polesNumber = polesNumber;
-		coords = new ArrayList<Coordinates>(polesNumber);
-	}
+/**
+*
+* @return liczba masztów
+*/
+public int getPolesNumber() {
+return polesNumber;
+}
 
-	/**
-	 * zmniejsza liczbê masztów
-	 * @return je¿eli statek zostaje zatopiony zwraca true
-	 */
-	public boolean reducePolesNumber() {
-		polesNumber--;
-		if (polesNumber == 0)
-			return true;
-		else
-			return false;
-	}
+/**
+*
+* @return id wybranego statku
+*/
+public int getID() {
+return shipID;
+}
 
-	/**
-	 * 
-	 * @return liczba masztów
-	 */
-	public int getPolesNumber() {
-		return polesNumber;
-	}
-
-	/**
-	 * 
-	 * @return id wybranego statku
-	 */
-	public int getID() {
-		return shipID;
-	}
-	
-	/**
-	 * Dodaje do listy koordynaty
-	 * @param c dodawane koordynaty
-	 */
-	void addCoordinate(Coordinates c)
-	{
-		coords.add(c);
-	}
+/**
+* Dodaje do listy koordynaty
+* @param c dodawane koordynaty
+*/
+void addCoordinate(Coordinates c)
+{
+coords.add(c);
+}
 }

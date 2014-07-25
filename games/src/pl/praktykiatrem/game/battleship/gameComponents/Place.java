@@ -58,9 +58,9 @@ class Place {
 		return shipID;
 	}
 
-	public int getShipID() {
+	/*public int getShipID() {
 		return boat.getID();
-	}
+	}*/
 
 	/**
 	 * wy³¹cza pole z gry
