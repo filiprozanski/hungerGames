@@ -1,10 +1,20 @@
 package pl.praktykiatrem.game.battleship.gameComponents;
 
-public class Ship {
-	private int shipID;
-	private int polesNumber;
+import java.io.Serializable;
 
-	// private Coordinate direction;
+public class Ship implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public String toString() {
+		return "Ship [shipID=" + shipID + ", polesNumber=" + polesNumber + "]";
+	}
+
+	private transient int polesNumber;
+	private int shipID;
 
 	public Ship(int polesNumber) {
 		this.polesNumber = polesNumber;

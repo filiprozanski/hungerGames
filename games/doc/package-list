@@ -1,6 +1,8 @@
 pl.praktykiatrem.game.battleship
 pl.praktykiatrem.game.battleship.console
+pl.praktykiatrem.game.battleship.eventsSample
 pl.praktykiatrem.game.battleship.factory
+pl.praktykiatrem.game.battleship.files
 pl.praktykiatrem.game.battleship.gameComponents
 pl.praktykiatrem.game.battleship.graphic
 pl.praktykiatrem.game.battleship.graphic.buttons
