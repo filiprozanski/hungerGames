@@ -6,7 +6,7 @@ import pl.praktykiatrem.game.battleship.rules.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class SettingPresenter implements ISettingPresenter {
-	private int polesNumber;
+	private int polesNumber = 3;
 	private int id;
 
 	Game gameRules;
@@ -20,10 +20,18 @@ public class SettingPresenter implements ISettingPresenter {
 		this.view = view;
 	}
 
+	public ISettingView getView() {
+		return view;
+	}
+
 	public SettingPresenter(Game gameRules) {
+		System.out.println("1");
 		this.gameRules = gameRules;
+		System.out.println("2");
 		initializePlayer();
+		System.out.println("3");
 		view = new ShipSettingPanel(this);
+		System.out.println("!");
 	}
 
 	private void initializePlayer() {
@@ -59,19 +67,33 @@ public class SettingPresenter implements ISettingPresenter {
 
 	private void putInVerticalDirection(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.VERTICAL,
-				x, y))
-			;
+				y, x))
+			drawShipOnBoard(x, y, Direction.VERTICAL);
 
 	}
 
 	private void putInHorizontalDirection(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
-				x, y))
-			;
+				y, x))
+			drawShipOnBoard(x, y, Direction.HORIZONTAL);
 
 	}
 
 	public void clearLastChoice(int x, int y, Direction dir) {
 		gameRules.displaceShips(player, id, polesNumber, dir, x, y);
+	}
+
+	private void drawShipOnBoard(int x, int y, Direction dir) {
+		if (dir == Direction.HORIZONTAL) {
+			for (int i = 0; i < polesNumber; i++) {
+				view.changePlaceIcon(x, y, 2);
+				y++;
+			}
+		} else {
+			for (int i = 0; i < polesNumber; i++) {
+				view.changePlaceIcon(x, y, 2);
+				x++;
+			}
+		}
 	}
 }

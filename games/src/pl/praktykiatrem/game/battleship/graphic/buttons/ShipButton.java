@@ -26,7 +26,7 @@ public class ShipButton extends JButton {
 	}
 
 	public void setPlaceIcon(int type) {
-		// ShipIcons.createImages();
+		ShipIcons.createImages();
 		setIcon(ShipIcons.getIcon(type));
 	}
 

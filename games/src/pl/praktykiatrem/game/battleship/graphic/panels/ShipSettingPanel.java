@@ -17,12 +17,13 @@ public class ShipSettingPanel extends JPanel implements IBoardSettingsObserver,
 
 	public ShipSettingPanel(ISettingPresenter presenter) {
 		this.presenter = presenter;
+		initialize();
 	}
 
 	private void initialize() {
 		setLayout(new GridLayout(2, 2));
-		boardPanel = new BoardGraphicSettingPanel();
-		boardPanel.setBoardSettingsObserver(this);
+		boardPanel = new BoardGraphicSettingPanel(this);
+		// boardPanel.setBoardSettingsObserver(this);
 		choicePanel = new ShipChoicePanel();
 		readyPanel = new ReadyButtonPanel();
 
