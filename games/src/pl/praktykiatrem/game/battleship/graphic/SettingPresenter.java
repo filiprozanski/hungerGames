@@ -67,14 +67,14 @@ public class SettingPresenter implements ISettingPresenter {
 
 	private void putInVerticalDirection(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.VERTICAL,
-				y, x))
+				x, y))
 			drawShipOnBoard(x, y, Direction.VERTICAL);
 
 	}
 
 	private void putInHorizontalDirection(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
-				y, x))
+				x, y))
 			drawShipOnBoard(x, y, Direction.HORIZONTAL);
 
 	}

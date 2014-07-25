@@ -37,11 +37,11 @@ public class BoardDrawing {
 		for (int i = 0; i < gamePlace.getVerticalSize(); i++) {
 			System.out.print(i);
 			for (int j = 0; j < gamePlace.getHorizontalSize(); j++) {
-				if (!gamePlace.isShipOnPlace(j, i)
-						&& !gamePlace.isPlaceActive(j, i))
+				if (!gamePlace.isShipOnPlace(i, j)
+						&& !gamePlace.isPlaceActive(i, j))
 					System.out.print("M");
-				else if (gamePlace.isShipOnPlace(j, i)
-						&& !gamePlace.isPlaceActive(j, i))
+				else if (gamePlace.isShipOnPlace(i, j)
+						&& !gamePlace.isPlaceActive(i, j))
 					System.out.print("H");
 				else
 					System.out.print("+");
@@ -70,14 +70,14 @@ public class BoardDrawing {
 		for (int i = 0; i < gamePlace.getVerticalSize(); i++) {
 			System.out.print(i);
 			for (int j = 0; j < gamePlace.getHorizontalSize(); j++) {
-				if (gamePlace.isShipOnPlace(j, i)
-						&& gamePlace.isPlaceActive(j, i))
-					System.out.print(gamePlace.getShipID(j, i));
-				else if (gamePlace.isShipOnPlace(j, i)
-						&& !gamePlace.isPlaceActive(j, i))
+				if (gamePlace.isShipOnPlace(i, j)
+						&& gamePlace.isPlaceActive(i, j))
+					System.out.print(gamePlace.getShipID(i, j));
+				else if (gamePlace.isShipOnPlace(i, j)
+						&& !gamePlace.isPlaceActive(i, j))
 					System.out.print("H");
-				else if (!gamePlace.isShipOnPlace(j, i)
-						&& !gamePlace.isPlaceActive(j, i))
+				else if (!gamePlace.isShipOnPlace(i, j)
+						&& !gamePlace.isPlaceActive(i, j))
 					System.out.print("M");
 				else
 					System.out.print("+");
