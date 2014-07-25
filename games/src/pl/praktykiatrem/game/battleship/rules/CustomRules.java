@@ -32,6 +32,13 @@ public class CustomRules implements IRules {
 	public boolean shipPlacingValidation(Board plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
+			if (y + polesNumber > BOARDSIZE_Y)
+				return false;
+		} else if (dir == Direction.VERTICAL) {
+			if (x + polesNumber > BOARDSIZE_X)
+				return false;
+		}
+		if (dir == Direction.HORIZONTAL) {
 			for (int i = 0; i < polesNumber; i++) {
 				if (plansza.isShipOnPlace(x, y + i))
 					return false;
@@ -43,6 +50,29 @@ public class CustomRules implements IRules {
 			}
 		}
 		return true;
+	}
+
+	public boolean shipDisplacingValidation(Board plansza, int polesNumber,
+			Direction dir, int x, int y) {
+		if (dir == Direction.HORIZONTAL) {
+			if (y + polesNumber > BOARDSIZE_Y)
+				return false;
+		} else if (dir == Direction.VERTICAL) {
+			if (x + polesNumber > BOARDSIZE_X)
+				return false;
+		}
+		if (dir == Direction.HORIZONTAL) {
+			for (int i = 0; i < polesNumber; i++) {
+				if (plansza.isShipOnPlace(x, y + i))
+					return true;
+			}
+		} else {
+			for (int i = 0; i < polesNumber; i++) {
+				if (plansza.isShipOnPlace(x + i, y))
+					return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -72,19 +102,22 @@ public class CustomRules implements IRules {
 	public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		Board plansza = player.getPlansza();
-		int x_temp = x;
-		int y_temp = y;
-		player.setShip(id, polesNumber);
-		for (int i = 0; i < polesNumber; i++) {
-			if (direction == Direction.HORIZONTAL)
-				y_temp = y + i;
-			else if (direction == Direction.VERTICAL)
-				x_temp = x + i;
-			if (!takeShipOfPlace(plansza, id, x_temp, y_temp))
-				return false;
-		}
-		BoardDrawing.drawGameBoardForPlayer(plansza);
-		return true;
+		if (shipDisplacingValidation(plansza, polesNumber, direction, x, y)) {
+			int x_temp = x;
+			int y_temp = y;
+			player.setShip(id, polesNumber);
+			for (int i = 0; i < polesNumber; i++) {
+				if (direction == Direction.HORIZONTAL)
+					y_temp = y + i;
+				else if (direction == Direction.VERTICAL)
+					x_temp = x + i;
+				if (!takeShipOfPlace(plansza, id, x_temp, y_temp))
+					return false;
+			}
+			BoardDrawing.drawGameBoardForPlayer(plansza);
+			return true;
+		} else
+			return false;
 	}
 
 	@Override
