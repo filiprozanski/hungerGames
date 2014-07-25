@@ -57,19 +57,35 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void disableOneBoardPlace(int x, int y) {
-		// TODO Auto-generated method stub
-		
+		boardPanel.disableButton(x, y);
 	}
 
 	@Override
 	public void disableAllBoardPlaces() {
-		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < 10; i++)
+		{
+			for (int j = 0; j < 10; j++)
+				boardPanel.disableButton(i, j);
+		}
 	}
 
 	@Override
 	public void disableAllBoardPlaces(int x, int y) {
-		// TODO Auto-generated method stub
-		
+		disableAllBoardPlaces();
+		boardPanel.enableButton(x, y);
+	}
+
+	@Override
+	public void enableOneBoardPlace(int x, int y) {
+		boardPanel.enableButton(x, y);
+	}
+
+	@Override
+	public void enableAllBoardPlaces() {
+		for (int i = 0; i < 10; i++)
+		{
+			for (int j = 0; j < 10; j++)
+				boardPanel.enableButton(i, j);
+		}
 	}
 }

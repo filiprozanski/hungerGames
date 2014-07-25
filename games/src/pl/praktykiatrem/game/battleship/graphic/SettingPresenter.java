@@ -6,7 +6,7 @@ import pl.praktykiatrem.game.battleship.rules.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class SettingPresenter implements ISettingPresenter {
-	private int polesNumber = 3;
+	private int polesNumber;
 	private int id;
 
 	Game gameRules;
@@ -17,16 +17,11 @@ public class SettingPresenter implements ISettingPresenter {
 		this.gameRules = gameRules;
 		this.player = player;
 		view = new ShipSettingPanel(this);
+		view.disableAllBoardPlaces();
 	}
 
 	public ISettingView getView() {
 		return view;
-	}
-
-	public SettingPresenter(Game gameRules) {
-		this.gameRules = gameRules;
-		initializePlayer();
-		view = new ShipSettingPanel(this);
 	}
 
 	private void initializePlayer() {
@@ -42,6 +37,7 @@ public class SettingPresenter implements ISettingPresenter {
 	public void shipChoiceDone(int polesNumber, int id) {
 		this.polesNumber = polesNumber;
 		this.id = id;
+		view.enableAllBoardPlaces();
 	}
 
 	@Override
