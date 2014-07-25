@@ -5,7 +5,9 @@
  * ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game.battleship.rules;
+package pl.praktykiatrem.game.battleship.console;
+
+import pl.praktykiatrem.game.battleship.rules.Direction;
 
 public class ValidationInstruments {
 	/**
