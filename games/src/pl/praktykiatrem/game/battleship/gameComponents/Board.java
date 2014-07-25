@@ -4,10 +4,10 @@ package pl.praktykiatrem.game.battleship.gameComponents;
  * 
  * Klasa <code>Board</code> reprezentuje planszê do gry
  *
- * @author filipr
- * @version 11 lip 2014 12:31:46
+ * @author hungerGames
  *
  */
+
 public class Board {
 	/**
 	 * tablica dwuwymiarowa[y][x] przechowujaca stany poszczególnych pól C -

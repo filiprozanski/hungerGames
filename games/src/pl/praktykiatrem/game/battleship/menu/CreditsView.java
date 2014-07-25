@@ -1,4 +1,3 @@
-
 package pl.praktykiatrem.game.battleship.menu;
 
 import java.awt.Graphics;
