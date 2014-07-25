@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.rules;
 
+import pl.praktykiatrem.game.battleship.console.BoardDrawing;
 import pl.praktykiatrem.game.battleship.gameComponents.Board;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
@@ -28,6 +29,22 @@ public class CustomRules implements IRules {
 
 	}
 
+	public boolean shipPlacingValidation(Board plansza, int polesNumber,
+			Direction dir, int x, int y) {
+		if (dir == Direction.HORIZONTAL) {
+			for (; x < 10; x++) {
+				if (plansza.isShipOnPlace(x, y))
+					return false;
+			}
+		} else {
+			for (; x < 10; x++) {
+				if (plansza.isShipOnPlace(x, y))
+					return false;
+			}
+		}
+		return true;
+	}
+
 	@Override
 	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
@@ -43,9 +60,11 @@ public class CustomRules implements IRules {
 			if (!putShipOnPlace(plansza, id, x_temp, y_temp))
 				return false;
 		}
+		BoardDrawing.drawGameBoardForPlayer(plansza);
 		return true;
 	}
 
+	@Override
 	public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		Board plansza = player.getPlansza();

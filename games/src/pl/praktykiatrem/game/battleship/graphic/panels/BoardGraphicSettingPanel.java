@@ -20,10 +20,11 @@ public class BoardGraphicSettingPanel extends JPanel {
 	protected ShipButton[][] place = new ShipButton[SIZEH][SIZEV];
 	private IBoardSettingsObserver observer;
 
-	public BoardGraphicSettingPanel() {
+	public BoardGraphicSettingPanel(IBoardSettingsObserver observer) {
 		super(new GridLayout(SIZEH + 1, SIZEV + 1));
 		place = new ShipButton[SIZEH][SIZEV];
 		setSize(330, 330);
+		this.observer = observer;
 		initializeBoard();
 	}
 
