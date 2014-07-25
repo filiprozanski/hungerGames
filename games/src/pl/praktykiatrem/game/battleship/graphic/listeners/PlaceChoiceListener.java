@@ -4,15 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
-import pl.praktykiatrem.game.battleship.graphic.panels.IBoardSettingsObserver;
+import pl.praktykiatrem.game.battleship.graphic.panels.IBoardPlaceObserver;
 
 public class PlaceChoiceListener implements ActionListener {
 	private int x;
 	private int y;
 	private int freq;
-	private IBoardSettingsObserver observer;
+	private IBoardPlaceObserver observer;
 
-	public PlaceChoiceListener(int x, int y, IBoardSettingsObserver observer) {
+	public PlaceChoiceListener(int x, int y, IBoardPlaceObserver observer) {
 		this.x = x;
 		this.y = y;
 		this.observer = observer;

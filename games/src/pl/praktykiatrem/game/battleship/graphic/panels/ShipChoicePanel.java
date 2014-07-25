@@ -10,9 +10,11 @@ import pl.praktykiatrem.game.battleship.graphic.listeners.ShipChoiceListener;
 
 public class ShipChoicePanel extends JPanel {
 	private final int rowsNumber = 7;
+	private IShipChoiceObserver observer;
 
-	public ShipChoicePanel() {
+	public ShipChoicePanel(IShipChoiceObserver observer) {
 		super(new GridLayout(7, 0));
+		this.observer = observer;
 		initialize();
 	}
 
@@ -25,13 +27,13 @@ public class ShipChoicePanel extends JPanel {
 		JButton twoA = new JButton("Dwumasztowiec 1");
 		JButton twoB = new JButton("Dwumasztowiec 2");
 
-		six.addActionListener(new ShipChoiceListener(6));
-		fourA.addActionListener(new ShipChoiceListener(4));
-		fourB.addActionListener(new ShipChoiceListener(4));
-		threeA.addActionListener(new ShipChoiceListener(3));
-		threeB.addActionListener(new ShipChoiceListener(3));
-		twoA.addActionListener(new ShipChoiceListener(2));
-		twoB.addActionListener(new ShipChoiceListener(2));
+		six.addActionListener(new ShipChoiceListener(6, 0, observer));
+		fourA.addActionListener(new ShipChoiceListener(4, 1, observer));
+		fourB.addActionListener(new ShipChoiceListener(4, 2, observer));
+		threeA.addActionListener(new ShipChoiceListener(3, 3, observer));
+		threeB.addActionListener(new ShipChoiceListener(3, 4, observer));
+		twoA.addActionListener(new ShipChoiceListener(2, 5, observer));
+		twoB.addActionListener(new ShipChoiceListener(2, 6, observer));
 
 		add(six);
 		add(fourA);

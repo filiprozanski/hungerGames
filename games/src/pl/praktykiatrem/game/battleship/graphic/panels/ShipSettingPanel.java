@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import pl.praktykiatrem.game.battleship.graphic.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.ISettingView;
 
-public class ShipSettingPanel extends JPanel implements IBoardSettingsObserver,
-		ISettingView {
+public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
+		ISettingView, IShipChoiceObserver {
 	private BoardGraphicSettingPanel boardPanel;
 	private ShipChoicePanel choicePanel;
 	private ReadyButtonPanel readyPanel;
@@ -23,8 +23,7 @@ public class ShipSettingPanel extends JPanel implements IBoardSettingsObserver,
 	private void initialize() {
 		setLayout(new GridLayout(2, 2));
 		boardPanel = new BoardGraphicSettingPanel(this);
-		// boardPanel.setBoardSettingsObserver(this);
-		choicePanel = new ShipChoicePanel();
+		choicePanel = new ShipChoicePanel(this);
 		readyPanel = new ReadyButtonPanel();
 
 		add(boardPanel);
@@ -50,5 +49,9 @@ public class ShipSettingPanel extends JPanel implements IBoardSettingsObserver,
 	@Override
 	public void clicked(int x, int y, int freq) {
 		presenter.placeShip(x, y, freq);
+	}
+	
+	public void choiceDone(int id, int polesNumber){
+		presenter.shipChoiceDone(polesNumber, id);
 	}
 }

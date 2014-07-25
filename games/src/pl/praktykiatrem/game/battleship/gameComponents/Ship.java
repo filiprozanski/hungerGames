@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.gameComponents;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 /**
@@ -14,8 +15,23 @@ public class Ship {
 	 * przechowuje wszystkie koordynaty, na których statek jest umieszczony
 	 */
 	private ArrayList<Coordinates> coords;
+=======
+import java.io.Serializable;
+>>>>>>> refs/remotes/origin/sru
 
-	// private Coordinate direction;
+public class Ship implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public String toString() {
+		return "Ship [shipID=" + shipID + ", polesNumber=" + polesNumber + "]";
+	}
+
+	private transient int polesNumber;
+	private int shipID;
 
 	/**
 	 * 

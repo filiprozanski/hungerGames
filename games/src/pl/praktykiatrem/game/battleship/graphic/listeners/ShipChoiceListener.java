@@ -5,17 +5,23 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import pl.praktykiatrem.game.battleship.graphic.panels.IShipChoiceObserver;
+
 public class ShipChoiceListener implements ActionListener{
 	private int polesNumber;
+	private int id;
+	private IShipChoiceObserver observer;
 	
-	public ShipChoiceListener(int p)
+	public ShipChoiceListener(int p, int id, IShipChoiceObserver observer)
 	{
+		this.observer = observer;
+		this.id = id;
 		polesNumber = p;
 	}
 	
 	public void actionPerformed(ActionEvent evt)
 	{
 		JButton source = (JButton) evt.getSource();
-		source.setEnabled(false);
+		observer.choiceDone(id, polesNumber);
 	}
 }
