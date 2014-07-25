@@ -13,11 +13,10 @@ public class SettingPresenter implements ISettingPresenter {
 	PlayerStatus player;
 	ISettingView view;
 
-	public SettingPresenter(Game gameRules, PlayerStatus player,
-			ISettingView view) {
+	public SettingPresenter(Game gameRules, PlayerStatus player) {
 		this.gameRules = gameRules;
 		this.player = player;
-		this.view = view;
+		view = new ShipSettingPanel(this);
 	}
 
 	public ISettingView getView() {
@@ -25,13 +24,9 @@ public class SettingPresenter implements ISettingPresenter {
 	}
 
 	public SettingPresenter(Game gameRules) {
-		System.out.println("1");
 		this.gameRules = gameRules;
-		System.out.println("2");
 		initializePlayer();
-		System.out.println("3");
 		view = new ShipSettingPanel(this);
-		System.out.println("!");
 	}
 
 	private void initializePlayer() {

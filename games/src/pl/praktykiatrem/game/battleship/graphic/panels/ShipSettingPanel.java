@@ -54,4 +54,22 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	public void choiceDone(int id, int polesNumber){
 		presenter.shipChoiceDone(polesNumber, id);
 	}
+
+	@Override
+	public void disableOneBoardPlace(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableAllBoardPlaces() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableAllBoardPlaces(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
 }
