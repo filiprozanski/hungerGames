@@ -5,7 +5,7 @@ import javax.swing.JButton;
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
 
 public class ShipButton extends JButton {
-	private int callNumber = 0;
+	private int callNumber = 1;
 	private boolean shipIsSet;
 
 	public ShipButton() {
