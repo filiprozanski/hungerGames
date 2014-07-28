@@ -33,7 +33,7 @@ public class BoardGraphicShootingPanel extends JPanel {
     	super(new GridLayout(SIZEH + 1, SIZEV + 1));
     	this.control = control;
         place = new JButton[SIZEH][SIZEV];
-        elements = new Image[4];
+        //elements = new Image[4];
     	setSize(330, 330);
     	initializeBoard();
     }
