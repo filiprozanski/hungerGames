@@ -91,11 +91,16 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	
 	public void enableShipButton(int id)
 	{
-		
+		choicePanel.enableShipButton(id);
 	}
 	
 	public void disableShipButton(int id)
 	{
-		
+		choicePanel.disableShipButton(id);
+	}
+	
+	public void changeButtonCallNumber(int x, int y)
+	{
+		boardPanel.changeButtonCallNumber(x, y);
 	}
 }

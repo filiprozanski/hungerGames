@@ -40,14 +40,6 @@ public class ShipChoicePanel extends JPanel {
 
 		for (JButton button : ships)
 			add(button);
-		
-		/*add(six);
-		add(fourA);
-		add(fourB);
-		add(threeA);
-		add(threeB);
-		add(twoA);
-		add(twoB);*/
 	}
 
 	@Override
@@ -58,5 +50,15 @@ public class ShipChoicePanel extends JPanel {
 	@Override
 	public Dimension getMinimumSize() {
 		return new Dimension(330, 330);
+	}
+	
+	public void enableShipButton(int id)
+	{
+		ships.get(id).setEnabled(true);
+	}
+	
+	public void disableShipButton(int id)
+	{
+		ships.get(id).setEnabled(false);
 	}
 }

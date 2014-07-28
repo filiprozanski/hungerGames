@@ -62,6 +62,11 @@ public class BoardGraphicSettingPanel extends JPanel {
 	public void disableButton(int x, int y) {
 		place[y][x].setEnabled(false);
 	}
+	
+	public void changeButtonCallNumber(int x, int y)
+	{
+		place[y][x].changeCallNumber();
+	}
 
 	private void fillGameBoard() {
 		Insets buttonMargin = new Insets(0, 0, 0, 0);

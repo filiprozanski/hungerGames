@@ -45,7 +45,6 @@ public class SettingPresenter implements ISettingPresenter {
 		switch (freq) {
 		case 1:
 			putInHorizontalDirection(x, y);
-			view.disableAllBoardPlaces(x, y);
 			break;
 		case 2:
 			clearLastChoice(x, y, Direction.HORIZONTAL);
@@ -53,29 +52,35 @@ public class SettingPresenter implements ISettingPresenter {
 			break;
 		case 0:
 			clearLastChoice(x, y, Direction.VERTICAL);
-			view.enableAllBoardPlaces();
 			break;
 		}
 	}
 
 	private void putInVerticalDirection(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.VERTICAL,
-				x, y))
+				x, y)) {
 			drawShipOnBoard(x, y, Direction.VERTICAL);
-
+			view.disableAllBoardPlaces(x, y);
+		}
 	}
 
 	private void putInHorizontalDirection(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
-				x, y))
+				x, y)) {
 			drawShipOnBoard(x, y, Direction.HORIZONTAL);
-		else
+			view.disableAllBoardPlaces(x, y);
+		}
+		else {
 			putInVerticalDirection(x, y);
+			view.changeButtonCallNumber(x, y);
+		}
 	}
 
 	public void clearLastChoice(int x, int y, Direction dir) {
-		if (gameRules.displaceShips(player, id, polesNumber, dir, x, y))
+		if (gameRules.displaceShips(player, id, polesNumber, dir, x, y)) {
 			drawBlankOnBoard(x, y, dir);
+			view.enableAllBoardPlaces();
+		}
 	}
 
 	private void drawShipOnBoard(int x, int y, Direction dir) {
