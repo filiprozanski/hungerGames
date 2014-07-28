@@ -50,4 +50,8 @@ public class Coordinates {
 	else
 	    return false;
     }
+
+    public int hashCode() {
+	return x * 10 + y;
+    }
 }
