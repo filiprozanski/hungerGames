@@ -63,16 +63,12 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void disableAllBoardPlaces() {
-		for (int i = 0; i < 10; i++)
-		{
-			for (int j = 0; j < 10; j++)
-				boardPanel.disableButton(i, j);
-		}
+		boardPanel.disableAllButtons();
 	}
 
 	@Override
 	public void disableAllBoardPlaces(int x, int y) {
-		disableAllBoardPlaces();
+		boardPanel.disableAllButtons();
 		boardPanel.enableButton(x, y);
 	}
 
@@ -83,11 +79,7 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void enableAllBoardPlaces() {
-		for (int i = 0; i < 10; i++)
-		{
-			for (int j = 0; j < 10; j++)
-				boardPanel.enableButton(i, j);
-		}
+		boardPanel.enableAllButtons();
 	}
 	
 	public void enableShipButton(int id)

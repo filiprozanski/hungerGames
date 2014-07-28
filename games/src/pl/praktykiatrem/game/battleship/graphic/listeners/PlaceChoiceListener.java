@@ -21,7 +21,6 @@ public class PlaceChoiceListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent evt) {
 		ShipButton b = (ShipButton) evt.getSource();
-		b.changeCallNumber();
 		freq = b.getCallNumber();
 		observer.clicked(x, y, freq);
 	}

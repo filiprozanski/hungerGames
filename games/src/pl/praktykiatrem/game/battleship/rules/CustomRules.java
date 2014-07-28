@@ -8,7 +8,7 @@ public class CustomRules implements IRules {
 
 	private static final int BOARDSIZE_H = 10;
 	private static final int BOARDSIZE_V = 10;
-	private static final int SHIPTYPES[] = { 6, 4, 4, 3, 3, 2, 2, 1, 1, 1, 1};
+	private static final int SHIPTYPES[] = { 6, 4, 4, 3, 3, 2, 2};
 
 	private boolean putShipOnPlace(Board plansza, int id, int x, int y) {
 		if (!plansza.isShipOnPlace(x, y)) {

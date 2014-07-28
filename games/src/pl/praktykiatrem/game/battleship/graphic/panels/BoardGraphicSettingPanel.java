@@ -56,9 +56,27 @@ public class BoardGraphicSettingPanel extends JPanel {
 		fillGameBoard();
 		drawNumbers();
 	}
+	
+	public void enableAllButtons()
+	{
+		for (int i = 0; i < SIZEH; i++)
+		{
+			for (int j = 0; j < SIZEV; j++)
+				place[j][i].setEnabled(true);
+		}
+	}
 
 	public void enableButton(int x, int y) {
 		place[y][x].setEnabled(true);
+	}
+	
+	public void disableAllButtons()
+	{
+		for (int i = 0; i < SIZEH; i++)
+		{
+			for (int j = 0; j < SIZEV; j++)
+				place[j][i].setEnabled(false);
+		}
 	}
 
 	public void disableButton(int x, int y) {
