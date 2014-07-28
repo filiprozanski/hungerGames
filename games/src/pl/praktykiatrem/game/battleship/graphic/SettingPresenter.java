@@ -65,6 +65,7 @@ public class SettingPresenter implements ISettingPresenter {
 		case 2:
 			clearLastChoice(x, y, Direction.HORIZONTAL);
 			secondClick(x, y);
+			view.changeButtonCallNumber(x, y);
 			break;
 		case 0:
 			clearLastChoice(x, y, Direction.VERTICAL);
@@ -77,8 +78,7 @@ public class SettingPresenter implements ISettingPresenter {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.VERTICAL,
 				x, y)) {
 			drawShipOnBoard(x, y, Direction.VERTICAL);
-			// view.disableAllBoardPlaces(x, y);
-			view.changeButtonCallNumber(x, y);
+
 			return true;
 		}
 		return false;
@@ -88,11 +88,12 @@ public class SettingPresenter implements ISettingPresenter {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
 				x, y)) {
 			drawShipOnBoard(x, y, Direction.HORIZONTAL);
-			// view.disableAllBoardPlaces(x, y);
 			view.changeButtonCallNumber(x, y);
 		} else {
-			if (secondClick(x, y))
+			if (secondClick(x, y)) {
 				view.changeButtonCallNumber(x, y);
+				view.changeButtonCallNumber(x, y);
+			}
 		}
 	}
 
