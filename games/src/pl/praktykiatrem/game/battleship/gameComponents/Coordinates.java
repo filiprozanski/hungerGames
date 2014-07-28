@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.gameComponents;
 
+
 /**
  * Klasa przechowuje koordynaty
  * 
@@ -44,14 +45,16 @@ public class Coordinates {
      * @param other
      * @return zwraca true je¿eli obie wspó³rzêdne s¹ takie same
      */
-    public boolean equals(Coordinates other) {
-	if (this.x == other.x && this.y == other.y)
+    public boolean equals(Object other) {
+	Coordinates other2 = (Coordinates) other;
+
+	if (this.x == other2.getX() && this.y == other2.getY())
 	    return true;
 	else
 	    return false;
     }
 
     public int hashCode() {
-	return x * 10 + y;
+	return this.x * 10 + this.y;
     }
 }
