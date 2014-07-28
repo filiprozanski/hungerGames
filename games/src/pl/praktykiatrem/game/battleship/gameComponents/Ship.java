@@ -95,7 +95,12 @@ public class Ship {
 	coords.remove(c);
     }
 
+    /**
+     * zwraca tablicê aktywnych wspó³rzêdnych statku
+     * 
+     * @return
+     */
     Coordinates[] getCoordsTable() {
-	return (Coordinates[]) coords.toArray();
+	return coords.toArray(new Coordinates[coords.size()]);
     }
 }
