@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.rules.Direction;
@@ -17,7 +18,8 @@ public class SettingPresenter implements ISettingPresenter {
 		this.gameRules = gameRules;
 		this.player = player;
 		view = new ShipSettingPanel(this);
-		view.initialize(gameRules.getShipTypes(), gameRules.getBoardSize_H(), gameRules.getBoardSize_V());
+		view.initialize(gameRules.getShipTypes(), gameRules.getBoardSize_H(),
+				gameRules.getBoardSize_V());
 		view.disableAllBoardPlaces();
 	}
 
@@ -38,50 +40,66 @@ public class SettingPresenter implements ISettingPresenter {
 	public void shipChoiceDone(int polesNumber, int id) {
 		this.polesNumber = polesNumber;
 		this.id = id;
-		view.enableAllBoardPlaces();
-
+		Coordinates tab[] = player.getCoordsTable(id);
+		// view.enableAllBoardPlaces();
+		if (!player.isShipSet(id)) {
+			view.enableAllBoardPlaces();
+			for (int a = 0; a < player.getShipsNumber(); a++) {
+				tab = player.getCoordsTable(a);
+				for (int i = 0; i < tab.length; i++) {
+					view.disableOneBoardPlace(tab[i].getX(), tab[i].getY());
+				}
+			}
+		} else {
+			view.disableAllBoardPlaces();
+			view.enableOneBoardPlace(tab[0].getX(), tab[0].getY());
+		}
 	}
 
 	@Override
 	public void placeShip(int x, int y, int freq) {
 		switch (freq) {
 		case 1:
-			putInHorizontalDirection(x, y);
+			firstClick(x, y);
 			break;
 		case 2:
 			clearLastChoice(x, y, Direction.HORIZONTAL);
-			putInVerticalDirection(x, y);
+			secondClick(x, y);
 			break;
 		case 0:
 			clearLastChoice(x, y, Direction.VERTICAL);
+			view.changeButtonCallNumber(x, y);
 			break;
 		}
 	}
 
-	private void putInVerticalDirection(int x, int y) {
+	private boolean secondClick(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.VERTICAL,
 				x, y)) {
 			drawShipOnBoard(x, y, Direction.VERTICAL);
-			view.disableAllBoardPlaces(x, y);
+			// view.disableAllBoardPlaces(x, y);
+			view.changeButtonCallNumber(x, y);
+			return true;
 		}
+		return false;
 	}
 
-	private void putInHorizontalDirection(int x, int y) {
+	private void firstClick(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
 				x, y)) {
 			drawShipOnBoard(x, y, Direction.HORIZONTAL);
-			view.disableAllBoardPlaces(x, y);
-		}
-		else {
-			putInVerticalDirection(x, y);
+			// view.disableAllBoardPlaces(x, y);
 			view.changeButtonCallNumber(x, y);
+		} else {
+			if (secondClick(x, y))
+				view.changeButtonCallNumber(x, y);
 		}
 	}
 
 	public void clearLastChoice(int x, int y, Direction dir) {
 		if (gameRules.displaceShips(player, id, polesNumber, dir, x, y)) {
 			drawBlankOnBoard(x, y, dir);
-			view.enableAllBoardPlaces();
+			// view.enableAllBoardPlaces();
 		}
 	}
 
