@@ -63,27 +63,30 @@ public class CustomRules implements IRules {
 		}
 		if (dir == Direction.HORIZONTAL) {
 			for (int i = 0; i < polesNumber; i++) {
-				if (plansza.isShipOnPlace(x, y + i))
-					return true;
+				if (!plansza.isShipOnPlace(x, y + i))
+					return false;
 			}
 		} else {
 			for (int i = 0; i < polesNumber; i++) {
-				if (plansza.isShipOnPlace(x + i, y))
-					return true;
+				if (!plansza.isShipOnPlace(x + i, y))
+					return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		Board plansza = player.getPlansza();
-		if (shipPlacingValidation(plansza, polesNumber, direction, x, y)) {
+		if (shipPlacingValidation(plansza, polesNumber, direction, x, y)
+				&& !player.getShip(id).isShipSet()) {
+
 			int x_temp = x;
 			int y_temp = y;
+			player.getShip(id).setShipSet(true);
+			System.out.println(player.isShipSet(id));
 
-			player.setShip(id, polesNumber);
 			for (int i = 0; i < polesNumber; i++) {
 				if (direction == Direction.HORIZONTAL)
 					y_temp = y + i;
@@ -102,10 +105,11 @@ public class CustomRules implements IRules {
 	public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		Board plansza = player.getPlansza();
-		if (shipDisplacingValidation(plansza, polesNumber, direction, x, y)) {
+		if (shipDisplacingValidation(plansza, polesNumber, direction, x, y)
+				&& player.getShip(id).isShipSet()) {
 			int x_temp = x;
 			int y_temp = y;
-			player.setShip(id, polesNumber);
+			player.getShip(id).setShipSet(false);
 			for (int i = 0; i < polesNumber; i++) {
 				if (direction == Direction.HORIZONTAL)
 					y_temp = y + i;

@@ -99,4 +99,8 @@ public class BoardGraphicSettingPanel extends JPanel {
 			}
 		}
 	}
+
+	public void changeCallNumber(int x, int y) {
+		place[y][x].changeCallNumber();
+	}
 }

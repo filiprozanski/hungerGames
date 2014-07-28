@@ -2,9 +2,18 @@ package pl.praktykiatrem.game.battleship.graphic;
 
 public interface ISettingView {
 	public void changePlaceIcon(int x, int y, int type);
+
 	public void disableOneBoardPlace(int x, int y);
+
 	public void disableAllBoardPlaces();
-	public void disableAllBoardPlaces(int x, int y); //pomija przy blokowaniu pole podane w argumentach
+
+	public void disableAllBoardPlaces(int x, int y); // pomija przy blokowaniu
+														// pole podane w
+														// argumentach
+
 	public void enableOneBoardPlace(int x, int y);
+
 	public void enableAllBoardPlaces();
+
+	public void changePlaceFreq(int x, int y);
 }

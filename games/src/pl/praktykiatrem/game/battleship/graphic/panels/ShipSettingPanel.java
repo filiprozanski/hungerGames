@@ -50,8 +50,8 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	public void clicked(int x, int y, int freq) {
 		presenter.placeShip(x, y, freq);
 	}
-	
-	public void choiceDone(int id, int polesNumber){
+
+	public void choiceDone(int id, int polesNumber) {
 		presenter.shipChoiceDone(polesNumber, id);
 	}
 
@@ -62,8 +62,7 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void disableAllBoardPlaces() {
-		for (int i = 0; i < 10; i++)
-		{
+		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++)
 				boardPanel.disableButton(i, j);
 		}
@@ -82,20 +81,22 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void enableAllBoardPlaces() {
-		for (int i = 0; i < 10; i++)
-		{
+		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++)
 				boardPanel.enableButton(i, j);
 		}
 	}
-	
-	public void enableShipButton(int id)
-	{
-		
+
+	public void enableShipButton(int id) {
+
 	}
-	
-	public void disableShipButton(int id)
-	{
-		
+
+	public void disableShipButton(int id) {
+
+	}
+
+	@Override
+	public void changePlaceFreq(int x, int y) {
+		boardPanel.changeCallNumber(x, y);
 	}
 }
