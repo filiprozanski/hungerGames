@@ -15,15 +15,17 @@ import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
 import pl.praktykiatrem.game.battleship.graphic.listeners.PlaceChoiceListener;
 
 public class BoardGraphicSettingPanel extends JPanel {
-	private static final int SIZEH = 10;
-	private static final int SIZEV = 10;
-	protected ShipButton[][] place = new ShipButton[SIZEH][SIZEV];
+	private final int SIZEH;
+	private final int SIZEV;
+	protected ShipButton[][] place;
 	private IBoardPlaceObserver observer;
 
-	public BoardGraphicSettingPanel(IBoardPlaceObserver observer) {
-		super(new GridLayout(SIZEH + 1, SIZEV + 1));
+	public BoardGraphicSettingPanel(IBoardPlaceObserver observer, int sizeH, int sizeV) {
+		super(new GridLayout(sizeH + 1, sizeV + 1));
+		SIZEH = sizeH;
+		SIZEV = sizeV;
 		place = new ShipButton[SIZEH][SIZEV];
-		setSize(330, 330);
+		setSize(30 * SIZEH, 30 * SIZEV);
 		this.observer = observer;
 		initializeBoard();
 	}
@@ -38,15 +40,15 @@ public class BoardGraphicSettingPanel extends JPanel {
 
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(330, 330);
+		return new Dimension(30 * SIZEH, 30 * SIZEV);
 	}
 
 	public Dimension getMinimumDimension() {
-		return new Dimension(330, 330);
+		return new Dimension(30 * SIZEH, 30 * SIZEV);
 	}
 
 	public Dimension getMaximDimension() {
-		return new Dimension(330, 330);
+		return new Dimension(30 * SIZEH, 30 * SIZEV);
 	}
 
 	private void initializeBoard() {

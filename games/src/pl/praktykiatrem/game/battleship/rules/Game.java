@@ -12,12 +12,12 @@ public class Game {
 		isGameOver = false;
 	}
 
-	public int getBoardSize_X() {
-		return rules.getBoardSize_X();
+	public int getBoardSize_H() {
+		return rules.getBoardSize_H();
 	}
 
-	public int getBoardSize_Y() {
-		return rules.getBoardSize_Y();
+	public int getBoardSize_V() {
+		return rules.getBoardSize_V();
 	}
 
 	public int getShipsNumber() {

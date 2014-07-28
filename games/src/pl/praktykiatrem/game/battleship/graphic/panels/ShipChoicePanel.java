@@ -14,29 +14,35 @@ public class ShipChoicePanel extends JPanel {
 	private IShipChoiceObserver observer;
 	private ArrayList<JButton> ships;
 
-	public ShipChoicePanel(IShipChoiceObserver observer) {
+	public ShipChoicePanel(IShipChoiceObserver observer, int[] shipsTypes) {
 		super(new GridLayout(7, 0));
 		ships = new ArrayList<JButton>();
 		this.observer = observer;
-		initialize();
+		initialize(shipsTypes);
 	}
 
-	private void initialize() {
-		ships.add(new JButton("Szesciomasztowiec"));
+	private void initialize(int[] shipTypes) {
+		for(int i = 0; i < shipTypes.length; i++)
+		{
+			ships.add(new JButton("Liczba masztow: " + shipTypes[i]));
+			ships.get(i).addActionListener(new ShipChoiceListener(shipTypes[i], i, observer));
+		}
+		
+		/*ships.add(new JButton("Szesciomasztowiec"));
 		ships.add(new JButton("Czteromasztowiec 1"));
 		ships.add(new JButton("Czteromasztowiec 2"));
 		ships.add(new JButton("Trójmasztowiec 1"));
 		ships.add(new JButton("Trójmasztowiec 2"));
 		ships.add(new JButton("Dwumasztowiec 1"));
-		ships.add(new JButton("Dwumasztowiec 2"));
+		ships.add(new JButton("Dwumasztowiec 2"));*/
 
-		ships.get(0).addActionListener(new ShipChoiceListener(6, 0, observer));
+		/*ships.get(0).addActionListener(new ShipChoiceListener(6, 0, observer));
 		ships.get(1).addActionListener(new ShipChoiceListener(4, 1, observer));
 		ships.get(2).addActionListener(new ShipChoiceListener(4, 2, observer));
 		ships.get(3).addActionListener(new ShipChoiceListener(3, 3, observer));
 		ships.get(4).addActionListener(new ShipChoiceListener(3, 4, observer));
 		ships.get(5).addActionListener(new ShipChoiceListener(2, 5, observer));
-		ships.get(6).addActionListener(new ShipChoiceListener(2, 6, observer));
+		ships.get(6).addActionListener(new ShipChoiceListener(2, 6, observer));*/
 
 		for (JButton button : ships)
 			add(button);

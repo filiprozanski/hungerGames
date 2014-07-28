@@ -6,10 +6,9 @@ import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
 public class CustomRules implements IRules {
 
-	private static final int BOARDSIZE_X = 10;
-	private static final int BOARDSIZE_Y = 10;
-	private static final int SHIPSNUMBER = 7;
-	private static final int SHIPTYPES[] = { 6, 4, 4, 3, 3, 2, 2 };
+	private static final int BOARDSIZE_H = 10;
+	private static final int BOARDSIZE_V = 10;
+	private static final int SHIPTYPES[] = { 6, 4, 4, 3, 3, 2, 2, 1, 1, 1, 1};
 
 	private boolean putShipOnPlace(Board plansza, int id, int x, int y) {
 		if (!plansza.isShipOnPlace(x, y)) {
@@ -32,10 +31,10 @@ public class CustomRules implements IRules {
 	public boolean shipPlacingValidation(Board plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
-			if (y + polesNumber > BOARDSIZE_Y)
+			if (y + polesNumber > BOARDSIZE_V)
 				return false;
 		} else if (dir == Direction.VERTICAL) {
-			if (x + polesNumber > BOARDSIZE_X)
+			if (x + polesNumber > BOARDSIZE_H)
 				return false;
 		}
 		if (dir == Direction.HORIZONTAL) {
@@ -55,10 +54,10 @@ public class CustomRules implements IRules {
 	public boolean shipDisplacingValidation(Board plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
-			if (y + polesNumber > BOARDSIZE_Y)
+			if (y + polesNumber > BOARDSIZE_V)
 				return false;
 		} else if (dir == Direction.VERTICAL) {
-			if (x + polesNumber > BOARDSIZE_X)
+			if (x + polesNumber > BOARDSIZE_H)
 				return false;
 		}
 		if (dir == Direction.HORIZONTAL) {
@@ -147,18 +146,13 @@ public class CustomRules implements IRules {
 	}
 
 	@Override
-	public int getBoardSize_X() {
-		return BOARDSIZE_X;
+	public int getBoardSize_H() {
+		return BOARDSIZE_H;
 	}
 
 	@Override
-	public int getBoardSize_Y() {
-		return BOARDSIZE_Y;
-	}
-
-	@Override
-	public int getShipsNumber() {
-		return SHIPSNUMBER;
+	public int getBoardSize_V() {
+		return BOARDSIZE_V;
 	}
 
 	@Override

@@ -29,11 +29,11 @@ public class PlayerStatus {
 	 * @param shipsNumber liczba statków gracza pozosta³a do zbicia na planszy
 	 * @param shipTypes tablica przechowuj¹ca informacje o typie statków u¿ywanych w rozgrywce
 	 */
-	public PlayerStatus(int boardSize_x, int boardSize_y, int shipsNumber,
+	public PlayerStatus(int boardSizeH, int boardSizeV,
 			int shipTypes[]) {
-		this.shipsNumber = shipsNumber;
+		this.shipsNumber = shipTypes.length;
 		this.shipTypes = shipTypes;
-		plansza = new Board(boardSize_x, boardSize_y);
+		plansza = new Board(boardSizeH, boardSizeV);
 		ships = new Ship[shipsNumber];
 		gamer = new Player();
 	}

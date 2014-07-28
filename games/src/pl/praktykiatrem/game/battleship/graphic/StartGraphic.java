@@ -11,12 +11,11 @@ public class StartGraphic {
 	public static void main(String[] args) {
 		Game g = new Game();
 		
-		int sizeX = g.getBoardSize_X();
-		int sizeY = g.getBoardSize_Y();
-		int shipsNumber = g.getShipsNumber();
+		int sizeX = g.getBoardSize_H();
+		int sizeY = g.getBoardSize_V();
 		int[] shipsType = g.getShipTypes();
 		
-		PlayerStatus p1 = new PlayerStatus(sizeX, sizeY, shipsNumber, shipsType);
+		PlayerStatus p1 = new PlayerStatus(sizeX, sizeY, shipsType);
 		SettingPresenter pres = new SettingPresenter(g, p1);
 
 		ShipSettingPanel panel = (ShipSettingPanel) pres.getView();

@@ -10,4 +10,5 @@ public interface ISettingView {
 	public void enableShipButton(int id);
 	public void disableShipButton(int id);
 	public void changeButtonCallNumber(int x, int y);
+	public void initialize(int[] tab, int sizeH, int sizeV);
 }

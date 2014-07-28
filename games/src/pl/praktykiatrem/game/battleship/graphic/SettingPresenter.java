@@ -17,6 +17,7 @@ public class SettingPresenter implements ISettingPresenter {
 		this.gameRules = gameRules;
 		this.player = player;
 		view = new ShipSettingPanel(this);
+		view.initialize(gameRules.getShipTypes(), gameRules.getBoardSize_H(), gameRules.getBoardSize_V());
 		view.disableAllBoardPlaces();
 	}
 
@@ -25,12 +26,12 @@ public class SettingPresenter implements ISettingPresenter {
 	}
 
 	private void initializePlayer() {
-		int sizeX = gameRules.getBoardSize_X();
-		int sizeY = gameRules.getBoardSize_Y();
+		int sizeX = gameRules.getBoardSize_H();
+		int sizeY = gameRules.getBoardSize_V();
 		int shipsNumber = gameRules.getShipsNumber();
 		int[] shipsType = gameRules.getShipTypes();
 
-		player = new PlayerStatus(sizeX, sizeY, shipsNumber, shipsType);
+		player = new PlayerStatus(sizeX, sizeY, shipsType);
 	}
 
 	@Override

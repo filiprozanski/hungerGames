@@ -14,11 +14,9 @@ public interface IRules {
 	public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y);
 
-	public int getBoardSize_X();
+	public int getBoardSize_H();
 
-	public int getBoardSize_Y();
-
-	public int getShipsNumber();
+	public int getBoardSize_V();
 
 	public int[] getShipTypes();
 }
