@@ -55,7 +55,6 @@ public class SettingPresenter implements ISettingPresenter {
 		this.id = id;
 		Coordinates tab[] = player.getCoordsTable(id).toArray(
 				new Coordinates[10]); // UWAGA!!!!
-		// view.enableAllBoardPlaces();
 		if (!player.isShipSet(id)) {
 			view.enableAllBoardPlaces();
 			getLockedPlaces();
@@ -92,6 +91,7 @@ public class SettingPresenter implements ISettingPresenter {
 
 			return true;
 		}
+		view.changeButtonCallNumber(x, y);
 		return false;
 	}
 
