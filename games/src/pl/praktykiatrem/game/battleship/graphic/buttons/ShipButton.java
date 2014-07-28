@@ -7,8 +7,6 @@ import pl.praktykiatrem.game.battleship.files.ShipIcons;
 public class ShipButton extends JButton {
 	private int callNumber = 0;
 	private boolean shipIsSet;
-	private int x;
-	private int y;
 
 	public ShipButton() {
 		shipIsSet = false;
@@ -22,7 +20,7 @@ public class ShipButton extends JButton {
 		if (callNumber == 2)
 			callNumber = 0;
 		else
-			callNumber = callNumber + 1;
+			callNumber++;
 	}
 
 	public void setPlaceIcon(int type) {

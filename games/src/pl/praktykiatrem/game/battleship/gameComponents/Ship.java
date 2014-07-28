@@ -3,63 +3,86 @@ package pl.praktykiatrem.game.battleship.gameComponents;
 import java.util.ArrayList;
 
 /**
-* reprezentuje statek ustawiany na planszy
-* @author Filip Rózanski
-*
-*/
+ * reprezentuje statek ustawiany na planszy
+ * 
+ * @author Filip Rózanski
+ *
+ */
 public class Ship {
-private int shipID;
-private int polesNumber;
-/**
-* przechowuje wszystkie koordynaty, na których statek jest umieszczony
-*/
-private ArrayList<Coordinates> coords;
+	private int shipID;
+	private int polesNumber;
+	private boolean shipSet;
 
-// private Coordinate direction;
+	/**
+	 * przechowuje wszystkie koordynaty, na których statek jest umieszczony
+	 */
+	private ArrayList<Coordinates> coords;
 
-/**
-*
-* @param polesNumber liczba masztów tworzonego statku
-*/
-public Ship(int polesNumber) {
-this.polesNumber = polesNumber;
-coords = new ArrayList<Coordinates>(polesNumber);
-}
+	// private Coordinate direction;
 
-/**
-* zmniejsza liczbe masztów
-* @return jezeli statek zostaje zatopiony zwraca true
-*/
-public boolean reducePolesNumber() {
-polesNumber--;
-if (polesNumber == 0)
-return true;
-else
-return false;
-}
+	/**
+	 *
+	 * @param polesNumber
+	 *            liczba masztów tworzonego statku
+	 */
+	public Ship(int polesNumber) {
+		this.polesNumber = polesNumber;
+		this.shipSet = false;
+		coords = new ArrayList<Coordinates>(polesNumber);
+	}
 
-/**
-*
-* @return liczba masztów
-*/
-public int getPolesNumber() {
-return polesNumber;
-}
+	/**
+	 * zmniejsza liczbe masztów
+	 * 
+	 * @return jezeli statek zostaje zatopiony zwraca true
+	 */
+	public boolean reducePolesNumber() {
+		polesNumber--;
+		if (polesNumber == 0)
+			return true;
+		else
+			return false;
+	}
 
-/**
-*
-* @return id wybranego statku
-*/
-public int getID() {
-return shipID;
-}
+	/**
+	 *
+	 * @return liczba masztów
+	 */
+	public int getPolesNumber() {
+		return polesNumber;
+	}
 
-/**
-* Dodaje do listy koordynaty
-* @param c dodawane koordynaty
-*/
-void addCoordinate(Coordinates c)
-{
-coords.add(c);
-}
+	/**
+	 *
+	 * @return id wybranego statku
+	 */
+	public int getID() {
+		return shipID;
+	}
+
+	/**
+	 *
+	 * @return czy statek jest ustawiony
+	 */
+	public boolean isShipSet() {
+		return shipSet;
+	}
+
+	/**
+	 * zmienia status statku na ustawiony
+	 * 
+	 */
+	public void setShipSet(boolean shipSet) {
+		this.shipSet = shipSet;
+	}
+
+	/**
+	 * Dodaje do listy koordynaty
+	 * 
+	 * @param c
+	 *            dodawane koordynaty
+	 */
+	void addCoordinate(Coordinates c) {
+		coords.add(c);
+	}
 }

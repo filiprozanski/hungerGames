@@ -39,6 +39,7 @@ public class SettingPresenter implements ISettingPresenter {
 		this.polesNumber = polesNumber;
 		this.id = id;
 		view.enableAllBoardPlaces();
+
 	}
 
 	@Override
@@ -87,12 +88,12 @@ public class SettingPresenter implements ISettingPresenter {
 	private void drawShipOnBoard(int x, int y, Direction dir) {
 		if (dir == Direction.HORIZONTAL) {
 			for (int i = 0; i < polesNumber; i++) {
-				view.changePlaceIcon(x, y, 2);
+				view.changePlaceIcon(x, y, 3);
 				y++;
 			}
 		} else {
 			for (int i = 0; i < polesNumber; i++) {
-				view.changePlaceIcon(x, y, 2);
+				view.changePlaceIcon(x, y, 3);
 				x++;
 			}
 		}

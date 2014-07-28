@@ -51,8 +51,8 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	public void clicked(int x, int y, int freq) {
 		presenter.placeShip(x, y, freq);
 	}
-	
-	public void choiceDone(int id, int polesNumber){
+
+	public void choiceDone(int id, int polesNumber) {
 		presenter.shipChoiceDone(polesNumber, id);
 	}
 
@@ -63,7 +63,14 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void disableAllBoardPlaces() {
+<<<<<<< HEAD
 		boardPanel.disableAllButtons();
+=======
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++)
+				boardPanel.disableButton(i, j);
+		}
+>>>>>>> refs/remotes/origin/Wiktor
 	}
 
 	@Override
@@ -79,13 +86,27 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void enableAllBoardPlaces() {
+<<<<<<< HEAD
 		boardPanel.enableAllButtons();
+=======
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++)
+				boardPanel.enableButton(i, j);
+		}
+>>>>>>> refs/remotes/origin/Wiktor
 	}
+<<<<<<< HEAD
 	
 	public void enableShipButton(int id)
 	{
 		choicePanel.enableShipButton(id);
+=======
+
+	public void enableShipButton(int id) {
+
+>>>>>>> refs/remotes/origin/Wiktor
 	}
+<<<<<<< HEAD
 	
 	public void disableShipButton(int id)
 	{
@@ -95,5 +116,15 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	public void changeButtonCallNumber(int x, int y)
 	{
 		boardPanel.changeButtonCallNumber(x, y);
+=======
+
+	public void disableShipButton(int id) {
+
+	}
+
+	@Override
+	public void changePlaceFreq(int x, int y) {
+		boardPanel.changeCallNumber(x, y);
+>>>>>>> refs/remotes/origin/Wiktor
 	}
 }
