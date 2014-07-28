@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
+import java.util.ArrayList;
+
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
@@ -10,13 +12,15 @@ public class SettingPresenter implements ISettingPresenter {
 	private int polesNumber;
 	private int id;
 
-	Game gameRules;
-	PlayerStatus player;
-	ISettingView view;
+	private Game gameRules;
+	private PlayerStatus player;
+	private ISettingView view;
+	private ArrayList<Coordinates> locked;
 
 	public SettingPresenter(Game gameRules, PlayerStatus player) {
 		this.gameRules = gameRules;
 		this.player = player;
+		locked = new ArrayList<Coordinates>();
 		view = new ShipSettingPanel(this);
 		view.initialize(gameRules.getShipTypes(), gameRules.getBoardSize_H(),
 				gameRules.getBoardSize_V());
@@ -25,6 +29,15 @@ public class SettingPresenter implements ISettingPresenter {
 
 	public ISettingView getView() {
 		return view;
+	}
+
+	private void getLockedPlaces() {
+		ArrayList<Coordinates> tab = new ArrayList<Coordinates>();
+
+		for (int a = 0; a < player.getShipsNumber(); a++)
+			tab.addAll(player.getCoordsTable(a));
+
+		this.locked = tab;
 	}
 
 	private void initializePlayer() {
@@ -40,16 +53,14 @@ public class SettingPresenter implements ISettingPresenter {
 	public void shipChoiceDone(int polesNumber, int id) {
 		this.polesNumber = polesNumber;
 		this.id = id;
-		Coordinates tab[] = player.getCoordsTable(id);
+		Coordinates tab[] = player.getCoordsTable(id).toArray(
+				new Coordinates[10]); // UWAGA!!!!
 		// view.enableAllBoardPlaces();
 		if (!player.isShipSet(id)) {
 			view.enableAllBoardPlaces();
-			for (int a = 0; a < player.getShipsNumber(); a++) {
-				tab = player.getCoordsTable(a);
-				for (int i = 0; i < tab.length; i++) {
-					view.disableOneBoardPlace(tab[i].getX(), tab[i].getY());
-				}
-			}
+			getLockedPlaces();
+			for (Coordinates coord : locked)
+				view.disableOneBoardPlace(coord.getX(), coord.getY());
 		} else {
 			view.disableAllBoardPlaces();
 			view.enableOneBoardPlace(tab[0].getX(), tab[0].getY());
@@ -100,7 +111,9 @@ public class SettingPresenter implements ISettingPresenter {
 	public void clearLastChoice(int x, int y, Direction dir) {
 		if (gameRules.displaceShips(player, id, polesNumber, dir, x, y)) {
 			drawBlankOnBoard(x, y, dir);
-			// view.enableAllBoardPlaces();
+			getLockedPlaces();
+			for (Coordinates coord : locked)
+				view.disableOneBoardPlace(coord.getX(), coord.getY());
 		}
 	}
 
