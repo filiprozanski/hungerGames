@@ -38,6 +38,12 @@ public class Coordinates {
 	return y;
     }
 
+    /**
+     * porównuje dwa obiekty typu Coordinates
+     * 
+     * @param other
+     * @return zwraca true je¿eli obie wspó³rzêdne s¹ takie same
+     */
     public boolean equals(Coordinates other) {
 	if (this.x == other.x && this.y == other.y)
 	    return true;
