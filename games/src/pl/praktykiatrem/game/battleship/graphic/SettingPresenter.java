@@ -71,7 +71,8 @@ public class SettingPresenter implements ISettingPresenter {
 	}
 
 	public void clearLastChoice(int x, int y, Direction dir) {
-		gameRules.displaceShips(player, id, polesNumber, dir, x, y);
+		if (gameRules.displaceShips(player, id, polesNumber, dir, x, y))
+			drawBlankOnBoard(x, y, dir);
 	}
 
 	private void drawShipOnBoard(int x, int y, Direction dir) {
@@ -83,6 +84,20 @@ public class SettingPresenter implements ISettingPresenter {
 		} else {
 			for (int i = 0; i < polesNumber; i++) {
 				view.changePlaceIcon(x, y, 2);
+				x++;
+			}
+		}
+	}
+
+	private void drawBlankOnBoard(int x, int y, Direction dir) {
+		if (dir == Direction.HORIZONTAL) {
+			for (int i = 0; i < polesNumber; i++) {
+				view.changePlaceIcon(x, y, 0);
+				y++;
+			}
+		} else {
+			for (int i = 0; i < polesNumber; i++) {
+				view.changePlaceIcon(x, y, 0);
 				x++;
 			}
 		}
