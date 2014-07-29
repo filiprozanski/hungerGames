@@ -17,6 +17,7 @@ import pl.praktykiatrem.game.battleship.graphic.listeners.PlaceChoiceListener;
 public class BoardGraphicSettingPanel extends JPanel {
 	private final int SIZEH;
 	private final int SIZEV;
+	private final int SIZE_BUTTON = 100;
 	protected ShipButton[][] place;
 	private IBoardPlaceObserver observer;
 
@@ -26,7 +27,7 @@ public class BoardGraphicSettingPanel extends JPanel {
 		SIZEH = sizeH;
 		SIZEV = sizeV;
 		place = new ShipButton[SIZEH][SIZEV];
-		setSize(30 * SIZEH, 30 * SIZEV);
+		setSize(SIZE_BUTTON * SIZEH, SIZE_BUTTON * SIZEV);
 		this.observer = observer;
 		initializeBoard();
 	}
@@ -41,15 +42,15 @@ public class BoardGraphicSettingPanel extends JPanel {
 
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(30 * SIZEH, 30 * SIZEV);
+		return new Dimension(SIZE_BUTTON * SIZEH, SIZE_BUTTON * SIZEV);
 	}
 
 	public Dimension getMinimumDimension() {
-		return new Dimension(30 * SIZEH, 30 * SIZEV);
+		return new Dimension(SIZE_BUTTON * SIZEH, SIZE_BUTTON * SIZEV);
 	}
 
 	public Dimension getMaximDimension() {
-		return new Dimension(30 * SIZEH, 30 * SIZEV);
+		return new Dimension(SIZE_BUTTON * SIZEH, SIZE_BUTTON * SIZEV);
 	}
 
 	private void initializeBoard() {
@@ -92,8 +93,8 @@ public class BoardGraphicSettingPanel extends JPanel {
 
 				b.addActionListener(new PlaceChoiceListener(i, j, observer));
 				b.setMargin(buttonMargin);
-				ImageIcon icon = new ImageIcon(new BufferedImage(30, 30,
-						BufferedImage.TYPE_INT_ARGB));
+				ImageIcon icon = new ImageIcon(new BufferedImage(SIZE_BUTTON,
+						SIZE_BUTTON, BufferedImage.TYPE_INT_ARGB));
 				b.setIcon(icon);
 				b.setBackground(Color.WHITE);
 				// b.setEnabled(false);

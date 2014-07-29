@@ -82,10 +82,20 @@ public class SettingPresenter implements ISettingPresenter {
 		}
 	}
 
+	private void firstClick(int x, int y) {
+		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
+				x, y)) {
+			drawOnBoard(x, y, Direction.HORIZONTAL, id + 1);
+			view.changeButtonCallNumber(x, y, 2);
+		} else {
+			secondClick(x, y);
+		}
+	}
+
 	private void secondClick(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.VERTICAL,
 				x, y)) {
-			drawShipOnBoard(x, y, Direction.VERTICAL);
+			drawOnBoard(x, y, Direction.VERTICAL, id + 1);
 			view.changeButtonCallNumber(x, y, 0);
 		} else {
 			view.changeButtonCallNumber(x, y, 1);
@@ -93,48 +103,24 @@ public class SettingPresenter implements ISettingPresenter {
 
 	}
 
-	private void firstClick(int x, int y) {
-		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
-				x, y)) {
-			drawShipOnBoard(x, y, Direction.HORIZONTAL);
-			view.changeButtonCallNumber(x, y, 2);
-		} else {
-			secondClick(x, y);
-		}
-	}
-
 	public void clearLastChoice(int x, int y, Direction dir) {
 		if (gameRules.displaceShips(player, id, polesNumber, dir, x, y)) {
-			drawBlankOnBoard(x, y, dir);
+			drawOnBoard(x, y, dir, 0);
 			getLockedPlaces();
 			for (Coordinates coord : locked)
 				view.disableOneBoardPlace(coord.getX(), coord.getY());
 		}
 	}
 
-	private void drawShipOnBoard(int x, int y, Direction dir) {
+	private void drawOnBoard(int x, int y, Direction dir, int icon) {
 		if (dir == Direction.HORIZONTAL) {
 			for (int i = 0; i < polesNumber; i++) {
-				view.changePlaceIcon(x, y, 3);
+				view.changePlaceIcon(x, y, icon);
 				y++;
 			}
 		} else {
 			for (int i = 0; i < polesNumber; i++) {
-				view.changePlaceIcon(x, y, 3);
-				x++;
-			}
-		}
-	}
-
-	private void drawBlankOnBoard(int x, int y, Direction dir) {
-		if (dir == Direction.HORIZONTAL) {
-			for (int i = 0; i < polesNumber; i++) {
-				view.changePlaceIcon(x, y, 0);
-				y++;
-			}
-		} else {
-			for (int i = 0; i < polesNumber; i++) {
-				view.changePlaceIcon(x, y, 0);
+				view.changePlaceIcon(x, y, icon);
 				x++;
 			}
 		}
