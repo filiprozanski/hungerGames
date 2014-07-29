@@ -7,18 +7,17 @@ import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class StartGraphic {
 
-    private static JFrame frame1;
-    private static JFrame frame2;
-    private static PlayerStatus player1;
-    private static PlayerStatus player2;
-    private static Game game;
+    private JFrame frame1;
+    private JFrame frame2;
+    private PlayerStatus player1;
+    private PlayerStatus player2;
+    private Game game;
     private IStageObserver observer;
+    private ShootingController sController;
 
     public static void main(String[] args) {
 	StartGraphic start = new StartGraphic();
@@ -66,14 +65,13 @@ public class StartGraphic {
     }
 
     public void stageB() {
-	IShootingPresenter pres1 = new ShootingPresenter(game, player1);
-	IShootingPresenter pres2 = new ShootingPresenter(game, player2);
+	sController = new ShootingController(player1, player2, game);
 
 	frame1.getContentPane().removeAll();
 	frame2.getContentPane().removeAll();
 
-	frame1.getContentPane().add((ShootingPanel) pres1.getView());
-	frame2.getContentPane().add((ShootingPanel) pres2.getView());
+	frame1.getContentPane().add((ShootingPanel) sController.getView(1));
+	frame2.getContentPane().add((ShootingPanel) sController.getView(2));
 
 	frame1.setSize(330, 660);
 	frame2.setSize(330, 660);

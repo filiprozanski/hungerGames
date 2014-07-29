@@ -40,6 +40,11 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
     }
 
     @Override
+    public void changeBattlePlaceIcon(int x, int y, int type) {
+	enemyBoardPanel.changePlaceIcon(x, y, type);
+    }
+
+    @Override
     public Dimension getPreferredSize() {
 	return new Dimension(660, 660);
     }

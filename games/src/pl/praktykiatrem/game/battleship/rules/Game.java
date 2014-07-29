@@ -57,4 +57,8 @@ public class Game {
     public ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id) {
 	return player.getCoords(id);
     }
+
+    public Coordinates[] getCoordsTable(PlayerStatus player, int id) {
+	return player.getCoordsTable(id);
+    }
 }

@@ -16,4 +16,6 @@ public interface IShootingView {
 
     void drawShipLocation(Coordinates[] tab, int id);
 
+    void changeBattlePlaceIcon(int x, int y, int type);
+
 }

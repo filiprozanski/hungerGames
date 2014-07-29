@@ -22,6 +22,8 @@ public class PlayerStatus {
     private int shipTypes[];
     private int shipsNumber;
     private Player gamer;
+    private int playerID;
+    private static int counter = 100001;
 
     // private String name;
 
@@ -40,11 +42,26 @@ public class PlayerStatus {
     public PlayerStatus(int boardSizeH, int boardSizeV, int[] shipTypes) {
 	this.shipsNumber = 0;
 	this.shipTypes = shipTypes;
+	playerID = counter++;
 	plansza = new Board(boardSizeH, boardSizeV);
 	ships = new Ship[shipTypes.length];
 	for (int i = 0; i < shipTypes.length; i++)
 	    setShip(i, shipTypes[i]);
 	gamer = new Player();
+    }
+
+    /**
+     * Porównuje graczy wykorzystuj¹c do tego nadane im ID
+     */
+    public boolean equals(Object other) {
+	if (!(other instanceof PlayerStatus))
+	    return false;
+
+	PlayerStatus other2 = (PlayerStatus) other;
+	if (this.playerID == other2.playerID)
+	    return true;
+	else
+	    return false;
     }
 
     /**
@@ -172,14 +189,34 @@ public class PlayerStatus {
 	ships[ID].addCoordinate(c);
     }
 
+    /**
+     * usuwa podane koordynaty z listy znajduj¹cej siê w statku
+     * 
+     * @param ID
+     *            numer identzfikaczjnz statku
+     * @param c
+     *            koordynaty do usuniêcia
+     */
     public void removeCoordinate(int ID, Coordinates c) {
 	ships[ID].removeCoordinate(c);
     }
 
+    /**
+     * 
+     * @param ID
+     *            numer identyfikacyjny statku
+     * @return listê koordynat, które zajmuje dany statek
+     */
     public ArrayList<Coordinates> getCoords(int ID) {
 	return ships[ID].getCoordsTable();
     }
 
+    /**
+     * 
+     * @param ID
+     *            numer identyfikacyjny statku
+     * @return tablice koordynat, które zajmuje dany statek
+     */
     public Coordinates[] getCoordsTable(int ID) {
 	ArrayList<Coordinates> coordsList = ships[ID].getCoordsTable();
 	return coordsList.toArray(new Coordinates[coordsList.size()]);
