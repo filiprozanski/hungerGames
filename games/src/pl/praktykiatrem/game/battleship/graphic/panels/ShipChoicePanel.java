@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.graphic.listeners.ShipChoiceListener;
+import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
 
 public class ShipChoicePanel extends JPanel {
 	private final int rowsNumber = 7;

@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic.panels;
+package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 

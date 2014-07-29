@@ -6,6 +6,9 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
+import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView;
 
 public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	IShootingView {

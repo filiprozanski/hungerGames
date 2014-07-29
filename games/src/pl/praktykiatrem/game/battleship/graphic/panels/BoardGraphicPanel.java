@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
 import pl.praktykiatrem.game.battleship.graphic.listeners.PlaceChoiceListener;
+import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 
 public class BoardGraphicPanel extends JPanel {
     private int SIZEH;

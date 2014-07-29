@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import pl.praktykiatrem.game.battleship.graphic.panels.IShipChoiceObserver;
+import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
 
 public class ShipChoiceListener implements ActionListener{
 	private int polesNumber;

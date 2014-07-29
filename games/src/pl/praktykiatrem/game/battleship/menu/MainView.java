@@ -16,8 +16,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import pl.praktykiatrem.game.battleship.Controller;
-import pl.praktykiatrem.game.battleship.graphic.SettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingPresenter;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 //import pl.praktykiatrem.game.battleship.graphic.BoardGraphicSeting;

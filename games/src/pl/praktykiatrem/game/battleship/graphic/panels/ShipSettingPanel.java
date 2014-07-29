@@ -5,8 +5,10 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
-import pl.praktykiatrem.game.battleship.graphic.ISettingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.ISettingView;
+import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
+import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingView;
 
 public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	ISettingView, IShipChoiceObserver {

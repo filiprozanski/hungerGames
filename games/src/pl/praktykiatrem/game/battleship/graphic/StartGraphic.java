@@ -3,9 +3,12 @@ package pl.praktykiatrem.game.battleship.graphic;
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.panels.IShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class StartGraphic {
@@ -15,6 +18,7 @@ public class StartGraphic {
     private static PlayerStatus player1;
     private static PlayerStatus player2;
     private static Game game;
+    private IStageObserver observer;
 
     public static void main(String[] args) {
 	StartGraphic start = new StartGraphic();
@@ -25,6 +29,7 @@ public class StartGraphic {
 
     public void initialize() {
 	game = new Game();
+	observer = new SettingController(this);
 
 	int sizeX = game.getBoardSize_H();
 	int sizeY = game.getBoardSize_V();
@@ -48,8 +53,8 @@ public class StartGraphic {
     }
 
     public void stageA() {
-	ISettingPresenter pres1 = new SettingPresenter(game, player1);
-	ISettingPresenter pres2 = new SettingPresenter(game, player2);
+	ISettingPresenter pres1 = new SettingPresenter(game, player1, observer);
+	ISettingPresenter pres2 = new SettingPresenter(game, player2, observer);
 
 	frame1.getContentPane().add((ShipSettingPanel) pres1.getView());
 	frame1.setSize(660, 660);
@@ -75,5 +80,9 @@ public class StartGraphic {
 
 	frame1.setVisible(true);
 	frame2.setVisible(true);
+    }
+
+    public void changeStage() {
+	stageB();
     }
 }
