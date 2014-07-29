@@ -15,24 +15,30 @@ import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
 import pl.praktykiatrem.game.battleship.graphic.listeners.PlaceChoiceListener;
 
 public class BoardGraphicPanel extends JPanel {
-    private final int SIZEH;
-    private final int SIZEV;
+    private int SIZEH;
+    private int SIZEV;
     protected ShipButton[][] place;
     private IBoardPlaceObserver observer;
 
     public BoardGraphicPanel(int sizeH, int sizeV) {
 	super(new GridLayout(sizeH + 1, sizeV + 1));
+	initialize(sizeH, sizeV);
+	initializeBoard();
+    }
+
+    public BoardGraphicPanel(IBoardPlaceObserver observer, int sizeH, int sizeV) {
+	super(new GridLayout(sizeH + 1, sizeV + 1));
+	this.observer = observer;
+	initialize(sizeH, sizeV);
+	initializeBoard();
+    }
+
+    private void initialize(int sizeH, int sizeV) {
+
 	SIZEH = sizeH;
 	SIZEV = sizeV;
 	place = new ShipButton[SIZEH][SIZEV];
 	setSize(30 * SIZEH, 30 * SIZEV);
-	// initializeBoard();
-    }
-
-    public BoardGraphicPanel(IBoardPlaceObserver observer, int sizeH, int sizeV) {
-	this(sizeH, sizeV);
-	this.observer = observer;
-	initializeBoard();
     }
 
     public void setBoardSettingsObserver(IBoardPlaceObserver observer) {
@@ -94,7 +100,9 @@ public class BoardGraphicPanel extends JPanel {
 	    for (int j = 0; j < place[i].length; j++) {
 		ShipButton b = new ShipButton();
 
-		b.addActionListener(new PlaceChoiceListener(i, j, observer));
+		if (observer != null)
+		    b.addActionListener(new PlaceChoiceListener(i, j, observer));
+
 		b.setMargin(buttonMargin);
 		ImageIcon icon = new ImageIcon(new BufferedImage(30, 30,
 			BufferedImage.TYPE_INT_ARGB));
