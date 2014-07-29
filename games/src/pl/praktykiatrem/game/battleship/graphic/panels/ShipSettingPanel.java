@@ -10,7 +10,7 @@ import pl.praktykiatrem.game.battleship.graphic.ISettingView;
 
 public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	ISettingView, IShipChoiceObserver {
-    private BoardGraphicSettingPanel boardPanel;
+    private BoardGraphicPanel boardPanel;
     private ShipChoicePanel choicePanel;
     private ReadyButtonPanel readyPanel;
     private ISettingPresenter presenter;
@@ -22,7 +22,7 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
     public void initialize(int[] shipTypes, int sizeH, int sizeV) {
 	setLayout(new GridLayout(2, 2));
-	boardPanel = new BoardGraphicSettingPanel(this, sizeH, sizeV);
+	boardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
 	choicePanel = new ShipChoicePanel(this, shipTypes);
 	readyPanel = new ReadyButtonPanel();
 
