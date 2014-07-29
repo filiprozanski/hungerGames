@@ -54,15 +54,14 @@ public class SettingPresenter implements ISettingPresenter {
 		this.polesNumber = polesNumber;
 		this.id = id;
 		Coordinates tab[] = player.getCoordsTable(id).toArray(
-				new Coordinates[10]); // UWAGA!!!!
+				new Coordinates[player.getCoordsTable(id).size()]); // UWAGA!!!!
 		if (!player.isShipSet(id)) {
 			view.enableAllBoardPlaces();
 			getLockedPlaces();
 			for (Coordinates coord : locked)
 				view.disableOneBoardPlace(coord.getX(), coord.getY());
 		} else {
-			view.disableAllBoardPlaces();
-			view.enableOneBoardPlace(tab[0].getX(), tab[0].getY());
+			view.disableAllBoardPlaces(tab[0].getX(), tab[0].getY());
 		}
 	}
 
@@ -75,36 +74,32 @@ public class SettingPresenter implements ISettingPresenter {
 		case 2:
 			clearLastChoice(x, y, Direction.HORIZONTAL);
 			secondClick(x, y);
-			view.changeButtonCallNumber(x, y);
 			break;
 		case 0:
 			clearLastChoice(x, y, Direction.VERTICAL);
-			view.changeButtonCallNumber(x, y);
+			view.changeButtonCallNumber(x, y, 1);
 			break;
 		}
 	}
 
-	private boolean secondClick(int x, int y) {
+	private void secondClick(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.VERTICAL,
 				x, y)) {
 			drawShipOnBoard(x, y, Direction.VERTICAL);
-
-			return true;
+			view.changeButtonCallNumber(x, y, 0);
+		} else {
+			view.changeButtonCallNumber(x, y, 1);
 		}
-		view.changeButtonCallNumber(x, y);
-		return false;
+
 	}
 
 	private void firstClick(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
 				x, y)) {
 			drawShipOnBoard(x, y, Direction.HORIZONTAL);
-			view.changeButtonCallNumber(x, y);
+			view.changeButtonCallNumber(x, y, 2);
 		} else {
-			if (secondClick(x, y)) {
-				view.changeButtonCallNumber(x, y);
-				view.changeButtonCallNumber(x, y);
-			}
+			secondClick(x, y);
 		}
 	}
 
