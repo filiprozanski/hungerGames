@@ -62,7 +62,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
     @Override
     public void clicked(int x, int y, int freq) {
 	// TODO Auto-generated method stub
-
+	presenter.shot(x, y);
     }
 
 }

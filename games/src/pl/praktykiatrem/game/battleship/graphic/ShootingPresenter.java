@@ -19,4 +19,12 @@ public class ShootingPresenter implements IShootingPresenter {
 	view.initialize(gameRules.getBoardSize_H(), gameRules.getBoardSize_V());
 	view.disableAllPlayerBoardPlaces();
     }
+
+    public IShootingView getView() {
+	return view;
+    }
+
+    public void shot(int x, int y) {
+
+    }
 }

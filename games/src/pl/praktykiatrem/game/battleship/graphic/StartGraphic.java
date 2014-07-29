@@ -8,22 +8,38 @@ import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class StartGraphic {
 
-	public static void main(String[] args) {
-		Game g = new Game();
-		
-		int sizeX = g.getBoardSize_H();
-		int sizeY = g.getBoardSize_V();
-		int[] shipsType = g.getShipTypes();
-		
-		PlayerStatus p1 = new PlayerStatus(sizeX, sizeY, shipsType);
-		SettingPresenter pres = new SettingPresenter(g, p1);
+    private static JFrame frame1;
+    private static JFrame frame2;
+    private static PlayerStatus player1;
+    private static PlayerStatus player2;
+    private static Game game;
 
-		ShipSettingPanel panel = (ShipSettingPanel) pres.getView();
-		JFrame f = new JFrame();
-		f.getContentPane().add(panel);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(660, 660);
-		f.setVisible(true);
-	}
+    public static void main(String[] args) {
+	game = new Game();
+
+	int sizeX = game.getBoardSize_H();
+	int sizeY = game.getBoardSize_V();
+	int[] shipsType = game.getShipTypes();
+
+	player1 = new PlayerStatus(sizeX, sizeY, shipsType);
+	player2 = new PlayerStatus(sizeX, sizeY, shipsType);
+
+	stageI();
+    }
+
+    public static void stageI() {
+	SettingPresenter pres1 = new SettingPresenter(game, player1);
+	SettingPresenter pres2 = new SettingPresenter(game, player2);
+
+	frame1.getContentPane().add((ShipSettingPanel) pres1.getView());
+	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame1.setSize(660, 660);
+	frame1.setVisible(true);
+
+	frame2.getContentPane().add((ShipSettingPanel) pres2.getView());
+	frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame2.setSize(660, 660);
+	frame2.setVisible(true);
+    }
 
 }
