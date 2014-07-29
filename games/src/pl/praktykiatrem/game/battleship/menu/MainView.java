@@ -37,7 +37,7 @@ public class MainView extends JPanel implements IMainView {
 		GameOverView gameOverView = new GameOverView(this);
 		JPanel game = new JPanel();
 		Game g = new Game();
-		SettingPresenter pres = new SettingPresenter(g);
+		SettingPresenter pres = new SettingPresenter(g, null);
 
 		ShipSettingPanel board = (ShipSettingPanel) pres.getView();
 		// BoardGraphicPanel board = new BoardGraphicPanel(controller);

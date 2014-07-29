@@ -3,16 +3,22 @@ package pl.praktykiatrem.game.battleship.files;
 import javax.swing.ImageIcon;
 
 public class ShipIcons {
-	private static ImageIcon[] elements = new ImageIcon[6];
+	private static ImageIcon[] elements = new ImageIcon[11];
 
 	public static final void createImages() {
 		try {
 			elements[0] = new ImageIcon(ShipIcons.class.getResource("0.png"));// bia³e
-																				// pole
-			elements[1] = new ImageIcon(ShipIcons.class.getResource("1.png"));// pud³o
-			elements[2] = new ImageIcon(ShipIcons.class.getResource("2.png"));// trafiony
-			elements[3] = new ImageIcon(ShipIcons.class.getResource("3.png"));// statek
-			elements[4] = new ImageIcon(ShipIcons.class.getResource("4.png"));// ogieñ!!!
+			elements[1] = new ImageIcon(ShipIcons.class.getResource("1.png"));
+			elements[2] = new ImageIcon(ShipIcons.class.getResource("2.png"));
+			elements[3] = new ImageIcon(ShipIcons.class.getResource("3.png"));
+			elements[4] = new ImageIcon(ShipIcons.class.getResource("4.png"));
+			elements[5] = new ImageIcon(ShipIcons.class.getResource("5.png"));
+			elements[6] = new ImageIcon(ShipIcons.class.getResource("6.png"));
+			elements[7] = new ImageIcon(ShipIcons.class.getResource("7.png"));
+			elements[8] = new ImageIcon(ShipIcons.class.getResource("8.png"));
+			elements[9] = new ImageIcon(ShipIcons.class.getResource("9.png"));
+			elements[10] = new ImageIcon(ShipIcons.class.getResource("10.png"));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -20,6 +26,9 @@ public class ShipIcons {
 	}
 
 	public static ImageIcon getIcon(int type) {
-		return elements[type];
+		if (type <= 10)
+			return elements[type];
+		else
+			return elements[0];
 	}
 }
