@@ -67,7 +67,7 @@ public class StartGraphic {
 	frame2.getContentPane().removeAll();
 
 	frame1.getContentPane().add((ShootingPanel) pres1.getView());
-	frame2.getContentPane().add((ShootingPanel) pres1.getView());
+	frame2.getContentPane().add((ShootingPanel) pres2.getView());
 
 	frame1.setVisible(true);
 	frame2.setVisible(true);
