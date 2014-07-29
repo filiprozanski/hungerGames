@@ -73,8 +73,8 @@ public class StartGraphic {
 	frame1.getContentPane().add((ShootingPanel) sController.getView(1));
 	frame2.getContentPane().add((ShootingPanel) sController.getView(2));
 
-	frame1.setSize(330, 660);
-	frame2.setSize(330, 660);
+	frame1.setSize(660, 660);
+	frame2.setSize(660, 660);
 
 	frame1.setVisible(true);
 	frame2.setVisible(true);

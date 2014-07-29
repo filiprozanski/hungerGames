@@ -4,17 +4,19 @@ import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 
 public interface IShootingView {
 
-    void changePlaceIcon(int x, int y, int type);
+	void changePlaceIcon(int x, int y, int type);
 
-    void disableAllPlayerBoardPlaces();
+	void changeStatus(boolean ready);
 
-    void disableAllEnemyBoardPlaces();
+	void disableAllPlayerBoardPlaces();
 
-    void enableAllEnemyBoardPlaces();
+	void disableAllEnemyBoardPlaces();
 
-    void initialize(int sizeH, int sizeV);
+	void enableAllEnemyBoardPlaces();
 
-    void drawShipLocation(Coordinates[] tab, int id);
+	void initialize(int sizeH, int sizeV);
+
+	void drawShipLocation(Coordinates[] tab, int id);
 
     void changeBattlePlaceIcon(int x, int y, int type);
 
