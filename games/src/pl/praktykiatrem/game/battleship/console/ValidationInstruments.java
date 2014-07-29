@@ -7,7 +7,7 @@
 
 package pl.praktykiatrem.game.battleship.console;
 
-import pl.praktykiatrem.game.battleship.rules.Direction;
+import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 
 public class ValidationInstruments {
 	/**

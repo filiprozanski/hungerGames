@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.rules;
+package pl.praktykiatrem.game.battleship.gameComponents;
 
 public enum Direction {
 	HORIZONTAL, VERTICAL;

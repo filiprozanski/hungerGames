@@ -3,10 +3,10 @@ package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.IStageObserver;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
-import pl.praktykiatrem.game.battleship.rules.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 /**
@@ -50,8 +50,8 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
     private void getLockedPlaces() {
 	ArrayList<Coordinates> tab = new ArrayList<Coordinates>();
 
-	for (int a = 0; a < player.getShipsNumber(); a++)
-	    tab.addAll(player.getCoords(a));
+	for (int a = 0; a < gameRules.getShipsNumber(); a++)
+	    tab.addAll(gameRules.getCoordsList(player, a));
 
 	this.locked = tab;
     }
@@ -65,8 +65,8 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
     public void shipChoiceDone(int polesNumber, int id) {
 	this.polesNumber = polesNumber;
 	this.id = id;
-	Coordinates tab[] = player.getCoords(id).toArray(
-		new Coordinates[player.getCoords(id).size()]); // UWAGA!!!!
+	ArrayList<Coordinates> list = gameRules.getCoordsList(player, id);
+	Coordinates[] tab = list.toArray(new Coordinates[list.size()]); // UWAGA!!!!
 	if (!player.isShipSet(id)) {
 	    lockUsedPlaces();
 	} else {

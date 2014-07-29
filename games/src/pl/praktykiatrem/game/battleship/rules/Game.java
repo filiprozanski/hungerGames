@@ -1,5 +1,9 @@
 package pl.praktykiatrem.game.battleship.rules;
 
+import java.util.ArrayList;
+
+import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
 public class Game {
@@ -48,5 +52,9 @@ public class Game {
 
     public int getActiveShipsNumber(PlayerStatus player) {
 	return rules.getActiveShipsNumber(player);
+    }
+
+    public ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id) {
+	return player.getCoords(id);
     }
 }

@@ -3,6 +3,7 @@ package pl.praktykiatrem.game.battleship.rules;
 import pl.praktykiatrem.game.battleship.console.BoardDrawing;
 import pl.praktykiatrem.game.battleship.gameComponents.Board;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
 public class CustomRules implements IRules {
@@ -26,7 +27,6 @@ public class CustomRules implements IRules {
 	    return true;
 	} else
 	    return false;
-
     }
 
     public boolean shipPlacingValidation(Board plansza, int polesNumber,

@@ -9,8 +9,8 @@ package pl.praktykiatrem.game.battleship.console;
 
 import java.util.Scanner;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.rules.Direction;
 
 /**
  * 
