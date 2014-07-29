@@ -1,4 +1,7 @@
-package pl.praktykiatrem.game.battleship.graphic;
+package pl.praktykiatrem.game.battleship.graphic.shipSetting;
+
+import pl.praktykiatrem.game.battleship.graphic.StartGraphic;
+import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
 
 public class SettingController implements IStageObserver {
     private int readyPlayers;

@@ -7,8 +7,8 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import pl.praktykiatrem.game.battleship.graphic.IStageObserver;
 import pl.praktykiatrem.game.battleship.graphic.listeners.UserStageListener;
+import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
 
 public class ButtonsPanel extends JPanel {
     private JButton ready;

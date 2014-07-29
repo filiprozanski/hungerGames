@@ -3,9 +3,11 @@ package pl.praktykiatrem.game.battleship.graphic;
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingPresenter;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
