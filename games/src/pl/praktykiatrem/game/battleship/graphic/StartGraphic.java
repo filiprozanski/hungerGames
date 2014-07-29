@@ -15,6 +15,13 @@ public class StartGraphic {
     private static Game game;
 
     public static void main(String[] args) {
+	StartGraphic start = new StartGraphic();
+
+	start.initialize();
+	start.stageI();
+    }
+
+    public void initialize() {
 	game = new Game();
 
 	int sizeX = game.getBoardSize_H();
@@ -24,10 +31,11 @@ public class StartGraphic {
 	player1 = new PlayerStatus(sizeX, sizeY, shipsType);
 	player2 = new PlayerStatus(sizeX, sizeY, shipsType);
 
-	stageI();
+	frame1 = new JFrame();
+	frame2 = new JFrame();
     }
 
-    public static void stageI() {
+    public void stageI() {
 	SettingPresenter pres1 = new SettingPresenter(game, player1);
 	SettingPresenter pres2 = new SettingPresenter(game, player2);
 
@@ -41,5 +49,4 @@ public class StartGraphic {
 	frame2.setSize(660, 660);
 	frame2.setVisible(true);
     }
-
 }
