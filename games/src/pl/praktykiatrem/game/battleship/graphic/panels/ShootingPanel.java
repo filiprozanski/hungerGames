@@ -87,6 +87,11 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
     }
 
     @Override
+    public void disableBatlleBoardPlace(int x, int y) {
+	enemyBoardPanel.disableButton(x, y);
+    }
+
+    @Override
     public void disableAllPlayerBoardPlaces() {
 	playerBoardPanel.disableAllButtons();
     }

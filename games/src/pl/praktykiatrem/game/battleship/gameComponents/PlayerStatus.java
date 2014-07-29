@@ -176,7 +176,9 @@ public class PlayerStatus {
      * @param y
      */
     public boolean reducePolesNumber(int x, int y) {
-	return plansza.getPlace(x, y).getShip().reducePolesNumber();
+	Place p = plansza.getPlace(x, y);
+	int shipID = p.getShipId();
+	return removeCoordinate(shipID, new Coordinates(x, y));
     }
 
     /**
@@ -197,8 +199,8 @@ public class PlayerStatus {
      * @param c
      *            koordynaty do usuniêcia
      */
-    public void removeCoordinate(int ID, Coordinates c) {
-	ships[ID].removeCoordinate(c);
+    public boolean removeCoordinate(int ID, Coordinates c) {
+	return ships[ID].removeCoordinate(c);
     }
 
     /**

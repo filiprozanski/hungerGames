@@ -35,9 +35,10 @@ public class ShootingPresenter implements IShootingPresenter {
     }
 
     public void shot(int x, int y) {
-	if (controll.makeMove(player, x, y))
+	if (controll.makeMove(player, x, y)) {
 	    view.changeBattlePlaceIcon(x, y, 10);
-	else
+	    view.disableBatlleBoardPlace(x, y);
+	} else
 	    view.changeBattlePlaceIcon(x, y, 9);
 
     }
