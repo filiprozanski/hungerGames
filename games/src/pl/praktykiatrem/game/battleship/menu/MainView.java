@@ -10,41 +10,52 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
-import pl.praktykiatrem.game.battleship.Controller;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.graphic.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.SettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.ShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.panels.IShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
+import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 //import pl.praktykiatrem.game.battleship.graphic.BoardGraphicSeting;
 
 public class MainView extends JPanel implements IMainView {
+
 	JPanel cards; // a panel that uses CardLayout
 	CardLayout cl;
 
-	public MainView() {
+	private PlayerStatus player;
+	private Game game1;
+
+	public MainView(Game game, PlayerStatus x) {
+		this.player = x;
+		this.game1 = game;
 		inicialize();
 	}
 
 	public void inicialize() {
-		Controller controller = new Controller();
+
 		MenuView menuView = new MenuView(this);
 		CreditsView creditsView = new CreditsView(this);
 		GameOverView gameOverView = new GameOverView(this);
 		JPanel game = new JPanel();
-		Game g = new Game();
-		SettingPresenter pres = new SettingPresenter(g, null);
+		JPanel set = new JPanel();
 
-		ShipSettingPanel board = (ShipSettingPanel) pres.getView();
-		// BoardGraphicPanel board = new BoardGraphicPanel(controller);
+		ISettingPresenter pres1 = new SettingPresenter(game1, player);
+		IShootingPresenter pres2 = new ShootingPresenter(game1, player);
 
 		JButton buttonGoToMenu = new JButton(GoToMenu);
-		game.add(board, BorderLayout.CENTER);
+		JButton buttonGoToMenu1 = new JButton(GoToMenu);
+		set.add((ShipSettingPanel) pres1.getView());
+		set.add(buttonGoToMenu1);
+
+		game.add((ShootingPanel) pres2.getView(), BorderLayout.CENTER);
 		game.add(buttonGoToMenu, BorderLayout.PAGE_END);
+		game.add(buttonGoToMenu);
 
 		buttonGoToMenu.addActionListener(new ActionListener() {
 			@Override
@@ -53,8 +64,16 @@ public class MainView extends JPanel implements IMainView {
 			}
 		});
 
+		buttonGoToMenu1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showMenu();
+			}
+		});
+
 		cards = new JPanel(new CardLayout());
 		cards.add(menuView, MENU);
+		cards.add(set, SET);
 		cards.add(game, GAME);
 		cards.add(gameOverView, GAMEOVER);
 		cards.add(creditsView, CREDITS);
@@ -62,41 +81,15 @@ public class MainView extends JPanel implements IMainView {
 		add(cards, BorderLayout.CENTER);
 	}
 
-	private static void createAndShowGUI() {
-		JFrame out = new JFrame("Battleships");
-		MainView demo = new MainView();
-		out.add(demo);
-		out.pack();
-		out.setVisible(true);
-	}
-
-	public static void main(String[] args) {
-		try {
-			// UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-		} catch (UnsupportedLookAndFeelException ex) {
-			ex.printStackTrace();
-		} catch (IllegalAccessException ex) {
-			ex.printStackTrace();
-		} catch (InstantiationException ex) {
-			ex.printStackTrace();
-		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
-
-		UIManager.put("swing.boldMetal", Boolean.FALSE);
-
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				createAndShowGUI();
-			}
-		});
-	}
-
 	@Override
 	public void startGame() {
 		cl = (CardLayout) (cards.getLayout());
 		cl.show(cards, GAME);
+	}
+
+	public void showSet() {
+		cl = (CardLayout) (cards.getLayout());
+		cl.show(cards, SET);
 	}
 
 	@Override
