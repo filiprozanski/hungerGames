@@ -8,22 +8,54 @@ import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class StartGraphic {
 
+	private static JFrame frame1;
+	private static JFrame frame2;
+	private static PlayerStatus player1;
+	private static PlayerStatus player2;
+	private static Game game;
+
 	public static void main(String[] args) {
-		Game g = new Game();
+		StartGraphic start = new StartGraphic();
 
-		int sizeX = g.getBoardSize_H();
-		int sizeY = g.getBoardSize_V();
-		int[] shipsType = g.getShipTypes();
-
-		PlayerStatus p1 = new PlayerStatus(sizeX, sizeY, shipsType);
-		SettingPresenter pres = new SettingPresenter(g, p1);
-
-		ShipSettingPanel panel = (ShipSettingPanel) pres.getView();
-		JFrame f = new JFrame();
-		f.getContentPane().add(panel);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(660, 660);
-		f.setVisible(true);
+		start.initialize();
+		start.stageI();
 	}
 
+	public void initialize() {
+		game = new Game();
+
+		int sizeX = game.getBoardSize_H();
+		int sizeY = game.getBoardSize_V();
+		int[] shipsType = game.getShipTypes();
+
+		player1 = new PlayerStatus(sizeX, sizeY, shipsType);
+		player2 = new PlayerStatus(sizeX, sizeY, shipsType);
+
+		player1.setName("Filip");
+		player2.setName("Wiktor");
+
+		frame1 = new JFrame(player1.getName());
+		frame2 = new JFrame(player2.getName());
+	}
+
+	public void stageI() {
+		ISettingPresenter pres1 = new SettingPresenter(game, player1);
+		ISettingPresenter pres2 = new SettingPresenter(game, player2);
+
+		frame1.getContentPane().add((ShipSettingPanel) pres1.getView());
+		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame1.setSize(660, 660);
+		frame1.setVisible(true);
+
+		frame2.getContentPane().add((ShipSettingPanel) pres2.getView());
+		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame2.setSize(660, 660);
+		frame2.setVisible(true);
+	}
+
+	/*
+	 * public void stageII { IShootingPresenter pres1 = new
+	 * ShootingPresenter(game, player1); IShootingPresenter pres2 = new
+	 * ShootingPresenter(game, player2); }
+	 */
 }
