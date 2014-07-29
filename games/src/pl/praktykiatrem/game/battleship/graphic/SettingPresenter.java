@@ -86,6 +86,7 @@ public class SettingPresenter implements ISettingPresenter {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
 				x, y)) {
 			drawOnBoard(x, y, Direction.HORIZONTAL, id + 1);
+			view.disableAllBoardPlaces(x, y);
 			view.changeButtonCallNumber(x, y, 2);
 		} else {
 			secondClick(x, y);
@@ -97,6 +98,7 @@ public class SettingPresenter implements ISettingPresenter {
 				x, y)) {
 			drawOnBoard(x, y, Direction.VERTICAL, id + 1);
 			view.changeButtonCallNumber(x, y, 0);
+			view.disableAllBoardPlaces(x, y);
 		} else {
 			view.changeButtonCallNumber(x, y, 1);
 		}
@@ -107,6 +109,7 @@ public class SettingPresenter implements ISettingPresenter {
 		if (gameRules.displaceShips(player, id, polesNumber, dir, x, y)) {
 			drawOnBoard(x, y, dir, 0);
 			getLockedPlaces();
+			view.enableAllBoardPlaces();
 			for (Coordinates coord : locked)
 				view.disableOneBoardPlace(coord.getX(), coord.getY());
 		}
