@@ -33,7 +33,7 @@ public class SettingPresenter implements ISettingPresenter {
 	locked = new ArrayList<Coordinates>();
 	view = new ShipSettingPanel(this);
 	view.initialize(gameRules.getShipTypes(), gameRules.getBoardSize_H(),
-		gameRules.getBoardSize_V());
+		gameRules.getBoardSize_V(), observer);
 	view.disableAllBoardPlaces();
     }
 
@@ -74,6 +74,10 @@ public class SettingPresenter implements ISettingPresenter {
 	}
     }
 
+    /**
+     * odblokowuje wszystkie miejsca, po czym blokuje te znajduj¹ce siê na
+     * liœcie locked
+     */
     private void lockUsedPlaces() {
 	view.enableAllBoardPlaces();
 	getLockedPlaces();
@@ -81,6 +85,9 @@ public class SettingPresenter implements ISettingPresenter {
 	    view.disableOneBoardPlace(coord.getX(), coord.getY());
     }
 
+    /**
+     * mechanizm ustawiania statku
+     */
     @Override
     public void placeShip(int x, int y, int freq) {
 	switch (freq) {
@@ -98,6 +105,13 @@ public class SettingPresenter implements ISettingPresenter {
 	}
     }
 
+    /**
+     * akcje wywolywane po pierwszym kliknieciu guzika
+     * 
+     * @param x
+     *            wspolrzedna guzika
+     * @param y
+     */
     private void firstClick(int x, int y) {
 	if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
 		x, y)) {
@@ -108,6 +122,13 @@ public class SettingPresenter implements ISettingPresenter {
 	}
     }
 
+    /**
+     * akcje wywolywane po drugim klikniêciu guzika
+     * 
+     * @param x
+     *            wspo³rzêdna guzika
+     * @param y
+     */
     private void secondClick(int x, int y) {
 	if (gameRules.placeShips(player, id, polesNumber, Direction.VERTICAL,
 		x, y)) {
@@ -119,6 +140,15 @@ public class SettingPresenter implements ISettingPresenter {
 
     }
 
+    /**
+     * czysci poprzednio ustawione miejsca
+     * 
+     * @param x
+     *            wspolrzêdna guzika
+     * @param y
+     * @param dir
+     *            kierunek ustawienia statku
+     */
     public void clearLastChoice(int x, int y, Direction dir) {
 	if (gameRules.displaceShips(player, id, polesNumber, dir, x, y)) {
 	    drawOnBoard(x, y, dir, 0);
@@ -128,6 +158,17 @@ public class SettingPresenter implements ISettingPresenter {
 	}
     }
 
+    /**
+     * rysuje statek w interfejsie graficznym
+     * 
+     * @param x
+     *            wspó³rzêdna guzika
+     * @param y
+     * @param dir
+     *            kieunek ustawienia statku
+     * @param icon
+     *            typ ikony reprezentuj¹cej statek
+     */
     private void drawOnBoard(int x, int y, Direction dir, int icon) {
 	if (dir == Direction.HORIZONTAL) {
 	    for (int i = 0; i < polesNumber; i++) {

@@ -15,7 +15,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
     private BoardGraphicPanel playerBoardPanel;
     private BoardGraphicPanel enemyBoardPanel;
-    private ReadyButtonPanel buttonPanel;
+    private ButtonsPanel buttonPanel;
     private IShootingPresenter presenter;
 
     public ShootingPanel(IShootingPresenter presenter) {

@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+import pl.praktykiatrem.game.battleship.graphic.IStageObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
@@ -12,9 +13,10 @@ import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingView;
 
 public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	ISettingView, IShipChoiceObserver {
+
     private BoardGraphicPanel boardPanel;
     private ShipChoicePanel choicePanel;
-    private ReadyButtonPanel readyPanel;
+    private ButtonsPanel readyPanel;
     private ISettingPresenter presenter;
 
     public ShipSettingPanel(ISettingPresenter presenter) {
@@ -22,11 +24,12 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	this.presenter = presenter;
     }
 
-    public void initialize(int[] shipTypes, int sizeH, int sizeV) {
+    public void initialize(int[] shipTypes, int sizeH, int sizeV,
+	    IStageObserver observer) {
 	setLayout(new GridLayout(2, 2));
 	boardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
 	choicePanel = new ShipChoicePanel(this, shipTypes);
-	readyPanel = new ReadyButtonPanel();
+	readyPanel = new ButtonsPanel(observer);
 
 	add(boardPanel);
 	add(choicePanel);

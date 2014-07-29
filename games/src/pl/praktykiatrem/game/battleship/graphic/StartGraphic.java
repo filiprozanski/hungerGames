@@ -24,7 +24,7 @@ public class StartGraphic {
 	StartGraphic start = new StartGraphic();
 
 	start.initialize();
-	start.stageB();
+	start.stageA();
     }
 
     public void initialize() {
