@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic.panels;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+
 public interface IShootingView {
 
     void changePlaceIcon(int x, int y, int type);
@@ -11,5 +13,7 @@ public interface IShootingView {
     void enableAllEnemyBoardPlaces();
 
     void initialize(int sizeH, int sizeV);
+
+    void drawShipLocation(Coordinates[] tab, int id);
 
 }

@@ -35,7 +35,7 @@ public class SettingPresenter implements ISettingPresenter {
 		ArrayList<Coordinates> tab = new ArrayList<Coordinates>();
 
 		for (int a = 0; a < player.getShipsNumber(); a++)
-			tab.addAll(player.getCoordsTable(a));
+			tab.addAll(player.getCoords(a));
 
 		this.locked = tab;
 	}
@@ -53,8 +53,8 @@ public class SettingPresenter implements ISettingPresenter {
 	public void shipChoiceDone(int polesNumber, int id) {
 		this.polesNumber = polesNumber;
 		this.id = id;
-		Coordinates tab[] = player.getCoordsTable(id).toArray(
-				new Coordinates[player.getCoordsTable(id).size()]); // UWAGA!!!!
+		Coordinates tab[] = player.getCoords(id).toArray(
+				new Coordinates[player.getCoords(id).size()]); // UWAGA!!!!
 		if (!player.isShipSet(id)) {
 			view.enableAllBoardPlaces();
 			getLockedPlaces();

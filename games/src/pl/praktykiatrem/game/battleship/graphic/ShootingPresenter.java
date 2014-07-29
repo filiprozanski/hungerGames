@@ -17,7 +17,15 @@ public class ShootingPresenter implements IShootingPresenter {
 
 	view = new ShootingPanel(this);
 	view.initialize(gameRules.getBoardSize_H(), gameRules.getBoardSize_V());
+	drawShips();
 	view.disableAllPlayerBoardPlaces();
+    }
+
+    private void drawShips() {
+
+	for (int i = 0; i < gameRules.getShipsNumber(); i++)
+	    view.drawShipLocation(player.getCoordsTable(i), i);
+
     }
 
     public IShootingView getView() {

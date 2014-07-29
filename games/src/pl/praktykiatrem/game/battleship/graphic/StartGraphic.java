@@ -40,7 +40,6 @@ public class StartGraphic {
 	frame2 = new JFrame(player2.getName());
 
 	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame1.setSize(660, 660);
 	frame1.setLocationByPlatform(true);
 
 	frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,9 +52,11 @@ public class StartGraphic {
 	ISettingPresenter pres2 = new SettingPresenter(game, player2);
 
 	frame1.getContentPane().add((ShipSettingPanel) pres1.getView());
+	frame1.setSize(660, 660);
 	frame1.setVisible(true);
 
 	frame2.getContentPane().add((ShipSettingPanel) pres2.getView());
+	frame2.setSize(660, 660);
 	frame2.setVisible(true);
     }
 
@@ -68,6 +69,9 @@ public class StartGraphic {
 
 	frame1.getContentPane().add((ShootingPanel) pres1.getView());
 	frame2.getContentPane().add((ShootingPanel) pres2.getView());
+
+	frame1.setSize(330, 660);
+	frame2.setSize(330, 660);
 
 	frame1.setVisible(true);
 	frame2.setVisible(true);
