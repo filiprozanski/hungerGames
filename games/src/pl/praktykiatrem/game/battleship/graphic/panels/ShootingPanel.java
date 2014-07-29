@@ -5,6 +5,11 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
+import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView;
+
 public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	IShootingView {
 
@@ -57,6 +62,12 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
     @Override
     public void enableAllEnemyBoardPlaces() {
 	enemyBoardPanel.enableAllButtons();
+    }
+
+    @Override
+    public void drawShipLocation(Coordinates[] tab, int id) {
+	for (Coordinates coord : tab)
+	    changePlaceIcon(coord.getX(), coord.getY(), id + 1);
     }
 
     @Override

@@ -1,9 +1,5 @@
 package pl.praktykiatrem.game.battleship.menu;
 
-/*
- * CardLayoutDemo.java
- *
- */
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -13,15 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.SettingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.ShootingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.panels.IShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.rules.Game;
-
-//import pl.praktykiatrem.game.battleship.graphic.BoardGraphicSeting;
 
 public class MainView extends JPanel implements IMainView {
 

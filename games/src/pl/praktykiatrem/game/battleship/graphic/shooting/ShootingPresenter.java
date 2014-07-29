@@ -1,8 +1,6 @@
-package pl.praktykiatrem.game.battleship.graphic;
+package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.panels.IShootingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.panels.IShootingView;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
@@ -17,7 +15,15 @@ public class ShootingPresenter implements IShootingPresenter {
 
 	view = new ShootingPanel(this);
 	view.initialize(gameRules.getBoardSize_H(), gameRules.getBoardSize_V());
+	drawShips();
 	view.disableAllPlayerBoardPlaces();
+    }
+
+    private void drawShips() {
+
+	for (int i = 0; i < gameRules.getShipsNumber(); i++)
+	    view.drawShipLocation(player.getCoordsTable(i), i);
+
     }
 
     public IShootingView getView() {

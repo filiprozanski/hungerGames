@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic;
+package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
 public interface ISettingPresenter {
     public void shipChoiceDone(int polesNumber, int id);

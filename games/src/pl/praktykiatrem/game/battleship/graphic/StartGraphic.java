@@ -4,28 +4,32 @@ import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
+import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class StartGraphic {
 
-	public static void main(String[] args) {
-		Game g = new Game();
+    private static JFrame frame1;
+    private static JFrame frame2;
+    private static PlayerStatus player1;
+    private static PlayerStatus player2;
+    private static Game game;
+    private IStageObserver observer;
 
-		int sizeX = g.getBoardSize_H();
-		int sizeY = g.getBoardSize_V();
-		int[] shipsType = g.getShipTypes();
+    public static void main(String[] args) {
+	StartGraphic start = new StartGraphic();
 
-		PlayerStatus p1 = new PlayerStatus(sizeX, sizeY, shipsType);
-		SettingPresenter pres = new SettingPresenter(g, p1);
+	start.initialize();
+	start.stageB();
+    }
 
-		ShipSettingPanel panel = (ShipSettingPanel) pres.getView();
-		JFrame f = new JFrame();
-		f.getContentPane().add(panel);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(660, 660);
-		f.setVisible(true);
-	}
-
+    public void initialize() {
+	game = new Game();
+	observer = new SettingController(this);
 
 	int sizeX = game.getBoardSize_H();
 	int sizeY = game.getBoardSize_V();
@@ -39,26 +43,46 @@ public class StartGraphic {
 
 	frame1 = new JFrame(player1.getName());
 	frame2 = new JFrame(player2.getName());
+
+	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame1.setLocationByPlatform(true);
+
+	frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame2.setSize(660, 660);
+	frame2.setLocationByPlatform(true);
     }
 
-    public void stageI() {
-	ISettingPresenter pres1 = new SettingPresenter(game, player1);
-	ISettingPresenter pres2 = new SettingPresenter(game, player2);
+    public void stageA() {
+	ISettingPresenter pres1 = new SettingPresenter(game, player1, observer);
+	ISettingPresenter pres2 = new SettingPresenter(game, player2, observer);
 
 	frame1.getContentPane().add((ShipSettingPanel) pres1.getView());
-	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame1.setSize(660, 660);
 	frame1.setVisible(true);
 
 	frame2.getContentPane().add((ShipSettingPanel) pres2.getView());
-	frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame2.setSize(660, 660);
 	frame2.setVisible(true);
     }
 
-    /*
-     * public void stageII { IShootingPresenter pres1 = new
-     * ShootingPresenter(game, player1); IShootingPresenter pres2 = new
-     * ShootingPresenter(game, player2); }
-     */
+    public void stageB() {
+	IShootingPresenter pres1 = new ShootingPresenter(game, player1);
+	IShootingPresenter pres2 = new ShootingPresenter(game, player2);
+
+	frame1.getContentPane().removeAll();
+	frame2.getContentPane().removeAll();
+
+	frame1.getContentPane().add((ShootingPanel) pres1.getView());
+	frame2.getContentPane().add((ShootingPanel) pres2.getView());
+
+	frame1.setSize(330, 660);
+	frame2.setSize(330, 660);
+
+	frame1.setVisible(true);
+	frame2.setVisible(true);
+    }
+
+    public void changeStage() {
+	stageB();
+    }
 }
