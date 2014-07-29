@@ -26,12 +26,13 @@ public class BoardGraphicPanel extends JPanel {
 	SIZEV = sizeV;
 	place = new ShipButton[SIZEH][SIZEV];
 	setSize(30 * SIZEH, 30 * SIZEV);
-	initializeBoard();
+	// initializeBoard();
     }
 
     public BoardGraphicPanel(IBoardPlaceObserver observer, int sizeH, int sizeV) {
 	this(sizeH, sizeV);
 	this.observer = observer;
+	initializeBoard();
     }
 
     public void setBoardSettingsObserver(IBoardPlaceObserver observer) {

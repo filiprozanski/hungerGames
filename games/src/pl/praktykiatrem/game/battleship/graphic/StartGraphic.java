@@ -31,13 +31,16 @@ public class StartGraphic {
 	player1 = new PlayerStatus(sizeX, sizeY, shipsType);
 	player2 = new PlayerStatus(sizeX, sizeY, shipsType);
 
-	frame1 = new JFrame();
-	frame2 = new JFrame();
+	player1.setName("Filip");
+	player2.setName("Wiktor");
+
+	frame1 = new JFrame(player1.getName());
+	frame2 = new JFrame(player2.getName());
     }
 
     public void stageI() {
-	SettingPresenter pres1 = new SettingPresenter(game, player1);
-	SettingPresenter pres2 = new SettingPresenter(game, player2);
+	ISettingPresenter pres1 = new SettingPresenter(game, player1);
+	ISettingPresenter pres2 = new SettingPresenter(game, player2);
 
 	frame1.getContentPane().add((ShipSettingPanel) pres1.getView());
 	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,4 +52,10 @@ public class StartGraphic {
 	frame2.setSize(660, 660);
 	frame2.setVisible(true);
     }
+
+    /*
+     * public void stageII { IShootingPresenter pres1 = new
+     * ShootingPresenter(game, player1); IShootingPresenter pres2 = new
+     * ShootingPresenter(game, player2); }
+     */
 }
