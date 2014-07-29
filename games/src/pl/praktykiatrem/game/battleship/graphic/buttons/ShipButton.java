@@ -16,11 +16,13 @@ public class ShipButton extends JButton {
 		return callNumber;
 	}
 
-	public void changeCallNumber() {
-		if (callNumber == 2)
-			callNumber = 0;
+	public void changeCallNumber(int number) {
+		if (number == 2)
+			callNumber = 2;
+		else if (number == 1)
+			callNumber = 1;
 		else
-			callNumber++;
+			callNumber = 0;
 	}
 
 	public void setPlaceIcon(int type) {

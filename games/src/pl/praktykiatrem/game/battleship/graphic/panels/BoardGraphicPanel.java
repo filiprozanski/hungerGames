@@ -83,8 +83,8 @@ public class BoardGraphicPanel extends JPanel {
 	place[y][x].setEnabled(false);
     }
 
-    public void changeButtonCallNumber(int x, int y) {
-	place[y][x].changeCallNumber();
+    public void changeButtonCallNumber(int x, int y, int number) {
+	place[y][x].changeCallNumber(number);
     }
 
     private void fillGameBoard() {

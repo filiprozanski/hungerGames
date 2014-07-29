@@ -15,7 +15,7 @@ public interface ISettingView {
 
 	public void enableAllBoardPlaces();
 
-	public void changeButtonCallNumber(int x, int y);
+	public void changeButtonCallNumber(int x, int y, int number);
 
 	public void initialize(int[] tab, int sizeH, int sizeV);
 }
