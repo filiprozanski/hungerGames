@@ -9,10 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.SettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.rules.Game;
@@ -39,7 +39,7 @@ public class MainView extends JPanel implements IMainView {
 		JPanel game = new JPanel();
 		JPanel set = new JPanel();
 
-		ISettingPresenter pres1 = new SettingPresenter(game1, player);
+		ISettingPresenter pres1 = new SettingPresenter(game1, player, null);
 		IShootingPresenter pres2 = new ShootingPresenter(game1, player);
 
 		JButton buttonGoToMenu = new JButton(GoToMenu);
