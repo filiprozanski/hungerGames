@@ -99,4 +99,9 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
     public void changeButtonCallNumber(int x, int y, int number) {
 	boardPanel.changeButtonCallNumber(x, y, number);
     }
+
+    @Override
+    public void disableReadyButton() {
+	readyPanel.diableButton();
+    }
 }

@@ -15,7 +15,7 @@ import pl.praktykiatrem.game.battleship.rules.Game;
  * @author Filip Ró¿añski
  *
  */
-public class SettingPresenter implements ISettingPresenter {
+public class SettingPresenter implements ISettingPresenter, IStageObserver {
     private int polesNumber;
     private int id;
 
@@ -33,7 +33,7 @@ public class SettingPresenter implements ISettingPresenter {
 	locked = new ArrayList<Coordinates>();
 	view = new ShipSettingPanel(this);
 	view.initialize(gameRules.getShipTypes(), gameRules.getBoardSize_H(),
-		gameRules.getBoardSize_V(), observer);
+		gameRules.getBoardSize_V(), this);
 	view.disableAllBoardPlaces();
     }
 
@@ -180,6 +180,15 @@ public class SettingPresenter implements ISettingPresenter {
 		view.changePlaceIcon(x, y, icon);
 		x++;
 	    }
+	}
+    }
+
+    @Override
+    public void playerIsReady() {
+	if (gameRules.getActiveShipsNumber(player) == gameRules
+		.getShipsNumber()) {
+	    observer.playerIsReady();
+	    view.disableReadyButton();
 	}
     }
 }

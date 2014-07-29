@@ -21,4 +21,6 @@ public interface IRules {
     public int[] getShipTypes();
 
     public int getShipsNumber();
+
+    public int getActiveShipsNumber(PlayerStatus player);
 }

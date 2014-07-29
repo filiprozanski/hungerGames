@@ -21,4 +21,6 @@ public interface ISettingView {
 
     public void initialize(int[] tab, int sizeH, int sizeV,
 	    IStageObserver observer);
+
+    void disableReadyButton();
 }

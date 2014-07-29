@@ -37,12 +37,12 @@ public class PlayerStatus {
      *            tablica przechowuj¹ca informacje o typie statków u¿ywanych w
      *            rozgrywce
      */
-    public PlayerStatus(int boardSizeH, int boardSizeV, int shipTypes[]) {
-	this.shipsNumber = shipTypes.length;
+    public PlayerStatus(int boardSizeH, int boardSizeV, int[] shipTypes) {
+	this.shipsNumber = 0;
 	this.shipTypes = shipTypes;
 	plansza = new Board(boardSizeH, boardSizeV);
-	ships = new Ship[shipsNumber];
-	for (int i = 0; i < shipsNumber; i++)
+	ships = new Ship[shipTypes.length];
+	for (int i = 0; i < shipTypes.length; i++)
 	    setShip(i, shipTypes[i]);
 	gamer = new Player();
     }
@@ -70,6 +70,21 @@ public class PlayerStatus {
      */
     public int getShipsNumber() {
 	return shipsNumber;
+    }
+
+    /**
+     * zwiêksza liczbê statków o jeden
+     */
+    public void increaseShipsNumber() {
+	shipsNumber++;
+    }
+
+    /**
+     * zmmniejsza liczbê statków o jeden
+     */
+    public void decreaseShipsNumber() {
+	if (shipsNumber > 0)
+	    shipsNumber--;
     }
 
     /**

@@ -11,6 +11,7 @@ import pl.praktykiatrem.game.battleship.graphic.IStageObserver;
 import pl.praktykiatrem.game.battleship.graphic.listeners.UserStageListener;
 
 public class ButtonsPanel extends JPanel {
+    private JButton ready;
 
     public ButtonsPanel(IStageObserver observer) {
 	super(new GridLayout(1, 0));
@@ -18,7 +19,7 @@ public class ButtonsPanel extends JPanel {
     }
 
     private void initialize(IStageObserver observer) {
-	JButton ready = new JButton("Gotowy!");
+	ready = new JButton("Gotowy!");
 	ready.addActionListener(new UserStageListener(observer));
 	add(ready, BorderLayout.CENTER);
     }
@@ -29,5 +30,9 @@ public class ButtonsPanel extends JPanel {
 
     public Dimension gerMinumumSize() {
 	return new Dimension(150, 150);
+    }
+
+    public void diableButton() {
+	ready.setEnabled(false);
     }
 }

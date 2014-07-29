@@ -46,8 +46,7 @@ public class Game {
 	return isGameOver;
     }
 
-    // TO DO!!!
-    private boolean checkIsGameOver() {
-	return false;
+    public int getActiveShipsNumber(PlayerStatus player) {
+	return rules.getActiveShipsNumber(player);
     }
 }

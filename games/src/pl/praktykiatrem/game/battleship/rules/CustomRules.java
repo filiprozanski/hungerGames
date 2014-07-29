@@ -85,6 +85,7 @@ public class CustomRules implements IRules {
 	    int x_temp = x;
 	    int y_temp = y;
 	    player.getShip(id).setShipSet(true);
+	    player.increaseShipsNumber();
 	    System.out.println(player.isShipSet(id));
 
 	    for (int i = 0; i < polesNumber; i++) {
@@ -112,6 +113,7 @@ public class CustomRules implements IRules {
 	    int x_temp = x;
 	    int y_temp = y;
 	    player.getShip(id).setShipSet(false);
+	    player.decreaseShipsNumber();
 	    for (int i = 0; i < polesNumber; i++) {
 		if (direction == Direction.HORIZONTAL)
 		    y_temp = y + i;
@@ -171,5 +173,10 @@ public class CustomRules implements IRules {
 
     public int getShipsNumber() {
 	return SHIPTYPES.length;
+    }
+
+    @Override
+    public int getActiveShipsNumber(PlayerStatus player) {
+	return player.getShipsNumber();
     }
 }
