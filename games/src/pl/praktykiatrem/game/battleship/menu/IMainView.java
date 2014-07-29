@@ -7,12 +7,15 @@ public interface IMainView {
 	final static String GoToMenu = "Przejd¼ do menu.";
 	final static String CREDITS = "O programie";
 	final static String GAMEOVER = "Koniec Gry";
+	static final String SET = "Ustawianie";
 
 	public void startGame();
 
 	public void showCredits();
 
 	public void showMenu();
+
+	public void showSet();
 
 	public void showGameOver();
 }

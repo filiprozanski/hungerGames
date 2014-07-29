@@ -34,6 +34,7 @@ public class MenuView extends JPanel {
 
 		JButton buttonGoToGame = new JButton(mainView.GAME);
 		JButton buttonGoToCredits = new JButton(mainView.CREDITS);
+		JButton buttonGoToSet = new JButton(mainView.SET);
 
 		buttonGoToCredits.addActionListener(new ActionListener() {
 			@Override
@@ -49,11 +50,19 @@ public class MenuView extends JPanel {
 			}
 		});
 
+		buttonGoToSet.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainView.showSet();
+			}
+		});
+
 		buttonGoToCredits.setAlignmentX(100);
 		buttonGoToCredits.setAlignmentY(100);
 
 		add(buttonGoToGame);
 		add(buttonGoToCredits);
+		add(buttonGoToSet);
 	}
 
 	@Override
