@@ -51,14 +51,6 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	}
 
 	@Override
-	public void changeStatus(boolean ready) {
-		if (ready)
-			status_label.setIcon(ready_icon);
-		else
-			status_label.setIcon(wait_icon);
-	}
-
-	@Override
 	public void changePlaceIcon(int x, int y, int type) {
 		playerBoardPanel.changePlaceIcon(x, y, type);
 	}
@@ -114,8 +106,12 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void clicked(int x, int y, int freq) {
-		// TODO Auto-generated method stub
 		presenter.shot(x, y);
+	}
+
+	@Override
+	public void changeStatus(boolean ready) {
+		infoPanel.changeStatus(ready);
 	}
 
 }
