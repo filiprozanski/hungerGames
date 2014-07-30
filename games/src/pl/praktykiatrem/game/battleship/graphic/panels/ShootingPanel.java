@@ -4,12 +4,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import pl.praktykiatrem.game.battleship.files.ShipIcons;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
@@ -20,14 +17,8 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	private BoardGraphicPanel playerBoardPanel;
 	private BoardGraphicPanel enemyBoardPanel;
-	private ButtonsPanel buttonPanel;
+	private InfoPanel infoPanel;
 	private IShootingPresenter presenter;
-	JLabel status_label = new JLabel();
-
-	private ImageIcon ready_icon = new ImageIcon(
-			ShipIcons.class.getResource("shoot.png"));
-	private ImageIcon wait_icon = new ImageIcon(
-			ShipIcons.class.getResource("wait.png"));
 
 	public ShootingPanel(IShootingPresenter presenter) {
 		this.presenter = presenter;
@@ -38,14 +29,12 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 		setLayout(new GridLayout(2, 2));
 		playerBoardPanel = new BoardGraphicPanel(sizeH, sizeV);
 		enemyBoardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
-
-		JLabel status_label = new JLabel(ready_icon);
-		JButton change = new JButton("change");
+		infoPanel = new InfoPanel();
 
 		add(playerBoardPanel);
 		add(enemyBoardPanel);
-		add(status_label);
-		add(change);
+		add(infoPanel);
+		add(new JButton("change"));
 
 		repaint();
 	}
