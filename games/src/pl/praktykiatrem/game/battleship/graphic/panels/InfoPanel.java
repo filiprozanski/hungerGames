@@ -14,7 +14,7 @@ import pl.praktykiatrem.game.battleship.files.ShipIcons;
 
 public class InfoPanel extends JPanel {
 	private JLabel status_label = new JLabel();
-
+	private StatsPanel stats = new StatsPanel();
 	private ImageIcon ready_icon = new ImageIcon(
 			ShipIcons.class.getResource("shoot.png"));
 	private ImageIcon wait_icon = new ImageIcon(
@@ -26,11 +26,19 @@ public class InfoPanel extends JPanel {
 	}
 
 	private void initialize() {
-		// JLabel status_label = new JLabel(ready_icon);
+
 		status_label.setIcon(ready_icon);
+
 		JButton change1 = new JButton("GREEN");
-		JButton change2 = new JButton("RED");
+		JButton change2 = new JButton("YELLOW");
+		JButton change3 = new JButton("RED");
+		JPanel button_panel = new JPanel(new GridLayout(0, 3));
+		button_panel.add(change1);
+		button_panel.add(change2);
+		button_panel.add(change3);
+		add(stats);
 		add(status_label);
+		add(button_panel);
 		add(change1);
 		add(change2);
 		change1.addActionListener(new ActionListener() {
