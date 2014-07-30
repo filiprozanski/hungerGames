@@ -63,4 +63,9 @@ public class InfoPanel extends JPanel {
         stats.setLblEnemyShipsNumber(Integer.toString(enemyShips));
         stats.setLblAccuracyNumber(Integer.toString(accuracy) + "%");
     }
+
+    public void setStats(int playerShips, int enemyShips) {
+        stats.setLblPlayerShipsNumber(Integer.toString(playerShips));
+        stats.setLblEnemyShipsNumber(Integer.toString(enemyShips));
+    }
 }

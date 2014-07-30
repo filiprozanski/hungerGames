@@ -108,4 +108,9 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver, IShoot
     public void setStats(int playerShips, int enemyShips, int accuracy) {
         infoPanel.setStats(playerShips, enemyShips, accuracy);
     }
+
+    @Override
+    public void setStats(int playerShips, int enemyShips) {
+        infoPanel.setStats(playerShips, enemyShips);
+    }
 }

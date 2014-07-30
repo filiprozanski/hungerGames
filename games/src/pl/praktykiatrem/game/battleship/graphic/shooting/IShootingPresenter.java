@@ -1,6 +1,5 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
-
 public interface IShootingPresenter {
     public void shot(int x, int y);
 
@@ -11,4 +10,6 @@ public interface IShootingPresenter {
     void changeStatus(boolean ableToMove);
 
     void setStats(int playerShips, int enemyShips, int accuracy);
+
+    void setStats(int playerShips, int enemyShips);
 }

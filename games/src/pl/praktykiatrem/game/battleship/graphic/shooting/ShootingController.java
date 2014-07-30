@@ -57,7 +57,7 @@ public class ShootingController {
                 boardSettingHit(player2, player1, x, y);
                 return true;
             } else {
-                boardSettingHit(player2, player1, x, y);
+                boardSettingMiss(player2, player1, x, y);
                 return false;
             }
         }
@@ -71,6 +71,7 @@ public class ShootingController {
         b = g.getActiveShipsNumber(victim);
         c = shooter.getAccuracy(true);
         sPres.setStats(a, b, c);
+        vPres.setStats(b, a);
     }
 
     private void boardSettingMiss(PlayerStatus shooter, PlayerStatus victim, int x, int y) {
@@ -84,6 +85,7 @@ public class ShootingController {
         b = g.getActiveShipsNumber(victim);
         c = shooter.getAccuracy(false);
         sPres.setStats(a, b, c);
+        vPres.setStats(b, a);
     }
 
     private IShootingPresenter getPresenter(PlayerStatus player) {
