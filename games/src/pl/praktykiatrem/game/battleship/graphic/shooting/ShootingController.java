@@ -1,9 +1,6 @@
-package pl.praktykiatrem.game.battleship.graphic;
+package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView;
-import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class ShootingController {
@@ -13,7 +10,7 @@ public class ShootingController {
 	private IShootingPresenter pres2;
 	private Game g;
 
-	ShootingController(PlayerStatus player1, PlayerStatus player2, Game g) {
+	public ShootingController(PlayerStatus player1, PlayerStatus player2, Game g) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.g = g;

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.ShootingController;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
@@ -59,6 +58,6 @@ public class ShootingPresenter implements IShootingPresenter {
 	@Override
 	public void changeStatus(boolean ableToMove) {
 		view.changeStateAllEnemyBoardPlaces(ableToMove, lockedPlaces);
-		view.changeStatus(false);
+		view.changeStatus(ableToMove);
 	}
 }

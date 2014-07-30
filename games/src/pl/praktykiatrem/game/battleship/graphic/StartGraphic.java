@@ -9,6 +9,7 @@ import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingController;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class StartGraphic {

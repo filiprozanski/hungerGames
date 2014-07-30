@@ -52,7 +52,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void changeStatus(boolean ready) {
-		if (ready == true)
+		if (ready)
 			status_label.setIcon(ready_icon);
 		else
 			status_label.setIcon(wait_icon);
