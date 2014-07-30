@@ -68,4 +68,9 @@ public class ShootingPresenter implements IShootingPresenter {
     public void setStats(int playerShips, int enemyShips, int accuracy) {
         view.setStats(playerShips, enemyShips, accuracy);
     }
+
+    @Override
+    public void setStats(int playerShips, int enemyShips) {
+        view.setStats(playerShips, enemyShips);
+    }
 }

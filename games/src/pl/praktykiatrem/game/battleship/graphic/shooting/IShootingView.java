@@ -24,4 +24,6 @@ public interface IShootingView {
 
     void setStats(int playerShips, int enemyShips, int accuracy);
 
+    void setStats(int playerShips, int enemyShips);
+
 }
