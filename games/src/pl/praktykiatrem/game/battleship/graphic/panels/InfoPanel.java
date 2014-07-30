@@ -39,8 +39,7 @@ public class InfoPanel extends JPanel {
 		add(stats);
 		add(status_label);
 		add(button_panel);
-		add(change1);
-		add(change2);
+
 		change1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
