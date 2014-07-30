@@ -15,11 +15,9 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 		ISettingView, IShipChoiceObserver {
 
 	private BoardGraphicPanel boardPanel;
-
 	private ShipChoicePanel choicePanel;
-
 	private ButtonsPanel readyPanel;
-
+	private LegendPanel legendPanel;
 	private ISettingPresenter presenter;
 
 	public ShipSettingPanel(ISettingPresenter presenter) {
@@ -34,10 +32,11 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 		boardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
 		choicePanel = new ShipChoicePanel(this, shipTypes);
 		readyPanel = new ButtonsPanel(observer);
-
+		legendPanel = new LegendPanel();
 		add(boardPanel);
 		add(choicePanel);
 		add(readyPanel);
+		add(legendPanel);
 
 		repaint();
 	}
