@@ -23,7 +23,7 @@ public class ShipIcons {
 			elements[8] = new ImageIcon(ShipIcons.class.getResource("8.png"));
 			elements[9] = new ImageIcon(ShipIcons.class.getResource("9.png"));
 			elements[10] = new ImageIcon(ShipIcons.class.getResource("10.png"));
-			okIcon = new ImageIcon(ShipIcons.class.getResource("ok.png"));
+			okIcon = new ImageIcon(ShipIcons.class.getResource("ok1.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
