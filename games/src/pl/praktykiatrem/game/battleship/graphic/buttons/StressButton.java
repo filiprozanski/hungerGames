@@ -1,8 +1,7 @@
 /*
  * Plik stworzony dnia 30 lip 2014 przez filipr
- *
- * Copyright ATREM S.A.
- * ATREM 2014(C)
+ * 
+ * Copyright ATREM S.A. ATREM 2014(C)
  */
 
 package pl.praktykiatrem.game.battleship.graphic.buttons;
@@ -16,23 +15,22 @@ import javax.swing.JButton;
 
 public class StressButton extends JButton {
     private int hitNumber = 0;
-    
-    public StressButton()
-    {
-        setBackground(new Color(255, 0, 0));
+
+    public StressButton() {
+        setBackground(new Color(135, 206, 235));
         setFont(new Font("Tahoma", Font.PLAIN, 17));
         setText("StressButton");
         addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event){
+            @Override
+            public void actionPerformed(ActionEvent event) {
                 hitNumber++;
                 String text = Integer.toString(hitNumber);
                 changeDescription(text);
             }
         });
     }
-    
-    private void changeDescription(String text)
-    {
+
+    private void changeDescription(String text) {
         this.setText(text);
     }
 }
