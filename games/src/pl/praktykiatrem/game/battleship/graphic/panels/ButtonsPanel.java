@@ -11,34 +11,48 @@ import pl.praktykiatrem.game.battleship.graphic.listeners.UserStageListener;
 import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
 
 public class ButtonsPanel extends JPanel {
-	private JButton ready;
-	private JButton reset;
-	private JButton autoSet;
+    private JButton ready;
 
-	public ButtonsPanel(IStageObserver observer) {
-		super(new GridLayout(3, 0));
-		initialize(observer);
-	}
+    private JButton reset;
 
-	private void initialize(IStageObserver observer) {
-		ready = new JButton("Gotowy!");
-		reset = new JButton("Resetuj planszê!");
-		autoSet = new JButton("Ustaw statki automatycznie!");
-		ready.addActionListener(new UserStageListener(observer));
-		add(ready, BorderLayout.CENTER);
-		add(autoSet, BorderLayout.CENTER);
-		add(reset, BorderLayout.CENTER);
-	}
+    private JButton autoSet;
 
-	public Dimension gerPrefferedSize() {
-		return new Dimension(150, 150);
-	}
+    public ButtonsPanel(IStageObserver observer) {
+        super(new GridLayout(3, 0));
+        initialize(observer);
+    }
 
-	public Dimension gerMinumumSize() {
-		return new Dimension(150, 150);
-	}
+    private void initialize(IStageObserver observer) {
+        ready = new JButton("Zacznij ustawiaæ statki!");
+        reset = new JButton("Resetuj planszê!");
+        autoSet = new JButton("Ustaw statki automatycznie!");
+        ready.addActionListener(new UserStageListener(observer));
+        ready.setEnabled(false);
+        add(ready, BorderLayout.CENTER);
+        add(autoSet, BorderLayout.CENTER);
+        add(reset, BorderLayout.CENTER);
+    }
 
-	public void diableButton() {
-		ready.setEnabled(false);
-	}
+    public Dimension gerPrefferedSize() {
+        return new Dimension(150, 150);
+    }
+
+    public Dimension gerMinumumSize() {
+        return new Dimension(150, 150);
+    }
+
+    public void diableButton() {
+        ready.setEnabled(false);
+        ready.setText("Czekam na drugiego gracza!");
+    }
+
+    public void setReadyButtonState(int state) {
+        if (state == 0) {
+            ready.setEnabled(true);
+            ready.setText("GOTOWY!");
+        } else {
+            ready.setEnabled(false);
+            ready.setText("Pozosta³o statków: " + state);
+        }
+    }
 }
