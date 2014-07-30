@@ -64,7 +64,7 @@ public class BoardGraphicPanel extends JPanel {
 	}
 
 	private void initializeBoard() {
-		setBackground(Color.LIGHT_GRAY);
+		setBackground(new Color(135, 206, 235));
 		fillGameBoard();
 		drawNumbers();
 	}

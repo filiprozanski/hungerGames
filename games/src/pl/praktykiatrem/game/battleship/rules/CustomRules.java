@@ -86,7 +86,6 @@ public class CustomRules implements IRules {
 	    int y_temp = y;
 	    player.getShip(id).setShipSet(true);
 	    player.increaseShipsNumber();
-	    System.out.println(player.isShipSet(id));
 
 	    for (int i = 0; i < polesNumber; i++) {
 		if (direction == Direction.HORIZONTAL)
@@ -98,7 +97,6 @@ public class CustomRules implements IRules {
 		else
 		    player.addCoordinates(id, new Coordinates(x_temp, y_temp));
 	    }
-	    BoardDrawing.drawGameBoardForPlayer(plansza);
 	    return true;
 	} else
 	    return false;
