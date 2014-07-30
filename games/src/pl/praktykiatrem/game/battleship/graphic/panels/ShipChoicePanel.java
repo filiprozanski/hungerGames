@@ -31,10 +31,7 @@ public class ShipChoicePanel extends JPanel {
 		for (int i = 0; i < shipTypes.length; i++) {
 			ships.add(new JButton("Liczba masztow: " + shipTypes[i], ShipIcons
 					.getIcon(i + 1)));
-			// ships.get(i).setBorderPainted(false);
-			// ships.get(i).setFocusPainted(false);
 			ships.get(i).setContentAreaFilled(false);
-			// ships.get(i).setBackground(new Color(135, 206, 235));
 			ships.get(i).addActionListener(
 					new ShipChoiceListener(shipTypes[i], i, observer));
 		}

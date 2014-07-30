@@ -12,95 +12,100 @@ import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView;
 
-public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
-		IShootingView {
+public class ShootingPanel extends JPanel implements IBoardPlaceObserver, IShootingView {
 
-	private BoardGraphicPanel playerBoardPanel;
-	private BoardGraphicPanel enemyBoardPanel;
-	private InfoPanel infoPanel;
-	private IShootingPresenter presenter;
+    private BoardGraphicPanel  playerBoardPanel;
 
-	public ShootingPanel(IShootingPresenter presenter) {
-		this.presenter = presenter;
-	}
+    private BoardGraphicPanel  enemyBoardPanel;
 
-	@Override
-	public void initialize(int sizeH, int sizeV) {
-		setLayout(new GridLayout(2, 2));
-		playerBoardPanel = new BoardGraphicPanel(sizeH, sizeV);
-		enemyBoardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
-		infoPanel = new InfoPanel();
+    private InfoPanel          infoPanel;
 
-		add(playerBoardPanel);
-		add(enemyBoardPanel);
-		add(infoPanel);
-		add(new JButton("change"));
+    private IShootingPresenter presenter;
 
-		repaint();
-	}
+    public ShootingPanel(IShootingPresenter presenter) {
+        this.presenter = presenter;
+    }
 
-	@Override
-	public void changePlaceIcon(int x, int y, int type) {
-		playerBoardPanel.changePlaceIcon(x, y, type);
-	}
+    @Override
+    public void initialize(int sizeH, int sizeV) {
+        setLayout(new GridLayout(2, 2));
+        playerBoardPanel = new BoardGraphicPanel(sizeH, sizeV);
+        enemyBoardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
+        infoPanel = new InfoPanel();
 
-	@Override
-	public void changeBattlePlaceIcon(int x, int y, int type) {
-		enemyBoardPanel.changePlaceIcon(x, y, type);
-	}
+        add(playerBoardPanel);
+        add(enemyBoardPanel);
+        add(infoPanel);
+        add(new JButton("change"));
 
-	@Override
-	public Dimension getPreferredSize() {
-		return new Dimension(660, 660);
-	}
+        repaint();
+    }
 
-	@Override
-	public Dimension getMinimumSize() {
-		return new Dimension(660, 660);
-	}
+    @Override
+    public void changePlaceIcon(int x, int y, int type) {
+        playerBoardPanel.changePlaceIcon(x, y, type);
+    }
 
-	@Override
-	public void disableBatlleBoardPlace(int x, int y) {
-		enemyBoardPanel.disableButton(x, y);
-	}
+    @Override
+    public void changeBattlePlaceIcon(int x, int y, int type) {
+        enemyBoardPanel.changePlaceIcon(x, y, type);
+    }
 
-	@Override
-	public void disableAllPlayerBoardPlaces() {
-		playerBoardPanel.changeStateAllButtons(false);
-	}
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(660, 660);
+    }
 
-	@Override
-	public void changeStateAllEnemyBoardPlaces(boolean enable,
-			ArrayList<Coordinates> lockedPlaces) {
-		enemyBoardPanel.changeStateAllButtons(enable);
+    @Override
+    public Dimension getMinimumSize() {
+        return new Dimension(660, 660);
+    }
 
-		if (enable) {
-			int x = 0;
-			int y = 0;
+    @Override
+    public void disableBatlleBoardPlace(int x, int y) {
+        enemyBoardPanel.disableButton(x, y);
+    }
 
-			for (Coordinates a : lockedPlaces) {
-				x = a.getX();
-				y = a.getY();
+    @Override
+    public void disableAllPlayerBoardPlaces() {
+        playerBoardPanel.changeStateAllButtons(false);
+    }
 
-				enemyBoardPanel.disableButton(x, y);
-			}
-		}
-	}
+    @Override
+    public void changeStateAllEnemyBoardPlaces(boolean enable, ArrayList<Coordinates> lockedPlaces) {
+        enemyBoardPanel.changeStateAllButtons(enable);
 
-	@Override
-	public void drawShipLocation(Coordinates[] tab, int id) {
-		for (Coordinates coord : tab)
-			changePlaceIcon(coord.getX(), coord.getY(), id + 1);
-	}
+        if (enable) {
+            int x = 0;
+            int y = 0;
 
-	@Override
-	public void clicked(int x, int y, int freq) {
-		presenter.shot(x, y);
-	}
+            for (Coordinates a : lockedPlaces) {
+                x = a.getX();
+                y = a.getY();
 
-	@Override
-	public void changeStatus(boolean ready) {
-		infoPanel.changeStatus(ready);
-	}
+                enemyBoardPanel.disableButton(x, y);
+            }
+        }
+    }
 
+    @Override
+    public void drawShipLocation(Coordinates[] tab, int id) {
+        for (Coordinates coord : tab)
+            changePlaceIcon(coord.getX(), coord.getY(), id + 1);
+    }
+
+    @Override
+    public void clicked(int x, int y, int freq) {
+        presenter.shot(x, y);
+    }
+
+    @Override
+    public void changeStatus(boolean ready) {
+        infoPanel.changeStatus(ready);
+    }
+
+    @Override
+    public void setStats(int playerShips, int enemyShips, int accuracy) {
+        infoPanel.setStats(playerShips, enemyShips, accuracy);
+    }
 }

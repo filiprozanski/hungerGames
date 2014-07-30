@@ -7,13 +7,13 @@ public interface IRules {
 
     public boolean getCurrentPlayer();
 
-    public boolean placeShips(PlayerStatus p, int id, int polesNumber,
-	    Direction direction, int x, int y);
+    public boolean placeShips(PlayerStatus p, int id, int polesNumber, Direction direction, int x,
+            int y);
 
     public boolean makeMove(PlayerStatus p, int x, int y);
 
-    public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
-	    Direction direction, int x, int y);
+    public boolean displaceShips(PlayerStatus player, int id, int polesNumber, Direction direction,
+            int x, int y);
 
     public int getBoardSize_H();
 
@@ -24,4 +24,6 @@ public interface IRules {
     public int getShipsNumber();
 
     public int getActiveShipsNumber(PlayerStatus player);
+
+    public int getAccuracy(PlayerStatus player, boolean hit);
 }
