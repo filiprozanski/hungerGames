@@ -41,7 +41,7 @@ public class StatsPanel extends JPanel {
         gbc_lblPlayerShips.gridy = 0;
         add(lblPlayerShips, gbc_lblPlayerShips);
         
-        lblPlayerShipsNumber = new JLabel("1");
+        lblPlayerShipsNumber = new JLabel("-");
         lblPlayerShipsNumber.setFont(new Font("Tahoma", Font.PLAIN, 17));
         GridBagConstraints gbc_lblPlayerShipsNumber = new GridBagConstraints();
         gbc_lblPlayerShipsNumber.insets = new Insets(0, 0, 5, 0);
@@ -57,7 +57,7 @@ public class StatsPanel extends JPanel {
         gbc_lblEnemyShips.gridy = 1;
         add(lblEnemyShips, gbc_lblEnemyShips);
         
-        lblEnemyShipsNumber = new JLabel("2");
+        lblEnemyShipsNumber = new JLabel("-");
         lblEnemyShipsNumber.setFont(new Font("Tahoma", Font.PLAIN, 17));
         GridBagConstraints gbc_lblEnemyShipsNumber = new GridBagConstraints();
         gbc_lblEnemyShipsNumber.insets = new Insets(0, 0, 5, 0);
@@ -73,7 +73,7 @@ public class StatsPanel extends JPanel {
         gbc_lblAccuracy.gridy = 2;
         add(lblAccuracy, gbc_lblAccuracy);
         
-        lblAccuracyNumber = new JLabel("3");
+        lblAccuracyNumber = new JLabel("-");
         lblAccuracyNumber.setFont(new Font("Tahoma", Font.PLAIN, 17));
         GridBagConstraints gbc_lblAccuracyNumber = new GridBagConstraints();
         gbc_lblAccuracyNumber.gridx = 1;

@@ -11,95 +11,102 @@ import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingView;
 
-public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
-		ISettingView, IShipChoiceObserver {
+public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver, ISettingView,
+        IShipChoiceObserver {
 
-	private BoardGraphicPanel boardPanel;
-	private ShipChoicePanel choicePanel;
-	private ButtonsPanel readyPanel;
-	private ISettingPresenter presenter;
+    private BoardGraphicPanel boardPanel;
 
-	public ShipSettingPanel(ISettingPresenter presenter) {
+    private ShipChoicePanel   choicePanel;
 
-		this.presenter = presenter;
-	}
+    private ButtonsPanel      readyPanel;
 
-	@Override
-	public void initialize(int[] shipTypes, int sizeH, int sizeV,
-			IStageObserver observer) {
-		setLayout(new GridLayout(2, 2));
-		boardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
-		choicePanel = new ShipChoicePanel(this, shipTypes);
-		readyPanel = new ButtonsPanel(observer);
+    private ISettingPresenter presenter;
 
-		add(boardPanel);
-		add(choicePanel);
-		add(readyPanel);
+    public ShipSettingPanel(ISettingPresenter presenter) {
 
-		repaint();
-	}
+        this.presenter = presenter;
+    }
 
-	@Override
-	public void changePlaceIcon(int x, int y, int type) {
-		boardPanel.changePlaceIcon(x, y, type);
-	}
+    @Override
+    public void initialize(int[] shipTypes, int sizeH, int sizeV, IStageObserver observer) {
+        setLayout(new GridLayout(2, 2));
+        boardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
+        choicePanel = new ShipChoicePanel(this, shipTypes);
+        readyPanel = new ButtonsPanel(observer);
 
-	@Override
-	public Dimension getPreferredSize() {
-		return new Dimension(660, 660);
-	}
+        add(boardPanel);
+        add(choicePanel);
+        add(readyPanel);
 
-	@Override
-	public Dimension getMinimumSize() {
-		return new Dimension(660, 660);
-	}
+        repaint();
+    }
 
-	@Override
-	public void clicked(int x, int y, int freq) {
-		presenter.placeShip(x, y, freq);
-	}
+    @Override
+    public void changePlaceIcon(int x, int y, int type) {
+        boardPanel.changePlaceIcon(x, y, type);
+    }
 
-	@Override
-	public void choiceDone(int id, int polesNumber) {
-		presenter.shipChoiceDone(polesNumber, id);
-	}
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(660, 660);
+    }
 
-	@Override
-	public void disableOneBoardPlace(int x, int y) {
-		boardPanel.disableButton(x, y);
-	}
+    @Override
+    public Dimension getMinimumSize() {
+        return new Dimension(660, 660);
+    }
 
-	@Override
-	public void changeStateAllBoardPlaces(boolean enable) {
-		boardPanel.changeStateAllButtons(enable);
-	}
+    @Override
+    public void clicked(int x, int y, int freq) {
+        presenter.placeShip(x, y, freq);
+    }
 
-	@Override
-	public void disableAllBoardPlaces(int x, int y) {
-		boardPanel.changeStateAllButtons(false);
-		boardPanel.enableButton(x, y);
-	}
+    @Override
+    public void choiceDone(int id, int polesNumber) {
+        presenter.shipChoiceDone(polesNumber, id);
+    }
 
-	@Override
-	public void enableOneBoardPlace(int x, int y) {
-		boardPanel.enableButton(x, y);
-	}
+    @Override
+    public void disableOneBoardPlace(int x, int y) {
+        boardPanel.disableButton(x, y);
+    }
 
-	public void enableShipButton(int id) {
-		choicePanel.enableShipButton(id);
-	}
+    @Override
+    public void changeStateAllBoardPlaces(boolean enable) {
+        boardPanel.changeStateAllButtons(enable);
+    }
 
-	public void disableShipButton(int id) {
-		choicePanel.disableShipButton(id);
-	}
+    @Override
+    public void disableAllBoardPlaces(int x, int y) {
+        boardPanel.changeStateAllButtons(false);
+        boardPanel.enableButton(x, y);
+    }
 
-	@Override
-	public void changeButtonCallNumber(int x, int y, int number) {
-		boardPanel.changeButtonCallNumber(x, y, number);
-	}
+    @Override
+    public void enableOneBoardPlace(int x, int y) {
+        boardPanel.enableButton(x, y);
+    }
 
-	@Override
-	public void disableReadyButton() {
-		readyPanel.diableButton();
-	}
+    public void enableShipButton(int id) {
+        choicePanel.enableShipButton(id);
+    }
+
+    public void disableShipButton(int id) {
+        choicePanel.disableShipButton(id);
+    }
+
+    @Override
+    public void changeButtonCallNumber(int x, int y, int number) {
+        boardPanel.changeButtonCallNumber(x, y, number);
+    }
+
+    @Override
+    public void disableReadyButton() {
+        readyPanel.diableButton();
+    }
+
+    @Override
+    public void setReadyButtonState(int state) {
+        readyPanel.setReadyButtonState(state);
+    }
 }
