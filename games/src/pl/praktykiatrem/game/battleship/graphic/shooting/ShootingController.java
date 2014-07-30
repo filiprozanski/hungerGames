@@ -28,6 +28,9 @@ public class ShootingController {
         pres1 = new ShootingPresenter(g, player1, this);
         pres2 = new ShootingPresenter(g, player2, this);
 
+        pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
+        pres2.setStats(g.getShipsNumber(), g.getShipsNumber());
+
         pres1.changeStatus(true);
         pres2.changeStatus(false);
     }
@@ -66,6 +69,7 @@ public class ShootingController {
     private void boardSettingHit(PlayerStatus shooter, PlayerStatus victim, int x, int y) {
         IShootingPresenter sPres = getPresenter(shooter);
         IShootingPresenter vPres = getPresenter(victim);
+
         vPres.changeIcon(x, y, 8);
         a = g.getActiveShipsNumber(shooter);
         b = g.getActiveShipsNumber(victim);
