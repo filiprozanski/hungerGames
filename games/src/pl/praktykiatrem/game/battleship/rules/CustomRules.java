@@ -122,7 +122,6 @@ public class CustomRules implements IRules {
 		else
 		    player.removeCoordinate(id, new Coordinates(x_temp, y_temp));
 	    }
-	    BoardDrawing.drawGameBoardForPlayer(plansza);
 	    return true;
 	} else
 	    return false;
