@@ -18,10 +18,6 @@ public class ShootingPresenter implements IShootingPresenter {
 
     private ArrayList<Coordinates> lockedPlaces;
 
-    PlayerStatus getOwner() {
-        return player;
-    }
-
     public ShootingPresenter(Game gameRules, PlayerStatus player, ShootingController controll) {
         this.gameRules = gameRules;
         this.player = player;

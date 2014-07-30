@@ -9,9 +9,11 @@ import java.util.ArrayList;
  *
  */
 public class Ship {
-    private int shipID;
-    private int polesNumber;
-    private boolean shipSet;
+    private int                    shipID;
+
+    private int                    polesNumber;
+
+    private boolean                shipSet;
 
     /**
      * przechowuje wszystkie koordynaty, na których statek jest umieszczony
@@ -26,9 +28,9 @@ public class Ship {
      *            liczba masztów tworzonego statku
      */
     public Ship(int polesNumber) {
-	this.polesNumber = 0;
-	this.shipSet = false;
-	coords = new ArrayList<Coordinates>(polesNumber);
+        this.polesNumber = 0;
+        this.shipSet = false;
+        coords = new ArrayList<Coordinates>(polesNumber);
     }
 
     /**
@@ -37,11 +39,11 @@ public class Ship {
      * @return jezeli statek zostaje zatopiony zwraca true
      */
     public boolean reducePolesNumber() {
-	polesNumber--;
-	if (polesNumber == 0)
-	    return true;
-	else
-	    return false;
+        polesNumber--;
+        if (polesNumber == 0)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -49,7 +51,7 @@ public class Ship {
      * @return liczba masztów
      */
     public int getPolesNumber() {
-	return coords.size();
+        return coords.size();
     }
 
     /**
@@ -57,7 +59,7 @@ public class Ship {
      * @return id wybranego statku
      */
     public int getID() {
-	return shipID;
+        return shipID;
     }
 
     /**
@@ -65,7 +67,7 @@ public class Ship {
      * @return czy statek jest ustawiony
      */
     public boolean isShipSet() {
-	return shipSet;
+        return shipSet;
     }
 
     /**
@@ -73,7 +75,7 @@ public class Ship {
      * 
      */
     public void setShipSet(boolean shipSet) {
-	this.shipSet = shipSet;
+        this.shipSet = shipSet;
     }
 
     /**
@@ -83,8 +85,8 @@ public class Ship {
      *            dodawane koordynaty
      */
     void addCoordinate(Coordinates c) {
-	coords.add(c);
-	polesNumber++;
+        coords.add(c);
+        polesNumber++;
     }
 
     /**
@@ -92,9 +94,10 @@ public class Ship {
      * 
      * @param c
      */
-    boolean removeCoordinate(Coordinates c) {
-	polesNumber--;
-	return coords.remove(c);
+    int removeCoordinate(Coordinates c) {
+        polesNumber--;
+        coords.remove(c);
+        return coords.size();
     }
 
     /**
@@ -103,6 +106,6 @@ public class Ship {
      * @return
      */
     ArrayList<Coordinates> getCoordsTable() {
-	return coords;
+        return coords;
     }
 }

@@ -46,44 +46,52 @@ public class ShootingController {
     public boolean makeMove(PlayerStatus player, int x, int y) {
         if (player.equals(player1)) {
             if (g.makeMove(player2, x, y)) {
-
+                boardSettingHit(player1, player2, x, y);
                 return true;
             } else {
-                pres2.changeIcon(x, y, 9);
-                pres2.changeStatus(true);
-                pres1.changeStatus(false);
-                a = g.getActiveShipsNumber(player1);
-                b = g.getActiveShipsNumber(player2);
-                c = player1.getAccuracy(false);
-                pres1.setStats(a, b, c);
+                boardSettingMiss(player1, player2, x, y);
                 return false;
             }
         } else {
             if (g.makeMove(player1, x, y)) {
-                pres1.changeIcon(x, y, 8);
-                a = g.getActiveShipsNumber(player2);
-                b = g.getActiveShipsNumber(player1);
-                c = player2.getAccuracy(true);
-                pres2.setStats(a, b, c);
+                boardSettingHit(player2, player1, x, y);
                 return true;
             } else {
-                pres1.changeIcon(x, y, 9);
-                pres1.changeStatus(true);
-                pres2.changeStatus(false);
-                a = g.getActiveShipsNumber(player2);
-                b = g.getActiveShipsNumber(player1);
-                c = player2.getAccuracy(false);
-                pres2.setStats(a, b, c);
+                boardSettingHit(player2, player1, x, y);
                 return false;
             }
         }
     }
 
-    private void boardSettingHit(IShootingPresenter pres1, IShootingPresenter pres2, int x, int y) {
-        pres2.changeIcon(x, y, 8);
-        a = g.getActiveShipsNumber(player1);
-        b = g.getActiveShipsNumber(player2);
-        c = player1.getAccuracy(true);
-        pres1.setStats(a, b, c);
+    private void boardSettingHit(PlayerStatus shooter, PlayerStatus victim, int x, int y) {
+        IShootingPresenter sPres = getPresenter(shooter);
+        IShootingPresenter vPres = getPresenter(victim);
+        vPres.changeIcon(x, y, 8);
+        a = g.getActiveShipsNumber(shooter);
+        b = g.getActiveShipsNumber(victim);
+        c = shooter.getAccuracy(true);
+        sPres.setStats(a, b, c);
+    }
+
+    private void boardSettingMiss(PlayerStatus shooter, PlayerStatus victim, int x, int y) {
+        IShootingPresenter sPres = getPresenter(shooter);
+        IShootingPresenter vPres = getPresenter(victim);
+
+        vPres.changeIcon(x, y, 9);
+        vPres.changeStatus(true);
+        sPres.changeStatus(false);
+        a = g.getActiveShipsNumber(shooter);
+        b = g.getActiveShipsNumber(victim);
+        c = shooter.getAccuracy(false);
+        sPres.setStats(a, b, c);
+    }
+
+    private IShootingPresenter getPresenter(PlayerStatus player) {
+        if (player.equals(player1))
+            return pres1;
+        else if (player.equals(player2))
+            return pres2;
+        else
+            return null;
     }
 }
