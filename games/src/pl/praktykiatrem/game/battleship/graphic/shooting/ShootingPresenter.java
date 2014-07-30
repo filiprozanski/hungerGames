@@ -7,70 +7,132 @@ import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
+/**
+ * 
+ * Klasa <code>ShootingPresenter</code>
+ *
+ * odpowiada za sterowanie zachowaniem interfejsu graficznego fazy strzelania
+ *
+ * @author filipr
+ * @version 30 lip 2014 15:18:49
+ *
+ */
 public class ShootingPresenter implements IShootingPresenter {
-    private Game                   gameRules;
+	/**
+	 * obiekt udostêpniaj±cy akcje wykonywane w trakcie gry
+	 */
+	private Game gameRules;
+	/**
+	 * obiekt reprezentuj±cy gracza, który korzysta ze sterowanego interfejsu
+	 */
+	private PlayerStatus player;
+	/**
+	 * obiekt przechowuj±cy interfejs graficzny
+	 */
+	private IShootingView view;
+	/**
+	 * obiekt reprezentuj±cy controller nadzoruj±cy fazê strzelania
+	 */
+	private ShootingController controll;
+	/**
+	 * lista miejsc, które zawsze pozostaj± zablokowane
+	 */
+	private ArrayList<Coordinates> lockedPlaces;
 
-    private PlayerStatus           player;
+	/**
+	 * 
+	 * Tworzy nowy obiekt klasy <code>ShootingPresenter</code>
+	 *
+	 * @param gameRules
+	 * @param player
+	 * @param controll
+	 */
+	public ShootingPresenter(Game gameRules, PlayerStatus player,
+			ShootingController controll) {
+		this.gameRules = gameRules;
+		this.player = player;
+		this.controll = controll;
+		this.lockedPlaces = new ArrayList<Coordinates>();
 
-    private IShootingView          view;
+		view = new ShootingPanel(this);
+		view.initialize(gameRules.getBoardSize_H(), gameRules.getBoardSize_V());
+		drawShips();
+		view.disableAllPlayerBoardPlaces();
+	}
 
-    private ShootingController     controll;
+	/**
+	 * 
+	 * Metoda <code>drawShips</code>
+	 * 
+	 * rysuje wcze¶niej ustawione statki na planszy gracza
+	 *
+	 */
+	private void drawShips() {
+		for (int i = 0; i < gameRules.getShipsNumber(); i++)
+			view.drawShipLocation(gameRules.getCoordsTable(player, i), i);
+	}
 
-    private ArrayList<Coordinates> lockedPlaces;
+	/**
+	 * 
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter#getView()
+	 */
+	@Override
+	public IShootingView getView() {
+		return view;
+	}
 
-    public ShootingPresenter(Game gameRules, PlayerStatus player, ShootingController controll) {
-        this.gameRules = gameRules;
-        this.player = player;
-        this.controll = controll;
-        this.lockedPlaces = new ArrayList<Coordinates>();
+	/**
+	 * 
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter#shot(int,
+	 *      int)
+	 */
+	@Override
+	public void shot(int x, int y) {
+		if (controll.makeMove(player, x, y)) {
+			view.changeBattlePlaceIcon(x, y, 10);
+			view.disableBatlleBoardPlace(x, y);
+			lockedPlaces.add(new Coordinates(x, y));
+		} else
+			view.changeBattlePlaceIcon(x, y, 9);
+	}
 
-        view = new ShootingPanel(this);
-        view.initialize(gameRules.getBoardSize_H(), gameRules.getBoardSize_V());
-        drawShips();
-        view.disableAllPlayerBoardPlaces();
-    }
+	/**
+	 * 
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter#changeIcon(int,
+	 *      int, int)
+	 */
+	@Override
+	public void changeIcon(int x, int y, int type) {
+		view.changePlaceIcon(x, y, type);
+	}
 
-    private void drawShips() {
+	/**
+	 * 
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter#changeStatus(boolean)
+	 */
+	@Override
+	public void changeStatus(boolean ableToMove) {
+		view.changeStateAllEnemyBoardPlaces(ableToMove, lockedPlaces);
+		view.changeStatus(ableToMove);
+	}
 
-        for (int i = 0; i < gameRules.getShipsNumber(); i++)
-            view.drawShipLocation(gameRules.getCoordsTable(player, i), i);
+	/**
+	 * 
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter#setStats(int,
+	 *      int, int)
+	 */
+	@Override
+	public void setStats(int playerShips, int enemyShips, int accuracy) {
+		view.setStats(playerShips, enemyShips, accuracy);
+	}
 
-    }
-
-    @Override
-    public IShootingView getView() {
-        return view;
-    }
-
-    @Override
-    public void shot(int x, int y) {
-        if (controll.makeMove(player, x, y)) {
-            view.changeBattlePlaceIcon(x, y, 10);
-            view.disableBatlleBoardPlace(x, y);
-            lockedPlaces.add(new Coordinates(x, y));
-        } else
-            view.changeBattlePlaceIcon(x, y, 9);
-
-    }
-
-    @Override
-    public void changeIcon(int x, int y, int type) {
-        view.changePlaceIcon(x, y, type);
-    }
-
-    @Override
-    public void changeStatus(boolean ableToMove) {
-        view.changeStateAllEnemyBoardPlaces(ableToMove, lockedPlaces);
-        view.changeStatus(ableToMove);
-    }
-
-    @Override
-    public void setStats(int playerShips, int enemyShips, int accuracy) {
-        view.setStats(playerShips, enemyShips, accuracy);
-    }
-
-    @Override
-    public void setStats(int playerShips, int enemyShips) {
-        view.setStats(playerShips, enemyShips);
-    }
+	/**
+	 * 
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter#setStats(int,
+	 *      int)
+	 */
+	@Override
+	public void setStats(int playerShips, int enemyShips) {
+		view.setStats(playerShips, enemyShips);
+	}
 }

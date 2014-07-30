@@ -16,20 +16,45 @@ import pl.praktykiatrem.game.battleship.rules.Game;
  *
  */
 public class SettingPresenter implements ISettingPresenter, IStageObserver {
+	/**
+	 * zmienna u¿ywana do ustawiania staków, przechowuje liczbe masztów
+	 * aktualnie wybranego statku
+	 */
 	private int polesNumber;
-
+	/**
+	 * zmienna u¿ywana do ustawiania statków, przechowuje ID aktualnie wybranego
+	 * statku
+	 */
 	private int id;
-
+	/**
+	 * obiekt który koordynuje korzystanie z odpowiednich zasad
+	 */
 	private Game gameRules;
-
+	/**
+	 * reprezentacja gracza, który wykonuje swoje ruchy poprzez dany interfejs
+	 */
 	private PlayerStatus player;
-
+	/**
+	 * interfejs graficzny etapu ustawiania statków
+	 */
 	private ISettingView view;
-
+	/**
+	 * lista przycisków, które powinny byæ zablokowane
+	 */
 	private ArrayList<Coordinates> locked;
-
+	/**
+	 * obserwator zmiany etapu gry poprzez klikniêcie przycisku "ready"
+	 */
 	private IStageObserver observer;
 
+	/**
+	 * 
+	 * Tworzy nowy obiekt klasy <code>SettingPresenter</code>
+	 *
+	 * @param gameRules
+	 * @param player
+	 * @param observer
+	 */
 	public SettingPresenter(Game gameRules, PlayerStatus player,
 			IStageObserver observer) {
 		this.gameRules = gameRules;
@@ -43,7 +68,8 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 	}
 
 	/**
-	 * zwraca panel do wyœwietlenia
+	 * 
+	 * @see pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter#getView()
 	 */
 	@Override
 	public ISettingView getView() {
@@ -63,9 +89,9 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 	}
 
 	/**
-	 * funkcja wywo³ywana przy ka¿dym naciœniêciu przycisku reprezentuj¹cego
-	 * statek zapisuje informacje o nim do zmiennych globalnych, do
-	 * wykorzystania przy ustawianiu statków, kontroluje równie¿
+	 * 
+	 * @see pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter#shipChoiceDone(int,
+	 *      int)
 	 */
 	@Override
 	public void shipChoiceDone(int polesNumber, int id) {
@@ -92,7 +118,9 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 	}
 
 	/**
-	 * mechanizm ustawiania statku
+	 * 
+	 * @see pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter#placeShip(int,
+	 *      int, int)
 	 */
 	@Override
 	public void placeShip(int x, int y, int freq) {

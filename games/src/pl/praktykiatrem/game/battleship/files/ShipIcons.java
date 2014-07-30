@@ -6,13 +6,37 @@ import java.awt.image.BufferedImage;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+/**
+ * 
+ * Klasa <code>ShipIcons</code>
+ *
+ * klasa odpowiada za przygotowanie i przekazanie do aplikacji odpowiednich
+ * obrazów
+ *
+ * @author filipr
+ * @version 30 lip 2014 15:06:47
+ *
+ */
 public class ShipIcons {
+	/**
+	 * tablica przechowuj±ca tablicê gotowych obrazów
+	 */
 	private static ImageIcon[] elements = new ImageIcon[11];
+	/**
+	 * obiekt przechowuj±cy ikonê "ok"
+	 */
 	private static ImageIcon okIcon = new ImageIcon();
 
+	/**
+	 * 
+	 * Metoda <code>createImages</code>
+	 * 
+	 * wype³nia tablicê obrazami
+	 *
+	 */
 	public static final void createImages() {
 		try {
-			elements[0] = new ImageIcon(ShipIcons.class.getResource("0.png"));// bia³e
+			elements[0] = new ImageIcon(ShipIcons.class.getResource("0.png"));
 			elements[1] = new ImageIcon(ShipIcons.class.getResource("1.png"));
 			elements[2] = new ImageIcon(ShipIcons.class.getResource("2.png"));
 			elements[3] = new ImageIcon(ShipIcons.class.getResource("3.png"));
@@ -30,6 +54,15 @@ public class ShipIcons {
 		}
 	}
 
+	/**
+	 * 
+	 * Metoda <code>getOkIcon</code>
+	 * 
+	 * zwraca ikonê "ok"
+	 *
+	 * @param type
+	 * @return ikona ok
+	 */
 	public static ImageIcon getOkIcon(int type) {
 
 		final BufferedImage img1 = iconToBufferedImage(elements[type]);
@@ -45,6 +78,15 @@ public class ShipIcons {
 		return new ImageIcon(combinedImage);
 	}
 
+	/**
+	 * 
+	 * Metoda <code>iconToBufferedImage</code>
+	 * 
+	 * Wiktor, czy móg³bym prosiæ Ciê o komentarz? ;*
+	 *
+	 * @param icon
+	 * @return i tu te¿
+	 */
 	public static BufferedImage iconToBufferedImage(Icon icon) {
 		if (icon == null)
 			return null;
@@ -55,6 +97,14 @@ public class ShipIcons {
 		return image;
 	}
 
+	/**
+	 * 
+	 * Metoda <code>getIcon</code>
+	 *
+	 * @param type
+	 *            okre¶la typ ikony
+	 * @return odpowiedni± ikonê, okre¶lon± przez argument type
+	 */
 	public static ImageIcon getIcon(int type) {
 		if (type <= 10)
 			return elements[type];
