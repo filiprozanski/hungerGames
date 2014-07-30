@@ -2,8 +2,6 @@ package pl.praktykiatrem.game.battleship.graphic.panels;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,29 +27,14 @@ public class InfoPanel extends JPanel {
 
 		status_label.setIcon(ready_icon);
 
-		JButton change1 = new JButton("GREEN");
-		JButton change2 = new JButton("YELLOW");
-		JButton change3 = new JButton("RED");
-		JPanel button_panel = new JPanel(new GridLayout(0, 3));
-		button_panel.add(change1);
-		button_panel.add(change2);
-		button_panel.add(change3);
+		JButton giveUp = new JButton("Poddaj siê");
+		JPanel button_panel = new JPanel(new GridLayout(0, 2));
+		button_panel.add(new JLabel("Tu stress button"));
+		button_panel.add(giveUp);
+
 		add(stats);
 		add(status_label);
 		add(button_panel);
-
-		change1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				changeStatus(true);
-			}
-		});
-		change2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				changeStatus(false);
-			}
-		});
 
 	}
 
