@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
@@ -54,6 +56,9 @@ public class StartGraphic {
 
         frame1.setResizable(false);
         frame2.setResizable(false);
+
+        frame1.setBackground(new Color(135, 206, 235));
+        frame2.setBackground(new Color(135, 206, 235));
 
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame1.setLocationByPlatform(true);

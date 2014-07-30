@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic.panels;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -12,48 +13,50 @@ import pl.praktykiatrem.game.battleship.graphic.listeners.ShipChoiceListener;
 import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
 
 public class ShipChoicePanel extends JPanel {
-	private final int rowsNumber = 7;
-	private IShipChoiceObserver observer;
-	private ArrayList<JButton> ships;
+    private final int           rowsNumber = 7;
 
-	public ShipChoicePanel(IShipChoiceObserver observer, int[] shipsTypes) {
-		super(new GridLayout(7, 0));
-		ships = new ArrayList<JButton>();
-		this.observer = observer;
-		initialize(shipsTypes);
-	}
+    private IShipChoiceObserver observer;
 
-	private void initialize(int[] shipTypes) {
-		ShipIcons.createImages();
-		for (int i = 0; i < shipTypes.length; i++) {
-			ships.add(new JButton("Liczba masztow: " + shipTypes[i], ShipIcons
-					.getIcon(i + 1)));
-			// ships.get(i).setBorderPainted(false);
-			// ships.get(i).setFocusPainted(false);
-			// ships.get(i).setContentAreaFilled(false);
-			ships.get(i).addActionListener(
-					new ShipChoiceListener(shipTypes[i], i, observer));
-		}
+    private ArrayList<JButton>  ships;
 
-		for (JButton button : ships)
-			add(button);
-	}
+    public ShipChoicePanel(IShipChoiceObserver observer, int[] shipsTypes) {
+        super(new GridLayout(7, 0));
+        ships = new ArrayList<JButton>();
+        this.observer = observer;
+        initialize(shipsTypes);
+    }
 
-	@Override
-	public Dimension getPreferredSize() {
-		return new Dimension(330, 330);
-	}
+    private void initialize(int[] shipTypes) {
+        ShipIcons.createImages();
+        for (int i = 0; i < shipTypes.length; i++) {
+            ships.add(new JButton("Liczba masztow: " + shipTypes[i], ShipIcons.getIcon(i + 1)));
+            // ships.get(i).setBorderPainted(false);
+            // ships.get(i).setFocusPainted(false);
+            ships.get(i).setContentAreaFilled(false);
+            // ships.get(i).setBackground(new Color(135, 206, 235));
+            ships.get(i).addActionListener(new ShipChoiceListener(shipTypes[i], i, observer));
+        }
+        setBackground(new Color(135, 206, 235));
 
-	@Override
-	public Dimension getMinimumSize() {
-		return new Dimension(330, 330);
-	}
+        for (JButton button : ships)
+            add(button);
+    }
 
-	public void enableShipButton(int id) {
-		ships.get(id).setEnabled(true);
-	}
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(330, 330);
+    }
 
-	public void disableShipButton(int id) {
-		ships.get(id).setEnabled(false);
-	}
+    @Override
+    public Dimension getMinimumSize() {
+        return new Dimension(330, 330);
+    }
+
+    public void enableShipButton(int id) {
+        ships.get(id).setEnabled(true);
+    }
+
+    public void disableShipButton(int id) {
+        ships.get(id).setEnabled(false);
+    }
 }

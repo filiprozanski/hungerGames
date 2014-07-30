@@ -1,6 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic.panels;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -19,6 +20,7 @@ public class ButtonsPanel extends JPanel {
 
     public ButtonsPanel(IStageObserver observer) {
         super(new GridLayout(3, 0));
+        setBackground(new Color(135, 206, 235));
         initialize(observer);
     }
 
