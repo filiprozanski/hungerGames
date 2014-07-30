@@ -36,7 +36,7 @@ public class ShipChoicePanel extends JPanel {
             // ships.get(i).setBackground(new Color(135, 206, 235));
             ships.get(i).addActionListener(new ShipChoiceListener(shipTypes[i], i, observer));
         }
-        setBackground(new Color(135, 206, 235));
+        setBackground(Color.WHITE);
 
         for (JButton button : ships)
             add(button);
