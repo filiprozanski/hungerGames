@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.battleship.files;
 
+import java.awt.image.BufferedImage;
+
 import javax.swing.ImageIcon;
 
 public class ShipIcons {
@@ -23,6 +25,11 @@ public class ShipIcons {
 			e.printStackTrace();
 			System.exit(1);
 		}
+	}
+
+	public static BufferedImage createTransparentImage(final int width,
+			final int height) {
+		return new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 	}
 
 	public static ImageIcon getIcon(int type) {
