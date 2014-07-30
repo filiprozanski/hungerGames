@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
+import pl.praktykiatrem.game.battleship.graphic.buttons.StressButton;
 
 public class InfoPanel extends JPanel {
 	private JLabel status_label = new JLabel();
@@ -29,7 +30,7 @@ public class InfoPanel extends JPanel {
 
 		JButton giveUp = new JButton("Poddaj siê");
 		JPanel button_panel = new JPanel(new GridLayout(0, 2));
-		button_panel.add(new JLabel("Tu stress button"));
+		button_panel.add(new StressButton());
 		button_panel.add(giveUp);
 
 		add(stats);
