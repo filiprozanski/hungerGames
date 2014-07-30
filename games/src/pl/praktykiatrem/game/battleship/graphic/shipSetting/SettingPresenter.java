@@ -198,6 +198,10 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 		}
 	}
 
+	/**
+	 * 
+	 * @see pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver#playerIsReady()
+	 */
 	@Override
 	public void playerIsReady() {
 		if (gameRules.getActiveShipsNumber(player) == gameRules
