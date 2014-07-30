@@ -1,8 +1,7 @@
 /*
  * Plik stworzony dnia 9 lip 2014 przez filipr
- *
- * Copyright ATREM S.A.
- * ATREM 2014(C)
+ * 
+ * Copyright ATREM S.A. ATREM 2014(C)
  */
 
 package pl.praktykiatrem.game.battleship.gameComponents;
@@ -10,20 +9,28 @@ package pl.praktykiatrem.game.battleship.gameComponents;
 import java.util.ArrayList;
 
 /**
- * Klasa odpowadia za przchowywanie informacji o statusie gracza m.in. liczbie
- * stakow. Przechowuje tez jego plansze, oraz tablice statków
+ * Klasa odpowadia za przchowywanie informacji o statusie gracza m.in. liczbie stakow.
+ * Przechowuje tez jego plansze, oraz tablice statków
  * 
  * @author Filip Ró¿añski
  *
  */
 public class PlayerStatus {
-    private Board plansza;
-    private Ship[] ships;
-    private int shipTypes[];
-    private int shipsNumber;
-    private Player gamer;
-    private int playerID;
-    private static int counter = 100001;
+    private Board       plansza;
+
+    private Ship[]      ships;
+
+    private int         shipTypes[];
+
+    private int         shipsNumber;
+
+    private Player      gamer;
+
+    private int         playerID;
+
+    private static int  counter = 100001;
+
+    private PlayerStats stats;
 
     // private String name;
 
@@ -36,32 +43,33 @@ public class PlayerStatus {
      * @param shipsNumber
      *            liczba statków gracza pozosta³a do zbicia na planszy
      * @param shipTypes
-     *            tablica przechowuj¹ca informacje o typie statków u¿ywanych w
-     *            rozgrywce
+     *            tablica przechowuj¹ca informacje o typie statków u¿ywanych w rozgrywce
      */
     public PlayerStatus(int boardSizeH, int boardSizeV, int[] shipTypes) {
-	this.shipsNumber = 0;
-	this.shipTypes = shipTypes;
-	playerID = counter++;
-	plansza = new Board(boardSizeH, boardSizeV);
-	ships = new Ship[shipTypes.length];
-	for (int i = 0; i < shipTypes.length; i++)
-	    setShip(i, shipTypes[i]);
-	gamer = new Player();
+        this.shipsNumber = 0;
+        this.shipTypes = shipTypes;
+        playerID = counter++;
+        plansza = new Board(boardSizeH, boardSizeV);
+        ships = new Ship[shipTypes.length];
+        for (int i = 0; i < shipTypes.length; i++)
+            setShip(i, shipTypes[i]);
+        gamer = new Player();
+        stats = new PlayerStats();
     }
 
     /**
      * Porównuje graczy wykorzystuj¹c do tego nadane im ID
      */
+    @Override
     public boolean equals(Object other) {
-	if (!(other instanceof PlayerStatus))
-	    return false;
+        if (!(other instanceof PlayerStatus))
+            return false;
 
-	PlayerStatus other2 = (PlayerStatus) other;
-	if (this.playerID == other2.playerID)
-	    return true;
-	else
-	    return false;
+        PlayerStatus other2 = (PlayerStatus) other;
+        if (this.playerID == other2.playerID)
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -69,7 +77,7 @@ public class PlayerStatus {
      * @return imiê gracza
      */
     public String getName() {
-	return gamer.getName();
+        return gamer.getName();
     }
 
     /**
@@ -78,7 +86,7 @@ public class PlayerStatus {
      * @param name
      */
     public void setName(String name) {
-	gamer.setName(name);
+        gamer.setName(name);
     }
 
     /**
@@ -86,22 +94,22 @@ public class PlayerStatus {
      * @return liczbe statków gracza pozosta³ych na planszy
      */
     public int getShipsNumber() {
-	return shipsNumber;
+        return shipsNumber;
     }
 
     /**
      * zwiêksza liczbê statków o jeden
      */
     public void increaseShipsNumber() {
-	shipsNumber++;
+        shipsNumber++;
     }
 
     /**
      * zmmniejsza liczbê statków o jeden
      */
     public void decreaseShipsNumber() {
-	if (shipsNumber > 0)
-	    shipsNumber--;
+        if (shipsNumber > 0)
+            shipsNumber--;
     }
 
     /**
@@ -109,14 +117,14 @@ public class PlayerStatus {
      * @return zwraca plansze gracza
      */
     public Board getPlansza() {
-	return plansza;
+        return plansza;
     }
 
     /**
      * zmniejsza liczbê statków po zbiciu o 1
      */
     public void reduceShipsNumber() {
-	shipsNumber--;
+        shipsNumber--;
     }
 
     /**
@@ -126,7 +134,7 @@ public class PlayerStatus {
      *            liczba masztów statku
      */
     public void setShip(int id, int polesNumber) {
-	ships[id] = new Ship(polesNumber);
+        ships[id] = new Ship(polesNumber);
     }
 
     /**
@@ -135,7 +143,7 @@ public class PlayerStatus {
      * @return statek o podanym id
      */
     public Ship getShip(int id) {
-	return ships[id];
+        return ships[id];
     }
 
     /**
@@ -144,7 +152,7 @@ public class PlayerStatus {
      * @return statek o podanym id
      */
     public boolean isShipSet(int id) {
-	return ships[id].isShipSet();
+        return ships[id].isShipSet();
     }
 
     /**
@@ -156,17 +164,16 @@ public class PlayerStatus {
      *            wspó³rzêdna pionowa
      */
     public void takeOutShip(int x, int y) {
-	plansza.takeOut(x, y);
+        plansza.takeOut(x, y);
     }
 
     /**
      * 
      * @param i
-     * @return zwraca liczbe masztów statku znajduj¹cego siê w tablicy pod
-     *         indeksem i
+     * @return zwraca liczbe masztów statku znajduj¹cego siê w tablicy pod indeksem i
      */
     public int getShipTypes(int i) {
-	return shipTypes[i];
+        return shipTypes[i];
     }
 
     /**
@@ -176,9 +183,9 @@ public class PlayerStatus {
      * @param y
      */
     public boolean reducePolesNumber(int x, int y) {
-	Place p = plansza.getPlace(x, y);
-	int shipID = p.getShipId();
-	return removeCoordinate(shipID, new Coordinates(x, y));
+        Place p = plansza.getPlace(x, y);
+        int shipID = p.getShipId();
+        return removeCoordinate(shipID, new Coordinates(x, y));
     }
 
     /**
@@ -188,7 +195,7 @@ public class PlayerStatus {
      * @param c
      */
     public void addCoordinates(int ID, Coordinates c) {
-	ships[ID].addCoordinate(c);
+        ships[ID].addCoordinate(c);
     }
 
     /**
@@ -200,7 +207,7 @@ public class PlayerStatus {
      *            koordynaty do usuniêcia
      */
     public boolean removeCoordinate(int ID, Coordinates c) {
-	return ships[ID].removeCoordinate(c);
+        return ships[ID].removeCoordinate(c);
     }
 
     /**
@@ -210,7 +217,7 @@ public class PlayerStatus {
      * @return listê koordynat, które zajmuje dany statek
      */
     public ArrayList<Coordinates> getCoords(int ID) {
-	return ships[ID].getCoordsTable();
+        return ships[ID].getCoordsTable();
     }
 
     /**
@@ -220,7 +227,12 @@ public class PlayerStatus {
      * @return tablice koordynat, które zajmuje dany statek
      */
     public Coordinates[] getCoordsTable(int ID) {
-	ArrayList<Coordinates> coordsList = ships[ID].getCoordsTable();
-	return coordsList.toArray(new Coordinates[coordsList.size()]);
+        ArrayList<Coordinates> coordsList = ships[ID].getCoordsTable();
+        return coordsList.toArray(new Coordinates[coordsList.size()]);
     }
+
+    public int getAccuracy(boolean hit) {
+        return stats.getAccuracy(hit);
+    }
+
 }

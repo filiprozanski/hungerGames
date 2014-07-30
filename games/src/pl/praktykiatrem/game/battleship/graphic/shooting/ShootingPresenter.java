@@ -8,56 +8,68 @@ import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class ShootingPresenter implements IShootingPresenter {
-	private Game gameRules;
-	private PlayerStatus player;
-	private IShootingView view;
-	private ShootingController controll;
-	private ArrayList<Coordinates> lockedPlaces;
+    private Game                   gameRules;
 
-	public ShootingPresenter(Game gameRules, PlayerStatus player,
-			ShootingController controll) {
-		this.gameRules = gameRules;
-		this.player = player;
-		this.controll = controll;
-		this.lockedPlaces = new ArrayList<Coordinates>();
+    private PlayerStatus           player;
 
-		view = new ShootingPanel(this);
-		view.initialize(gameRules.getBoardSize_H(), gameRules.getBoardSize_V());
-		drawShips();
-		view.disableAllPlayerBoardPlaces();
-	}
+    private IShootingView          view;
 
-	private void drawShips() {
+    private ShootingController     controll;
 
-		for (int i = 0; i < gameRules.getShipsNumber(); i++)
-			view.drawShipLocation(gameRules.getCoordsTable(player, i), i);
+    private ArrayList<Coordinates> lockedPlaces;
 
-	}
+    PlayerStatus getOwner() {
+        return player;
+    }
 
-	@Override
-	public IShootingView getView() {
-		return view;
-	}
+    public ShootingPresenter(Game gameRules, PlayerStatus player, ShootingController controll) {
+        this.gameRules = gameRules;
+        this.player = player;
+        this.controll = controll;
+        this.lockedPlaces = new ArrayList<Coordinates>();
 
-	@Override
-	public void shot(int x, int y) {
-		if (controll.makeMove(player, x, y)) {
-			view.changeBattlePlaceIcon(x, y, 10);
-			view.disableBatlleBoardPlace(x, y);
-			lockedPlaces.add(new Coordinates(x, y));
-		} else
-			view.changeBattlePlaceIcon(x, y, 9);
+        view = new ShootingPanel(this);
+        view.initialize(gameRules.getBoardSize_H(), gameRules.getBoardSize_V());
+        drawShips();
+        view.disableAllPlayerBoardPlaces();
+    }
 
-	}
+    private void drawShips() {
 
-	@Override
-	public void changeIcon(int x, int y, int type) {
-		view.changePlaceIcon(x, y, type);
-	}
+        for (int i = 0; i < gameRules.getShipsNumber(); i++)
+            view.drawShipLocation(gameRules.getCoordsTable(player, i), i);
 
-	@Override
-	public void changeStatus(boolean ableToMove) {
-		view.changeStateAllEnemyBoardPlaces(ableToMove, lockedPlaces);
-		view.changeStatus(ableToMove);
-	}
+    }
+
+    @Override
+    public IShootingView getView() {
+        return view;
+    }
+
+    @Override
+    public void shot(int x, int y) {
+        if (controll.makeMove(player, x, y)) {
+            view.changeBattlePlaceIcon(x, y, 10);
+            view.disableBatlleBoardPlace(x, y);
+            lockedPlaces.add(new Coordinates(x, y));
+        } else
+            view.changeBattlePlaceIcon(x, y, 9);
+
+    }
+
+    @Override
+    public void changeIcon(int x, int y, int type) {
+        view.changePlaceIcon(x, y, type);
+    }
+
+    @Override
+    public void changeStatus(boolean ableToMove) {
+        view.changeStateAllEnemyBoardPlaces(ableToMove, lockedPlaces);
+        view.changeStatus(ableToMove);
+    }
+
+    @Override
+    public void setStats(int playerShips, int enemyShips, int accuracy) {
+        view.setStats(playerShips, enemyShips, accuracy);
+    }
 }
