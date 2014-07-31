@@ -1,15 +1,21 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+
 public interface IShootingPresenter {
-    public void shot(int x, int y);
+	public void shot(int x, int y);
 
-    public IShootingView getView();
+	public IShootingView getView();
 
-    void changeIcon(int x, int y, int type);
+	void changeIcon(int x, int y, int type);
 
-    void changeStatus(boolean ableToMove);
+	void changeStatus(boolean ableToMove);
 
-    void setStats(int playerShips, int enemyShips, int accuracy);
+	void setStats(int playerShips, int enemyShips, int accuracy);
 
-    void setStats(int playerShips, int enemyShips);
+	void setStats(int playerShips, int enemyShips);
+
+	void drawShip(Coordinates[] tab);
+
+	void changeBattlePlaceIcon(int x, int y, int type);
 }

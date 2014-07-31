@@ -38,7 +38,7 @@ public class Game {
 		return rules.getShipTypes();
 	}
 
-	public boolean makeMove(PlayerStatus p, int x, int y) {
+	public int makeMove(PlayerStatus p, int x, int y) {
 		return rules.makeMove(p, x, y);
 	}
 
@@ -70,5 +70,9 @@ public class Game {
 
 	public int getAccuracy(PlayerStatus player, boolean hit) {
 		return rules.getAccuracy(player, hit);
+	}
+
+	public int getShipID(PlayerStatus p, int x, int y) {
+		return rules.getShipID(p, x, y);
 	}
 }

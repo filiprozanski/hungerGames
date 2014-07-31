@@ -45,7 +45,7 @@ public interface IRules {
 	 *            wspo³rzêdna pionowa
 	 * @return
 	 */
-	public boolean makeMove(PlayerStatus p, int x, int y);
+	public int makeMove(PlayerStatus p, int x, int y);
 
 	/**
 	 * usuwa statki z planszy
@@ -86,4 +86,6 @@ public interface IRules {
 	 * @return skutecznoœæ strza³ów
 	 */
 	public int getAccuracy(PlayerStatus player, boolean hit);
+
+	int getShipID(PlayerStatus player, int x, int y);
 }

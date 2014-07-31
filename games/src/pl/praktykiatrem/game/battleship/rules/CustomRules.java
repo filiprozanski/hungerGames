@@ -135,22 +135,27 @@ public class CustomRules implements IRules {
 	}
 
 	@Override
-	public boolean makeMove(PlayerStatus enemy, int x, int y) {
-		// if (ValidationInstruments.isPlaceClear(enemy.getPlansza().gameBoard,
-		// x, y))
+	public int makeMove(PlayerStatus enemy, int x, int y) {
 		if (!enemy.getPlansza().isShipOnPlace(x, y)) {
 			enemy.getPlansza().takeOut(x, y);
-			return false;
+			return 0;
 		} else {
 			if (enemy.getPlansza().isShipOnPlaceAndActive(x, y)) {
 				enemy.takeOutShip(x, y);
 				enemy.reducePolesNumber(x, y);
-				if (enemy.reducePolesNumber(x, y) == 0)
+				if (enemy.reducePolesNumber(x, y) == 0) {
 					enemy.reduceShipsNumber();
-				return true;
+					return 2;
+				}
+				return 1;
 			} else
-				return false;
+				return 0;
 		}
+	}
+
+	@Override
+	public int getShipID(PlayerStatus player, int x, int y) {
+		return player.getShipID(x, y);
 	}
 
 	@Override

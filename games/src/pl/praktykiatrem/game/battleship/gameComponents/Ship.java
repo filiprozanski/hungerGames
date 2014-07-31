@@ -9,103 +9,100 @@ import java.util.ArrayList;
  *
  */
 public class Ship {
-    private int                    shipID;
+	private int shipID;
 
-    private int                    polesNumber;
+	private int polesNumber;
 
-    private boolean                shipSet;
+	private boolean shipSet;
 
-    /**
-     * przechowuje wszystkie koordynaty, na których statek jest umieszczony
-     */
-    private ArrayList<Coordinates> coords;
+	/**
+	 * przechowuje wszystkie koordynaty, na których statek jest umieszczony
+	 */
+	private ArrayList<Coordinates> coords;
 
-    // private Coordinate direction;
+	// private Coordinate direction;
 
-    /**
-     *
-     * @param polesNumber
-     *            liczba masztów tworzonego statku
-     */
-    public Ship(int polesNumber) {
-        this.polesNumber = 0;
-        this.shipSet = false;
-        coords = new ArrayList<Coordinates>(polesNumber);
-    }
+	/**
+	 *
+	 * @param polesNumber
+	 *            liczba masztów tworzonego statku
+	 */
+	public Ship(int polesNumber) {
+		this.polesNumber = polesNumber;
+		this.shipSet = false;
+		coords = new ArrayList<Coordinates>(polesNumber);
+	}
 
-    /**
-     * zmniejsza liczbe masztów
-     * 
-     * @return jezeli statek zostaje zatopiony zwraca true
-     */
-    public boolean reducePolesNumber() {
-        polesNumber--;
-        if (polesNumber == 0)
-            return true;
-        else
-            return false;
-    }
+	/**
+	 * zmniejsza liczbe masztów
+	 * 
+	 * @return jezeli statek zostaje zatopiony zwraca true
+	 */
+	public int reducePolesNumber() {
+		polesNumber--;
+		return polesNumber;
+	}
 
-    /**
-     *
-     * @return liczba masztów
-     */
-    public int getPolesNumber() {
-        return coords.size();
-    }
+	/**
+	 *
+	 * @return liczba masztów
+	 */
+	public int getPolesNumber() {
+		return polesNumber;
+	}
 
-    /**
-     *
-     * @return id wybranego statku
-     */
-    public int getID() {
-        return shipID;
-    }
+	/**
+	 *
+	 * @return id wybranego statku
+	 */
+	public int getID() {
+		return shipID;
+	}
 
-    /**
-     *
-     * @return czy statek jest ustawiony
-     */
-    public boolean isShipSet() {
-        return shipSet;
-    }
+	/**
+	 *
+	 * @return czy statek jest ustawiony
+	 */
+	public boolean isShipSet() {
+		return shipSet;
+	}
 
-    /**
-     * zmienia status statku na ustawiony
-     * 
-     */
-    public void setShipSet(boolean shipSet) {
-        this.shipSet = shipSet;
-    }
+	/**
+	 * zmienia status statku na ustawiony
+	 * 
+	 */
+	public void setShipSet(boolean shipSet) {
+		this.shipSet = shipSet;
+	}
 
-    /**
-     * Dodaje do listy koordynaty
-     * 
-     * @param c
-     *            dodawane koordynaty
-     */
-    void addCoordinate(Coordinates c) {
-        coords.add(c);
-        polesNumber++;
-    }
+	/**
+	 * Dodaje do listy koordynaty
+	 * 
+	 * @param c
+	 *            dodawane koordynaty
+	 */
+	void addCoordinate(Coordinates c) {
+		coords.add(c);
+		polesNumber++;
+	}
 
-    /**
-     * Usuwa z listy podane koordynaty
-     * 
-     * @param c
-     */
-    int removeCoordinate(Coordinates c) {
-        polesNumber--;
-        coords.remove(c);
-        return coords.size();
-    }
+	/**
+	 * Usuwa z listy podane koordynaty
+	 * 
+	 * @param c
+	 */
+	int removeCoordinate(Coordinates c) {
+		polesNumber--;
+		coords.remove(c);
+		return coords.size();
+	}
 
-    /**
-     * zwraca tablicê aktywnych wspó³rzêdnych statku
-     * 
-     * @return
-     */
-    ArrayList<Coordinates> getCoordsTable() {
-        return coords;
-    }
+	/**
+	 * zwraca tablicê aktywnych wspó³rzêdnych statku
+	 * 
+	 * @return
+	 */
+	ArrayList<Coordinates> getCoordsTable() {
+		return coords;
+	}
 }

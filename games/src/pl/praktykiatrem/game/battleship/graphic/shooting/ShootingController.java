@@ -106,16 +106,26 @@ public class ShootingController {
 	 */
 	public boolean makeMove(PlayerStatus player, int x, int y) {
 		if (player.equals(player1)) {
-			if (g.makeMove(player2, x, y)) {
+			int result = g.makeMove(player2, x, y);
+			if (result >= 1) {
 				boardSettingHit(player1, player2, x, y);
+				if (result == 2) {
+					int id = g.getShipID(player2, x, y);
+					pres1.drawShip(g.getCoordsTable(player2, id));
+				}
 				return true;
 			} else {
 				boardSettingMiss(player1, player2, x, y);
 				return false;
 			}
 		} else {
-			if (g.makeMove(player1, x, y)) {
+			int result = g.makeMove(player1, x, y);
+			if (result >= 1) {
 				boardSettingHit(player2, player1, x, y);
+				if (result == 2) {
+					int id = g.getShipID(player1, x, y);
+					pres2.drawShip(g.getCoordsTable(player1, id));
+				}
 				return true;
 			} else {
 				boardSettingMiss(player2, player1, x, y);
@@ -141,6 +151,7 @@ public class ShootingController {
 		IShootingPresenter vPres = getPresenter(victim);
 
 		vPres.changeIcon(x, y, 8);
+		sPres.changeBattlePlaceIcon(x, y, 10);
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(true);

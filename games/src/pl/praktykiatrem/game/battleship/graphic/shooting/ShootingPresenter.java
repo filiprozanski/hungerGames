@@ -89,11 +89,16 @@ public class ShootingPresenter implements IShootingPresenter {
 	@Override
 	public void shot(int x, int y) {
 		if (controll.makeMove(player, x, y)) {
-			view.changeBattlePlaceIcon(x, y, 10);
+			// view.changeBattlePlaceIcon(x, y, 10);
 			view.disableBatlleBoardPlace(x, y);
 			lockedPlaces.add(new Coordinates(x, y));
 		} else
 			view.changeBattlePlaceIcon(x, y, 9);
+	}
+
+	@Override
+	public void changeBattlePlaceIcon(int x, int y, int type) {
+		view.changeBattlePlaceIcon(x, y, type);
 	}
 
 	/**
@@ -134,5 +139,12 @@ public class ShootingPresenter implements IShootingPresenter {
 	@Override
 	public void setStats(int playerShips, int enemyShips) {
 		view.setStats(playerShips, enemyShips);
+	}
+
+	@Override
+	public void drawShip(Coordinates[] tab) {
+		for (Coordinates c : tab) {
+			view.changeBattlePlaceIcon(c.getX(), c.getY(), 8);
+		}
 	}
 }
