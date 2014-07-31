@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
@@ -15,7 +14,7 @@ import pl.praktykiatrem.game.battleship.rules.Game;
  * @author Filip Ró¿añski
  *
  */
-public class SettingPresenter implements ISettingPresenter, IStageObserver {
+public class SettingPresenter implements ISettingPresenter {
 	/**
 	 * zmienna u¿ywana do ustawiania staków, przechowuje liczbe masztów
 	 * aktualnie wybranego statku
@@ -45,7 +44,7 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 	/**
 	 * obserwator zmiany etapu gry poprzez klikniêcie przycisku "ready"
 	 */
-	private IStageObserver observer;
+	private SettingController controller;
 
 	/**
 	 * 
@@ -56,14 +55,14 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 	 * @param observer
 	 */
 	public SettingPresenter(Game gameRules, PlayerStatus player,
-			IStageObserver observer) {
+			SettingController controller) {
 		this.gameRules = gameRules;
 		this.player = player;
-		this.observer = observer;
+		this.controller = controller;
 		locked = new ArrayList<Coordinates>();
 		view = new ShipSettingPanel(this);
 		view.initialize(gameRules.getShipTypes(), gameRules.getBoardSizeH(),
-				gameRules.getBoardSizeV(), this);
+				gameRules.getBoardSizeV());
 		view.changeStateAllBoardPlaces(false);
 	}
 
@@ -226,16 +225,8 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 		}
 	}
 
-	/**
-	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver#playerIsReady()
-	 */
-	@Override
 	public void playerIsReady() {
-		if (gameRules.getActiveShipsNumber(player) == gameRules
-				.getShipsNumber()) {
-			observer.playerIsReady();
-			view.disableReadyButton();
-		}
+		controller.playerIsReady();
+		view.disableReadyButton();
 	}
 }

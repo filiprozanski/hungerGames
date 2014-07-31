@@ -19,7 +19,7 @@ import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingView;
  *
  */
 public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
-		ISettingView, IShipChoiceObserver {
+		ISettingView, IShipChoiceObserver, IStageObserver {
 	private static final long serialVersionUID = 1189452196940629120L;
 	private BoardGraphicPanel boardPanel;
 	private ShipChoicePanel choicePanel;
@@ -33,12 +33,11 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	}
 
 	@Override
-	public void initialize(int[] shipTypes, int sizeH, int sizeV,
-			IStageObserver observer) {
+	public void initialize(int[] shipTypes, int sizeH, int sizeV) {
 		setLayout(new GridLayout(2, 2));
 		boardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
 		choicePanel = new ShipChoicePanel(this, shipTypes);
-		readyPanel = new ButtonsPanel(observer);
+		readyPanel = new ButtonsPanel(this);
 		legendPanel = new LegendPanel();
 		add(boardPanel);
 		add(choicePanel);
@@ -120,5 +119,20 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void setReadyButtonState(int state) {
 		readyPanel.setReadyButtonState(state);
+	}
+
+	@Override
+	public void resetButtonClicked() {
+
+	}
+
+	@Override
+	public void randomButtonClicked() {
+
+	}
+
+	@Override
+	public void playerIsReady() {
+		presenter.playerIsReady();
 	}
 }

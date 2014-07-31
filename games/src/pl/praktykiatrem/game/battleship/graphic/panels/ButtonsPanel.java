@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -41,6 +43,8 @@ public class ButtonsPanel extends JPanel {
 	 */
 	private JButton autoSet;
 
+	private IStageObserver observer;
+
 	/**
 	 * 
 	 * Tworzy nowy obiekt klasy <code>ButtonsPanel</code>
@@ -50,7 +54,8 @@ public class ButtonsPanel extends JPanel {
 	public ButtonsPanel(IStageObserver observer) {
 		super(new GridLayout(3, 0));
 		setBackground(new Color(135, 206, 235));
-		initialize(observer);
+		this.observer = observer;
+		initialize();
 	}
 
 	/**
@@ -61,10 +66,20 @@ public class ButtonsPanel extends JPanel {
 	 *
 	 * @param observer
 	 */
-	private void initialize(IStageObserver observer) {
+	private void initialize() {
 		ready = new JButton("Zacznij ustawiaæ statki!");
 		reset = new JButton("Resetuj planszê!");
+		reset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				observer.resetButtonClicked();
+			}
+		});
 		autoSet = new JButton("Ustaw statki automatycznie!");
+		autoSet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				observer.randomButtonClicked();
+			}
+		});
 		ready.addActionListener(new UserStageListener(observer));
 		ready.setEnabled(false);
 		add(ready, BorderLayout.CENTER);
