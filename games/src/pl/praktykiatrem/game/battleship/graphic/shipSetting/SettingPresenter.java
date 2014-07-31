@@ -225,7 +225,6 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 				rand_y = generator.nextInt(gameRules.getBoardSizeH());
 				if (gameRules.placeShips(player, id, polesNumber, rand_dir,
 						rand_x, rand_y)) {
-
 					drawOnBoard(rand_x, rand_y, rand_dir, id + 1);
 					view.changeButtonCallNumber(rand_x, rand_y,
 							rand_clickNumber);
