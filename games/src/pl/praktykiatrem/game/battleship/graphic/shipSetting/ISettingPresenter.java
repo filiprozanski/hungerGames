@@ -7,5 +7,7 @@ public interface ISettingPresenter {
 
 	public ISettingView getView();
 
+	public void resetBoard();
+
 	public void playerIsReady();
 }

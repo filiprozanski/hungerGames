@@ -247,4 +247,11 @@ public class PlayerStatus {
 		return stats.getAccuracy(hit);
 	}
 
+	public void resetStatus() {
+		plansza.clearBoard();
+		for (Ship s : ships)
+			s.clearShip();
+		shipsNumber = 0;
+	}
+
 }

@@ -75,4 +75,8 @@ public class Game {
 	public int getShipID(PlayerStatus p, int x, int y) {
 		return rules.getShipID(p, x, y);
 	}
+
+	public void resetGame(PlayerStatus player) {
+		rules.resetGame(player);
+	}
 }

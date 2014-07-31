@@ -2,10 +2,9 @@ package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphic;
-import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
-public class SettingController implements IStageObserver {
+public class SettingController {
 	private int readyPlayers;
 	private StartGraphic supervisor;
 	private ISettingPresenter pres1;

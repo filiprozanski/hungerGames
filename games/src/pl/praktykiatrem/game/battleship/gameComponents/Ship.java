@@ -105,4 +105,9 @@ public class Ship {
 	ArrayList<Coordinates> getCoordsTable() {
 		return coords;
 	}
+
+	void clearShip() {
+		shipSet = false;
+		coords.clear();
+	}
 }

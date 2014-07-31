@@ -123,7 +123,7 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void resetButtonClicked() {
-
+		presenter.resetBoard();
 	}
 
 	@Override

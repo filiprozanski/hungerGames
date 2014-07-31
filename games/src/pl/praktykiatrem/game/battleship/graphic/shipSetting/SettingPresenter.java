@@ -232,10 +232,29 @@ public class SettingPresenter implements ISettingPresenter {
 					view.setReadyButtonState(gameRules.getShipsNumber()
 							- gameRules.getActiveShipsNumber(player));
 					break;
-
 				}
 			}
 		}
+	}
+
+	public void resetBoard() {
+		gameRules.resetGame(player);
+		clearBoardView();
+	}
+
+	private void clearBoardView() {
+		for (int i = 0; i < gameRules.getBoardSizeH(); i++)
+			for (int j = 0; j < gameRules.getBoardSizeV(); j++) {
+				view.changePlaceIcon(i, j, 0);
+				view.changeButtonCallNumber(i, j, 1);
+			}
+		locked.clear();
+
+		for (int i = 0; i < gameRules.getShipsNumber(); i++)
+			view.setOkIconShipButton(i, false);
+
+		view.setReadyButtonState(gameRules.getShipsNumber()
+				- gameRules.getActiveShipsNumber(player));
 	}
 
 	/**

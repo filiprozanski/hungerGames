@@ -88,4 +88,6 @@ public interface IRules {
 	public int getAccuracy(PlayerStatus player, boolean hit);
 
 	int getShipID(PlayerStatus player, int x, int y);
+
+	public void resetGame(PlayerStatus player);
 }

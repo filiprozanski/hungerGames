@@ -192,4 +192,9 @@ public class CustomRules implements IRules {
 	public int getAccuracy(PlayerStatus player, boolean hit) {
 		return player.getAccuracy(hit);
 	}
+
+	@Override
+	public void resetGame(PlayerStatus player) {
+		player.resetStatus();
+	}
 }
