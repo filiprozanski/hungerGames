@@ -21,7 +21,9 @@ public class ShipIcons {
 	/**
 	 * tablica przechowuj±ca tablicê gotowych obrazów
 	 */
-	private static ImageIcon[] elements = new ImageIcon[11];
+	private static ImageIcon[] shipIcons = new ImageIcon[8];
+	private static ImageIcon[] infoIcons = new ImageIcon[4];
+	private static ImageIcon[] stateIcons = new ImageIcon[3];
 	/**
 	 * obiekt przechowuj±cy ikonê "ok"
 	 */
@@ -36,17 +38,28 @@ public class ShipIcons {
 	 */
 	public static final void createImages() {
 		try {
-			elements[0] = new ImageIcon(ShipIcons.class.getResource("0.png"));
-			elements[1] = new ImageIcon(ShipIcons.class.getResource("1.png"));
-			elements[2] = new ImageIcon(ShipIcons.class.getResource("2.png"));
-			elements[3] = new ImageIcon(ShipIcons.class.getResource("3.png"));
-			elements[4] = new ImageIcon(ShipIcons.class.getResource("4.png"));
-			elements[5] = new ImageIcon(ShipIcons.class.getResource("5.png"));
-			elements[6] = new ImageIcon(ShipIcons.class.getResource("6.png"));
-			elements[7] = new ImageIcon(ShipIcons.class.getResource("7.png"));
-			elements[8] = new ImageIcon(ShipIcons.class.getResource("8.png"));
-			elements[9] = new ImageIcon(ShipIcons.class.getResource("9.png"));
-			elements[10] = new ImageIcon(ShipIcons.class.getResource("10.png"));
+			shipIcons[0] = new ImageIcon(
+					ShipIcons.class.getResource("\\shipsIcons\\0.png"));
+			shipIcons[1] = new ImageIcon(
+					ShipIcons.class.getResource("\\shipsIcons\\1.png"));
+			shipIcons[2] = new ImageIcon(
+					ShipIcons.class.getResource("\\shipsIcons\\2.png"));
+			shipIcons[3] = new ImageIcon(
+					ShipIcons.class.getResource("\\shipsIcons\\3.png"));
+			shipIcons[4] = new ImageIcon(
+					ShipIcons.class.getResource("\\shipsIcons\\4.png"));
+			shipIcons[5] = new ImageIcon(
+					ShipIcons.class.getResource("\\shipsIcons\\5.png"));
+			shipIcons[6] = new ImageIcon(
+					ShipIcons.class.getResource("\\shipsIcons\\6.png"));
+			shipIcons[7] = new ImageIcon(
+					ShipIcons.class.getResource("\\shipsIcons\\7.png"));
+			stateIcons[0] = new ImageIcon(
+					ShipIcons.class.getResource("\\stateIcons\\8.png"));
+			stateIcons[1] = new ImageIcon(
+					ShipIcons.class.getResource("\\stateIcons\\9.png"));
+			stateIcons[2] = new ImageIcon(
+					ShipIcons.class.getResource("\\stateIcons\\10.png"));
 			okIcon = new ImageIcon(ShipIcons.class.getResource("ok1.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,7 +78,7 @@ public class ShipIcons {
 	 */
 	public static ImageIcon getOkIcon(int type) {
 
-		final BufferedImage img1 = iconToBufferedImage(elements[type]);
+		final BufferedImage img1 = iconToBufferedImage(shipIcons[type]);
 		final BufferedImage img2 = iconToBufferedImage(okIcon);
 		final BufferedImage combinedImage = new BufferedImage(img1.getWidth()
 				+ img2.getWidth(),
@@ -87,7 +100,7 @@ public class ShipIcons {
 	 * @param icon
 	 * @return i tu te¿
 	 */
-	public static BufferedImage iconToBufferedImage(Icon icon) {
+	private static BufferedImage iconToBufferedImage(Icon icon) {
 		if (icon == null)
 			return null;
 
@@ -105,10 +118,24 @@ public class ShipIcons {
 	 *            okre¶la typ ikony
 	 * @return odpowiedni± ikonê, okre¶lon± przez argument type
 	 */
-	public static ImageIcon getIcon(int type) {
-		if (type <= 10)
-			return elements[type];
+	public static ImageIcon getShipIcon(int type) {
+		if (type <= 7)
+			return shipIcons[type];
 		else
-			return elements[0];
+			return shipIcons[0];
+	}
+
+	public static ImageIcon getInfoIcon(int type) {
+		if (type <= 3)
+			return infoIcons[type];
+		else
+			return infoIcons[0];
+	}
+
+	public static ImageIcon getStateIcon(int type) {
+		if (type <= 2)
+			return stateIcons[type];
+		else
+			return stateIcons[0];
 	}
 }

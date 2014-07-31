@@ -155,8 +155,8 @@ public class ShootingController {
 		IShootingPresenter sPres = getPresenter(shooter);
 		IShootingPresenter vPres = getPresenter(victim);
 
-		vPres.changeIcon(x, y, 8);
-		sPres.changeBattlePlaceIcon(x, y, 10);
+		vPres.changeStateIcon(x, y, 0);
+		sPres.changeBattlePlaceIcon(x, y, 2);
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(true);
@@ -180,7 +180,7 @@ public class ShootingController {
 		IShootingPresenter sPres = getPresenter(shooter);
 		IShootingPresenter vPres = getPresenter(victim);
 
-		vPres.changeIcon(x, y, 9);
+		vPres.changeStateIcon(x, y, 1);
 		vPres.changeStatus(true);
 		sPres.changeStatus(false);
 		playerShips = g.getActiveShipsNumber(shooter);

@@ -19,5 +19,8 @@ public interface IShootingPresenter {
 
 	void changeBattlePlaceIcon(int x, int y, int type);
 
+	void changeStateIcon(int x, int y, int type);
+
 	public void GameOver(boolean win);
+
 }

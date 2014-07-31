@@ -60,7 +60,7 @@ public class ShootingPresenter implements IShootingPresenter {
 		this.lockedPlaces = new ArrayList<Coordinates>();
 
 		view = new ShootingPanel(this);
-		view.initialize(gameRules.getBoardSize_H(), gameRules.getBoardSize_V());
+		view.initialize(gameRules.getBoardSizeH(), gameRules.getBoardSizeV());
 		drawShips();
 		view.disableAllPlayerBoardPlaces();
 	}
@@ -99,9 +99,9 @@ public class ShootingPresenter implements IShootingPresenter {
 				view.disableBatlleBoardPlace(x, y);
 				lockedPlaces.add(new Coordinates(x, y));
 			} else
-				view.changeBattlePlaceIcon(x, y, 9);
+				view.changeBattlePlaceIcon(x, y, 1);
 		}
-	}
+
 
 	@Override
 	public void changeBattlePlaceIcon(int x, int y, int type) {
@@ -116,6 +116,11 @@ public class ShootingPresenter implements IShootingPresenter {
 	@Override
 	public void changeIcon(int x, int y, int type) {
 		view.changePlaceIcon(x, y, type);
+	}
+
+	@Override
+	public void changeStateIcon(int x, int y, int type) {
+		view.changePlaceStateIcon(x, y, type);
 	}
 
 	/**
@@ -151,9 +156,8 @@ public class ShootingPresenter implements IShootingPresenter {
 	@Override
 	public void drawShip(Coordinates[] tab) {
 		for (Coordinates c : tab) {
-			view.changeBattlePlaceIcon(c.getX(), c.getY(), 8);
+			view.changeBattlePlaceIcon(c.getX(), c.getY(), 0);
 		}
-	}
 
 	@Override
 	public void GameOver(boolean win) {
