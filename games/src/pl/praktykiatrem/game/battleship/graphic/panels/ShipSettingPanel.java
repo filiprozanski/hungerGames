@@ -128,7 +128,7 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void randomButtonClicked() {
-
+		presenter.placeShipAtRandom();
 	}
 
 	@Override

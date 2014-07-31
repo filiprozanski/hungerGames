@@ -212,6 +212,7 @@ public class SettingPresenter implements ISettingPresenter {
 		int rand_clickNumber;
 		Random generator = new Random();
 		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
+			this.polesNumber = gameRules.getShipTypes()[i];
 			if (generator.nextBoolean() == true) {
 				rand_dir = Direction.HORIZONTAL;
 				rand_clickNumber = 2;
@@ -222,13 +223,12 @@ public class SettingPresenter implements ISettingPresenter {
 			while (true) {
 				rand_x = generator.nextInt(gameRules.getBoardSizeV());
 				rand_y = generator.nextInt(gameRules.getBoardSizeH());
-				if (gameRules.placeShips(player, id, polesNumber, rand_dir,
+				if (gameRules.placeShips(player, i, polesNumber, rand_dir,
 						rand_x, rand_y)) {
-
-					drawOnBoard(rand_x, rand_y, rand_dir, id + 1);
+					drawOnBoard(rand_x, rand_y, rand_dir, i + 1);
 					view.changeButtonCallNumber(rand_x, rand_y,
 							rand_clickNumber);
-					view.setOkIconShipButton(id, true);
+					view.setOkIconShipButton(i, true);
 					view.setReadyButtonState(gameRules.getShipsNumber()
 							- gameRules.getActiveShipsNumber(player));
 					break;

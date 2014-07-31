@@ -34,4 +34,5 @@ public class SettingController {
 		if (readyPlayers == 2)
 			supervisor.changeStage();
 	}
+
 }
