@@ -213,8 +213,8 @@ public class ShootingController {
 			pres1.GameOver(true);
 			pres2.GameOver(false);
 		} else if (player == 2) {
-			pres1.GameOver(true);
-			pres2.GameOver(false);
+			pres1.GameOver(false);
+			pres2.GameOver(true);
 		}
 	}
 }
