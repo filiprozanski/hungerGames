@@ -49,10 +49,10 @@ public class InfoPanel extends JPanel {
 			ShipIcons.class.getResource("wait.png"));
 
 	private ImageIcon win_icon = new ImageIcon(
-			ShipIcons.class.getResource("win1.png"));
+			ShipIcons.class.getResource("win.png"));
 
 	private ImageIcon lose_icon = new ImageIcon(
-			ShipIcons.class.getResource("lose1.png"));
+			ShipIcons.class.getResource("lose.png"));
 
 	/**
 	 * 

@@ -98,10 +98,11 @@ public class ShootingPresenter implements IShootingPresenter {
 				// view.changeBattlePlaceIcon(x, y, 10);
 				view.disableBatlleBoardPlace(x, y);
 				lockedPlaces.add(new Coordinates(x, y));
-			} else
+			} else {
 				view.changeBattlePlaceIcon(x, y, 1);
+			}
 		}
-
+	}
 
 	@Override
 	public void changeBattlePlaceIcon(int x, int y, int type) {
@@ -158,6 +159,7 @@ public class ShootingPresenter implements IShootingPresenter {
 		for (Coordinates c : tab) {
 			view.changeBattlePlaceIcon(c.getX(), c.getY(), 0);
 		}
+	}
 
 	@Override
 	public void GameOver(boolean win) {
