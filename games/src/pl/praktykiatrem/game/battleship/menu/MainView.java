@@ -9,12 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
-import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
+import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingController;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class MainView extends JPanel implements IMainView {
@@ -24,10 +20,16 @@ public class MainView extends JPanel implements IMainView {
 
 	private PlayerStatus player;
 	private Game game1;
+	private static PlayCard game;
+	private IStageObserver observer;
+	private ShootingController sController;
 
-	public MainView(Game game, PlayerStatus x) {
+	public MainView(Game game, PlayerStatus x, IStageObserver observer,
+			ShootingController sController) {
 		this.player = x;
 		this.game1 = game;
+		this.observer = observer;
+		this.sController = sController;
 		inicialize();
 	}
 
@@ -36,27 +38,13 @@ public class MainView extends JPanel implements IMainView {
 		MenuView menuView = new MenuView(this);
 		CreditsView creditsView = new CreditsView(this);
 		GameOverView gameOverView = new GameOverView(this);
-		JPanel game = new JPanel();
-		JPanel set = new JPanel();
-
-		ISettingPresenter pres1 = new SettingPresenter(game1, player, null);
-		IShootingPresenter pres2 = new ShootingPresenter(game1, player);
+		game = new PlayCard(this, game1, player, observer, sController);
+		// JPanel set = new JPanel();
 
 		JButton buttonGoToMenu = new JButton(GoToMenu);
 		JButton buttonGoToMenu1 = new JButton(GoToMenu);
-		set.add((ShipSettingPanel) pres1.getView());
-		set.add(buttonGoToMenu1);
-
-		game.add((ShootingPanel) pres2.getView(), BorderLayout.CENTER);
-		game.add(buttonGoToMenu, BorderLayout.PAGE_END);
-		game.add(buttonGoToMenu);
-
-		buttonGoToMenu.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				showMenu();
-			}
-		});
+		// set.add((ShipSettingPanel) pres1.getView());
+		// set.add(buttonGoToMenu1);
 
 		buttonGoToMenu1.addActionListener(new ActionListener() {
 			@Override
@@ -67,7 +55,7 @@ public class MainView extends JPanel implements IMainView {
 
 		cards = new JPanel(new CardLayout());
 		cards.add(menuView, MENU);
-		cards.add(set, SET);
+		// cards.add(set, SET);
 		cards.add(game, GAME);
 		cards.add(gameOverView, GAMEOVER);
 		cards.add(creditsView, CREDITS);
@@ -101,5 +89,9 @@ public class MainView extends JPanel implements IMainView {
 	public void showGameOver() {
 		cl = (CardLayout) (cards.getLayout());
 		cl.show(cards, GAMEOVER);
+	}
+
+	public static void changeStage() {
+		game.play();
 	}
 }

@@ -15,12 +15,11 @@ public class LegendPanel extends JPanel {
 		super(new GridLayout(10, 0));
 		setBackground(new Color(135, 206, 235));
 		initialize();
+
 	}
 
 	private void initialize() {
-
-		// statusLabel.setIcon(ready_icon);
-
+		ShipIcons.createImages();
 		add(new JLabel("Legenda:", JLabel.CENTER));
 		add(new JLabel("Statek", ShipIcons.getIcon(1), JLabel.CENTER));
 
