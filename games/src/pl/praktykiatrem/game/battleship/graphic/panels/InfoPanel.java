@@ -48,6 +48,12 @@ public class InfoPanel extends JPanel {
 	private ImageIcon wait_icon = new ImageIcon(
 			ShipIcons.class.getResource("wait.png"));
 
+	private ImageIcon win_icon = new ImageIcon(
+			ShipIcons.class.getResource("win1.png"));
+
+	private ImageIcon lose_icon = new ImageIcon(
+			ShipIcons.class.getResource("lose1.png"));
+
 	/**
 	 * 
 	 * Tworzy nowy obiekt klasy <code>InfoPanel</code>
@@ -101,17 +107,21 @@ public class InfoPanel extends JPanel {
 	}
 
 	/**
-	 * zmienia informacje, o tym, czy gracz mo¿e wykonaæ ruch Metoda
-	 * <code>changeStatus</code>!
+	 * zmienia informacje, o przebiegu rozgrywki <code>changeStatus</code>!
 	 *
-	 * @param ready
-	 *            true - je¶li pora na ruch gracza, w przeciwnym wypadku false
+	 * @param state
+	 *            1 - gotowy do strza³u, 0 - czekaj na strza³ przeciwnika, 2 -
+	 *            przegra³e¶, 3 - wygra³es
 	 */
-	public void changeStatus(boolean ready) {
-		if (ready == true)
+	public void changeStatus(int state) {
+		if (state == 1)
 			statusLabel.setIcon(ready_icon);
-		else
+		else if (state == 0)
 			statusLabel.setIcon(wait_icon);
+		else if (state == 2)
+			statusLabel.setIcon(lose_icon);
+		else if (state == 3)
+			statusLabel.setIcon(win_icon);
 	}
 
 	/**

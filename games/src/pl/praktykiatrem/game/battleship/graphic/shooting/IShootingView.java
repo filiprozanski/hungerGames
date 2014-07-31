@@ -148,4 +148,6 @@ public interface IShootingView {
 	 */
 	void setStats(int playerShips, int enemyShips);
 
+	void GameOver(boolean win);
+
 }

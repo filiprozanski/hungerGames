@@ -40,6 +40,11 @@ public class ShootingPresenter implements IShootingPresenter {
 	private ArrayList<Coordinates> lockedPlaces;
 
 	/**
+	 * przechowuje status gry (T/F)
+	 */
+	private boolean gameOver = false;
+
+	/**
 	 * 
 	 * Tworzy nowy obiekt klasy <code>ShootingPresenter</code>
 	 *
@@ -88,12 +93,14 @@ public class ShootingPresenter implements IShootingPresenter {
 	 */
 	@Override
 	public void shot(int x, int y) {
-		if (controll.makeMove(player, x, y)) {
-			// view.changeBattlePlaceIcon(x, y, 10);
-			view.disableBatlleBoardPlace(x, y);
-			lockedPlaces.add(new Coordinates(x, y));
-		} else
-			view.changeBattlePlaceIcon(x, y, 9);
+		if (!gameOver) {
+			if (controll.makeMove(player, x, y)) {
+				// view.changeBattlePlaceIcon(x, y, 10);
+				view.disableBatlleBoardPlace(x, y);
+				lockedPlaces.add(new Coordinates(x, y));
+			} else
+				view.changeBattlePlaceIcon(x, y, 9);
+		}
 	}
 
 	@Override
@@ -147,4 +154,11 @@ public class ShootingPresenter implements IShootingPresenter {
 			view.changeBattlePlaceIcon(c.getX(), c.getY(), 8);
 		}
 	}
+
+	@Override
+	public void GameOver(boolean win) {
+		view.GameOver(win);
+		this.gameOver = true;
+	}
+
 }

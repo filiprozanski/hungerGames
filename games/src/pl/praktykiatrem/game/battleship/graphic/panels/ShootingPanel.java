@@ -186,7 +186,10 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	 */
 	@Override
 	public void changeStatus(boolean ready) {
-		infoPanel.changeStatus(ready);
+		if (ready == true)
+			infoPanel.changeStatus(1);
+		else if (ready == false)
+			infoPanel.changeStatus(0);
 	}
 
 	/**
@@ -207,5 +210,15 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void setStats(int playerShips, int enemyShips) {
 		infoPanel.setStats(playerShips, enemyShips);
+	}
+
+	@Override
+	public void GameOver(boolean win) {
+		changeStateAllEnemyBoardPlaces(false, null);
+		if (win == true)
+			infoPanel.changeStatus(4);
+		else
+			infoPanel.changeStatus(3);
+
 	}
 }

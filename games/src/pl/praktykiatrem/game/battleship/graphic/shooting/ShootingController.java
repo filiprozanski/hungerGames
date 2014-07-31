@@ -69,6 +69,7 @@ public class ShootingController {
 
 		pres1.changeStatus(true);
 		pres2.changeStatus(false);
+
 	}
 
 	/**
@@ -102,7 +103,7 @@ public class ShootingController {
 	 *            wspó³rzêdna x strza³u
 	 * @param y
 	 *            wspó³rzêdna y strza³u
-	 * @return tre je¶li trafiony, inaczej false
+	 * @return true je¶li trafiony, inaczej false
 	 */
 	public boolean makeMove(PlayerStatus player, int x, int y) {
 		if (player.equals(player1)) {
@@ -112,6 +113,8 @@ public class ShootingController {
 				if (result == 2) {
 					int id = g.getShipID(player2, x, y);
 					pres1.drawShip(g.getCoordsTable(player2, id));
+					if (player2.getShipsNumber() == 0)
+						GameOver(1);
 				}
 				return true;
 			} else {
@@ -125,6 +128,8 @@ public class ShootingController {
 				if (result == 2) {
 					int id = g.getShipID(player1, x, y);
 					pres2.drawShip(g.getCoordsTable(player1, id));
+					if (player1.getShipsNumber() == 0)
+						GameOver(2);
 				}
 				return true;
 			} else {
@@ -187,7 +192,7 @@ public class ShootingController {
 
 	/**
 	 * 
-	 * Metoda <code>getPresenter</code>
+	 * Metoda <code>getPresenter</code>ss
 	 * 
 	 * wi±¿e obiekt gracza z odpowiednim presenterem
 	 *
@@ -201,5 +206,15 @@ public class ShootingController {
 			return pres2;
 		else
 			return null;
+	}
+
+	private void GameOver(int player) {
+		if (player == 1) {
+			pres1.GameOver(true);
+			pres2.GameOver(false);
+		} else if (player == 2) {
+			pres1.GameOver(true);
+			pres2.GameOver(false);
+		}
 	}
 }

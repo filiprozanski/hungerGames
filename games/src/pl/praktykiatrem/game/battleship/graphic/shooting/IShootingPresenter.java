@@ -18,4 +18,6 @@ public interface IShootingPresenter {
 	void drawShip(Coordinates[] tab);
 
 	void changeBattlePlaceIcon(int x, int y, int type);
+
+	public void GameOver(boolean win);
 }
