@@ -11,50 +11,116 @@ import javax.swing.JPanel;
 import pl.praktykiatrem.game.battleship.graphic.listeners.UserStageListener;
 import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
 
+/**
+ * Klasa zawiera przyciski s³u¿±ce do nawigacji w trakcie ustawiania statków
+ * Klasa <code>ButtonsPanel</code>
+ *
+ * @author filipr
+ * @version 30 lip 2014 14:04:41
+ *
+ */
 public class ButtonsPanel extends JPanel {
-    private JButton ready;
+	/**
+	 * Pole <code>serialVersionUID</code>
+	 */
+	private static final long serialVersionUID = -8608733676074348814L;
 
-    private JButton reset;
+	/**
+	 * przycisk oznaczaj±cy gotowo¶æ gracza do rozpoczêcia gry aktywny dopiero
+	 * po ustawieniu wszystkich statków
+	 */
+	private JButton ready;
 
-    private JButton autoSet;
+	/**
+	 * przycisk do zrestartowania ustawienia statków
+	 */
+	private JButton reset;
 
-    public ButtonsPanel(IStageObserver observer) {
-        super(new GridLayout(3, 0));
-        setBackground(new Color(135, 206, 235));
-        initialize(observer);
-    }
+	/**
+	 * przycisk do losowego ustawienia statków przez komputer
+	 */
+	private JButton autoSet;
 
-    private void initialize(IStageObserver observer) {
-        ready = new JButton("Zacznij ustawiaæ statki!");
-        reset = new JButton("Resetuj planszê!");
-        autoSet = new JButton("Ustaw statki automatycznie!");
-        ready.addActionListener(new UserStageListener(observer));
-        ready.setEnabled(false);
-        add(ready, BorderLayout.CENTER);
-        add(autoSet, BorderLayout.CENTER);
-        add(reset, BorderLayout.CENTER);
-    }
+	/**
+	 * 
+	 * Tworzy nowy obiekt klasy <code>ButtonsPanel</code>
+	 *
+	 * @param observer
+	 */
+	public ButtonsPanel(IStageObserver observer) {
+		super(new GridLayout(3, 0));
+		setBackground(new Color(135, 206, 235));
+		initialize(observer);
+	}
 
-    public Dimension gerPrefferedSize() {
-        return new Dimension(150, 150);
-    }
+	/**
+	 * 
+	 * Metoda <code>initialize</code>
+	 * 
+	 * inicjalizuje panel, dodaje do niego przyciski
+	 *
+	 * @param observer
+	 */
+	private void initialize(IStageObserver observer) {
+		ready = new JButton("Zacznij ustawiaæ statki!");
+		reset = new JButton("Resetuj planszê!");
+		autoSet = new JButton("Ustaw statki automatycznie!");
+		ready.addActionListener(new UserStageListener(observer));
+		ready.setEnabled(false);
+		add(ready, BorderLayout.CENTER);
+		add(autoSet, BorderLayout.CENTER);
+		add(reset, BorderLayout.CENTER);
+	}
 
-    public Dimension gerMinumumSize() {
-        return new Dimension(150, 150);
-    }
+	/**
+	 * 
+	 * Metoda <code>gerPrefferedSize</code>
+	 *
+	 * @return optymalny rozmiar panelu
+	 */
+	public Dimension gerPrefferedSize() {
+		return new Dimension(150, 150);
+	}
 
-    public void diableButton() {
-        ready.setEnabled(false);
-        ready.setText("Czekam na drugiego gracza!");
-    }
+	/**
+	 * 
+	 * Metoda <code>gerMinumumSize</code>
+	 *
+	 * @return minimalny rozmiar panelu
+	 */
+	public Dimension gerMinumumSize() {
+		return new Dimension(150, 150);
+	}
 
-    public void setReadyButtonState(int state) {
-        if (state == 0) {
-            ready.setEnabled(true);
-            ready.setText("GOTOWY!");
-        } else {
-            ready.setEnabled(false);
-            ready.setText("Pozosta³o statków: " + state);
-        }
-    }
+	/**
+	 * 
+	 * Metoda <code>diableButton</code>
+	 * 
+	 * deaktywuje guzik pozwalaj±cy na przej¶cie do fazy strzelania
+	 *
+	 */
+	public void diableButton() {
+		ready.setEnabled(false);
+		ready.setText("Czekam na drugiego gracza!");
+	}
+
+	/**
+	 * 
+	 * Metoda <code>setReadyButtonState</code> ... DOCUMENT ME!
+	 *
+	 * kontroluje stan przycisku ready
+	 *
+	 * @param state
+	 *            (int) okre¶la liczbê statków pozosta³± do ustawienia, je¶li 0,
+	 *            to przycisk jest blokowany
+	 */
+	public void setReadyButtonState(int state) {
+		if (state == 0) {
+			ready.setEnabled(true);
+			ready.setText("GOTOWY!");
+		} else {
+			ready.setEnabled(false);
+			ready.setText("Pozosta³o statków: " + state);
+		}
+	}
 }

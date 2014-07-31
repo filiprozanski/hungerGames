@@ -11,9 +11,16 @@ import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingView;
 
+/**
+ * Panel zbieraj¹cy wszystkie elementy interfejsu u¿ytkownika potrzebne podczas
+ * ustawiania statków
+ * 
+ * @author Filip Ró¿añski
+ *
+ */
 public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 		ISettingView, IShipChoiceObserver {
-
+	private static final long serialVersionUID = 1189452196940629120L;
 	private BoardGraphicPanel boardPanel;
 	private ShipChoicePanel choicePanel;
 	private ButtonsPanel readyPanel;

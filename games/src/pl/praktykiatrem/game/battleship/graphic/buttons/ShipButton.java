@@ -4,13 +4,15 @@ import javax.swing.JButton;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
 
+/**
+ * Klasa opisuje przycisk bêd¹cy graficzn¹ reprezentacj¹ pola gry na planszy
+ * 
+ * @author Filip Ró¿añski
+ *
+ */
 public class ShipButton extends JButton {
+	private static final long serialVersionUID = 4064035001395922627L;
 	private int callNumber = 1;
-	private boolean shipIsSet;
-
-	public ShipButton() {
-		shipIsSet = false;
-	}
 
 	public int getCallNumber() {
 		return callNumber;
@@ -30,12 +32,4 @@ public class ShipButton extends JButton {
 		setIcon(ShipIcons.getIcon(type));
 		setDisabledIcon(ShipIcons.getIcon(type));
 	}
-
-	/*
-	 * public int[] getCoords() { int[] tab = { x, y }; return tab; }
-	 * 
-	 * public boolean isShipSet() { return shipIsSet; }
-	 * 
-	 * public void enableShipIsSet() { shipIsSet = true; }
-	 */
 }

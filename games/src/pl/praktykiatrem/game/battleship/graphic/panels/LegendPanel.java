@@ -9,17 +9,26 @@ import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
 
+/**
+ * Panel zawieraj¹cy legendê
+ * 
+ * @author Filip Ró¿añski
+ *
+ */
 public class LegendPanel extends JPanel {
+
+	private static final long serialVersionUID = -5110374745603365105L;
 
 	public LegendPanel() {
 		super(new GridLayout(10, 0));
 		setBackground(new Color(135, 206, 235));
 		initialize();
-
 	}
 
 	private void initialize() {
 		ShipIcons.createImages();
+		// statusLabel.setIcon(ready_icon);
+
 		add(new JLabel("Legenda:", JLabel.CENTER));
 		add(new JLabel("Statek", ShipIcons.getIcon(1), JLabel.CENTER));
 

@@ -15,7 +15,18 @@ import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
 import pl.praktykiatrem.game.battleship.graphic.listeners.PlaceChoiceListener;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 
+/**
+ * Panel zawieraj¹cy planszê u¿ywan¹ do ustawiania statków, oraz do strzelania
+ * 
+ * @author Filip Ró¿añski
+ *
+ */
+/**
+ * @author Filip Ró¿añski
+ *
+ */
 public class BoardGraphicPanel extends JPanel {
+	private static final long serialVersionUID = 3299237964024134126L;
 	private int SIZEH;
 	private int SIZEV;
 	protected ShipButton[][] place;
