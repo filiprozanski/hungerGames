@@ -211,6 +211,7 @@ public class SettingPresenter implements ISettingPresenter {
 		int rand_y;
 		int rand_clickNumber;
 		Random generator = new Random();
+		resetBoard();
 		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
 			this.polesNumber = gameRules.getShipTypes()[i];
 			if (generator.nextBoolean() == true) {
