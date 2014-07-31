@@ -28,7 +28,7 @@ public class Ship {
 	 *            liczba masztów tworzonego statku
 	 */
 	public Ship(int polesNumber) {
-		this.polesNumber = polesNumber;
+		this.polesNumber = 0;
 		this.shipSet = false;
 		coords = new ArrayList<Coordinates>(polesNumber);
 	}
@@ -108,6 +108,7 @@ public class Ship {
 
 	void clearShip() {
 		shipSet = false;
+		polesNumber = 0;
 		coords.clear();
 	}
 }

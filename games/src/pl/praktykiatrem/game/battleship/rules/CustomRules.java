@@ -142,7 +142,6 @@ public class CustomRules implements IRules {
 		} else {
 			if (enemy.getPlansza().isShipOnPlaceAndActive(x, y)) {
 				enemy.takeOutShip(x, y);
-				enemy.reducePolesNumber(x, y);
 				if (enemy.reducePolesNumber(x, y) == 0) {
 					enemy.reduceShipsNumber();
 					return 2;
