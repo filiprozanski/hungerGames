@@ -17,38 +17,38 @@ import pl.praktykiatrem.game.battleship.files.ShipIcons;
  */
 public class LegendPanel extends JPanel {
 
-    private static final long serialVersionUID = -5110374745603365105L;
+	private static final long serialVersionUID = -5110374745603365105L;
 
-    public LegendPanel() {
-	super(new GridLayout(10, 0));
-	setBackground(new Color(135, 206, 235));
-	initialize();
-    }
+	public LegendPanel() {
+		super(new GridLayout(10, 0));
+		setBackground(new Color(135, 206, 235));
+		initialize();
+	}
 
-    private void initialize() {
+	private void initialize() {
+		ShipIcons.createImages();
+		// statusLabel.setIcon(ready_icon);
 
-	// statusLabel.setIcon(ready_icon);
+		add(new JLabel("Legenda:", JLabel.CENTER));
+		add(new JLabel("Statek", ShipIcons.getIcon(1), JLabel.CENTER));
 
-	add(new JLabel("Legenda:", JLabel.CENTER));
-	add(new JLabel("Statek", ShipIcons.getIcon(1), JLabel.CENTER));
+		add(new JLabel("Ustawiony Statek", ShipIcons.getOkIcon(2),
+				JLabel.CENTER));
 
-	add(new JLabel("Ustawiony Statek", ShipIcons.getOkIcon(2),
-		JLabel.CENTER));
+		add(new JLabel("Zatopiony Statek", ShipIcons.getIcon(8), JLabel.CENTER));
 
-	add(new JLabel("Zatopiony Statek", ShipIcons.getIcon(8), JLabel.CENTER));
+		add(new JLabel("Pud³o", ShipIcons.getIcon(9), JLabel.CENTER));
 
-	add(new JLabel("Pud³o", ShipIcons.getIcon(9), JLabel.CENTER));
+		add(new JLabel("Trafiony Statek", ShipIcons.getIcon(10), JLabel.CENTER));
 
-	add(new JLabel("Trafiony Statek", ShipIcons.getIcon(10), JLabel.CENTER));
+	}
 
-    }
+	public Dimension getPrefferedSize() {
+		return new Dimension(150, 150);
+	}
 
-    public Dimension getPrefferedSize() {
-	return new Dimension(150, 150);
-    }
-
-    public Dimension getMinumumSize() {
-	return new Dimension(150, 150);
-    }
+	public Dimension getMinumumSize() {
+		return new Dimension(150, 150);
+	}
 
 }
