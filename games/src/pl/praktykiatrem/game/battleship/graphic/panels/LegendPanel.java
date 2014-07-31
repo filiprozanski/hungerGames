@@ -30,16 +30,18 @@ public class LegendPanel extends JPanel {
 		// statusLabel.setIcon(ready_icon);
 
 		add(new JLabel("Legenda:", JLabel.CENTER));
-		add(new JLabel("Statek", ShipIcons.getIcon(1), JLabel.CENTER));
+		add(new JLabel("Statek", ShipIcons.getShipIcon(1), JLabel.CENTER));
 
 		add(new JLabel("Ustawiony Statek", ShipIcons.getOkIcon(2),
 				JLabel.CENTER));
 
-		add(new JLabel("Zatopiony Statek", ShipIcons.getIcon(8), JLabel.CENTER));
+		add(new JLabel("Zatopiony Statek", ShipIcons.getStateIcon(0),
+				JLabel.CENTER));
 
-		add(new JLabel("Pud³o", ShipIcons.getIcon(9), JLabel.CENTER));
+		add(new JLabel("Pud³o", ShipIcons.getStateIcon(1), JLabel.CENTER));
 
-		add(new JLabel("Trafiony Statek", ShipIcons.getIcon(10), JLabel.CENTER));
+		add(new JLabel("Trafiony Statek", ShipIcons.getStateIcon(2),
+				JLabel.CENTER));
 
 	}
 

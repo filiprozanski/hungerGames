@@ -29,11 +29,11 @@ public class BattleshipGame {
 	private Game gameRules;
 	private ShipLoader load;
 
-	public BattleshipGame(Boolean swing) {
+	public BattleshipGame() {
 		gameRules = new Game();
-		GameFactory start = new GameFactory(gameRules.getBoardSize_X(),
-				gameRules.getBoardSize_Y(), gameRules.getShipsNumber(),
-				gameRules.getShipTypes());
+
+		GameFactory start = new GameFactory(gameRules.getBoardSizeH(),
+				gameRules.getBoardSizeV(), gameRules.getShipTypes());
 		A = start.createPlayer();
 		B = start.createPlayer();
 		gameControl = new ConsoleInteractions();
@@ -66,7 +66,7 @@ public class BattleshipGame {
 			BoardDrawing.drawGameBoardForOpponent(enemy.getPlansza());
 			gameControl.showYourMove(currentPlayer);
 			cords = pointRifle();
-			if (!gameRules.makeMove(enemy, cords[0], cords[1])) {
+			if (gameRules.makeMove(enemy, cords[0], cords[1]) == 1) {
 				gameControl.showMissMessage();
 				enemy = currentPlayer;
 				currentPlayer = changePlayer(currentPlayer);

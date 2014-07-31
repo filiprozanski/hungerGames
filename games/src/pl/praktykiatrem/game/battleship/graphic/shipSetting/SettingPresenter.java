@@ -62,8 +62,8 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 		this.observer = observer;
 		locked = new ArrayList<Coordinates>();
 		view = new ShipSettingPanel(this);
-		view.initialize(gameRules.getShipTypes(), gameRules.getBoardSize_H(),
-				gameRules.getBoardSize_V(), this);
+		view.initialize(gameRules.getShipTypes(), gameRules.getBoardSizeH(),
+				gameRules.getBoardSizeV(), this);
 		view.changeStateAllBoardPlaces(false);
 	}
 

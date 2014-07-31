@@ -36,7 +36,7 @@ public class ShipChoicePanel extends JPanel {
 		ShipIcons.createImages();
 		for (int i = 0; i < shipTypes.length; i++) {
 			ships.add(new JButton("Liczba masztow: " + shipTypes[i], ShipIcons
-					.getIcon(i + 1)));
+					.getShipIcon(i + 1)));
 			ships.get(i).setContentAreaFilled(false);
 			ships.get(i).addActionListener(
 					new ShipChoiceListener(shipTypes[i], i, observer));
@@ -61,7 +61,7 @@ public class ShipChoicePanel extends JPanel {
 		if (ok == true) {
 			ships.get(id).setIcon(ShipIcons.getOkIcon(id + 1));
 		} else {
-			ships.get(id).setIcon(ShipIcons.getIcon(id + 1));
+			ships.get(id).setIcon(ShipIcons.getShipIcon(id + 1));
 		}
 
 	}

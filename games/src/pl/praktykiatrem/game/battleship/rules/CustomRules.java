@@ -160,7 +160,6 @@ public class CustomRules implements IRules {
 
 	@Override
 	public boolean getCurrentPlayer() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

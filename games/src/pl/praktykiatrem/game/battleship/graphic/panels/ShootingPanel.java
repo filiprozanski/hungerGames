@@ -96,7 +96,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	 */
 	@Override
 	public void changeBattlePlaceIcon(int x, int y, int type) {
-		enemyBoardPanel.changePlaceIcon(x, y, type);
+		enemyBoardPanel.changePlaceStateIcon(x, y, type);
 	}
 
 	/**
@@ -207,5 +207,11 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void setStats(int playerShips, int enemyShips) {
 		infoPanel.setStats(playerShips, enemyShips);
+	}
+
+	@Override
+	public void changePlaceStateIcon(int x, int y, int type) {
+		playerBoardPanel.changePlaceStateIcon(x, y, type);
+
 	}
 }

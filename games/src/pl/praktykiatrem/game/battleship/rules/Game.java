@@ -22,11 +22,11 @@ public class Game {
 		isGameOver = false;
 	}
 
-	public int getBoardSize_H() {
+	public int getBoardSizeH() {
 		return rules.getBoardSize_H();
 	}
 
-	public int getBoardSize_V() {
+	public int getBoardSizeV() {
 		return rules.getBoardSize_V();
 	}
 

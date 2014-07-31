@@ -137,4 +137,8 @@ public class BoardGraphicPanel extends JPanel {
 			}
 		}
 	}
+
+	public void changePlaceStateIcon(int x, int y, int type) {
+		place[y][x].setPlaceStateIcon(type);
+	}
 }

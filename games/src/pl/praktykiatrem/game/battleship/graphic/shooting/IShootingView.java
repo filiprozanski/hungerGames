@@ -148,4 +148,6 @@ public interface IShootingView {
 	 */
 	void setStats(int playerShips, int enemyShips);
 
+	void changePlaceStateIcon(int x, int y, int type);
+
 }
