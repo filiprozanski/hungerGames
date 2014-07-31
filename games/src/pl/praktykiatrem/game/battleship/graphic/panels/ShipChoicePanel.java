@@ -12,8 +12,14 @@ import pl.praktykiatrem.game.battleship.files.ShipIcons;
 import pl.praktykiatrem.game.battleship.graphic.listeners.ShipChoiceListener;
 import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
 
+/**
+ * Panel zawieraj¹cy dostêpne statki
+ * 
+ * @author Filip Ró¿añski
+ *
+ */
 public class ShipChoicePanel extends JPanel {
-	private final int rowsNumber = 7;
+	private static final long serialVersionUID = -5010598464397087691L;
 
 	private IShipChoiceObserver observer;
 

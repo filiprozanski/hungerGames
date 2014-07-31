@@ -9,38 +9,46 @@ import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
 
+/**
+ * Panel zawieraj¹cy legendê
+ * 
+ * @author Filip Ró¿añski
+ *
+ */
 public class LegendPanel extends JPanel {
 
-	public LegendPanel() {
-		super(new GridLayout(10, 0));
-		setBackground(new Color(135, 206, 235));
-		initialize();
-	}
+    private static final long serialVersionUID = -5110374745603365105L;
 
-	private void initialize() {
+    public LegendPanel() {
+	super(new GridLayout(10, 0));
+	setBackground(new Color(135, 206, 235));
+	initialize();
+    }
 
-		// statusLabel.setIcon(ready_icon);
+    private void initialize() {
 
-		add(new JLabel("Legenda:", JLabel.CENTER));
-		add(new JLabel("Statek", ShipIcons.getIcon(1), JLabel.CENTER));
+	// statusLabel.setIcon(ready_icon);
 
-		add(new JLabel("Ustawiony Statek", ShipIcons.getOkIcon(2),
-				JLabel.CENTER));
+	add(new JLabel("Legenda:", JLabel.CENTER));
+	add(new JLabel("Statek", ShipIcons.getIcon(1), JLabel.CENTER));
 
-		add(new JLabel("Zatopiony Statek", ShipIcons.getIcon(8), JLabel.CENTER));
+	add(new JLabel("Ustawiony Statek", ShipIcons.getOkIcon(2),
+		JLabel.CENTER));
 
-		add(new JLabel("Pud³o", ShipIcons.getIcon(9), JLabel.CENTER));
+	add(new JLabel("Zatopiony Statek", ShipIcons.getIcon(8), JLabel.CENTER));
 
-		add(new JLabel("Trafiony Statek", ShipIcons.getIcon(10), JLabel.CENTER));
+	add(new JLabel("Pud³o", ShipIcons.getIcon(9), JLabel.CENTER));
 
-	}
+	add(new JLabel("Trafiony Statek", ShipIcons.getIcon(10), JLabel.CENTER));
 
-	public Dimension getPrefferedSize() {
-		return new Dimension(150, 150);
-	}
+    }
 
-	public Dimension getMinumumSize() {
-		return new Dimension(150, 150);
-	}
+    public Dimension getPrefferedSize() {
+	return new Dimension(150, 150);
+    }
+
+    public Dimension getMinumumSize() {
+	return new Dimension(150, 150);
+    }
 
 }
