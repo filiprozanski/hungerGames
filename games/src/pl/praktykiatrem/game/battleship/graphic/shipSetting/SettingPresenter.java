@@ -6,7 +6,6 @@ import java.util.Random;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
@@ -16,7 +15,7 @@ import pl.praktykiatrem.game.battleship.rules.Game;
  * @author Filip Ró¿añski
  *
  */
-public class SettingPresenter implements ISettingPresenter, IStageObserver {
+public class SettingPresenter implements ISettingPresenter {
 	/**
 	 * zmienna u¿ywana do ustawiania staków, przechowuje liczbe masztów
 	 * aktualnie wybranego statku
@@ -46,7 +45,7 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 	/**
 	 * obserwator zmiany etapu gry poprzez klikniêcie przycisku "ready"
 	 */
-	private IStageObserver observer;
+	private SettingController controller;
 
 	/**
 	 * 
@@ -57,14 +56,14 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 	 * @param observer
 	 */
 	public SettingPresenter(Game gameRules, PlayerStatus player,
-			IStageObserver observer) {
+			SettingController controller) {
 		this.gameRules = gameRules;
 		this.player = player;
-		this.observer = observer;
+		this.controller = controller;
 		locked = new ArrayList<Coordinates>();
 		view = new ShipSettingPanel(this);
 		view.initialize(gameRules.getShipTypes(), gameRules.getBoardSizeH(),
-				gameRules.getBoardSizeV(), this);
+				gameRules.getBoardSizeV());
 		view.changeStateAllBoardPlaces(false);
 	}
 
@@ -213,6 +212,7 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 		int rand_clickNumber;
 		Random generator = new Random();
 		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
+			this.polesNumber = gameRules.getShipTypes()[i];
 			if (generator.nextBoolean() == true) {
 				rand_dir = Direction.HORIZONTAL;
 				rand_clickNumber = 2;
@@ -223,12 +223,12 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 			while (true) {
 				rand_x = generator.nextInt(gameRules.getBoardSizeV());
 				rand_y = generator.nextInt(gameRules.getBoardSizeH());
-				if (gameRules.placeShips(player, id, polesNumber, rand_dir,
+				if (gameRules.placeShips(player, i, polesNumber, rand_dir,
 						rand_x, rand_y)) {
-					drawOnBoard(rand_x, rand_y, rand_dir, id + 1);
+					drawOnBoard(rand_x, rand_y, rand_dir, i + 1);
 					view.changeButtonCallNumber(rand_x, rand_y,
 							rand_clickNumber);
-					view.setOkIconShipButton(id, true);
+					view.setOkIconShipButton(i, true);
 					view.setReadyButtonState(gameRules.getShipsNumber()
 							- gameRules.getActiveShipsNumber(player));
 					break;
@@ -263,16 +263,8 @@ public class SettingPresenter implements ISettingPresenter, IStageObserver {
 		}
 	}
 
-	/**
-	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver#playerIsReady()
-	 */
-	@Override
 	public void playerIsReady() {
-		if (gameRules.getActiveShipsNumber(player) == gameRules
-				.getShipsNumber()) {
-			observer.playerIsReady();
-			view.disableReadyButton();
-		}
+		controller.playerIsReady();
+		view.disableReadyButton();
 	}
 }

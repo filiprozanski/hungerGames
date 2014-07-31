@@ -1,6 +1,5 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
-import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
 
 public interface ISettingView {
 	public void changePlaceIcon(int x, int y, int type);
@@ -17,8 +16,7 @@ public interface ISettingView {
 
 	public void changeButtonCallNumber(int x, int y, int number);
 
-	public void initialize(int[] tab, int sizeH, int sizeV,
-			IStageObserver observer);
+	public void initialize(int[] tab, int sizeH, int sizeV);
 
 	void disableReadyButton();
 

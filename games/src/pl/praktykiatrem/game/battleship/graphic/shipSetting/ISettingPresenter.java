@@ -5,5 +5,10 @@ public interface ISettingPresenter {
 
 	public void placeShip(int x, int y, int freq);
 
+	public void placeShipAtRandom();
+
 	public ISettingView getView();
+
+	public void playerIsReady();
+
 }
