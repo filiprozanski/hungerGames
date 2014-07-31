@@ -216,11 +216,11 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	public void GameOver(boolean win) {
 		changeStateAllEnemyBoardPlaces(false, null);
 		if (win == true)
-			infoPanel.changeStatus(4);
-		else
 			infoPanel.changeStatus(3);
+		else
+			infoPanel.changeStatus(2);
 	}
-	
+
 	@Override
 	public void changePlaceStateIcon(int x, int y, int type) {
 		playerBoardPanel.changePlaceStateIcon(x, y, type);
