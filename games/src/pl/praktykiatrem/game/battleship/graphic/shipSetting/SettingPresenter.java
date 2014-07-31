@@ -1,6 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
@@ -97,7 +98,7 @@ public class SettingPresenter implements ISettingPresenter {
 		this.polesNumber = polesNumber;
 		this.id = id;
 		ArrayList<Coordinates> list = gameRules.getCoordsList(player, id);
-		Coordinates[] tab = list.toArray(new Coordinates[list.size()]); // UWAGA!!!!
+		Coordinates[] tab = list.toArray(new Coordinates[list.size()]);
 		if (!player.isShipSet(id)) {
 			lockUsedPlaces();
 		} else {
@@ -197,6 +198,43 @@ public class SettingPresenter implements ISettingPresenter {
 			getLockedPlaces();
 			for (Coordinates coord : locked)
 				view.disableOneBoardPlace(coord.getX(), coord.getY());
+		}
+	}
+
+	/**
+	 * losowo ustawia statki na planszy
+	 */
+
+	public void placeShipAtRandom() {
+		Direction rand_dir;
+		int rand_x;
+		int rand_y;
+		int rand_clickNumber;
+		Random generator = new Random();
+		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
+			if (generator.nextBoolean() == true) {
+				rand_dir = Direction.HORIZONTAL;
+				rand_clickNumber = 2;
+			} else {
+				rand_dir = Direction.VERTICAL;
+				rand_clickNumber = 0;
+			}
+			while (true) {
+				rand_x = generator.nextInt(gameRules.getBoardSizeV());
+				rand_y = generator.nextInt(gameRules.getBoardSizeH());
+				if (gameRules.placeShips(player, id, polesNumber, rand_dir,
+						rand_x, rand_y)) {
+
+					drawOnBoard(rand_x, rand_y, rand_dir, id + 1);
+					view.changeButtonCallNumber(rand_x, rand_y,
+							rand_clickNumber);
+					view.setOkIconShipButton(id, true);
+					view.setReadyButtonState(gameRules.getShipsNumber()
+							- gameRules.getActiveShipsNumber(player));
+					break;
+
+				}
+			}
 		}
 	}
 
