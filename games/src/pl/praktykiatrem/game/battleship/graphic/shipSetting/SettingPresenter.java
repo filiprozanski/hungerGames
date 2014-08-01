@@ -1,13 +1,13 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.Rand;
 
 /**
  * presenter steruj¹cy widokiem do ustawiania statków na planszy
@@ -148,15 +148,10 @@ public class SettingPresenter implements ISettingPresenter {
 	 */
 	private void firstClick(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
-				x, y)) {
-			drawOnBoard(x, y, Direction.HORIZONTAL, id + 1);
-			view.changeButtonCallNumber(x, y, 2);
-			view.setOkIconShipButton(id, true);
-			view.setReadyButtonState(gameRules.getShipsNumber()
-					- gameRules.getActiveShipsNumber(player));
-		} else {
+				x, y))
+			placeShipsOnView(x, y, Direction.HORIZONTAL, id);
+		else
 			secondClick(x, y);
-		}
 	}
 
 	/**
@@ -168,16 +163,21 @@ public class SettingPresenter implements ISettingPresenter {
 	 */
 	private void secondClick(int x, int y) {
 		if (gameRules.placeShips(player, id, polesNumber, Direction.VERTICAL,
-				x, y)) {
-			drawOnBoard(x, y, Direction.VERTICAL, id + 1);
-			view.changeButtonCallNumber(x, y, 0);
-			view.setOkIconShipButton(id, true);
-			view.setReadyButtonState(gameRules.getShipsNumber()
-					- gameRules.getActiveShipsNumber(player));
-		} else {
+				x, y))
+			placeShipsOnView(x, y, Direction.VERTICAL, id);
+		else
 			view.changeButtonCallNumber(x, y, 1);
-		}
+	}
 
+	private void placeShipsOnView(int x, int y, Direction dir, int id) {
+		drawOnBoard(x, y, dir, id + 1);
+		if (dir == Direction.VERTICAL)
+			view.changeButtonCallNumber(x, y, 0);
+		else
+			view.changeButtonCallNumber(x, y, 2);
+		view.setOkIconShipButton(id, true);
+		view.setReadyButtonState(gameRules.getShipsNumber()
+				- gameRules.getActiveShipsNumber(player));
 	}
 
 	/**
@@ -207,31 +207,18 @@ public class SettingPresenter implements ISettingPresenter {
 
 	public void placeShipAtRandom() {
 		Direction rand_dir;
-		int rand_x;
-		int rand_y;
-		int rand_clickNumber;
-		Random generator = new Random();
+		int randX;
+		int randY;
 		resetBoard();
 		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
 			this.polesNumber = gameRules.getShipTypes()[i];
-			if (generator.nextBoolean() == true) {
-				rand_dir = Direction.HORIZONTAL;
-				rand_clickNumber = 2;
-			} else {
-				rand_dir = Direction.VERTICAL;
-				rand_clickNumber = 0;
-			}
+			rand_dir = Rand.getRandDirection();
 			while (true) {
-				rand_x = generator.nextInt(gameRules.getBoardSizeV());
-				rand_y = generator.nextInt(gameRules.getBoardSizeH());
+				randX = Rand.getRandX(gameRules);
+				randY = Rand.getRandY(gameRules);
 				if (gameRules.placeShips(player, i, polesNumber, rand_dir,
-						rand_x, rand_y)) {
-					drawOnBoard(rand_x, rand_y, rand_dir, i + 1);
-					view.changeButtonCallNumber(rand_x, rand_y,
-							rand_clickNumber);
-					view.setOkIconShipButton(i, true);
-					view.setReadyButtonState(gameRules.getShipsNumber()
-							- gameRules.getActiveShipsNumber(player));
+						randX, randY)) {
+					placeShipsOnView(randX, randY, rand_dir, i);
 					break;
 				}
 			}
