@@ -89,6 +89,11 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 		playerBoardPanel.changePlaceIcon(x, y, type);
 	}
 
+	@Override
+	public void fchangeBattlePlaceIcon(int x, int y, int type) {
+		enemyBoardPanel.changePlaceIcon(x, y, type);
+	}
+
 	/**
 	 * 
 	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView#changeBattlePlaceIcon(int,

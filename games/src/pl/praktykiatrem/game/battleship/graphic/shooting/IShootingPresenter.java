@@ -23,4 +23,6 @@ public interface IShootingPresenter {
 
 	public void GameOver(boolean win);
 
+	void fchangeIcon(int x, int y, int type);
+
 }
