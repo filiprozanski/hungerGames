@@ -32,8 +32,6 @@ public class PlayerStatus {
 
 	private PlayerStats stats;
 
-	// private String name;
-
 	/**
 	 * 
 	 * @param boardSize_x
@@ -123,6 +121,10 @@ public class PlayerStatus {
 	 */
 	public Board getPlansza() {
 		return plansza;
+	}
+
+	public Place getPlace(int x, int y) {
+		return plansza.getPlace(x, y);
 	}
 
 	/**

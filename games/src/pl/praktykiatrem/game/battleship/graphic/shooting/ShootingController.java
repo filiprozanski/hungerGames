@@ -113,8 +113,10 @@ public class ShootingController {
 				if (result == 2) {
 					int id = g.getShipID(player2, x, y);
 					pres1.drawShip(g.getCoordsTable(player2, id));
-					if (player2.getShipsNumber() == 0)
+					if (player2.getShipsNumber() == 0) {
+						drawLeftShips1();
 						GameOver(1);
+					}
 				}
 				return true;
 			} else {
@@ -128,8 +130,10 @@ public class ShootingController {
 				if (result == 2) {
 					int id = g.getShipID(player1, x, y);
 					pres2.drawShip(g.getCoordsTable(player1, id));
-					if (player1.getShipsNumber() == 0)
+					if (player1.getShipsNumber() == 0) {
+						drawLeftShips2();
 						GameOver(2);
+					}
 				}
 				return true;
 			} else {
@@ -137,6 +141,24 @@ public class ShootingController {
 				return false;
 			}
 		}
+	}
+
+	private void drawLeftShips1() {
+		for (int j = 0; j < g.getBoardSizeV(); j++)
+			for (int i = 0; i < g.getBoardSizeH(); i++)
+				if (player1.getPlace(i, j).isShipOnPlace()
+						&& player1.getPlace(i, j).isPlaceInGame())
+					pres2.fchangeIcon(i, j,
+							player1.getPlace(i, j).getShipId() + 1);
+	}
+
+	private void drawLeftShips2() {
+		for (int j = 0; j < g.getBoardSizeV(); j++)
+			for (int i = 0; i < g.getBoardSizeH(); i++)
+				if (player2.getPlace(i, j).isShipOnPlace()
+						&& player2.getPlace(i, j).isPlaceInGame())
+					pres1.fchangeIcon(i, j,
+							player2.getPlace(i, j).getShipId() + 1);
 	}
 
 	/**

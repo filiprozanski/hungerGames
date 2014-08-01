@@ -120,6 +120,11 @@ public class ShootingPresenter implements IShootingPresenter {
 	}
 
 	@Override
+	public void fchangeIcon(int x, int y, int type) {
+		view.fchangeBattlePlaceIcon(x, y, type);
+	}
+
+	@Override
 	public void changeStateIcon(int x, int y, int type) {
 		view.changePlaceStateIcon(x, y, type);
 	}

@@ -149,6 +149,9 @@ public interface IShootingView {
 	void setStats(int playerShips, int enemyShips);
 
 	void GameOver(boolean win);
+
 	void changePlaceStateIcon(int x, int y, int type);
+
+	void fchangeBattlePlaceIcon(int x, int y, int type);
 
 }
