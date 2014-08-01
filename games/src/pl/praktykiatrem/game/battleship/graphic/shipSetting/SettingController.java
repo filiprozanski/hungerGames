@@ -1,17 +1,17 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphic;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicLocal;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class SettingController {
 	private int readyPlayers;
-	private StartGraphic supervisor;
+	private StartGraphicLocal supervisor;
 	private ISettingPresenter pres1;
 	private ISettingPresenter pres2;
 
 	public SettingController(Game g, PlayerStatus player1,
-			PlayerStatus player2, StartGraphic supervisor) {
+			PlayerStatus player2, StartGraphicLocal supervisor) {
 		this.supervisor = supervisor;
 		pres1 = new SettingPresenter(g, player1, this);
 		pres2 = new SettingPresenter(g, player2, this);
