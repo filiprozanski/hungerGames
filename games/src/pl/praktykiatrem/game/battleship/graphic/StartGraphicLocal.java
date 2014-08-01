@@ -11,7 +11,7 @@ import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingController;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
-public class StartGraphic {
+public class StartGraphicLocal {
 
 	private JFrame frame1;
 
@@ -28,7 +28,7 @@ public class StartGraphic {
 	private SettingController seController;
 
 	public static void main(String[] args) {
-		StartGraphic start = new StartGraphic();
+		StartGraphicLocal start = new StartGraphicLocal();
 
 		start.initialize();
 		start.stageA();
