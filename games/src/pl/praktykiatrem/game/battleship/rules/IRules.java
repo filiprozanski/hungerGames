@@ -90,4 +90,6 @@ public interface IRules {
 	int getShipID(PlayerStatus player, int x, int y);
 
 	public void resetGame(PlayerStatus player);
+
+	public int getShipTypes(int id);
 }

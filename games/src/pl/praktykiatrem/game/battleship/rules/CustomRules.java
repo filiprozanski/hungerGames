@@ -196,4 +196,9 @@ public class CustomRules implements IRules {
 	public void resetGame(PlayerStatus player) {
 		player.resetStatus();
 	}
+
+	@Override
+	public int getShipTypes(int id) {
+		return SHIPTYPES[id];
+	}
 }

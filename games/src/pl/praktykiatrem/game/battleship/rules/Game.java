@@ -48,6 +48,10 @@ public class Game {
 		return rules.getShipTypes();
 	}
 
+	public int getShipType(int id) {
+		return rules.getShipTypes(id);
+	}
+
 	public int makeMove(PlayerStatus p, int x, int y) {
 		return rules.makeMove(p, x, y);
 	}

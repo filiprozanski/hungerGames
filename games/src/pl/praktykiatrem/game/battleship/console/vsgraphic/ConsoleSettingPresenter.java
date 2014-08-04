@@ -1,7 +1,5 @@
 package pl.praktykiatrem.game.battleship.console.vsgraphic;
 
-import java.io.FileNotFoundException;
-
 import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 import pl.praktykiatrem.game.battleship.factory.ShipLoader;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
@@ -28,11 +26,11 @@ public class ConsoleSettingPresenter {
 	}
 
 	private void setShips(PlayerStatus gamer) {
-		try {
-			loader.initializeShipsFromFile(gamer);
-		} catch (FileNotFoundException e) {
-			loader.initializeShips(gamer, gameRules);
-		}
+		// try {
+		// loader.initializeShipsFromFile(gamer);
+		// } catch (FileNotFoundException e) {
+		loader.initializeShips(gamer, gameRules);
+		// }
 
 		controller.playerIsReady();
 	}

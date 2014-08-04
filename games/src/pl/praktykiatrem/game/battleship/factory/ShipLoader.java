@@ -57,7 +57,7 @@ public class ShipLoader {
 				temp = odczyt.nextLine().toUpperCase();
 				gameRules.placeShips(gamer, i, gamer.getShipTypes(i),
 						Direction.getDirection(temp.charAt(2)),
-						(int) temp.charAt(4) - 48, (int) temp.charAt(6) - 48);
+						temp.charAt(4) - 48, temp.charAt(6) - 48);
 
 			}
 		}
@@ -80,8 +80,8 @@ public class ShipLoader {
 	public void initializeShips(PlayerStatus gamer, Game gameRules) {
 		console.showYourMove(gamer);
 
-		for (int i = 0; i < gamer.getShipsNumber(); i++) {
-			fetchShipCoords(gamer.getShipTypes(i), i, gamer);
+		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
+			fetchShipCoords(gameRules.getShipType(i), i, gamer);
 			// i++;
 			// fetchShipCoords(gamer.getShipTypes(i), i, gamer, gameControl);
 		}
