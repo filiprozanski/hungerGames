@@ -21,6 +21,7 @@ import pl.praktykiatrem.game.battleship.rules.Game;
  */
 public class ShipLoader {
 	private Game gameRules;
+	private ConsoleInteractions console;
 
 	/**
 	 * 
@@ -30,8 +31,9 @@ public class ShipLoader {
 	 * @param gameRules
 	 *            obiekt gry z zaimplementowanymi regu³ami
 	 */
-	public ShipLoader(Game gameRules) {
+	public ShipLoader(Game gameRules, ConsoleInteractions console) {
 		this.gameRules = gameRules;
+		this.console = console;
 	}
 
 	/**
@@ -75,12 +77,11 @@ public class ShipLoader {
 	 * @param gameRules
 	 *            instncja regu³ gry
 	 */
-	public void initializeShips(PlayerStatus gamer,
-			ConsoleInteractions gameControl, Game gameRules) {
-		gameControl.showYourMove(gamer);
+	public void initializeShips(PlayerStatus gamer, Game gameRules) {
+		console.showYourMove(gamer);
 
 		for (int i = 0; i < gamer.getShipsNumber(); i++) {
-			fetchShipCoords(gamer.getShipTypes(i), i, gamer, gameControl);
+			fetchShipCoords(gamer.getShipTypes(i), i, gamer);
 			// i++;
 			// fetchShipCoords(gamer.getShipTypes(i), i, gamer, gameControl);
 		}
@@ -100,14 +101,13 @@ public class ShipLoader {
 	 * @param gameControl
 	 *            instancja interfejsu konsoli
 	 */
-	private void fetchShipCoords(int polesNumber, int id, PlayerStatus gamer,
-			ConsoleInteractions gameControl) {
+	private void fetchShipCoords(int polesNumber, int id, PlayerStatus gamer) {
 		Direction dir;
 		int[] tab = { 0, 0 };
 
 		while (true) {
-			dir = gameControl.scanDirection(polesNumber);
-			tab = gameControl.scanCoords();
+			dir = console.scanDirection(polesNumber);
+			tab = console.scanCoords();
 
 			if (ValidationInstruments.isPlaceValid(dir, tab[0], tab[1],
 					polesNumber)
@@ -116,7 +116,7 @@ public class ShipLoader {
 				BoardDrawing.drawGameBoardForPlayer(gamer.getPlansza());
 				break;
 			}
-			gameControl.showErrorMessage1();
+			console.showErrorMessage1();
 		}
 	}
 

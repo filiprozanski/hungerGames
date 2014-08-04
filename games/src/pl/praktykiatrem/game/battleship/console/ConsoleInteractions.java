@@ -9,6 +9,7 @@ package pl.praktykiatrem.game.battleship.console;
 
 import java.util.Scanner;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Board;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
@@ -120,5 +121,13 @@ public class ConsoleInteractions implements Comunicatable {
 		System.out.println("\"0-6\" numer statku");
 		System.out.println("\"H\" trafiony maszt statku");
 		System.out.println("\"M\" chybione pole");
+	}
+
+	public void drawBoardForOpponent(Board gamePlace) {
+		BoardDrawing.drawGameBoardForOpponent(gamePlace);
+	}
+
+	public void drawBoardForPlayer(Board gamePlace) {
+		BoardDrawing.drawGameBoardForPlayer(gamePlace);
 	}
 }
