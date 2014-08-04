@@ -47,6 +47,8 @@ public class SettingPresenter implements ISettingPresenter {
 	 */
 	private SettingController controller;
 
+	private boolean ready;
+
 	/**
 	 * 
 	 * Tworzy nowy obiekt klasy <code>SettingPresenter</code>
@@ -228,6 +230,8 @@ public class SettingPresenter implements ISettingPresenter {
 	public void resetBoard() {
 		gameRules.resetGame(player);
 		clearBoardView();
+		if (ready)
+			controller.playerIsNotReady();
 	}
 
 	private void clearBoardView() {
@@ -271,6 +275,7 @@ public class SettingPresenter implements ISettingPresenter {
 	}
 
 	public void playerIsReady() {
+		ready = true;
 		controller.playerIsReady();
 		view.disableReadyButton();
 	}

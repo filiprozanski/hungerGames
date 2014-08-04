@@ -35,4 +35,8 @@ public class SettingController {
 			supervisor.changeStage();
 	}
 
+	public void playerIsNotReady() {
+		readyPlayers = 0;
+	}
+
 }
