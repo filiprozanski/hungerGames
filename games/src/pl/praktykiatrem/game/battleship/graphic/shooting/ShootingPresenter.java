@@ -170,7 +170,7 @@ public class ShootingPresenter implements IShootingPresenter {
 	}
 
 	@Override
-	public void GameOver(boolean win) {
+	public void gameOver(boolean win) {
 		view.GameOver(win);
 		this.gameOver = true;
 	}

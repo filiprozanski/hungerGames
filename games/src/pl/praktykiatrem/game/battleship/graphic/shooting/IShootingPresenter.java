@@ -21,7 +21,7 @@ public interface IShootingPresenter {
 
 	void changeStateIcon(int x, int y, int type);
 
-	public void GameOver(boolean win);
+	public void gameOver(boolean win);
 
 	void fchangeIcon(int x, int y, int type);
 

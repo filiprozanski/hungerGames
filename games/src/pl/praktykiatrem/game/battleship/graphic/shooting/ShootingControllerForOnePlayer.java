@@ -236,13 +236,13 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	public void gameOver(PlayerStatus player) {
 		if (player.equals(player1)) {
 			drawLeftShips1();
-			pres1.GameOver(true);
-			pres2.GameOver(false);
+			pres1.gameOver(true);
+			pres2.gameOver(false);
 
 		} else if (player.equals(player2)) {
 			drawLeftShips2();
-			pres1.GameOver(false);
-			pres2.GameOver(true);
+			pres1.gameOver(false);
+			pres2.gameOver(true);
 		}
 
 		pres1.changeGiveUpButtonLabel();
@@ -251,12 +251,12 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 
 	public void resign(PlayerStatus player) {
 		if (player.equals(player2)) {
-			pres1.GameOver(true);
-			pres2.GameOver(false);
+			pres1.gameOver(true);
+			pres2.gameOver(false);
 
 		} else if (player.equals(player1)) {
-			pres1.GameOver(false);
-			pres2.GameOver(true);
+			pres1.gameOver(false);
+			pres2.gameOver(true);
 		}
 
 		drawLeftShips1();
