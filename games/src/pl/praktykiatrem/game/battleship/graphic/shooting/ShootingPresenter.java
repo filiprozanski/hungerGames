@@ -33,7 +33,7 @@ public class ShootingPresenter implements IShootingPresenter {
 	/**
 	 * obiekt reprezentuj±cy controller nadzoruj±cy fazê strzelania
 	 */
-	private ShootingController controll;
+	private IShootingController controll;
 	/**
 	 * lista miejsc, które zawsze pozostaj± zablokowane
 	 */
@@ -55,7 +55,7 @@ public class ShootingPresenter implements IShootingPresenter {
 	 * @param controll
 	 */
 	public ShootingPresenter(Game gameRules, PlayerStatus player,
-			ShootingController controll) {
+			IShootingController controll) {
 		this.gameRules = gameRules;
 		this.player = player;
 		this.controll = controll;

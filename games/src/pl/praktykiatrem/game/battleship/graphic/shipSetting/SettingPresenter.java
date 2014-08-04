@@ -45,7 +45,7 @@ public class SettingPresenter implements ISettingPresenter {
 	/**
 	 * obserwator zmiany etapu gry poprzez klikniêcie przycisku "ready"
 	 */
-	private SettingController controller;
+	private ISettingController controller;
 
 	private boolean ready;
 
@@ -58,7 +58,7 @@ public class SettingPresenter implements ISettingPresenter {
 	 * @param observer
 	 */
 	public SettingPresenter(Game gameRules, PlayerStatus player,
-			SettingController controller) {
+			ISettingController controller) {
 		this.gameRules = gameRules;
 		this.player = player;
 		this.controller = controller;

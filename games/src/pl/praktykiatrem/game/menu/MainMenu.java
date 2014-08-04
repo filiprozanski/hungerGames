@@ -10,7 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphic42;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 
 /**
  *
@@ -182,7 +183,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		});
 		rulesChoice.add(customRulesField);
 
-		originalRulesField.setText("OriginalRules");
+		originalRulesField.setText("Regu³y Patryka");
 		originalRulesField
 				.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,13 +202,16 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	}// </editor-fold>
 
 	private void bsPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
+		// dialog = new NameDialog(this, "Gracz 2", true);
+		new StartGraphicForOnePlayer("Filip", "Wiktor", this, getRulesChoice());
+		setVisible(false);
 	}
 
 	private void bsPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
 		// dialog = new NameDialog(this, "Gracz 2", true);
-		new StartGraphic42("Filip", "Wiktor", this, getRulesChoice());
+		new StartGraphicForTwoPlayers("Filip", "Wiktor", this, getRulesChoice());
 		setVisible(false);
 	}
 

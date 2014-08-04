@@ -7,12 +7,14 @@ import javax.swing.JFrame;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingController;
-import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingController;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingController;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerForOnePlayer;
+import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingController;
+import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForOnePlayer;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 
-public class StartGraphic42 {
+public class StartGraphicForOnePlayer {
 
 	private JFrame frame1;
 
@@ -24,9 +26,9 @@ public class StartGraphic42 {
 
 	private Game game;
 
-	private ShootingController shController;
+	private IShootingController shController;
 
-	private SettingController seController;
+	private ISettingController seController;
 
 	private IMenuCallObserver menuObserver;
 
@@ -37,7 +39,7 @@ public class StartGraphic42 {
 	 * start.initialize(); start.stageA(); }
 	 */
 
-	public StartGraphic42(String name1, String name2,
+	public StartGraphicForOnePlayer(String name1, String name2,
 			IMenuCallObserver menuObserver, int rulesType) {
 		this.menuObserver = menuObserver;
 		game = new Game(rulesType);
@@ -74,7 +76,8 @@ public class StartGraphic42 {
 	}
 
 	public void stageA() {
-		seController = new SettingController(game, player1, player2, this);
+		seController = new SettingControllerForOnePlayer(game, player1,
+				player2, this);
 
 		frame1.getContentPane().add((ShipSettingPanel) seController.getView(1));
 		frame1.setSize(660, 660);
@@ -86,7 +89,8 @@ public class StartGraphic42 {
 	}
 
 	public void stageB() {
-		shController = new ShootingController(player1, player2, game, this);
+		shController = new ShootingControllerForOnePlayer(player1, player2,
+				game, this);
 
 		frame1.getContentPane().removeAll();
 		frame2.getContentPane().removeAll();
