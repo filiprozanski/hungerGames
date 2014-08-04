@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic.menu;
+package pl.praktykiatrem.game.menu;
 
 import javax.swing.JFrame;
 

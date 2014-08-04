@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package pl.praktykiatrem.game.battleship.graphic.menu;
+package pl.praktykiatrem.game.menu;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
