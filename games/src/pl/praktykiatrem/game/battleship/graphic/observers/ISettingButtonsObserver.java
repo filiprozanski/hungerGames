@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic.observers;
 
-public interface IStageObserver {
+public interface ISettingButtonsObserver {
 	public void playerIsReady();
 
 	public void resetButtonClicked();

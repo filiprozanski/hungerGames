@@ -18,7 +18,7 @@ public class Game {
 	private boolean isGameOver;
 
 	public Game() {
-		rules = new OriginalRules();
+		rules = new CustomRules();
 		isGameOver = false;
 	}
 

@@ -154,4 +154,6 @@ public interface IShootingView {
 
 	void fchangeBattlePlaceIcon(int x, int y, int type);
 
+	void changeGiveUpButtonLabel(String text);
+
 }

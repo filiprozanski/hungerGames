@@ -11,12 +11,13 @@ import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicLocal;
+import pl.praktykiatrem.game.battleship.graphic.observers.IMenuCallObserver;
 
 /**
  *
  * @author Filip Ró¿añski
  */
-public class MainMenu extends JFrame {
+public class MainMenu extends JFrame implements IMenuCallObserver {
 
 	/**
 	 * Creates new form MainMenu
@@ -181,7 +182,7 @@ public class MainMenu extends JFrame {
 	private void bsPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
 		// dialog = new NameDialog(this, "Gracz 2", true);
-		new StartGraphicLocal("Filip", "Wiktor");
+		new StartGraphicLocal("Filip", "Wiktor", this);
 		setVisible(false);
 	}
 
@@ -231,5 +232,10 @@ public class MainMenu extends JFrame {
 	private javax.swing.JButton tttPlayerButton;
 	private String name1;
 	private String name2;
+
 	// End of variables declaration
+	@Override
+	public void callMenu() {
+		setVisible(true);
+	}
 }
