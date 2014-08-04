@@ -1,10 +1,13 @@
 package pl.praktykiatrem.game.battleship.files;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+
+import pl.praktykiatrem.game.battleship.rules.Rand;
 
 /**
  * 
@@ -19,11 +22,16 @@ import javax.swing.ImageIcon;
  */
 public class ShipIcons {
 	/**
-	 * tablica przechowuj±ca tablicê gotowych obrazów
+	 * tablica przechowuj±ca tablicê gotowych obrazów i kolorów
 	 */
-	private static ImageIcon[] shipIcons = new ImageIcon[8];
 	private static ImageIcon[] infoIcons = new ImageIcon[4];
 	private static ImageIcon[] stateIcons = new ImageIcon[3];
+	private static Color[] colors;
+	/**
+	 * obiekt przechowuj±cy ikonê statku domy¶lnego
+	 * 
+	 */
+	private static ImageIcon defaultShipIcon;
 	/**
 	 * obiekt przechowuj±cy ikonê "ok"
 	 */
@@ -36,24 +44,27 @@ public class ShipIcons {
 	 * wype³nia tablicê obrazami
 	 *
 	 */
+	public static final void createColors(int wieViel) {
+		if (wieViel > 10)
+			colors = new Color[wieViel + 1];
+		else
+			colors = new Color[11];
+		colors[1] = new Color(136, 0, 21);
+		colors[2] = new Color(237, 28, 36);
+		colors[3] = new Color(255, 127, 39);
+		colors[4] = new Color(0, 162, 232);
+		colors[5] = new Color(34, 177, 76);
+		colors[6] = new Color(163, 73, 164);
+		colors[7] = new Color(153, 100, 234);
+		colors[8] = new Color(255, 0, 255);
+		colors[9] = new Color(0, 0, 255);
+
+		for (int i = 10; i < wieViel + 1; i++)
+			colors[i] = Rand.getRandColor();
+	}
+
 	public static final void createImages() {
 		try {
-			shipIcons[0] = new ImageIcon(
-					ShipIcons.class.getResource("\\shipsIcons\\0.png"));
-			shipIcons[1] = new ImageIcon(
-					ShipIcons.class.getResource("\\shipsIcons\\1.png"));
-			shipIcons[2] = new ImageIcon(
-					ShipIcons.class.getResource("\\shipsIcons\\2.png"));
-			shipIcons[3] = new ImageIcon(
-					ShipIcons.class.getResource("\\shipsIcons\\3.png"));
-			shipIcons[4] = new ImageIcon(
-					ShipIcons.class.getResource("\\shipsIcons\\4.png"));
-			shipIcons[5] = new ImageIcon(
-					ShipIcons.class.getResource("\\shipsIcons\\5.png"));
-			shipIcons[6] = new ImageIcon(
-					ShipIcons.class.getResource("\\shipsIcons\\6.png"));
-			shipIcons[7] = new ImageIcon(
-					ShipIcons.class.getResource("\\shipsIcons\\7.png"));
 			stateIcons[0] = new ImageIcon(
 					ShipIcons.class.getResource("\\stateIcons\\8.png"));
 			stateIcons[1] = new ImageIcon(
@@ -61,6 +72,8 @@ public class ShipIcons {
 			stateIcons[2] = new ImageIcon(
 					ShipIcons.class.getResource("\\stateIcons\\10.png"));
 			okIcon = new ImageIcon(ShipIcons.class.getResource("ok1.png"));
+			defaultShipIcon = new ImageIcon(
+					ShipIcons.class.getResource("default.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -78,7 +91,7 @@ public class ShipIcons {
 	 */
 	public static ImageIcon getOkIcon(int type) {
 
-		final BufferedImage img1 = iconToBufferedImage(shipIcons[type]);
+		final BufferedImage img1 = iconToBufferedImage(getShipIcon(type));
 		final BufferedImage img2 = iconToBufferedImage(okIcon);
 		final BufferedImage combinedImage = new BufferedImage(img1.getWidth()
 				+ img2.getWidth(),
@@ -87,6 +100,28 @@ public class ShipIcons {
 		Graphics2D image = combinedImage.createGraphics();
 		image.drawImage(img2, 0, 0, null);
 		image.drawImage(img1, img2.getWidth(), 0, null);
+		image.dispose();
+		return new ImageIcon(combinedImage);
+	}
+
+	private static ImageIcon shipDrawIcon(int type) {
+		final BufferedImage img1 = iconToBufferedImage(defaultShipIcon);
+		final BufferedImage img2 = new BufferedImage(15, 15,
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D temp = img2.createGraphics();
+		// Color color = new Color(255, 0, 255);
+		temp.setColor(colors[type]);
+		int size = 15;
+		for (int i = 0; i < size; i++)
+			for (int j = 0; j < size; j++)
+				temp.drawLine(0, i, j, size);
+		temp.dispose();
+
+		final BufferedImage combinedImage = new BufferedImage(img1.getWidth(),
+				img1.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D image = combinedImage.createGraphics();
+		image.drawImage(img1, 0, 0, null);
+		image.drawImage(img2, 13, 2, null);
 		image.dispose();
 		return new ImageIcon(combinedImage);
 	}
@@ -119,10 +154,7 @@ public class ShipIcons {
 	 * @return odpowiedni± ikonê, okre¶lon± przez argument type
 	 */
 	public static ImageIcon getShipIcon(int type) {
-		if (type <= 7)
-			return shipIcons[type];
-		else
-			return shipIcons[0];
+		return shipDrawIcon(type);
 	}
 
 	public static ImageIcon getInfoIcon(int type) {

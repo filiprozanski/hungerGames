@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.rules;
 
+import java.awt.Color;
 import java.util.Random;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
@@ -23,4 +24,8 @@ public abstract class Rand {
 		return generator.nextInt(gameRules.getBoardSizeH());
 	}
 
+	public static Color getRandColor() {
+		return new Color(generator.nextInt(255), generator.nextInt(255),
+				generator.nextInt(255));
+	}
 }

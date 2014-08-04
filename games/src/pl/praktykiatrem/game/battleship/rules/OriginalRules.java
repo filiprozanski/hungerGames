@@ -13,11 +13,11 @@ import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
  */
 public class OriginalRules implements IRules {
 
-	private static final int BOARDSIZE_H = 10;
+	private static final int BOARDSIZE_H = 12;
 
-	private static final int BOARDSIZE_V = 10;
+	private static final int BOARDSIZE_V = 12;
 
-	private static final int SHIPTYPES[] = { 6, 4, 4, 3, 3, 2, 2 };
+	private static final int SHIPTYPES[] = { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
 
 	private boolean putShipOnPlace(Board plansza, int id, int x, int y) {
 		if (!plansza.isShipOnPlace(x, y)) {

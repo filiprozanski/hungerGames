@@ -26,7 +26,7 @@ public class ShipChoicePanel extends JPanel {
 	private ArrayList<JButton> ships;
 
 	public ShipChoicePanel(IShipChoiceObserver observer, int[] shipsTypes) {
-		super(new GridLayout(7, 0));
+		super(new GridLayout(shipsTypes.length, 0));
 		ships = new ArrayList<JButton>();
 		this.observer = observer;
 		initialize(shipsTypes);
@@ -34,6 +34,7 @@ public class ShipChoicePanel extends JPanel {
 
 	private void initialize(int[] shipTypes) {
 		ShipIcons.createImages();
+		ShipIcons.createColors(shipTypes.length);
 		for (int i = 0; i < shipTypes.length; i++) {
 			ships.add(new JButton("Liczba masztow: " + shipTypes[i], ShipIcons
 					.getShipIcon(i + 1)));
