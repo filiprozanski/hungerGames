@@ -3,12 +3,12 @@ package pl.praktykiatrem.game.battleship.graphic.listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
+import pl.praktykiatrem.game.battleship.graphic.observers.ISettingButtonsObserver;
 
 public class UserStageListener implements ActionListener {
-    private IStageObserver observer;
+    private ISettingButtonsObserver observer;
 
-    public UserStageListener(IStageObserver observer) {
+    public UserStageListener(ISettingButtonsObserver observer) {
 	this.observer = observer;
     }
 

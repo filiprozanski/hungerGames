@@ -1,6 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicLocal;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 /**
@@ -48,6 +49,8 @@ public class ShootingController {
 	 */
 	private int accuracy;
 
+	private StartGraphicLocal supervisor;
+
 	/**
 	 * 
 	 * Tworzy nowy obiekt klasy <code>ShootingController</code>
@@ -56,9 +59,11 @@ public class ShootingController {
 	 * @param player2
 	 * @param g
 	 */
-	public ShootingController(PlayerStatus player1, PlayerStatus player2, Game g) {
+	public ShootingController(PlayerStatus player1, PlayerStatus player2,
+			Game g, StartGraphicLocal supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
+		this.supervisor = supervisor;
 		this.g = g;
 
 		pres1 = new ShootingPresenter(g, player1, this);
@@ -114,8 +119,7 @@ public class ShootingController {
 					int id = g.getShipID(player2, x, y);
 					pres1.drawShip(g.getCoordsTable(player2, id));
 					if (player2.getShipsNumber() == 0) {
-						drawLeftShips1();
-						GameOver(1);
+						gameOver(player1);
 					}
 				}
 				return true;
@@ -131,8 +135,7 @@ public class ShootingController {
 					int id = g.getShipID(player1, x, y);
 					pres2.drawShip(g.getCoordsTable(player1, id));
 					if (player1.getShipsNumber() == 0) {
-						drawLeftShips2();
-						GameOver(2);
+						gameOver(player2);
 					}
 				}
 				return true;
@@ -230,13 +233,39 @@ public class ShootingController {
 			return null;
 	}
 
-	private void GameOver(int player) {
-		if (player == 1) {
+	public void gameOver(PlayerStatus player) {
+		if (player.equals(player1)) {
+			drawLeftShips1();
 			pres1.GameOver(true);
 			pres2.GameOver(false);
-		} else if (player == 2) {
+
+		} else if (player.equals(player2)) {
+			drawLeftShips2();
 			pres1.GameOver(false);
 			pres2.GameOver(true);
 		}
+
+		pres1.changeGiveUpButtonLabel();
+		pres2.changeGiveUpButtonLabel();
+	}
+
+	public void resign(PlayerStatus player) {
+		if (player.equals(player2)) {
+			pres1.GameOver(true);
+			pres2.GameOver(false);
+
+		} else if (player.equals(player1)) {
+			pres1.GameOver(false);
+			pres2.GameOver(true);
+		}
+
+		drawLeftShips1();
+		drawLeftShips2();
+		pres1.changeGiveUpButtonLabel();
+		pres2.changeGiveUpButtonLabel();
+	}
+
+	public void callMenu() {
+		supervisor.callMenu();
 	}
 }

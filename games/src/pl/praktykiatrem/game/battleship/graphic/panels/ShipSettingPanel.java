@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
-import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
+import pl.praktykiatrem.game.battleship.graphic.observers.ISettingButtonsObserver;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingView;
 
@@ -19,7 +19,7 @@ import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingView;
  *
  */
 public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
-		ISettingView, IShipChoiceObserver, IStageObserver {
+		ISettingView, IShipChoiceObserver, ISettingButtonsObserver {
 	private static final long serialVersionUID = 1189452196940629120L;
 	private BoardGraphicPanel boardPanel;
 	private ShipChoicePanel choicePanel;

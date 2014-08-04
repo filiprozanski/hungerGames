@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.graphic.observers.IMenuCallObserver;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingController;
@@ -27,6 +28,8 @@ public class StartGraphicLocal {
 
 	private SettingController seController;
 
+	private IMenuCallObserver menuObserver;
+
 	/*
 	 * public static void main(String[] args) { StartGraphicLocal start = new
 	 * StartGraphicLocal();
@@ -34,14 +37,15 @@ public class StartGraphicLocal {
 	 * start.initialize(); start.stageA(); }
 	 */
 
-	public StartGraphicLocal(String name1, String name2) {
+	public StartGraphicLocal(String name1, String name2,
+			IMenuCallObserver menuObserver, int rulesType) {
+		this.menuObserver = menuObserver;
+		game = new Game(rulesType);
 		initialize(name1, name2);
 		stageA();
 	}
 
 	public void initialize(String name1, String name2) {
-		game = new Game();
-
 		int sizeX = game.getBoardSizeH();
 		int sizeY = game.getBoardSizeV();
 		int[] shipsType = game.getShipTypes();
@@ -82,7 +86,7 @@ public class StartGraphicLocal {
 	}
 
 	public void stageB() {
-		shController = new ShootingController(player1, player2, game);
+		shController = new ShootingController(player1, player2, game, this);
 
 		frame1.getContentPane().removeAll();
 		frame2.getContentPane().removeAll();
@@ -99,5 +103,11 @@ public class StartGraphicLocal {
 
 	public void changeStage() {
 		stageB();
+	}
+
+	public void callMenu() {
+		frame1.dispose();
+		frame2.dispose();
+		menuObserver.callMenu();
 	}
 }

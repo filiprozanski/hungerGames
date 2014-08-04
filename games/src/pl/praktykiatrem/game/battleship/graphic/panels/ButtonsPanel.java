@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.graphic.listeners.UserStageListener;
-import pl.praktykiatrem.game.battleship.graphic.observers.IStageObserver;
+import pl.praktykiatrem.game.battleship.graphic.observers.ISettingButtonsObserver;
 
 /**
  * Klasa zawiera przyciski s³u¿±ce do nawigacji w trakcie ustawiania statków
@@ -43,7 +43,7 @@ public class ButtonsPanel extends JPanel {
 	 */
 	private JButton autoSet;
 
-	private IStageObserver observer;
+	private ISettingButtonsObserver observer;
 
 	/**
 	 * 
@@ -51,7 +51,7 @@ public class ButtonsPanel extends JPanel {
 	 *
 	 * @param observer
 	 */
-	public ButtonsPanel(IStageObserver observer) {
+	public ButtonsPanel(ISettingButtonsObserver observer) {
 		super(new GridLayout(3, 0));
 		setBackground(new Color(135, 206, 235));
 		this.observer = observer;

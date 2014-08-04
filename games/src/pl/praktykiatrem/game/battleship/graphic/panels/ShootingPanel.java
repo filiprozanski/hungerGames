@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
+import pl.praktykiatrem.game.battleship.graphic.observers.IShootingButtonsObserver;
 import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView;
 
@@ -21,7 +22,7 @@ import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView;
  *
  */
 public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
-		IShootingView {
+		IShootingView, IShootingButtonsObserver {
 
 	/**
 	 * Pole <code>serialVersionUID</code>
@@ -68,7 +69,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 		setLayout(new GridLayout(2, 2));
 		playerBoardPanel = new BoardGraphicPanel(sizeH, sizeV);
 		enemyBoardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
-		infoPanel = new InfoPanel();
+		infoPanel = new InfoPanel(this);
 		legendPanel = new LegendPanel();
 
 		add(playerBoardPanel);
@@ -230,5 +231,15 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	public void changePlaceStateIcon(int x, int y, int type) {
 		playerBoardPanel.changePlaceStateIcon(x, y, type);
 
+	}
+
+	@Override
+	public void giveUpButtonclicked() {
+		presenter.giveUp();
+	}
+
+	@Override
+	public void changeGiveUpButtonLabel(String text) {
+		infoPanel.changeGiveUpButtonLabel(text);
 	}
 }

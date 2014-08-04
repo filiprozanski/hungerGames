@@ -44,6 +44,8 @@ public class ShootingPresenter implements IShootingPresenter {
 	 */
 	private boolean gameOver = false;
 
+	private int giveUpButtonCallNumber;
+
 	/**
 	 * 
 	 * Tworzy nowy obiekt klasy <code>ShootingPresenter</code>
@@ -58,6 +60,7 @@ public class ShootingPresenter implements IShootingPresenter {
 		this.player = player;
 		this.controll = controll;
 		this.lockedPlaces = new ArrayList<Coordinates>();
+		giveUpButtonCallNumber = 0;
 
 		view = new ShootingPanel(this);
 		view.initialize(gameRules.getBoardSizeH(), gameRules.getBoardSizeV());
@@ -172,4 +175,21 @@ public class ShootingPresenter implements IShootingPresenter {
 		this.gameOver = true;
 	}
 
+	@Override
+	public void giveUp() {
+		giveUpButtonCallNumber++;
+
+		if (giveUpButtonCallNumber == 1) {
+			controll.resign(player);
+			changeGiveUpButtonLabel();
+		} else if (giveUpButtonCallNumber == 2) {
+			controll.callMenu();
+		}
+	}
+
+	@Override
+	public void changeGiveUpButtonLabel() {
+		view.changeGiveUpButtonLabel("Przejdü do menu");
+		giveUpButtonCallNumber = 1;
+	}
 }

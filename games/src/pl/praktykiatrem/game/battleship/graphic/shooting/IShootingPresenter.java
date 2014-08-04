@@ -25,4 +25,8 @@ public interface IShootingPresenter {
 
 	void fchangeIcon(int x, int y, int type);
 
+	public void giveUp();
+
+	void changeGiveUpButtonLabel();
+
 }

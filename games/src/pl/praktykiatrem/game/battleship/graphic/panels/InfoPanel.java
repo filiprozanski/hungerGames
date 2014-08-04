@@ -3,6 +3,8 @@ package pl.praktykiatrem.game.battleship.graphic.panels;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,6 +13,7 @@ import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
 import pl.praktykiatrem.game.battleship.graphic.buttons.StressButton;
+import pl.praktykiatrem.game.battleship.graphic.observers.IShootingButtonsObserver;
 
 /**
  *
@@ -54,13 +57,18 @@ public class InfoPanel extends JPanel {
 	private ImageIcon lose_icon = new ImageIcon(
 			ShipIcons.class.getResource("lose.png"));
 
+	private IShootingButtonsObserver observer;
+
+	private JButton giveUp;
+
 	/**
 	 * 
 	 * Tworzy nowy obiekt klasy <code>InfoPanel</code>
 	 *
 	 */
-	public InfoPanel() {
+	public InfoPanel(IShootingButtonsObserver observer) {
 		super(new GridLayout(3, 0));
+		this.observer = observer;
 		setBackground(new Color(135, 206, 235));
 		initialize();
 	}
@@ -73,9 +81,16 @@ public class InfoPanel extends JPanel {
 
 		statusLabel.setIcon(ready_icon);
 
-		JButton giveUp = new JButton("Poddaj siê");
+		giveUp = new JButton("Poddaj siê");
 		giveUp.setBackground(new Color(135, 206, 235));
 		JPanel buttonPanel = new JPanel(new GridLayout(0, 2));
+
+		giveUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				observer.giveUpButtonclicked();
+			}
+		});
+
 		buttonPanel.setBackground(new Color(135, 206, 235));
 		buttonPanel.add(new StressButton());
 		buttonPanel.add(giveUp);
@@ -151,5 +166,9 @@ public class InfoPanel extends JPanel {
 	public void setStats(int playerShips, int enemyShips) {
 		stats.setLblPlayerShipsNumber(Integer.toString(playerShips));
 		stats.setLblEnemyShipsNumber(Integer.toString(enemyShips));
+	}
+
+	public void changeGiveUpButtonLabel(String text) {
+		giveUp.setText(text);
 	}
 }
