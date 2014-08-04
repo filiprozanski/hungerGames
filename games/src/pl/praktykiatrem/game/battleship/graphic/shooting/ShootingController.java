@@ -1,7 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphicLocal;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphic42;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 /**
@@ -49,7 +49,7 @@ public class ShootingController {
 	 */
 	private int accuracy;
 
-	private StartGraphicLocal supervisor;
+	private StartGraphic42 supervisor;
 
 	/**
 	 * 
@@ -60,7 +60,7 @@ public class ShootingController {
 	 * @param g
 	 */
 	public ShootingController(PlayerStatus player1, PlayerStatus player2,
-			Game g, StartGraphicLocal supervisor) {
+			Game g, StartGraphic42 supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;

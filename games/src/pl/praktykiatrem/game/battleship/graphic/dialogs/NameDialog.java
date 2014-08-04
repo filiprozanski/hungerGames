@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic.dialogs;
 
-import pl.praktykiatrem.game.battleship.graphic.menu.MainMenu;
+import pl.praktykiatrem.game.menu.MainMenu;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

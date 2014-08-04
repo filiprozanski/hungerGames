@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic.observers;
+package pl.praktykiatrem.game.menu;
 
 public interface IMenuCallObserver {
 	public void callMenu();

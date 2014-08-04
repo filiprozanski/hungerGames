@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 
-package pl.praktykiatrem.game.battleship.graphic.menu;
+package pl.praktykiatrem.game.menu;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphicLocal;
-import pl.praktykiatrem.game.battleship.graphic.observers.IMenuCallObserver;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphic42;
 
 /**
  *
@@ -26,7 +25,6 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		initComponents();
 		setSize(640, 450);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("hungerGames");
 		setVisible(true);
 	}
 
@@ -209,7 +207,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private void bsPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
 		// dialog = new NameDialog(this, "Gracz 2", true);
-		new StartGraphicLocal("Filip", "Wiktor", this, getRulesChoice());
+		new StartGraphic42("Filip", "Wiktor", this, getRulesChoice());
 		setVisible(false);
 	}
 
