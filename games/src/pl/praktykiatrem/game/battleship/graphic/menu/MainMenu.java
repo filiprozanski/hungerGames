@@ -26,6 +26,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		initComponents();
 		setSize(640, 450);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("hungerGames");
 		setVisible(true);
 	}
 
