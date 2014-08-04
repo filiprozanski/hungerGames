@@ -1,7 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphic42;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 /**
@@ -15,7 +15,7 @@ import pl.praktykiatrem.game.battleship.rules.Game;
  * @version 30 lip 2014 15:10:51
  *
  */
-public class ShootingController {
+public class ShootingControllerForTwoPlayers implements IShootingController {
 	/**
 	 * obiekt reprezentuj±cy pierwszego z graczy
 	 */
@@ -49,7 +49,7 @@ public class ShootingController {
 	 */
 	private int accuracy;
 
-	private StartGraphic42 supervisor;
+	private StartGraphicForTwoPlayers supervisor;
 
 	/**
 	 * 
@@ -59,8 +59,8 @@ public class ShootingController {
 	 * @param player2
 	 * @param g
 	 */
-	public ShootingController(PlayerStatus player1, PlayerStatus player2,
-			Game g, StartGraphic42 supervisor) {
+	public ShootingControllerForTwoPlayers(PlayerStatus player1, PlayerStatus player2,
+			Game g, StartGraphicForTwoPlayers supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;
