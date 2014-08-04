@@ -5,8 +5,6 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
-import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class StartGraphicForConsole {
@@ -44,19 +42,22 @@ public class StartGraphicForConsole {
 		seController = new SettingControllerForConsole(game, player1, player2,
 				this);
 
-		frame1.getContentPane().add((ShipSettingPanel) seController.getView(1));
-		frame1.setSize(660, 660);
-		frame1.setVisible(true);
+		/*
+		 * frame1.getContentPane().add((ShipSettingPanel)
+		 * seController.getView(1)); frame1.setSize(660, 660);
+		 * frame1.setVisible(true);
+		 */
 	}
 
 	public void stageB() {
 		shController = new ShootingControllerForConsole(player1, player2, game,
 				this);
 
-		frame1.getContentPane().removeAll();
-		frame1.getContentPane().add((ShootingPanel) shController.getView(1));
-		frame1.setSize(660, 660);
-		frame1.setVisible(true);
+		/*
+		 * frame1.getContentPane().removeAll();
+		 * frame1.getContentPane().add((ShootingPanel) shController.getView(1));
+		 * frame1.setSize(660, 660); frame1.setVisible(true);
+		 */
 	}
 
 	public void changeStage() {
