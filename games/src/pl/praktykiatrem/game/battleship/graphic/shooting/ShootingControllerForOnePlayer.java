@@ -1,9 +1,10 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Computer;
+import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.rules.Game;
-import pl.praktykiatrem.game.battleship.rules.Rand;
 
 /**
  * 
@@ -50,6 +51,8 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	 */
 	private int accuracy;
 
+	private Computer computer;
+
 	private StartGraphicForOnePlayer supervisor;
 
 	/**
@@ -67,6 +70,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		this.supervisor = supervisor;
 		this.g = g;
 
+		this.computer = new Computer(g);
 		pres1 = new ShootingPresenter(g, player1, this);
 		pres2 = new ShootingPresenter(g, player2, this);
 		pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
@@ -124,10 +128,13 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				boardSettingHit(player2, player1, x, y);
 				if (result == 2) {
 					int id = g.getShipID(player1, x, y);
+					computer.setSink(id, g.getCoordsList(player1, id));
 					if (player1.getShipsNumber() == 0) {
 						gameOver(player2);
 						return true;
 					}
+				} else {
+					computer.setHit(x, y);
 				}
 				makeComputedMove();
 				return true;
@@ -139,17 +146,8 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	}
 
 	private void makeComputedMove() {
-
-		makeMove(player2, Rand.getRandX(g), Rand.getRandY(g));
-	}
-
-	private void drawLeftShips1() {
-		for (int j = 0; j < g.getBoardSizeV(); j++)
-			for (int i = 0; i < g.getBoardSizeH(); i++)
-				if (player1.getPlace(i, j).isShipOnPlace()
-						&& player1.getPlace(i, j).isPlaceInGame())
-					pres2.fchangeIcon(i, j,
-							player1.getPlace(i, j).getShipId() + 1);
+		Coordinates coords = computer.getCords();
+		makeMove(player2, coords.getX(), coords.getY());
 	}
 
 	private void drawLeftShips2() {
@@ -232,7 +230,6 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 
 	public void gameOver(PlayerStatus player) {
 		if (player.equals(player1)) {
-			drawLeftShips1();
 			pres1.gameOver(true);
 			pres2.gameOver(false);
 
@@ -255,8 +252,6 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 			pres1.gameOver(false);
 			pres2.gameOver(true);
 		}
-
-		drawLeftShips1();
 		drawLeftShips2();
 		pres1.changeGiveUpButtonLabel();
 		pres2.changeGiveUpButtonLabel();
