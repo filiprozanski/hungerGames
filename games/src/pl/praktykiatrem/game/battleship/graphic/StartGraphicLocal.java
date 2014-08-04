@@ -27,11 +27,16 @@ public class StartGraphicLocal {
 
 	private SettingController seController;
 
-	public static void main(String[] args) {
-		StartGraphicLocal start = new StartGraphicLocal();
+	/*
+	 * public static void main(String[] args) { StartGraphicLocal start = new
+	 * StartGraphicLocal();
+	 * 
+	 * start.initialize(); start.stageA(); }
+	 */
 
-		start.initialize();
-		start.stageA();
+	public StartGraphicLocal() {
+		initialize();
+		stageA();
 	}
 
 	public void initialize() {

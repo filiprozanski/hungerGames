@@ -6,11 +6,19 @@
 
 package pl.praktykiatrem.game.battleship.graphic.menu;
 
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
+import pl.praktykiatrem.game.battleship.files.ShipIcons;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicLocal;
+
 /**
  *
  * @author Filip Ró¿añski
  */
-public class MainMenu extends javax.swing.JFrame {
+public class MainMenu extends JFrame {
+
+	public static JFrame f;
 
 	/**
 	 * Creates new form MainMenu
@@ -45,9 +53,11 @@ public class MainMenu extends javax.swing.JFrame {
 		closeMenuItem = new javax.swing.JMenuItem();
 		settingsMenu = new javax.swing.JMenu();
 
-		jLabel4.setIcon("/src/pl/praktykiatrem/game/battleship/files/backgroundMenu.jpg"); // NOI18N
+		jLabel4.setIcon(new ImageIcon(ShipIcons.class
+				.getResource("\\backgroundMenu.jpg"))); // NOI18N
 
-		jLabel6.setIcon("/src/pl/praktykiatrem/game/battleship/files/backgroundMenu.jpg"); // NOI18N
+		jLabel6.setIcon(new ImageIcon(ShipIcons.class
+				.getResource("\\backgroundMenu.jpg"))); // NOI18N
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -56,6 +66,7 @@ public class MainMenu extends javax.swing.JFrame {
 		bsPCButton.setText("vs PC");
 		bsPCButton.setBorder(null);
 		bsPCButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				bsPCButtonActionPerformed(evt);
 			}
@@ -66,6 +77,7 @@ public class MainMenu extends javax.swing.JFrame {
 		bsPlayerButton.setFont(new java.awt.Font("SimHei", 1, 18)); // NOI18N
 		bsPlayerButton.setText("vs Player");
 		bsPlayerButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				bsPlayerButtonActionPerformed(evt);
 			}
@@ -76,6 +88,7 @@ public class MainMenu extends javax.swing.JFrame {
 		tttPlayerButton.setFont(new java.awt.Font("SimHei", 1, 18)); // NOI18N
 		tttPlayerButton.setText("vs Player");
 		tttPlayerButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				tttPlayerButtonActionPerformed(evt);
 			}
@@ -86,6 +99,7 @@ public class MainMenu extends javax.swing.JFrame {
 		tttPCButton.setFont(new java.awt.Font("SimHei", 1, 18)); // NOI18N
 		tttPCButton.setText("vs PC");
 		tttPCButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				tttPCButtonActionPerformed(evt);
 			}
@@ -96,6 +110,7 @@ public class MainMenu extends javax.swing.JFrame {
 		bsOnlineButton.setFont(new java.awt.Font("SimHei", 1, 18)); // NOI18N
 		bsOnlineButton.setText("Online");
 		bsOnlineButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				bsOnlineButtonActionPerformed(evt);
 			}
@@ -106,6 +121,7 @@ public class MainMenu extends javax.swing.JFrame {
 		tttOnlineButton.setFont(new java.awt.Font("SimHei", 1, 18)); // NOI18N
 		tttOnlineButton.setText("Online");
 		tttOnlineButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				tttOnlineButtonActionPerformed(evt);
 			}
@@ -131,7 +147,8 @@ public class MainMenu extends javax.swing.JFrame {
 		getContentPane().add(tttLabel);
 		tttLabel.setBounds(360, 120, 136, 26);
 
-		backgroundLabel.setIcon("/my/gui/background.jpg"); // NOI18N
+		backgroundLabel.setIcon(new ImageIcon(ShipIcons.class
+				.getResource("\\backgroundMenu.jpg"))); // NOI18N
 		getContentPane().add(backgroundLabel);
 		backgroundLabel.setBounds(0, 0, 640, 400);
 
@@ -139,6 +156,7 @@ public class MainMenu extends javax.swing.JFrame {
 
 		closeMenuItem.setText("Close");
 		closeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				closeMenuItemActionPerformed(evt);
 			}
@@ -160,7 +178,8 @@ public class MainMenu extends javax.swing.JFrame {
 	}
 
 	private void bsPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		new StartGraphicLocal();
+		f.setVisible(false);
 	}
 
 	private void bsOnlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,8 +241,12 @@ public class MainMenu extends javax.swing.JFrame {
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
-				new MainMenu().setVisible(true);
+				f = new MainMenu();
+				f.setSize(640, 450);
+				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				f.setVisible(true);
 			}
 		});
 	}

@@ -29,13 +29,23 @@ public class ShipButton extends JButton {
 
 	public void setPlaceIcon(int type) {
 		ShipIcons.createImages();
-		setIcon(ShipIcons.getShipIcon(type));
-		setDisabledIcon(ShipIcons.getShipIcon(type));
+		if (type == 0) {
+			setIcon(null);
+			setDisabledIcon(null);
+		} else {
+			setIcon(ShipIcons.getShipIcon(type));
+			setDisabledIcon(ShipIcons.getShipIcon(type));
+		}
 	}
 
 	public void setPlaceStateIcon(int type) {
 		ShipIcons.createImages();
-		setIcon(ShipIcons.getStateIcon(type));
-		setDisabledIcon(ShipIcons.getStateIcon(type));
+		if (type == 0) {
+			setIcon(null);
+			setDisabledIcon(null);
+		} else {
+			setIcon(ShipIcons.getStateIcon(type));
+			setDisabledIcon(ShipIcons.getStateIcon(type));
+		}
 	}
 }
