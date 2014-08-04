@@ -40,12 +40,7 @@ public class ShipButton extends JButton {
 
 	public void setPlaceStateIcon(int type) {
 		ShipIcons.createImages();
-		if (type == 0) {
-			setIcon(null);
-			setDisabledIcon(null);
-		} else {
-			setIcon(ShipIcons.getStateIcon(type));
-			setDisabledIcon(ShipIcons.getStateIcon(type));
-		}
+		setIcon(ShipIcons.getStateIcon(type));
+		setDisabledIcon(ShipIcons.getStateIcon(type));
 	}
 }

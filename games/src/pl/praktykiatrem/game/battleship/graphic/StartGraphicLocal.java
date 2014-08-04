@@ -34,12 +34,12 @@ public class StartGraphicLocal {
 	 * start.initialize(); start.stageA(); }
 	 */
 
-	public StartGraphicLocal() {
-		initialize();
+	public StartGraphicLocal(String name1, String name2) {
+		initialize(name1, name2);
 		stageA();
 	}
 
-	public void initialize() {
+	public void initialize(String name1, String name2) {
 		game = new Game();
 
 		int sizeX = game.getBoardSizeH();
@@ -49,8 +49,8 @@ public class StartGraphicLocal {
 		player1 = new PlayerStatus(sizeX, sizeY, shipsType);
 		player2 = new PlayerStatus(sizeX, sizeY, shipsType);
 
-		player1.setName("Filip");
-		player2.setName("Wiktor");
+		player1.setName(name1);
+		player2.setName(name2);
 
 		frame1 = new JFrame(player1.getName());
 		frame2 = new JFrame(player2.getName());

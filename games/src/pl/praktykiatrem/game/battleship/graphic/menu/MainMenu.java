@@ -18,13 +18,14 @@ import pl.praktykiatrem.game.battleship.graphic.StartGraphicLocal;
  */
 public class MainMenu extends JFrame {
 
-	public static JFrame f;
-
 	/**
 	 * Creates new form MainMenu
 	 */
 	public MainMenu() {
 		initComponents();
+		setSize(640, 450);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 
 	/**
@@ -178,8 +179,10 @@ public class MainMenu extends JFrame {
 	}
 
 	private void bsPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		new StartGraphicLocal();
-		f.setVisible(false);
+		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
+		// dialog = new NameDialog(this, "Gracz 2", true);
+		new StartGraphicLocal("Filip", "Wiktor");
+		setVisible(false);
 	}
 
 	private void bsOnlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,53 +205,11 @@ public class MainMenu extends JFrame {
 		// TODO add your handling code here:
 	}
 
-	/**
-	 * @param args
-	 *            the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed"
-		// desc=" Look and feel setting code (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the
-		 * default look and feel. For details see
-		 * http://download.oracle.com/javase
-		 * /tutorial/uiswing/lookandfeel/plaf.html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-					.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		}
-		// </editor-fold>
-
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				f = new MainMenu();
-				f.setSize(640, 450);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				f.setVisible(true);
-			}
-		});
+	public void setPlayerName(String name) {
+		if (name1 == null)
+			name1 = name;
+		else if (name2 == null)
+			name2 = name;
 	}
 
 	// Variables declaration - do not modify
@@ -268,5 +229,7 @@ public class MainMenu extends JFrame {
 	private javax.swing.JButton tttOnlineButton;
 	private javax.swing.JButton tttPCButton;
 	private javax.swing.JButton tttPlayerButton;
+	private String name1;
+	private String name2;
 	// End of variables declaration
 }
