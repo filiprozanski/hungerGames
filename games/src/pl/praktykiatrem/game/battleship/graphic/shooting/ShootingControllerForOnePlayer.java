@@ -115,11 +115,10 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				return true;
 			} else {
 				boardSettingMiss(player1, player2, x, y);
-				makeMove(player2, Rand.getRandX(g), Rand.getRandY(g));
+				makeComputedMove();
 				return false;
 			}
 		} else {
-			// System.out.println("komputer!");
 			int result = g.makeMove(player1, x, y);
 			if (result >= 1) {
 				boardSettingHit(player2, player1, x, y);
@@ -130,13 +129,18 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 						return true;
 					}
 				}
-				makeMove(player2, Rand.getRandX(g), Rand.getRandY(g));
+				makeComputedMove();
 				return true;
 			} else {
 				boardSettingMiss(player2, player1, x, y);
 				return false;
 			}
 		}
+	}
+
+	private void makeComputedMove() {
+
+		makeMove(player2, Rand.getRandX(g), Rand.getRandY(g));
 	}
 
 	private void drawLeftShips1() {
