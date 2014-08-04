@@ -5,14 +5,14 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.observers.IMenuCallObserver;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingController;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.menu.IMenuCallObserver;
 
-public class StartGraphicLocal {
+public class StartGraphic42 {
 
 	private JFrame frame1;
 
@@ -37,7 +37,7 @@ public class StartGraphicLocal {
 	 * start.initialize(); start.stageA(); }
 	 */
 
-	public StartGraphicLocal(String name1, String name2,
+	public StartGraphic42(String name1, String name2,
 			IMenuCallObserver menuObserver, int rulesType) {
 		this.menuObserver = menuObserver;
 		game = new Game(rulesType);
