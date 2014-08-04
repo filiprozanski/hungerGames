@@ -203,8 +203,8 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 
 	private void bsPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
-		// dialog = new NameDialog(this, "Gracz 2", true);
-		new StartGraphicForOnePlayer("Filip", "Wiktor", this, getRulesChoice());
+		new StartGraphicForOnePlayer("Wiktor", "Komputer", this,
+				getRulesChoice());
 		setVisible(false);
 	}
 

@@ -59,20 +59,13 @@ public class StartGraphicForOnePlayer {
 		player2.setName(name2);
 
 		frame1 = new JFrame(player1.getName());
-		frame2 = new JFrame(player2.getName());
 
 		frame1.setResizable(false);
-		frame2.setResizable(false);
 
 		frame1.setBackground(new Color(135, 206, 235));
-		frame2.setBackground(new Color(135, 206, 235));
 
 		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame1.setLocationByPlatform(true);
-
-		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame2.setSize(660, 660);
-		frame2.setLocationByPlatform(true);
 	}
 
 	public void stageA() {
@@ -83,9 +76,6 @@ public class StartGraphicForOnePlayer {
 		frame1.setSize(660, 660);
 		frame1.setVisible(true);
 
-		frame2.getContentPane().add((ShipSettingPanel) seController.getView(2));
-		frame2.setSize(660, 660);
-		frame2.setVisible(true);
 	}
 
 	public void stageB() {
@@ -93,16 +83,9 @@ public class StartGraphicForOnePlayer {
 				game, this);
 
 		frame1.getContentPane().removeAll();
-		frame2.getContentPane().removeAll();
-
 		frame1.getContentPane().add((ShootingPanel) shController.getView(1));
-		frame2.getContentPane().add((ShootingPanel) shController.getView(2));
-
 		frame1.setSize(660, 660);
-		frame2.setSize(660, 660);
-
 		frame1.setVisible(true);
-		frame2.setVisible(true);
 	}
 
 	public void changeStage() {
@@ -111,7 +94,6 @@ public class StartGraphicForOnePlayer {
 
 	public void callMenu() {
 		frame1.dispose();
-		frame2.dispose();
 		menuObserver.callMenu();
 	}
 }

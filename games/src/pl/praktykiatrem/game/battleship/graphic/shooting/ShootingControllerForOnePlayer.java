@@ -3,6 +3,7 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.Rand;
 
 /**
  * 
@@ -68,12 +69,8 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 
 		pres1 = new ShootingPresenter(g, player1, this);
 		pres2 = new ShootingPresenter(g, player2, this);
-
 		pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
-		pres2.setStats(g.getShipsNumber(), g.getShipsNumber());
-
 		pres1.changeStatus(true);
-		pres2.changeStatus(false);
 
 	}
 
@@ -85,14 +82,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	 * @return obiekt reprezentuj±cy interfejs graficzny
 	 */
 	public IShootingView getView(int p) {
-		switch (p) {
-		case 1:
-			return pres1.getView();
-		case 2:
-			return pres2.getView();
-		default:
-			return null;
-		}
+		return pres1.getView();
 	}
 
 	/**
@@ -125,19 +115,22 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				return true;
 			} else {
 				boardSettingMiss(player1, player2, x, y);
+				makeMove(player2, Rand.getRandX(g), Rand.getRandY(g));
 				return false;
 			}
 		} else {
+			// System.out.println("komputer!");
 			int result = g.makeMove(player1, x, y);
 			if (result >= 1) {
 				boardSettingHit(player2, player1, x, y);
 				if (result == 2) {
 					int id = g.getShipID(player1, x, y);
-					pres2.drawShip(g.getCoordsTable(player1, id));
 					if (player1.getShipsNumber() == 0) {
 						gameOver(player2);
+						return true;
 					}
 				}
+				makeMove(player2, Rand.getRandX(g), Rand.getRandY(g));
 				return true;
 			} else {
 				boardSettingMiss(player2, player1, x, y);

@@ -15,24 +15,16 @@ public class SettingControllerForOnePlayer implements ISettingController {
 		this.supervisor = supervisor;
 		pres1 = new SettingPresenter(g, player1, this);
 		pres2 = new SettingPresenter(g, player2, this);
+		pres2.placeShipAtRandom();
 		readyPlayers = 0;
 	}
 
 	public ISettingView getView(int p) {
-		switch (p) {
-		case 1:
-			return pres1.getView();
-		case 2:
-			return pres2.getView();
-		default:
-			return null;
-		}
+		return pres1.getView();
 	}
 
 	public void playerIsReady() {
-		readyPlayers++;
-		if (readyPlayers == 2)
-			supervisor.changeStage();
+		supervisor.changeStage();
 	}
 
 	public void playerIsNotReady() {
