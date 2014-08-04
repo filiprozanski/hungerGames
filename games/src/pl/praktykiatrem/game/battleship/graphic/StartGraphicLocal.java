@@ -38,15 +38,14 @@ public class StartGraphicLocal {
 	 */
 
 	public StartGraphicLocal(String name1, String name2,
-			IMenuCallObserver menuObserver) {
+			IMenuCallObserver menuObserver, int rulesType) {
 		this.menuObserver = menuObserver;
+		game = new Game(rulesType);
 		initialize(name1, name2);
 		stageA();
 	}
 
 	public void initialize(String name1, String name2) {
-		game = new Game();
-
 		int sizeX = game.getBoardSizeH();
 		int sizeY = game.getBoardSizeV();
 		int[] shipsType = game.getShipTypes();

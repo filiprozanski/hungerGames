@@ -54,6 +54,9 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		fileMenu = new javax.swing.JMenu();
 		closeMenuItem = new javax.swing.JMenuItem();
 		settingsMenu = new javax.swing.JMenu();
+		rulesChoice = new javax.swing.JMenu();
+		customRulesField = new javax.swing.JRadioButtonMenuItem();
+		originalRulesField = new javax.swing.JRadioButtonMenuItem();
 
 		jLabel4.setIcon(new ImageIcon(ShipIcons.class
 				.getResource("\\backgroundMenu.jpg"))); // NOI18N
@@ -168,6 +171,29 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		menuBar.add(fileMenu);
 
 		settingsMenu.setText("Settings");
+
+		rulesChoice.setText("Zasady");
+
+		customRulesField.setSelected(true);
+		customRulesField.setText("CustomRules");
+		customRulesField.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				customRulesFieldActionPerformed(evt);
+			}
+		});
+		rulesChoice.add(customRulesField);
+
+		originalRulesField.setText("OriginalRules");
+		originalRulesField
+				.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						originalRulesFieldActionPerformed(evt);
+					}
+				});
+		rulesChoice.add(originalRulesField);
+
+		settingsMenu.add(rulesChoice);
+
 		menuBar.add(settingsMenu);
 
 		setJMenuBar(menuBar);
@@ -182,7 +208,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private void bsPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
 		// dialog = new NameDialog(this, "Gracz 2", true);
-		new StartGraphicLocal("Filip", "Wiktor", this);
+		new StartGraphicLocal("Filip", "Wiktor", this, getRulesChoice());
 		setVisible(false);
 	}
 
@@ -206,6 +232,17 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		// TODO add your handling code here:
 	}
 
+	private void customRulesFieldActionPerformed(java.awt.event.ActionEvent evt) {
+		originalRulesField.setSelected(false);
+		originalRulesField.setSelectedIcon(null);
+	}
+
+	private void originalRulesFieldActionPerformed(
+			java.awt.event.ActionEvent evt) {
+		customRulesField.setSelected(false);
+		customRulesField.setSelectedIcon(null);
+	}
+
 	public void setPlayerName(String name) {
 		if (name1 == null)
 			name1 = name;
@@ -220,10 +257,13 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private javax.swing.JButton bsPCButton;
 	private javax.swing.JButton bsPlayerButton;
 	private javax.swing.JMenuItem closeMenuItem;
+	private javax.swing.JRadioButtonMenuItem customRulesField;
 	private javax.swing.JMenu fileMenu;
 	private javax.swing.JLabel jLabel4;
 	private javax.swing.JLabel jLabel6;
 	private javax.swing.JMenuBar menuBar;
+	private javax.swing.JRadioButtonMenuItem originalRulesField;
+	private javax.swing.JMenu rulesChoice;
 	private javax.swing.JMenu settingsMenu;
 	private javax.swing.JLabel titleLabel;
 	private javax.swing.JLabel tttLabel;
@@ -237,5 +277,14 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	@Override
 	public void callMenu() {
 		setVisible(true);
+	}
+
+	private int getRulesChoice() {
+		if (customRulesField.isSelected())
+			return 1;
+		else if (originalRulesField.isSelected())
+			return 2;
+		else
+			return 1;
 	}
 }

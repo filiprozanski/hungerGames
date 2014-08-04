@@ -17,8 +17,18 @@ public class Game {
 
 	private boolean isGameOver;
 
-	public Game() {
-		rules = new CustomRules();
+	public Game(int rulesType) {
+		switch (rulesType) {
+		case 1:
+			rules = new CustomRules();
+			break;
+		case 2:
+			rules = new OriginalRules();
+			break;
+		default:
+			rules = new CustomRules();
+			break;
+		}
 		isGameOver = false;
 	}
 
