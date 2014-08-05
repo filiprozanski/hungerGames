@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Direction;
+
 public interface ISettingPresenter {
 	public void shipChoiceDone(int polesNumber, int id);
 
@@ -16,5 +18,8 @@ public interface ISettingPresenter {
 	public void showFrame();
 
 	public void closeFrame();
+
+	public void placeShipsOnView(int randX, int randY, Direction rand_dir,
+			int i, int polesNumber);
 
 }

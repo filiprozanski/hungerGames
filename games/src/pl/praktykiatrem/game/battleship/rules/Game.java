@@ -93,4 +93,8 @@ public class Game {
 	public void resetGame(PlayerStatus player) {
 		rules.resetGame(player);
 	}
+
+	public GameConstants getConstants() {
+		return rules.getConstants();
+	}
 }

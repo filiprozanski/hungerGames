@@ -6,7 +6,11 @@ import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
 public abstract class Rules {
 
-	protected static final int BOARDSIZE_H = 10;
+	protected final int BOARDSIZE_H = 10;
+	protected final int BOARDSIZE_V = 10;
+	private final int SHIPTYPES[] = { 6, 4, 4, 3, 3, 2, 2 };
+	private final GameConstants constants = new GameConstants(BOARDSIZE_H,
+			BOARDSIZE_V, SHIPTYPES);
 
 	public abstract int makeMove(PlayerStatus enemy, int x, int y);
 
@@ -21,9 +25,6 @@ public abstract class Rules {
 
 	public abstract boolean shipPlacingValidation(Board plansza,
 			int polesNumber, Direction dir, int x, int y);
-
-	protected static final int BOARDSIZE_V = 10;
-	private static final int SHIPTYPES[] = { 6, 4, 4, 3, 3, 2, 2 };
 
 	public Rules() {
 		super();
@@ -67,6 +68,10 @@ public abstract class Rules {
 
 	public void resetGame(PlayerStatus player) {
 		player.resetStatus();
+	}
+
+	public GameConstants getConstants() {
+		return constants;
 	}
 
 }

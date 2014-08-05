@@ -22,6 +22,5 @@ public class ShipService extends UnicastRemoteObject implements ShipInterface {
 	public void passShip(Ship s) throws RemoteException {
 		System.out.println(s);
 		s.setID(6);
-
 	}
 }

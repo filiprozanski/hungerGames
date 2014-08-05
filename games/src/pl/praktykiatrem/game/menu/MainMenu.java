@@ -117,6 +117,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 
 		bsOnlineButton.setFont(new java.awt.Font("SimHei", 1, 18)); // NOI18N
 		bsOnlineButton.setText("Online");
+		bsOnlineButton.setEnabled(false);
 		bsOnlineButton.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,5 +293,9 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 			return 2;
 		else
 			return 1;
+	}
+
+	public void enableButton() {
+		bsOnlineButton.setEnabled(true);
 	}
 }

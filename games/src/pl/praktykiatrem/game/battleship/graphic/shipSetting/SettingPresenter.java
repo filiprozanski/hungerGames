@@ -6,8 +6,7 @@ import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
-import pl.praktykiatrem.game.battleship.rules.Game;
-import pl.praktykiatrem.game.battleship.rules.Rand;
+import pl.praktykiatrem.game.battleship.rules.GameConstants;
 
 /**
  * presenter steruj¹cy widokiem do ustawiania statków na planszy
@@ -29,7 +28,7 @@ public class SettingPresenter implements ISettingPresenter {
 	/**
 	 * obiekt który koordynuje korzystanie z odpowiednich zasad
 	 */
-	private Game gameRules;
+	private GameConstants gameConstants;
 	/**
 	 * reprezentacja gracza, który wykonuje swoje ruchy poprzez dany interfejs
 	 */
@@ -53,19 +52,19 @@ public class SettingPresenter implements ISettingPresenter {
 	 * 
 	 * Tworzy nowy obiekt klasy <code>SettingPresenter</code>
 	 *
-	 * @param gameRules
+	 * @param gameConst
 	 * @param player
 	 * @param observer
 	 */
-	public SettingPresenter(Game gameRules, PlayerStatus player,
+	public SettingPresenter(GameConstants gameConst, PlayerStatus player,
 			ISettingController controller) {
-		this.gameRules = gameRules;
+		this.gameConstants = gameConst;
 		this.player = player;
 		this.controller = controller;
 		locked = new ArrayList<Coordinates>();
 		view = new ShipSettingPanel(this);
-		view.initialize(gameRules.getShipTypes(), gameRules.getBoardSizeH(),
-				gameRules.getBoardSizeV());
+		view.initialize(gameConst.getShipTypes(), gameConst.getBoardSizeH(),
+				gameConst.getBoardSizeV());
 		view.changeStateAllBoardPlaces(false);
 	}
 
@@ -84,8 +83,8 @@ public class SettingPresenter implements ISettingPresenter {
 	private void getLockedPlaces() {
 		ArrayList<Coordinates> tab = new ArrayList<Coordinates>();
 
-		for (int a = 0; a < gameRules.getShipsNumber(); a++)
-			tab.addAll(gameRules.getCoordsList(player, a));
+		for (int a = 0; a < gameConstants.getShipsNumber(); a++)
+			tab.addAll(controller.getCoordsList(player, a));
 
 		this.locked = tab;
 	}
@@ -99,7 +98,7 @@ public class SettingPresenter implements ISettingPresenter {
 	public void shipChoiceDone(int polesNumber, int id) {
 		this.polesNumber = polesNumber;
 		this.id = id;
-		ArrayList<Coordinates> list = gameRules.getCoordsList(player, id);
+		ArrayList<Coordinates> list = controller.getCoordsList(player, id);
 		Coordinates[] tab = list.toArray(new Coordinates[list.size()]);
 		if (!player.isShipSet(id)) {
 			lockUsedPlaces();
@@ -149,9 +148,9 @@ public class SettingPresenter implements ISettingPresenter {
 	 * @param y
 	 */
 	private void firstClick(int x, int y) {
-		if (gameRules.placeShips(player, id, polesNumber, Direction.HORIZONTAL,
-				x, y))
-			placeShipsOnView(x, y, Direction.HORIZONTAL, id);
+		if (controller.placeShips(player, id, polesNumber,
+				Direction.HORIZONTAL, x, y))
+			placeShipsOnView(x, y, Direction.HORIZONTAL, id, polesNumber);
 		else
 			secondClick(x, y);
 	}
@@ -164,22 +163,24 @@ public class SettingPresenter implements ISettingPresenter {
 	 * @param y
 	 */
 	private void secondClick(int x, int y) {
-		if (gameRules.placeShips(player, id, polesNumber, Direction.VERTICAL,
+		if (controller.placeShips(player, id, polesNumber, Direction.VERTICAL,
 				x, y))
-			placeShipsOnView(x, y, Direction.VERTICAL, id);
+			placeShipsOnView(x, y, Direction.VERTICAL, id, polesNumber);
 		else
 			view.changeButtonCallNumber(x, y, 1);
 	}
 
-	private void placeShipsOnView(int x, int y, Direction dir, int id) {
-		drawOnBoard(x, y, dir, id + 1);
+	@Override
+	public void placeShipsOnView(int x, int y, Direction dir, int id,
+			int polesNumber) {
+		drawOnBoard(x, y, dir, id + 1, polesNumber);
 		if (dir == Direction.VERTICAL)
 			view.changeButtonCallNumber(x, y, 0);
 		else
 			view.changeButtonCallNumber(x, y, 2);
 		view.setOkIconShipButton(id, true);
-		view.setReadyButtonState(gameRules.getShipsNumber()
-				- gameRules.getActiveShipsNumber(player));
+		view.setReadyButtonState(gameConstants.getShipsNumber()
+				- controller.getActiveShipsNumber(player));
 	}
 
 	/**
@@ -192,11 +193,11 @@ public class SettingPresenter implements ISettingPresenter {
 	 *            kierunek ustawienia statku
 	 */
 	public void clearLastChoice(int x, int y, Direction dir) {
-		if (gameRules.displaceShips(player, id, polesNumber, dir, x, y)) {
-			drawOnBoard(x, y, dir, 0);
+		if (controller.displaceShip(player, id, polesNumber, dir, x, y)) {
+			drawOnBoard(x, y, dir, 0, polesNumber);
 			view.setOkIconShipButton(id, false);
-			view.setReadyButtonState(gameRules.getShipsNumber()
-					- gameRules.getActiveShipsNumber(player));
+			view.setReadyButtonState(gameConstants.getShipsNumber()
+					- controller.getActiveShipsNumber(player));
 			getLockedPlaces();
 			for (Coordinates coord : locked)
 				view.disableOneBoardPlace(coord.getX(), coord.getY());
@@ -207,46 +208,26 @@ public class SettingPresenter implements ISettingPresenter {
 	 * losowo ustawia statki na planszy
 	 */
 
-	public void placeShipAtRandom() {
-		Direction rand_dir;
-		int randX;
-		int randY;
-		resetBoard();
-		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
-			this.polesNumber = gameRules.getShipTypes()[i];
-			rand_dir = Rand.getRandDirection();
-			while (true) {
-				randX = Rand.getRandX(gameRules);
-				randY = Rand.getRandY(gameRules);
-				if (gameRules.placeShips(player, i, polesNumber, rand_dir,
-						randX, randY)) {
-					placeShipsOnView(randX, randY, rand_dir, i);
-					break;
-				}
-			}
-		}
-	}
-
 	public void resetBoard() {
-		gameRules.resetGame(player);
+		controller.resetGame(player);
 		clearBoardView();
 		if (ready)
 			controller.playerIsNotReady();
 	}
 
 	private void clearBoardView() {
-		for (int i = 0; i < gameRules.getBoardSizeH(); i++)
-			for (int j = 0; j < gameRules.getBoardSizeV(); j++) {
+		for (int i = 0; i < gameConstants.getBoardSizeH(); i++)
+			for (int j = 0; j < gameConstants.getBoardSizeV(); j++) {
 				view.changePlaceIcon(i, j, 0);
 				view.changeButtonCallNumber(i, j, 1);
 			}
 		locked.clear();
 
-		for (int i = 0; i < gameRules.getShipsNumber(); i++)
+		for (int i = 0; i < gameConstants.getShipsNumber(); i++)
 			view.setOkIconShipButton(i, false);
 
-		view.setReadyButtonState(gameRules.getShipsNumber()
-				- gameRules.getActiveShipsNumber(player));
+		view.setReadyButtonState(gameConstants.getShipsNumber()
+				- controller.getActiveShipsNumber(player));
 	}
 
 	/**
@@ -260,7 +241,8 @@ public class SettingPresenter implements ISettingPresenter {
 	 * @param icon
 	 *            typ ikony reprezentuj¹cej statek
 	 */
-	private void drawOnBoard(int x, int y, Direction dir, int icon) {
+	private void drawOnBoard(int x, int y, Direction dir, int icon,
+			int polesNumber) {
 		if (dir == Direction.HORIZONTAL) {
 			for (int i = 0; i < polesNumber; i++) {
 				view.changePlaceIcon(x, y, icon);
@@ -288,5 +270,10 @@ public class SettingPresenter implements ISettingPresenter {
 	@Override
 	public void closeFrame() {
 		view.closeFrame();
+	}
+
+	@Override
+	public void placeShipAtRandom() {
+		controller.placeShipAtRandom(this, player);
 	}
 }
