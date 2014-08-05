@@ -279,4 +279,14 @@ public class SettingPresenter implements ISettingPresenter {
 		controller.playerIsReady();
 		view.disableReadyButton();
 	}
+
+	@Override
+	public void showFrame() {
+		view.showFrame(player.getName());
+	}
+
+	@Override
+	public void closeFrame() {
+		view.closeFrame();
+	}
 }

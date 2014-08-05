@@ -1,9 +1,11 @@
 package pl.praktykiatrem.game.battleship.graphic.panels;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
@@ -48,6 +50,8 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	 * presenter steruj±cy wygl±dem i dzia³aniem panelu
 	 */
 	private IShootingPresenter presenter;
+
+	private JFrame frame;
 
 	/**
 	 * 
@@ -241,5 +245,22 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void changeGiveUpButtonLabel(String text) {
 		infoPanel.changeGiveUpButtonLabel(text);
+	}
+
+	@Override
+	public void showFrame(String name) {
+		frame = new JFrame(name);
+		frame.setResizable(false);
+		frame.setBackground(new Color(135, 206, 235));
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationByPlatform(true);
+		frame.setSize(660, 660);
+		frame.getContentPane().add(this);
+		frame.setVisible(true);
+	}
+
+	@Override
+	public void closeFrame() {
+		frame.dispose();
 	}
 }

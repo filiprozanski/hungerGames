@@ -13,8 +13,13 @@ public class SettingControllerForTwoPlayers implements ISettingController {
 	public SettingControllerForTwoPlayers(Game g, PlayerStatus player1,
 			PlayerStatus player2, StartGraphicForTwoPlayers supervisor) {
 		this.supervisor = supervisor;
+
 		pres1 = new SettingPresenter(g, player1, this);
 		pres2 = new SettingPresenter(g, player2, this);
+
+		pres1.showFrame();
+		pres2.showFrame();
+
 		readyPlayers = 0;
 	}
 
@@ -31,8 +36,11 @@ public class SettingControllerForTwoPlayers implements ISettingController {
 
 	public void playerIsReady() {
 		readyPlayers++;
-		if (readyPlayers == 2)
+		if (readyPlayers == 2) {
+			pres1.closeFrame();
+			pres2.closeFrame();
 			supervisor.changeStage();
+		}
 	}
 
 	public void playerIsNotReady() {

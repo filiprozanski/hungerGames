@@ -22,4 +22,8 @@ public interface ISettingView {
 	void setReadyButtonState(int state);
 
 	public void setOkIconShipButton(int id, boolean ok);
+
+	public void showFrame(String name);
+
+	public void closeFrame();
 }

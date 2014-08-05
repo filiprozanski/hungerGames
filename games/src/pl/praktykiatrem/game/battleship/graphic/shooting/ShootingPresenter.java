@@ -192,4 +192,14 @@ public class ShootingPresenter implements IShootingPresenter {
 		view.changeGiveUpButtonLabel("Przejdü do menu");
 		giveUpButtonCallNumber = 1;
 	}
+
+	@Override
+	public void showFrame() {
+		view.showFrame(player.getName());
+	}
+
+	@Override
+	public void closeFrame() {
+		view.closeFrame();
+	}
 }

@@ -13,4 +13,8 @@ public interface ISettingPresenter {
 
 	public void playerIsReady();
 
+	public void showFrame();
+
+	public void closeFrame();
+
 }

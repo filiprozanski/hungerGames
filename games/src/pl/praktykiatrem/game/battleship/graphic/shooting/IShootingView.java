@@ -156,4 +156,8 @@ public interface IShootingView {
 
 	void changeGiveUpButtonLabel(String text);
 
+	void showFrame(String name);
+
+	void closeFrame();
+
 }
