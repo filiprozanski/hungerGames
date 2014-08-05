@@ -181,8 +181,10 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		sPres.changeBattlePlaceIcon(x, y, 2);
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
-		accuracy = shooter.getAccuracy(true);
-		sPres.setStats(playerShips, enemyShips, accuracy);
+		accuracy = victim.getAccuracy(true);
+		sPres.setStats(playerShips, enemyShips, accuracy); // UWAGA!!! STATSY
+															// KOMPUTERA DO
+															// TESTÓW
 		vPres.setStats(enemyShips, playerShips);
 	}
 

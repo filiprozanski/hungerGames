@@ -1,6 +1,5 @@
 package pl.praktykiatrem.game.menu;
 
-import javax.swing.JFrame;
 
 public class menuStart {
 	public static void main(String args[]) {
@@ -40,7 +39,7 @@ public class menuStart {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				JFrame f = new MainMenu();
+				new MainMenu();
 			}
 		});
 	}

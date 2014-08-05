@@ -10,6 +10,5 @@ public interface IShootingController {
 
 	void callMenu();
 
-	IShootingView getView(int i);
-
+	IShootingView getView(int p);
 }

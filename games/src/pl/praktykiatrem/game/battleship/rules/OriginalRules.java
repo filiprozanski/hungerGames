@@ -11,13 +11,7 @@ import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
  * @author Filip Ró¿añski
  *
  */
-public class OriginalRules implements IRules {
-
-	private static final int BOARDSIZE_H = 12;
-
-	private static final int BOARDSIZE_V = 12;
-
-	private static final int SHIPTYPES[] = { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 };
+public class OriginalRules extends Rules {
 
 	private boolean putShipOnPlace(Board plansza, int id, int x, int y) {
 		if (!plansza.isShipOnPlace(x, y)) {
@@ -167,52 +161,7 @@ public class OriginalRules implements IRules {
 	}
 
 	@Override
-	public int getShipID(PlayerStatus player, int x, int y) {
-		return player.getShipID(x, y);
-	}
-
-	@Override
-	public boolean getCurrentPlayer() {
-		return false;
-	}
-
-	@Override
-	public int getBoardSize_H() {
-		return BOARDSIZE_H;
-	}
-
-	@Override
-	public int getBoardSize_V() {
-		return BOARDSIZE_V;
-	}
-
-	@Override
-	public int[] getShipTypes() {
-		return SHIPTYPES;
-	}
-
-	@Override
-	public int getShipsNumber() {
-		return SHIPTYPES.length;
-	}
-
-	@Override
-	public int getActiveShipsNumber(PlayerStatus player) {
-		return player.getShipsNumber();
-	}
-
-	@Override
-	public int getAccuracy(PlayerStatus player, boolean hit) {
-		return player.getAccuracy(hit);
-	}
-
-	@Override
 	public void resetGame(PlayerStatus player) {
 		player.resetStatus();
-	}
-
-	@Override
-	public int getShipTypes(int id) {
-		return SHIPTYPES[id];
 	}
 }

@@ -59,8 +59,8 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	 * @param player2
 	 * @param g
 	 */
-	public ShootingControllerForTwoPlayers(PlayerStatus player1, PlayerStatus player2,
-			Game g, StartGraphicForTwoPlayers supervisor) {
+	public ShootingControllerForTwoPlayers(PlayerStatus player1,
+			PlayerStatus player2, Game g, StartGraphicForTwoPlayers supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;
@@ -74,6 +74,9 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 
 		pres1.changeStatus(true);
 		pres2.changeStatus(false);
+
+		pres1.showFrame();
+		pres2.showFrame();
 
 	}
 
@@ -266,6 +269,9 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	}
 
 	public void callMenu() {
+		pres1.closeFrame();
+		pres2.closeFrame();
 		supervisor.callMenu();
+
 	}
 }

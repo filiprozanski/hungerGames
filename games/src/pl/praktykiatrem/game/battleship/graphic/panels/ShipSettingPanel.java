@@ -1,13 +1,15 @@
 package pl.praktykiatrem.game.battleship.graphic.panels;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
-import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.ISettingButtonsObserver;
+import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingView;
 
@@ -26,6 +28,7 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	private ButtonsPanel readyPanel;
 	private LegendPanel legendPanel;
 	private ISettingPresenter presenter;
+	private JFrame frame;
 
 	public ShipSettingPanel(ISettingPresenter presenter) {
 
@@ -134,5 +137,22 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void playerIsReady() {
 		presenter.playerIsReady();
+	}
+
+	@Override
+	public void showFrame(String name) {
+		frame = new JFrame(name);
+		frame.setResizable(false);
+		frame.setBackground(new Color(135, 206, 235));
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationByPlatform(true);
+		frame.setSize(660, 660);
+		frame.getContentPane().add(this);
+		frame.setVisible(true);
+	}
+
+	@Override
+	public void closeFrame() {
+		frame.dispose();
 	}
 }

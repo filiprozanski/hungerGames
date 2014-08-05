@@ -29,4 +29,8 @@ public interface IShootingPresenter {
 
 	void changeGiveUpButtonLabel();
 
+	void showFrame();
+
+	void closeFrame();
+
 }
