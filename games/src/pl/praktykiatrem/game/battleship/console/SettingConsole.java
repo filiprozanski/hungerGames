@@ -1,9 +1,9 @@
-package pl.praktykiatrem.game.battleship.graphic.shipSetting;
+package pl.praktykiatrem.game.battleship.console;
 
-import pl.praktykiatrem.game.battleship.console.BoardDrawing;
-import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingView;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class SettingConsole implements ISettingView {

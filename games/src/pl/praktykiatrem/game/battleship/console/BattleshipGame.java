@@ -30,7 +30,7 @@ public class BattleshipGame {
 	private ShipLoader load;
 
 	public BattleshipGame() {
-		gameRules = new Game();
+		// gameRules = new Game();
 
 		GameFactory start = new GameFactory(gameRules.getBoardSizeH(),
 				gameRules.getBoardSizeV(), gameRules.getShipTypes());
@@ -38,7 +38,7 @@ public class BattleshipGame {
 		B = start.createPlayer();
 		gameControl = new ConsoleInteractions();
 
-		load = new ShipLoader(gameRules);
+		// load = new ShipLoader(gameRules);
 
 	}
 
@@ -142,7 +142,7 @@ public class BattleshipGame {
 		try {
 			load.initializeShipsFromFile(gamer);
 		} catch (FileNotFoundException e) {
-			load.initializeShips(gamer, gameControl, gameRules);
+			// load.initializeShips(gamer, gameControl, gameRules);
 		}
 	}
 
