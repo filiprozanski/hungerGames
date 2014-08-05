@@ -13,7 +13,7 @@ import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
  *
  */
 public class Game {
-	private IRules rules;
+	private Rules rules;
 
 	private boolean isGameOver;
 
