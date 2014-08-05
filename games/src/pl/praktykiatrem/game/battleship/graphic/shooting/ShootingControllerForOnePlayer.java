@@ -124,6 +124,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 			}
 		} else {
 			int result = g.makeMove(player1, x, y);
+			// computer.setMiss(x, y);
 			if (result >= 1) {
 				boardSettingHit(player2, player1, x, y);
 				if (result == 2) {
@@ -139,6 +140,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				makeComputedMove();
 				return true;
 			} else {
+				// computer.setMiss(x, y);
 				boardSettingMiss(player2, player1, x, y);
 				return false;
 			}
