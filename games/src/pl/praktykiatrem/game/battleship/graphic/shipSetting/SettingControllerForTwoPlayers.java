@@ -1,11 +1,14 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 
@@ -13,8 +16,8 @@ public class SettingControllerForTwoPlayers implements ISettingController {
 	private int readyPlayers;
 	private Game gameRules;
 	private StartGraphicForTwoPlayers supervisor;
-	private ISettingPresenter pres1;
-	private ISettingPresenter pres2;
+	private ISettingPresenterControll pres1;
+	private ISettingPresenterControll pres2;
 
 	public SettingControllerForTwoPlayers(Game g, PlayerStatus player1,
 			PlayerStatus player2, StartGraphicForTwoPlayers supervisor) {
@@ -24,29 +27,36 @@ public class SettingControllerForTwoPlayers implements ISettingController {
 		pres1 = new SettingPresenter(g.getConstants(), player1, this);
 		pres2 = new SettingPresenter(g.getConstants(), player2, this);
 
-		pres1.showFrame();
-		pres2.showFrame();
+		try {
+			pres1.showFrame();
+			pres2.showFrame();
+		} catch (RemoteException e) {
+			System.out.println("controllerset constructor");
+			e.printStackTrace();
+			System.exit(0);
+		}
 
 		readyPlayers = 0;
 	}
 
-	public ISettingView getView(int p) {
-		switch (p) {
-		case 1:
-			return pres1.getView();
-		case 2:
-			return pres2.getView();
-		default:
-			return null;
-		}
-	}
+	/*
+	 * public ISettingView getView(int p) { switch (p) { case 1: return
+	 * pres1.getView(); case 2: return pres2.getView(); default: return null; }
+	 * }
+	 */
 
 	@Override
 	public void playerIsReady() {
 		readyPlayers++;
 		if (readyPlayers == 2) {
-			pres1.closeFrame();
-			pres2.closeFrame();
+			try {
+				pres1.closeFrame();
+				pres2.closeFrame();
+			} catch (RemoteException e) {
+				System.out.println("player is ready");
+				e.printStackTrace();
+				System.exit(0);
+			}
 			supervisor.changeStage();
 		}
 	}
@@ -84,7 +94,7 @@ public class SettingControllerForTwoPlayers implements ISettingController {
 	}
 
 	@Override
-	public void placeShipAtRandom(ISettingPresenter presenter,
+	public void placeShipAtRandom(ISettingPresenterControll presenter,
 			PlayerStatus player) {
 		Direction rand_dir;
 		int randX;
@@ -98,8 +108,14 @@ public class SettingControllerForTwoPlayers implements ISettingController {
 				randX = Rand.getRandX(gameRules);
 				randY = Rand.getRandY(gameRules);
 				if (placeShips(player, i, polesNumber, rand_dir, randX, randY)) {
-					presenter.placeShipsOnView(randX, randY, rand_dir, i,
-							polesNumber);
+					try {
+						presenter.placeShipsOnView(randX, randY, rand_dir, i,
+								polesNumber);
+					} catch (RemoteException e) {
+						System.out.println("placeShipAtRandom");
+						e.printStackTrace();
+						System.exit(0);
+					}
 					break;
 				}
 			}

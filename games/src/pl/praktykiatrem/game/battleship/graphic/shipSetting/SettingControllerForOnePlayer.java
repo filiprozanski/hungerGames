@@ -2,6 +2,9 @@ package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingView;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class SettingControllerForOnePlayer implements ISettingController {

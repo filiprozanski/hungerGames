@@ -3,6 +3,7 @@ package pl.praktykiatrem.game.menu;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import pl.praktykiatrem.game.battleship.rmi.HGClient;
 import pl.praktykiatrem.game.battleship.rmi.IRMIServer;
 
 public class menuStart {
@@ -18,6 +19,7 @@ public class menuStart {
 		 * http://download.oracle.com/javase
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
+		HGClient client = new HGClient();
 
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
@@ -55,12 +57,14 @@ public class menuStart {
 				IRMIServer s = (IRMIServer) r.lookup("RMIServer");
 				System.out.println("Jestem klientem");
 				System.out.println("wywo³uje metode");
-				s.zshowConnection();
+				s.showConnection();
+				s.logInClient(client);
+				System.out.println("Zaraz padnê");
 				f.enableButton();
 				break;
 			} catch (Exception e) {
 				System.out.println("Nie mog³em po³¹czyæ");
-				Thread.sleep(1000);
+				Thread.sleep(10000);
 			}
 		}
 	}

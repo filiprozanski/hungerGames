@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.IShootingButtonsObserver;
-import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView;
+import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView;
 
 /**
  * 
@@ -65,7 +65,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView#initialize(int,
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#initialize(int,
 	 *      int)
 	 */
 	@Override
@@ -86,7 +86,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView#changePlaceIcon(int,
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#changePlaceIcon(int,
 	 *      int, int)
 	 */
 	@Override
@@ -101,7 +101,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView#changeBattlePlaceIcon(int,
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#changeBattlePlaceIcon(int,
 	 *      int, int)
 	 */
 	@Override
@@ -129,7 +129,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView#disableBatlleBoardPlace(int,
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#disableBatlleBoardPlace(int,
 	 *      int)
 	 */
 	@Override
@@ -139,7 +139,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView#disableAllPlayerBoardPlaces()
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#disableAllPlayerBoardPlaces()
 	 */
 	@Override
 	public void disableAllPlayerBoardPlaces() {
@@ -148,7 +148,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView#changeStateAllEnemyBoardPlaces(boolean,
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#changeStateAllEnemyBoardPlaces(boolean,
 	 *      java.util.ArrayList)
 	 */
 	@Override
@@ -171,7 +171,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView#drawShipLocation(pl.praktykiatrem.game.battleship.gameComponents.Coordinates[],
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#drawShipLocation(pl.praktykiatrem.game.battleship.gameComponents.Coordinates[],
 	 *      int)
 	 */
 	@Override
@@ -192,7 +192,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView#changeStatus(boolean)
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#changeStatus(boolean)
 	 */
 	@Override
 	public void changeStatus(boolean ready) {
@@ -204,7 +204,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView#setStats(int,
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#setStats(int,
 	 *      int, int)
 	 */
 	@Override
@@ -214,7 +214,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView#setStats(int,
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#setStats(int,
 	 *      int)
 	 */
 	@Override

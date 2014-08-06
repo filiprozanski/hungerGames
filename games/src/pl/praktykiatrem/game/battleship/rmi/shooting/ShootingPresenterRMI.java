@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic.shooting;
+package pl.praktykiatrem.game.battleship.rmi.shooting;
 
 import java.util.ArrayList;
 
@@ -6,8 +6,6 @@ import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
-import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
@@ -21,8 +19,7 @@ import pl.praktykiatrem.game.battleship.rules.Game;
  * @version 30 lip 2014 15:18:49
  *
  */
-public class ShootingPresenter implements IShootingPresenter,
-		IShootingPresenterControll {
+public class ShootingPresenterRMI implements IShootingPresenterRMI {
 	/**
 	 * obiekt udostêpniaj±cy akcje wykonywane w trakcie gry
 	 */
@@ -59,7 +56,7 @@ public class ShootingPresenter implements IShootingPresenter,
 	 * @param player
 	 * @param controll
 	 */
-	public ShootingPresenter(Game gameRules, PlayerStatus player,
+	public ShootingPresenterRMI(Game gameRules, PlayerStatus player,
 			IShootingController controll) {
 		this.gameRules = gameRules;
 		this.player = player;
@@ -83,6 +80,15 @@ public class ShootingPresenter implements IShootingPresenter,
 	private void drawShips() {
 		for (int i = 0; i < gameRules.getShipsNumber(); i++)
 			view.drawShipLocation(gameRules.getCoordsTable(player, i), i);
+	}
+
+	/**
+	 * 
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter#getView()
+	 */
+	@Override
+	public IShootingView getView() {
+		return view;
 	}
 
 	/**

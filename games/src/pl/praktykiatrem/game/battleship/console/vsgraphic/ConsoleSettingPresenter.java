@@ -3,7 +3,7 @@ package pl.praktykiatrem.game.battleship.console.vsgraphic;
 import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 import pl.praktykiatrem.game.battleship.factory.ShipLoader;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingController;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class ConsoleSettingPresenter {

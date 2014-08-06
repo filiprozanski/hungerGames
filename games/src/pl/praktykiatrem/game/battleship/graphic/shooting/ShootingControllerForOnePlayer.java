@@ -4,6 +4,9 @@ import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Computer;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
+import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
+import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 /**

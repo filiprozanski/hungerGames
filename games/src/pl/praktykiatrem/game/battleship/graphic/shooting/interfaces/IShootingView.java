@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic.shooting;
+package pl.praktykiatrem.game.battleship.graphic.shooting.interfaces;
 
 import java.util.ArrayList;
 

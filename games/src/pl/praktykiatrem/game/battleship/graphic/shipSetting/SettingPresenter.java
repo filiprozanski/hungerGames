@@ -6,6 +6,10 @@ import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenterControll;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingView;
 import pl.praktykiatrem.game.battleship.rules.GameConstants;
 
 /**
@@ -14,7 +18,7 @@ import pl.praktykiatrem.game.battleship.rules.GameConstants;
  * @author Filip Ró¿añski
  *
  */
-public class SettingPresenter implements ISettingPresenter {
+public class SettingPresenter implements ISettingPresenter, ISettingPresenterControll {
 	/**
 	 * zmienna u¿ywana do ustawiania staków, przechowuje liczbe masztów
 	 * aktualnie wybranego statku
@@ -70,7 +74,7 @@ public class SettingPresenter implements ISettingPresenter {
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter#getView()
+	 * @see pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter#getView()
 	 */
 	@Override
 	public ISettingView getView() {
@@ -91,7 +95,7 @@ public class SettingPresenter implements ISettingPresenter {
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter#shipChoiceDone(int,
+	 * @see pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter#shipChoiceDone(int,
 	 *      int)
 	 */
 	@Override
@@ -120,7 +124,7 @@ public class SettingPresenter implements ISettingPresenter {
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter#placeShip(int,
+	 * @see pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter#placeShip(int,
 	 *      int, int)
 	 */
 	@Override

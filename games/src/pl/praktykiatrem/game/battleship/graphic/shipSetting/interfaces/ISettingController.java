@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic.shipSetting;
+package pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces;
 
 import java.util.ArrayList;
 
@@ -12,8 +12,6 @@ public interface ISettingController {
 
 	void playerIsNotReady();
 
-	ISettingView getView(int p);
-
 	ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id);
 
 	boolean placeShips(PlayerStatus player, int id, int polesNumber,
@@ -26,7 +24,7 @@ public interface ISettingController {
 
 	void resetGame(PlayerStatus player);
 
-	public void placeShipAtRandom(ISettingPresenter presenter,
+	public void placeShipAtRandom(ISettingPresenterControll presenter,
 			PlayerStatus player);
 
 }
