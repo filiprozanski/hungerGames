@@ -28,13 +28,13 @@ public class SettingControllerForOnePlayer implements ISettingController {
 		pres1 = new SettingPresenter(g.getConstants(), player1, this);
 		pres2 = new SettingPresenter(g.getConstants(), player2, this, 1);
 
-		// try {
-		pres1.showFrame();
-		/*
-		 * } catch (RemoteException e) {
-		 * System.out.println("controllerset constructor"); e.printStackTrace();
-		 * System.exit(0); }
-		 */
+		try {
+			pres1.showFrame();
+		} catch (RemoteException e) {
+			System.out.println("controllerset constructor");
+			e.printStackTrace();
+			System.exit(0);
+		}
 
 		readyPlayers = 0;
 	}
@@ -56,34 +56,29 @@ public class SettingControllerForOnePlayer implements ISettingController {
 
 	@Override
 	public ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return gameRules.getCoordsList(player, id);
 	}
 
 	@Override
 	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
 			Direction dir, int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		return gameRules.placeShips(player, id, polesNumber, dir, x, y);
 	}
 
 	@Override
 	public int getActiveShipsNumber(PlayerStatus player) {
-		// TODO Auto-generated method stub
-		return 0;
+		return gameRules.getActiveShipsNumber(player);
 	}
 
 	@Override
 	public boolean displaceShip(PlayerStatus player, int id, int polesNumber,
 			Direction dir, int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		return gameRules.displaceShips(player, id, polesNumber, dir, x, y);
 	}
 
 	@Override
 	public void resetGame(PlayerStatus player) {
-		// TODO Auto-generated method stub
-
+		gameRules.resetGame(player);
 	}
 
 	@Override

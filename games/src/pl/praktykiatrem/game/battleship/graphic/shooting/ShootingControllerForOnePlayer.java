@@ -80,6 +80,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		try {
 			pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
 			pres1.changeStatus(true);
+			pres1.showFrame();
 		} catch (RemoteException e) {
 			System.out.println("shootingcontroller");
 			e.printStackTrace();
@@ -280,6 +281,13 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	}
 
 	public void callMenu() {
+		try {
+			pres1.closeFrame();
+		} catch (RemoteException e) {
+			System.out.println("callMenu");
+			e.printStackTrace();
+			System.exit(0);
+		}
 		supervisor.callMenu();
 	}
 }
