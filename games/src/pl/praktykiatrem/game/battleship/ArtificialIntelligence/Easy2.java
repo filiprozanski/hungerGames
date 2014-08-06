@@ -7,7 +7,7 @@ import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 
-public class Easy implements IComputer {
+public class Easy2 implements IComputer {
 	private ComputerBoard board;
 	private Game gameRules;
 	private Coordinates coords = new Coordinates(9, 9);
@@ -15,7 +15,7 @@ public class Easy implements IComputer {
 	private int shotCounter = 0;
 	private int doubleCounter = 0;
 
-	public Easy(Game gameRules) {
+	public Easy2(Game gameRules) {
 		this.gameRules = gameRules;
 		this.board = new ComputerBoard(gameRules);
 	}
@@ -49,18 +49,20 @@ public class Easy implements IComputer {
 	}
 
 	private void computeShot() {
-		discardSingleAreas();
-		if (doubleCounter == 2)
-			discardDoubleAreas();
+		if (shotCounter == 20) {
+			discardSingleAreas();
+			if (doubleCounter == 2)
+				discardDoubleAreas();
 
-		if (shotCounter > 40 && shotCounter % 2 == 1)
-			lookForBiggestArea();
-		if (shotCounter == 30)
-			checkOutCorners();
-		lookForTrio();
-		lookForNeighbors();
-		lookForDoubles();
-		lookForTriples();
+			if (shotCounter > 40 && shotCounter % 2 == 1)
+				lookForBiggestArea();
+			if (shotCounter == 30)
+				checkOutCorners();
+			lookForTrio();
+			lookForNeighbors();
+			lookForDoubles();
+			lookForTriples();
+		}
 		shotFromList();
 	}
 
@@ -156,22 +158,16 @@ public class Easy implements IComputer {
 
 			x_temp = Rand.getRandX(gameRules);
 			y_temp = Rand.getRandY(gameRules);
-
-			if (board.getBoard(x_temp, y_temp) == -2) {
-				// board.setMiss(x_temp, y_temp);
-				this.coords = new Coordinates(x_temp, y_temp);
-				break;
-			}
+			if ((x_temp % 2 == 1 && y_temp % 2 == 1)
+					|| (x_temp % 2 == 0 && y_temp % 2 == 0))
+				if (board.getBoard(x_temp, y_temp) == -2) {
+					// board.setMiss(x_temp, y_temp);
+					this.coords = new Coordinates(x_temp, y_temp);
+					break;
+				}
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * pl.praktykiatrem.game.battleship.ArtificialIntelligence.Computer1#setSink
-	 * (int, java.util.ArrayList)
-	 */
 	@Override
 	public void setSink(int id, ArrayList<Coordinates> arrayList) {
 		for (int i = 0; i < arrayList.size(); i++)
@@ -187,13 +183,6 @@ public class Easy implements IComputer {
 		lookForTriples();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * pl.praktykiatrem.game.battleship.ArtificialIntelligence.Computer1#setHit
-	 * (int, int)
-	 */
 	@Override
 	public void setHit(int x, int y) {
 		board.setHit(x, y);
@@ -333,4 +322,5 @@ public class Easy implements IComputer {
 
 		addToList(x, y + 1);
 	}
+
 }

@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Computer;
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.IComputer;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Medium;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
@@ -52,7 +52,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	 */
 	private int accuracy;
 
-	private Computer computer;
+	private IComputer iComputer;
 
 	private StartGraphicForOnePlayer supervisor;
 
@@ -71,7 +71,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		this.supervisor = supervisor;
 		this.g = g;
 
-		this.computer = new Medium(g);
+		this.iComputer = new Medium(g);
 		pres1 = new ShootingPresenter(g, player1, this);
 		pres2 = new ShootingPresenter(g, player2, this);
 		pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
@@ -130,13 +130,13 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				boardSettingHit(player2, player1, x, y);
 				if (result == 2) {
 					int id = g.getShipID(player1, x, y);
-					computer.setSink(id, g.getCoordsList(player1, id));
+					iComputer.setSink(id, g.getCoordsList(player1, id));
 					if (player1.getShipsNumber() == 0) {
 						gameOver(player2);
 						return true;
 					}
 				} else {
-					computer.setHit(x, y);
+					iComputer.setHit(x, y);
 				}
 				makeComputedMove(true);
 				return true;
@@ -149,7 +149,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	}
 
 	private void makeComputedMove(boolean hit) {
-		Coordinates coords = computer.getCords(hit);
+		Coordinates coords = iComputer.getCords(hit);
 		makeMove(player2, coords.getX(), coords.getY());
 	}
 
