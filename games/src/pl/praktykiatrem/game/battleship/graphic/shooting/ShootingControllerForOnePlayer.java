@@ -3,6 +3,7 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 import java.rmi.RemoteException;
 
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Computer;
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Medium;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
@@ -74,7 +75,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		this.supervisor = supervisor;
 		this.g = g;
 
-		this.computer = new Computer(g);
+		this.computer = new Medium(g);
 		pres1 = new ShootingPresenter(g, player1, this);
 		pres2 = new ShootingPresenter(g, player2, this);
 		try {
@@ -109,11 +110,12 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				return true;
 			} else {
 				boardSettingMiss(player1, player2, x, y);
-				makeComputedMove();
+				makeComputedMove(false);
 				return false;
 			}
 		} else {
 			int result = g.makeMove(player1, x, y);
+			// computer.setMiss(x, y);
 			if (result >= 1) {
 				boardSettingHit(player2, player1, x, y);
 				if (result == 2) {
@@ -126,17 +128,18 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				} else {
 					computer.setHit(x, y);
 				}
-				makeComputedMove();
+				makeComputedMove(true);
 				return true;
 			} else {
+				// computer.setMiss(x, y);
 				boardSettingMiss(player2, player1, x, y);
 				return false;
 			}
 		}
 	}
 
-	private void makeComputedMove() {
-		Coordinates coords = computer.getCords();
+	private void makeComputedMove(boolean hit) {
+		Coordinates coords = computer.getCords(hit);
 		makeMove(player2, coords.getX(), coords.getY());
 	}
 

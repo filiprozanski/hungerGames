@@ -12,11 +12,15 @@ public class ComputerBoard {
 				.getBoardSizeV()];
 		for (int i = 0; i < gameRules.getBoardSizeH(); i++)
 			for (int j = 0; j < gameRules.getBoardSizeV(); j++)
-				board[j][i] = -1;
+				board[j][i] = -2;
 	}
 
 	public int[][] getBoard() {
 		return board;
+	}
+
+	public void setMiss(int x, int y) {
+		board[y][x] = -1;
 	}
 
 	public void setHit(int x, int y) {
@@ -28,17 +32,29 @@ public class ComputerBoard {
 	}
 
 	public int getBoard(int x, int y) {
-		return board[y][x];
+		if (x >= 0 && x < gameRules.getBoardSizeH() && y >= 0
+				&& y < gameRules.getBoardSizeV())
+			return board[y][x];
+		else
+			return -1;
 	}
 
 	public void printBoard() {
 		for (int i = 0; i < gameRules.getBoardSizeH(); i++) {
 			for (int j = 0; j < gameRules.getBoardSizeV(); j++)
-				if (board[j][i] == -1)
+				if (board[j][i] == -2)
+					System.out.print("+");
+				else if ((board[j][i] == -1))
 					System.out.print("M");
+				else if ((board[j][i] == -3))
+					System.out.print("D");
 				else
 					System.out.print(board[j][i]);
 			System.out.println();
 		}
+	}
+
+	public void setAvoid(int i, int j) {
+		board[j][i] = -3;
 	}
 }
