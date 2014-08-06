@@ -221,6 +221,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 
 	private void bsOnlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
+
 	}
 
 	private void tttPCButtonActionPerformed(java.awt.event.ActionEvent evt) {

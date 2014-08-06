@@ -20,6 +20,7 @@ public class menuStart {
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
 		HGClient client = new HGClient();
+		Registry r;
 
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
@@ -51,22 +52,18 @@ public class menuStart {
 			}
 		});
 
-		while (true) {
-			try {
-				Registry r = LocateRegistry.getRegistry("localhost", 9875);
-				IRMIServer s = (IRMIServer) r.lookup("RMIServer");
-				System.out.println("Jestem klientem");
-				System.out.println("wywo³uje metode");
-				s.showConnection();
-				s.logInClient(client);
-				System.out.println("Zaraz padnê");
-				f.enableButton();
-				break;
-			} catch (Exception e) {
-				System.out.println("Nie mog³em po³¹czyæ");
-				Thread.sleep(10000);
-			}
+		// while (true) {
+		try {
+			r = LocateRegistry.getRegistry("localhost", 9875);
+			IRMIServer s = (IRMIServer) r.lookup("RMIServer");
+			s.showConnection();
+			s.logInClient(client);
+			f.enableButton();
+			// break;
+		} catch (Exception e) {
+			System.out.println("Nie mog³em po³¹czyæ");
+			Thread.sleep(10000);
 		}
-
+		// }
 	}
 }

@@ -29,4 +29,9 @@ public class RMIServer extends UnicastRemoteObject implements IRMIServer {
 		clients.remove(client);
 	}
 
+	@Override
+	public void startGame() {
+
+	}
+
 }
