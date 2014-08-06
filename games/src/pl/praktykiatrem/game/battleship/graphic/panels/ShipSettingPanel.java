@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.ISettingButtonsObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.ISettingView;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingView;
 
 /**
  * Panel zbieraj¹cy wszystkie elementy interfejsu u¿ytkownika potrzebne podczas

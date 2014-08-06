@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic.shipSetting;
+package pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces;
 
 public interface ISettingView {
 	public void changePlaceIcon(int x, int y, int type);

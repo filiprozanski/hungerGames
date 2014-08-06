@@ -1,8 +1,15 @@
 package pl.praktykiatrem.game.menu;
 
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+import pl.praktykiatrem.game.battleship.rmi.HGClient;
+import pl.praktykiatrem.game.battleship.rmi.IRMIServer;
 
 public class menuStart {
-	public static void main(String args[]) {
+	private static MainMenu f;
+
+	public static void main(String args[]) throws InterruptedException {
 		/* Set the Nimbus look and feel */
 		// <editor-fold defaultstate="collapsed"
 		// desc=" Look and feel setting code (optional) ">
@@ -12,6 +19,7 @@ public class menuStart {
 		 * http://download.oracle.com/javase
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
+		HGClient client = new HGClient();
 
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
@@ -39,8 +47,26 @@ public class menuStart {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new MainMenu();
+				f = new MainMenu();
 			}
 		});
+
+		while (true) {
+			try {
+				Registry r = LocateRegistry.getRegistry("localhost", 9875);
+				IRMIServer s = (IRMIServer) r.lookup("RMIServer");
+				System.out.println("Jestem klientem");
+				System.out.println("wywo³uje metode");
+				s.showConnection();
+				s.logInClient(client);
+				System.out.println("Zaraz padnê");
+				f.enableButton();
+				break;
+			} catch (Exception e) {
+				System.out.println("Nie mog³em po³¹czyæ");
+				Thread.sleep(10000);
+			}
+		}
+
 	}
 }

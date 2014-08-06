@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic.shooting;
+package pl.praktykiatrem.game.battleship.graphic.shooting.interfaces;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 
@@ -9,6 +9,4 @@ public interface IShootingController {
 	void resign(PlayerStatus player);
 
 	void callMenu();
-
-	IShootingView getView(int p);
 }

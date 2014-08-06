@@ -1,8 +1,9 @@
-package pl.praktykiatrem.game.battleship.graphic.shooting;
+package pl.praktykiatrem.game.battleship.rmi.shooting;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView;
 
-public interface IShootingPresenter {
+public interface IShootingPresenterRMI {
 	public void shot(int x, int y);
 
 	public IShootingView getView();

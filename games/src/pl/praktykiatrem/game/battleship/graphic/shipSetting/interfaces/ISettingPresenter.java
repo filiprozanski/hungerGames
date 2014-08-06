@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic.shipSetting;
+package pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces;
 
 public interface ISettingPresenter {
 	public void shipChoiceDone(int polesNumber, int id);
@@ -12,9 +12,4 @@ public interface ISettingPresenter {
 	public void resetBoard();
 
 	public void playerIsReady();
-
-	public void showFrame();
-
-	public void closeFrame();
-
 }

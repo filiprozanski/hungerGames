@@ -5,10 +5,10 @@ import java.awt.Component;
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingController;
-import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.shooting.IShootingView;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
+import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class ShootingControllerForConsole implements IShootingController {

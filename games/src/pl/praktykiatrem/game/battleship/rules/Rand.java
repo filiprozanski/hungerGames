@@ -5,7 +5,7 @@ import java.util.Random;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 
-public abstract class Rand {
+public class Rand {
 
 	static Random generator = new Random();
 

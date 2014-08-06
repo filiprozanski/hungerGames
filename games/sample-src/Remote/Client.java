@@ -17,7 +17,6 @@ public class Client {
 		s.helloWorld("Wiktor");
 		System.out.println("wywo³a³em!");
 		Ship ship = new Ship(5);
-		ship.setID(6);
 		s.passShip(ship);
 	}
 }
