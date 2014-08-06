@@ -91,48 +91,6 @@ public class Easy implements IComputer {
 		}
 	}
 
-	private void lookForBiggestArea() {
-		int max_size = 0;
-		int temp_size = 0;
-		int x = 0;
-		int y = 0;
-		for (int i = 0; i < gameRules.getBoardSizeH(); i++)
-			for (int j = 0; j < gameRules.getBoardSizeV(); j++) {
-				for (int k = j; k < gameRules.getBoardSizeV(); k++) {
-					if (board.getBoard(i, k) != -2
-							|| k >= gameRules.getBoardSizeV() - 1) {
-						temp_size = k - j;
-						break;
-					}
-				}
-				if (temp_size > max_size) {
-					max_size = temp_size;
-					x = i;
-					y = (j + j + max_size) / 2;
-				}
-			}
-
-		for (int i = 0; i < gameRules.getBoardSizeV(); i++)
-			for (int j = 0; j < gameRules.getBoardSizeH(); j++) {
-				for (int k = j; k < gameRules.getBoardSizeH(); k++) {
-					if (board.getBoard(k, i) != -2
-							|| k >= gameRules.getBoardSizeH() - 1) {
-						temp_size = k - j;
-						break;
-					}
-				}
-				if (temp_size > max_size) {
-					max_size = temp_size;
-					y = i;
-					x = (j + j + max_size) / 2;
-				}
-			}
-
-		// System.out.print("test= ");
-		// System.out.println(max_size);
-		addToList(x, y);
-	}
-
 	private void removeFromList(Coordinates coords) {
 		list.remove(coords);
 	}

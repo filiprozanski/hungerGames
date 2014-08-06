@@ -2,8 +2,8 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import java.rmi.RemoteException;
 
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Hard;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.IComputer;
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Medium;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
@@ -75,7 +75,9 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		this.supervisor = supervisor;
 		this.g = g;
 
-		this.iComputer = new Medium(g);
+		this.iComputer = new Hard(g); // TUTAJ PRZE£¡CZANIE RULSÓW !!!! Easy,
+										// Medium, Hard (nazwy klas)
+
 		pres1 = new ShootingPresenter(g, player1, this);
 		pres2 = new ShootingPresenter(g, player2, this);
 		try {
@@ -115,7 +117,6 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 			}
 		} else {
 			int result = g.makeMove(player1, x, y);
-			// computer.setMiss(x, y);
 			if (result >= 1) {
 				boardSettingHit(player2, player1, x, y);
 				if (result == 2) {
@@ -131,7 +132,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				makeComputedMove(true);
 				return true;
 			} else {
-				// computer.setMiss(x, y);
+				iComputer.setMiss(x, y);
 				boardSettingMiss(player2, player1, x, y);
 				return false;
 			}
@@ -139,7 +140,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	}
 
 	private void makeComputedMove(boolean hit) {
-		Coordinates coords = iComputer.getCords(hit);
+		Coordinates coords = iComputer.getCords();
 		makeMove(player2, coords.getX(), coords.getY());
 	}
 
@@ -218,7 +219,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 			sPres.setStats(playerShips, enemyShips, accuracy);
 			vPres.setStats(enemyShips, playerShips);
 		} catch (RemoteException e) {
-			System.out.println("boardSettingHit");
+			System.out.println("boardSettingMiss");
 			e.printStackTrace();
 			System.exit(0);
 		}

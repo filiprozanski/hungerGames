@@ -6,7 +6,7 @@ import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 
 public interface IComputer {
 
-	public abstract Coordinates getCords(boolean hit);
+	public abstract Coordinates getCords();
 
 	public abstract void setSink(int id, ArrayList<Coordinates> arrayList);
 

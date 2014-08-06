@@ -47,4 +47,8 @@ public class CoordsList {
 	public void removeFromList(Coordinates coords) {
 		list.remove(coords);
 	}
+
+	public void removeFromList(int x, int y) {
+		list.remove(new Coordinates(x, y));
+	}
 }
