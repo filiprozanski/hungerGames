@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.rules.Game;
-import pl.praktykiatrem.game.battleship.rules.Rand;
 
 public class Hard implements IComputer {
 	private ComputerBoard board;
@@ -24,9 +23,9 @@ public class Hard implements IComputer {
 
 	private void print() {
 		if (huntMode == false)
-			System.out.print("huntMode OFF");
+			System.out.print("huntMode OFF ");
 		else if (huntMode == true)
-			System.out.print("huntMode ON");
+			System.out.print("huntMode ON ");
 		System.out.print(coords.getX());
 		System.out.print(" ");
 		System.out.print(coords.getY());
@@ -38,39 +37,11 @@ public class Hard implements IComputer {
 
 	@Override
 	public Coordinates getCords() {
-		shotFromList();
+
 		shotCounter++;
 		coords = density.getCoords();
-		// setMiss(coords.getX(), coords.getY());
-		// shotFromList();
-
-		// density.setDensityPlaceUsed(coords.getX(), coords.getY());
 		print();
-		// return density.getCoords(board);
 		return coords;
-	}
-
-	private void shotFromList() {
-		if (list.getListSize() > 0) {
-			coords = list.getCoords();
-		} else {
-			randShot();
-		}
-	}
-
-	private void randShot() {
-		int x_temp = 0;
-		int y_temp = 0;
-		while (true) {
-			x_temp = Rand.getRandX(game);
-			y_temp = Rand.getRandY(game);
-			if ((x_temp % 2 == 1 && y_temp % 2 == 1)
-					|| (x_temp % 2 == 0 && y_temp % 2 == 0))
-				if (board.getBoard(x_temp, y_temp) == -1) {
-					this.coords = new Coordinates(x_temp, y_temp);
-					break;
-				}
-		}
 	}
 
 	@Override

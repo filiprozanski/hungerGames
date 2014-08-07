@@ -2,8 +2,8 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import java.rmi.RemoteException;
 
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Hard;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.IComputer;
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Medium;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
@@ -75,7 +75,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		this.supervisor = supervisor;
 		this.g = g;
 
-		this.iComputer = new Hard(g); // TUTAJ PRZE£¡CZANIE RULSÓW !!!! Easy,
+		this.iComputer = new Medium(g); // TUTAJ PRZE£¡CZANIE RULSÓW !!!! Easy,
 										// Medium, Hard (nazwy klas)
 
 		pres1 = new ShootingPresenter(g, player1, this);
