@@ -55,11 +55,16 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		backgroundLabel = new javax.swing.JLabel();
 		menuBar = new javax.swing.JMenuBar();
 		fileMenu = new javax.swing.JMenu();
-		closeMenuItem = new javax.swing.JMenuItem();
+		closeButton = new javax.swing.JMenuItem();
 		settingsMenu = new javax.swing.JMenu();
 		rulesChoice = new javax.swing.JMenu();
 		customRulesField = new javax.swing.JRadioButtonMenuItem();
 		originalRulesField = new javax.swing.JRadioButtonMenuItem();
+		difficultyMenu = new javax.swing.JMenu();
+		easyRadioButton = new javax.swing.JRadioButtonMenuItem();
+		mediumRadioButton = new javax.swing.JRadioButtonMenuItem();
+		hardRadioButton = new javax.swing.JRadioButtonMenuItem();
+		pcOnlyButton = new javax.swing.JMenuItem();
 
 		jLabel4.setIcon(new ImageIcon(ShipIcons.class
 				.getResource("\\backgroundMenu.jpg"))); // NOI18N
@@ -163,14 +168,13 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 
 		fileMenu.setText("File");
 
-		closeMenuItem.setText("Close");
-		closeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-			@Override
+		closeButton.setText("Quit");
+		closeButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				closeMenuItemActionPerformed(evt);
+				closeButtonActionPerformed(evt);
 			}
 		});
-		fileMenu.add(closeMenuItem);
+		fileMenu.add(closeButton);
 
 		menuBar.add(fileMenu);
 
@@ -187,7 +191,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		});
 		rulesChoice.add(customRulesField);
 
-		originalRulesField.setText("Regu³y Patryka");
+		originalRulesField.setText("OriginalRules");
 		originalRulesField
 				.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,6 +201,44 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		rulesChoice.add(originalRulesField);
 
 		settingsMenu.add(rulesChoice);
+
+		difficultyMenu.setText("Difficulty");
+
+		easyRadioButton.setText("Easy");
+		easyRadioButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				easyRadioButtonActionPerformed(evt);
+			}
+		});
+		difficultyMenu.add(easyRadioButton);
+
+		mediumRadioButton.setSelected(true);
+		mediumRadioButton.setText("Medium");
+		mediumRadioButton
+				.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						mediumRadioButtonActionPerformed(evt);
+					}
+				});
+		difficultyMenu.add(mediumRadioButton);
+
+		hardRadioButton.setText("Hard");
+		hardRadioButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				hardRadioButtonActionPerformed(evt);
+			}
+		});
+		difficultyMenu.add(hardRadioButton);
+
+		settingsMenu.add(difficultyMenu);
+
+		pcOnlyButton.setText("PC vs PC");
+		pcOnlyButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				pcOnlyButtonActionPerformed(evt);
+			}
+		});
+		settingsMenu.add(pcOnlyButton);
 
 		menuBar.add(settingsMenu);
 
@@ -208,7 +250,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private void bsPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
 		new StartGraphicForOnePlayer("Wiktor", "Komputer", this,
-				getRulesChoice());
+				getRulesChoice(), getDifficultyChoice());
 		setVisible(false);
 	}
 
@@ -236,10 +278,6 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		// TODO add your handling code here:
 	}
 
-	private void closeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-	}
-
 	private void customRulesFieldActionPerformed(java.awt.event.ActionEvent evt) {
 		originalRulesField.setSelected(false);
 		originalRulesField.setSelectedIcon(null);
@@ -249,6 +287,35 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 			java.awt.event.ActionEvent evt) {
 		customRulesField.setSelected(false);
 		customRulesField.setSelectedIcon(null);
+	}
+
+	private void easyRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		mediumRadioButton.setSelected(false);
+		mediumRadioButton.setSelectedIcon(null);
+		hardRadioButton.setSelected(false);
+		hardRadioButton.setSelectedIcon(null);
+	}
+
+	private void mediumRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		easyRadioButton.setSelected(false);
+		easyRadioButton.setSelectedIcon(null);
+		hardRadioButton.setSelected(false);
+		hardRadioButton.setSelectedIcon(null);
+	}
+
+	private void hardRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		mediumRadioButton.setSelected(false);
+		mediumRadioButton.setSelectedIcon(null);
+		easyRadioButton.setSelected(false);
+		easyRadioButton.setSelectedIcon(null);
+	}
+
+	private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		System.exit(0);
+	}
+
+	private void pcOnlyButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
 	}
 
 	public void setPlayerName(String name) {
@@ -264,13 +331,18 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private javax.swing.JButton bsOnlineButton;
 	private javax.swing.JButton bsPCButton;
 	private javax.swing.JButton bsPlayerButton;
-	private javax.swing.JMenuItem closeMenuItem;
+	private javax.swing.JMenuItem closeButton;
 	private javax.swing.JRadioButtonMenuItem customRulesField;
+	private javax.swing.JMenu difficultyMenu;
+	private javax.swing.JRadioButtonMenuItem easyRadioButton;
 	private javax.swing.JMenu fileMenu;
+	private javax.swing.JRadioButtonMenuItem hardRadioButton;
 	private javax.swing.JLabel jLabel4;
 	private javax.swing.JLabel jLabel6;
+	private javax.swing.JRadioButtonMenuItem mediumRadioButton;
 	private javax.swing.JMenuBar menuBar;
 	private javax.swing.JRadioButtonMenuItem originalRulesField;
+	private javax.swing.JMenuItem pcOnlyButton;
 	private javax.swing.JMenu rulesChoice;
 	private javax.swing.JMenu settingsMenu;
 	private javax.swing.JLabel titleLabel;
@@ -294,6 +366,17 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 			return 2;
 		else
 			return 1;
+	}
+
+	private int getDifficultyChoice() {
+		if (easyRadioButton.isSelected())
+			return 1;
+		else if (mediumRadioButton.isSelected())
+			return 2;
+		else if (hardRadioButton.isSelected())
+			return 3;
+		else
+			return 2;
 	}
 
 	public void enableButton() {

@@ -2,6 +2,7 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import java.rmi.RemoteException;
 
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Easy;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.IComputer;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Medium;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
@@ -69,13 +70,15 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	 * @param g
 	 */
 	public ShootingControllerForOnePlayer(PlayerStatus player1,
-			PlayerStatus player2, Game g, StartGraphicForOnePlayer supervisor) {
+			PlayerStatus player2, Game g, StartGraphicForOnePlayer supervisor,
+			int difficultyLevel) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;
 		this.g = g;
 
-		this.iComputer = new Medium(g);
+		setComputerOpponent(difficultyLevel);
+
 		pres1 = new ShootingPresenter(g, player1, this);
 		pres2 = new ShootingPresenter(g, player2, this);
 		try {
@@ -86,6 +89,22 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 			System.out.println("shootingcontroller");
 			e.printStackTrace();
 			System.exit(0);
+		}
+	}
+
+	private void setComputerOpponent(int difficulty) {
+		switch (difficulty) {
+		case 1:
+			iComputer = new Easy(g);
+			break;
+		case 2:
+			iComputer = new Medium(g);
+			break;
+		case 3:
+			iComputer = new Hard(g);
+			break;
+		default:
+			iComputer = new Medium(g);
 		}
 	}
 

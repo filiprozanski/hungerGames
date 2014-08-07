@@ -28,6 +28,8 @@ public class StartGraphicForOnePlayer {
 
 	private IMenuCallObserver menuObserver;
 
+	private int difficultyLevel;
+
 	/*
 	 * public static void main(String[] args) { StartGraphicLocal start = new
 	 * StartGraphicLocal();
@@ -36,8 +38,9 @@ public class StartGraphicForOnePlayer {
 	 */
 
 	public StartGraphicForOnePlayer(String name1, String name2,
-			IMenuCallObserver menuObserver, int rulesType) {
+			IMenuCallObserver menuObserver, int rulesType, int difficulty) {
 		this.menuObserver = menuObserver;
+		this.difficultyLevel = difficulty;
 		game = new Game(rulesType);
 		initialize(name1, name2);
 		stageA();
@@ -67,7 +70,7 @@ public class StartGraphicForOnePlayer {
 
 	public void stageB() {
 		shController = new ShootingControllerForOnePlayer(player1, player2,
-				game, this);
+				game, this, difficultyLevel);
 	}
 
 	public void changeStage() {
