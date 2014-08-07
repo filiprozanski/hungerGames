@@ -23,6 +23,10 @@ public class CoordsList {
 		return temp;
 	}
 
+	public Coordinates getCoords(int index) {
+		return list.get(index);
+	}
+
 	public int getListSize() {
 		return list.size();
 	}

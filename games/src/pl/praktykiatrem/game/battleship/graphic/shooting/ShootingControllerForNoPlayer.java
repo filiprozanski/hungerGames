@@ -71,7 +71,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 		this.g = g;
 
 		setComputerOpponent(difficultyLevel);
-		iComputer2 = new Medium(g);
+		iComputer2 = new Hard(g);
 
 		try {
 			pres1 = new ShootingPresenter(g, player1, this);

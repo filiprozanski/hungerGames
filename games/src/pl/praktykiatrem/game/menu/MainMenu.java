@@ -223,7 +223,6 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		});
 		difficultyMenu.add(easyRadioButton);
 
-		mediumRadioButton.setSelected(true);
 		mediumRadioButton.setText("Medium");
 		mediumRadioButton
 				.addActionListener(new java.awt.event.ActionListener() {
@@ -233,6 +232,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 				});
 		difficultyMenu.add(mediumRadioButton);
 
+		hardRadioButton.setSelected(true);
 		hardRadioButton.setText("Hard");
 		hardRadioButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {

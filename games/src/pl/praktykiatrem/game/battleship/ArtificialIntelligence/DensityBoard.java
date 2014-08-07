@@ -3,6 +3,7 @@ package pl.praktykiatrem.game.battleship.ArtificialIntelligence;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.Rand;
 
 public class DensityBoard {
 	// private ComputerBoard board;
@@ -10,8 +11,8 @@ public class DensityBoard {
 	private int[][] density;
 	private int BoardH;
 	private int BoardV;
-	private int[] shipTypes;
 	private ComputerBoard board;
+	private CoordsList list;
 
 	public DensityBoard(ComputerBoard board, Game game) {
 		// this.board = board;
@@ -20,54 +21,47 @@ public class DensityBoard {
 		this.BoardV = game.getBoardSizeV();
 		this.density = new int[BoardH][BoardV];
 		this.board = board;
+		// this.list = new CoordsList(board, game);
 		fillDensityBoardWithZeros();
-		this.shipTypes = game.getShipTypes();
 	}
 
-	public Coordinates getCoords() {
-		fillDensityBoardWithZeros();
-		trackDensityBoard();
-		huntDensityBoard();
-		return getMaxDensity();
-	}
-
-	private int getDensity(int x, int y) {
+	public int getDensity(int x, int y) {
 		return density[y][x];
 	}
 
-	private Coordinates getMaxDensity() {
+	public Coordinates getRandomMaxDensityCoords() {
+		getMaxDensityCoords();
+		Coordinates coords = list.getCoords(Rand.getRand(list.getListSize()));
+		return coords;
+	}
+
+	private void getMaxDensityCoords() {
+		list = new CoordsList(board, game);
+		for (int i = 0; i < BoardH; i++)
+			for (int j = 0; j < BoardV; j++)
+				if (getDensity(i, j) == getMaxDensity()) {
+					list.addToList(i, j);
+				}
+	}
+
+	public int getMaxDensity() {
 		int max = 0;
-		int x = -1;
-		int y = -1;
 		for (int i = 0; i < BoardH; i++)
 			for (int j = 0; j < BoardV; j++)
 				if (getDensity(i, j) > max) {
 					max = getDensity(i, j);
-					x = i;
-					y = j;
 				}
-		return new Coordinates(x, y);
+		return max;
 	}
 
-	private void fillDensityBoardWithZeros() {
+	public void fillDensityBoardWithZeros() {
 		for (int i = 0; i < BoardH; i++)
 			for (int j = 0; j < BoardV; j++) {
 				density[j][i] = 0;
 			}
 	}
 
-	private void increacseDensityBoard(int x, int y, int polesNumber,
-			Direction dir) {
-		for (int i = 0; i < polesNumber; i++) {
-			if (dir == Direction.HORIZONTAL) {
-				density[y + i][x]++;
-			} else {
-				density[y][x + i]++;
-			}
-		}
-	}
-
-	private void increacseHuntDensityBoard(int x, int y, int polesNumber,
+	public void increaseDensityBoard(int x, int y, int polesNumber,
 			Direction dir) {
 		for (int i = 0; i < polesNumber; i++) {
 			if (dir == Direction.HORIZONTAL) {
@@ -78,61 +72,6 @@ public class DensityBoard {
 					density[y][x + i]++;
 			}
 		}
-	}
-
-	private void huntDensityBoard() {
-		for (int st = 0; st < shipTypes.length; st++)
-			for (int i = 0; i < BoardH; i++)
-				for (int j = 0; j < BoardV; j++) {
-					if (shipPlacingValidation(shipTypes[st],
-							Direction.HORIZONTAL, i, j))
-						increacseDensityBoard(i, j, shipTypes[st],
-								Direction.HORIZONTAL);
-					if (shipPlacingValidation(shipTypes[st],
-							Direction.VERTICAL, i, j))
-						increacseDensityBoard(i, j, shipTypes[st],
-								Direction.VERTICAL);
-				}
-	}
-
-	private void trackDensityBoard() {
-		for (int st = 0; st < shipTypes.length; st++)
-			for (int i = 0; i < BoardH; i++)
-				for (int j = 0; j < BoardV; j++) {
-					if (shipPlacingValidation(shipTypes[st],
-							Direction.HORIZONTAL, i, j))
-						increacseDensityBoard(i, j, shipTypes[st],
-								Direction.HORIZONTAL);
-					if (shipPlacingValidation(shipTypes[st],
-							Direction.VERTICAL, i, j))
-						increacseDensityBoard(i, j, shipTypes[st],
-								Direction.VERTICAL);
-				}
-	}
-
-	public boolean shipPlacingValidation(int polesNumber, Direction dir, int x,
-			int y) {
-		if (dir == Direction.HORIZONTAL) {
-			if (y + polesNumber > BoardV)
-				return false;
-		} else if (dir == Direction.VERTICAL) {
-			if (x + polesNumber > BoardH)
-				return false;
-		}
-		if (dir == Direction.HORIZONTAL) {
-			for (int i = 0; i < polesNumber; i++) {
-				if (board.isMiss(x, y + i)) {
-					return false;
-				}
-			}
-		} else {
-			for (int i = 0; i < polesNumber; i++) {
-				if (board.isMiss(x + i, y)) {
-					return false;
-				}
-			}
-		}
-		return true;
 	}
 
 	public void printDensityBoard() {
