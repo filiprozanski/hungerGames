@@ -16,6 +16,10 @@ public class Rand {
 			return Direction.VERTICAL;
 	}
 
+	public static int getRand(int b) {
+		return generator.nextInt(b);
+	}
+
 	public static int getRandX(Game gameRules) {
 		return generator.nextInt(gameRules.getBoardSizeV());
 	}

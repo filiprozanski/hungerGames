@@ -27,33 +27,11 @@ public class Hard implements IComputer {
 
 	}
 
-	private void print() {
-		System.out.print("Hits: ");
-		System.out.print(hitCounter);
-		System.out.print("  ");
-		System.out.print(coords.getX());
-		System.out.print(" ");
-		System.out.print(coords.getY());
-		System.out.print("  cOuNtEr=");
-		System.out.println(shotCounter);
-		// board.printBoard();
-		density.printDensityBoard();
-	}
-
-	private void printAvaibleShips() {
-		for (int i = 0; i < shipTypes.length; i++) {
-			System.out.print(shipTypes[i]);
-			System.out.print(" ");
-		}
-		System.out.println("");
-	}
-
 	@Override
 	public Coordinates getCords() {
 		if (shotCounter == 0)
 			updateDensityBoard();
 		shotCounter++;
-		// print();
 		return coords;
 	}
 
@@ -63,8 +41,7 @@ public class Hard implements IComputer {
 			fillTrackDensityBoard();
 		else
 			fillHuntDensityBoard();
-		coords = density.getMaxDensityCoords();
-		printAvaibleShips();
+		coords = density.getRandomMaxDensityCoords();
 		densityView.updateView(density);
 	}
 

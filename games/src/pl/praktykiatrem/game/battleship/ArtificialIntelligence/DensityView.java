@@ -20,9 +20,9 @@ public class DensityView extends JFrame {
 	private double temp;
 	private int temp2;
 	private int temp3;
-	private int red;
-	private int green;
-	private int blue;
+	private double red;
+	private double green;
+	private double blue;
 
 	public DensityView(int sizeH, int sizeV) {
 		this.sizeH = sizeH;
@@ -46,12 +46,12 @@ public class DensityView extends JFrame {
 					green = 0;
 					blue = 0;
 				} else {
-					red = temp3;
-					green = temp3;
-					blue = temp3;
+					red = temp3;// * 0.2126;
+					green = temp3;// * 0.7152;
+					blue = temp3;// * 0.0722;
 				}
-				densityPanel.changeButtonColor(i, j,
-						new Color(red, green, blue));
+				densityPanel.changeButtonColor(i, j, new Color((int) red,
+						(int) green, (int) blue));
 			}
 	}
 

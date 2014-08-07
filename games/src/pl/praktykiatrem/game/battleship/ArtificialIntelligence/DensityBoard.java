@@ -3,6 +3,7 @@ package pl.praktykiatrem.game.battleship.ArtificialIntelligence;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.Rand;
 
 public class DensityBoard {
 	// private ComputerBoard board;
@@ -11,6 +12,7 @@ public class DensityBoard {
 	private int BoardH;
 	private int BoardV;
 	private ComputerBoard board;
+	private CoordsList list;
 
 	public DensityBoard(ComputerBoard board, Game game) {
 		// this.board = board;
@@ -19,6 +21,7 @@ public class DensityBoard {
 		this.BoardV = game.getBoardSizeV();
 		this.density = new int[BoardH][BoardV];
 		this.board = board;
+		// this.list = new CoordsList(board, game);
 		fillDensityBoardWithZeros();
 	}
 
@@ -26,18 +29,19 @@ public class DensityBoard {
 		return density[y][x];
 	}
 
-	public Coordinates getMaxDensityCoords() {
-		int max = 0;
-		int x = -1;
-		int y = -1;
+	public Coordinates getRandomMaxDensityCoords() {
+		getMaxDensityCoords();
+		Coordinates coords = list.getCoords(Rand.getRand(list.getListSize()));
+		return coords;
+	}
+
+	private void getMaxDensityCoords() {
+		list = new CoordsList(board, game);
 		for (int i = 0; i < BoardH; i++)
 			for (int j = 0; j < BoardV; j++)
-				if (getDensity(i, j) > max) {
-					max = getDensity(i, j);
-					x = i;
-					y = j;
+				if (getDensity(i, j) == getMaxDensity()) {
+					list.addToList(i, j);
 				}
-		return new Coordinates(x, y);
 	}
 
 	public int getMaxDensity() {
