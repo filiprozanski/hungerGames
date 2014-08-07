@@ -6,30 +6,29 @@ import java.util.ArrayList;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnlineServer;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 
-public class SettingControllerForOnePlayer implements ISettingController {
+public class SettingControllerOnline implements ISettingController {
 	private int readyPlayers;
 	private Game gameRules;
-	private StartGraphicForOnePlayer supervisor;
+	private StartGraphicOnlineServer supervisor;
 	private ISettingPresenterControll pres1;
 	private ISettingPresenterControll pres2;
 
-	public SettingControllerForOnePlayer(Game g, PlayerStatus player1,
-			PlayerStatus player2, StartGraphicForOnePlayer supervisor)
-			throws RemoteException {
+	public SettingControllerOnline(Game g, PlayerStatus player1,
+			PlayerStatus player2, StartGraphicOnlineServer supervisor) {
 		this.supervisor = supervisor;
 		this.gameRules = g;
 
-		pres1 = new SettingPresenter(g.getConstants(), player1, this);
-		pres2 = new SettingPresenter(g.getConstants(), player2, this, 1);
-
 		try {
+			pres1 = new SettingPresenter(g.getConstants(), player1, this);
+			pres2 = new SettingPresenter(g.getConstants(), player2, this);
 			pres1.showFrame();
+			pres2.showFrame();
 		} catch (RemoteException e) {
 			System.out.println("controllerset constructor");
 			e.printStackTrace();
@@ -39,17 +38,29 @@ public class SettingControllerForOnePlayer implements ISettingController {
 		readyPlayers = 0;
 	}
 
+	/*
+	 * public ISettingView getView(int p) { switch (p) { case 1: return
+	 * pres1.getView(); case 2: return pres2.getView(); default: return null; }
+	 * }
+	 */
+
+	@Override
 	public void playerIsReady() {
-		try {
-			pres1.closeFrame();
-		} catch (RemoteException e) {
-			System.out.println("player is ready");
-			e.printStackTrace();
-			System.exit(0);
+		readyPlayers++;
+		if (readyPlayers == 2) {
+			try {
+				pres1.closeFrame();
+				pres2.closeFrame();
+			} catch (RemoteException e) {
+				System.out.println("player is ready");
+				e.printStackTrace();
+				System.exit(0);
+			}
+			supervisor.changeStage();
 		}
-		supervisor.changeStage();
 	}
 
+	@Override
 	public void playerIsNotReady() {
 		readyPlayers = 0;
 	}
@@ -113,5 +124,4 @@ public class SettingControllerForOnePlayer implements ISettingController {
 			}
 		}
 	}
-
 }

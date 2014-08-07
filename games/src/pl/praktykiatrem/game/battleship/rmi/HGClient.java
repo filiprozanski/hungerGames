@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class HGClient implements Serializable {
 	private static final long serialVersionUID = 2L;
 	private String IP;
-	private String portNumber;
+	private int portNumber;
 	private int clientID;
 	private static int nextID = 1;
 
@@ -22,5 +22,13 @@ public class HGClient implements Serializable {
 				return false;
 		else
 			return false;
+	}
+
+	public void setPortNumber(int portNumber) {
+		this.portNumber = portNumber;
+	}
+
+	public int getPortNumber() {
+		return portNumber;
 	}
 }

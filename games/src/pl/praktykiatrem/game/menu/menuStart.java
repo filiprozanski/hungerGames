@@ -1,10 +1,8 @@
 package pl.praktykiatrem.game.menu;
 
-import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import pl.praktykiatrem.game.battleship.rmi.HGClient;
-import pl.praktykiatrem.game.battleship.rmi.IRMIServer;
 
 public class menuStart {
 	private static MainMenu f;
@@ -51,19 +49,5 @@ public class menuStart {
 				f = new MainMenu();
 			}
 		});
-
-		// while (true) {
-		try {
-			r = LocateRegistry.getRegistry("localhost", 9875);
-			IRMIServer s = (IRMIServer) r.lookup("RMIServer");
-			s.showConnection();
-			s.logInClient(client);
-			f.enableButton();
-			// break;
-		} catch (Exception e) {
-			System.out.println("Nie mog³em po³¹czyæ");
-			Thread.sleep(10000);
-		}
-		// }
 	}
 }

@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
@@ -21,8 +23,12 @@ import pl.praktykiatrem.game.battleship.rules.Game;
  * @version 30 lip 2014 15:18:49
  *
  */
-public class ShootingPresenter implements IShootingPresenter,
-		IShootingPresenterControll {
+public class ShootingPresenter extends UnicastRemoteObject implements
+		IShootingPresenter, IShootingPresenterControll {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3263489986702278924L;
 	/**
 	 * obiekt udostêpniaj±cy akcje wykonywane w trakcie gry
 	 */
@@ -60,7 +66,7 @@ public class ShootingPresenter implements IShootingPresenter,
 	 * @param controll
 	 */
 	public ShootingPresenter(Game gameRules, PlayerStatus player,
-			IShootingController controll) {
+			IShootingController controll) throws RemoteException {
 		this.gameRules = gameRules;
 		this.player = player;
 		this.controll = controll;

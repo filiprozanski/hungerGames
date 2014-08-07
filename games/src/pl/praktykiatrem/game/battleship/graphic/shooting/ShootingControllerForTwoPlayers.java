@@ -70,10 +70,10 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 		this.supervisor = supervisor;
 		this.g = g;
 
-		pres1 = new ShootingPresenter(g, player1, this);
-		pres2 = new ShootingPresenter(g, player2, this);
-
 		try {
+			pres1 = new ShootingPresenter(g, player1, this);
+			pres2 = new ShootingPresenter(g, player2, this);
+
 			pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
 			pres2.setStats(g.getShipsNumber(), g.getShipsNumber());
 

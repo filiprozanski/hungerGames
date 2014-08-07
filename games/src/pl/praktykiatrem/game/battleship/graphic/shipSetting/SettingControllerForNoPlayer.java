@@ -83,7 +83,11 @@ public class SettingControllerForNoPlayer implements ISettingController {
 		int randX;
 		int randY;
 		int polesNumber;
-		presenter.resetBoard();
+		try {
+			presenter.resetBoard();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
 			polesNumber = gameRules.getShipTypes()[i];
 			rand_dir = Rand.getRandDirection();

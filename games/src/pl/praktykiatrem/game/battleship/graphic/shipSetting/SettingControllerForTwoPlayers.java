@@ -24,10 +24,10 @@ public class SettingControllerForTwoPlayers implements ISettingController {
 		this.supervisor = supervisor;
 		this.gameRules = g;
 
-		pres1 = new SettingPresenter(g.getConstants(), player1, this);
-		pres2 = new SettingPresenter(g.getConstants(), player2, this);
-
 		try {
+			pres1 = new SettingPresenter(g.getConstants(), player1, this);
+			pres2 = new SettingPresenter(g.getConstants(), player2, this);
+
 			pres1.showFrame();
 			pres2.showFrame();
 		} catch (RemoteException e) {
@@ -100,7 +100,11 @@ public class SettingControllerForTwoPlayers implements ISettingController {
 		int randX;
 		int randY;
 		int polesNumber;
-		presenter.resetBoard();
+		try {
+			presenter.resetBoard();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
 			polesNumber = gameRules.getShipTypes()[i];
 			rand_dir = Rand.getRandDirection();

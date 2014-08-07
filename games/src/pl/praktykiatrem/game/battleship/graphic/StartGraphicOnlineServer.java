@@ -1,30 +1,32 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerForTwoPlayers;
-import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForTwoPlayers;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerOnline;
+import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerOnline;
+import pl.praktykiatrem.game.battleship.rmi.IRMIClient;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 
-public class StartGraphicForTwoPlayers {
-
+public class StartGraphicOnlineServer {
 	private PlayerStatus player1;
 
 	private PlayerStatus player2;
 
 	private Game game;
 
-	private ShootingControllerForTwoPlayers shController;
+	private ShootingControllerOnline shController;
 
-	private SettingControllerForTwoPlayers seController;
+	private SettingControllerOnline seController;
 
 	private IMenuCallObserver menuObserver;
 
-	public StartGraphicForTwoPlayers(String name1, String name2,
-			IMenuCallObserver menuObserver, int rulesType) {
-		this.menuObserver = menuObserver;
+	public StartGraphicOnlineServer(String name1, String name2, int rulesType,
+			int portNumber1, int portNumber2) {
 		game = new Game(rulesType);
 		initialize(name1, name2);
+
+		IRMIClient c1 =
+
 		stageA();
 	}
 
@@ -41,13 +43,12 @@ public class StartGraphicForTwoPlayers {
 	}
 
 	public void stageA() {
-		seController = new SettingControllerForTwoPlayers(game, player1,
-				player2, this);
+		seController = new SettingControllerOnline(game, player1, player2, this);
 	}
 
 	public void stageB() {
-		shController = new ShootingControllerForTwoPlayers(player1, player2,
-				game, this);
+		shController = new ShootingControllerOnline(player1, player2, game,
+				this);
 	}
 
 	public void changeStage() {

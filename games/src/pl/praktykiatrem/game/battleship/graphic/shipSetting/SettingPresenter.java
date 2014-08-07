@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
@@ -18,8 +20,12 @@ import pl.praktykiatrem.game.battleship.rules.GameConstants;
  * @author Filip Ró¿añski
  *
  */
-public class SettingPresenter implements ISettingPresenter,
-		ISettingPresenterControll {
+public class SettingPresenter extends UnicastRemoteObject implements
+		ISettingPresenter, ISettingPresenterControll {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8153221086917373820L;
 	/**
 	 * zmienna u¿ywana do ustawiania staków, przechowuje liczbe masztów
 	 * aktualnie wybranego statku
@@ -62,7 +68,7 @@ public class SettingPresenter implements ISettingPresenter,
 	 * @param observer
 	 */
 	public SettingPresenter(GameConstants gameConst, PlayerStatus player,
-			ISettingController controller) {
+			ISettingController controller) throws RemoteException {
 		this.gameConstants = gameConst;
 		this.player = player;
 		this.controller = controller;
@@ -74,7 +80,7 @@ public class SettingPresenter implements ISettingPresenter,
 	}
 
 	public SettingPresenter(GameConstants gameConst, PlayerStatus player,
-			ISettingController controller, int mode) {
+			ISettingController controller, int mode) throws RemoteException {
 		this.gameConstants = gameConst;
 		this.player = player;
 		this.controller = controller;
