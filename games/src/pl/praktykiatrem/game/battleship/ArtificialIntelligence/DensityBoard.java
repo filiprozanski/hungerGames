@@ -26,14 +26,119 @@ public class DensityBoard {
 
 	public Coordinates getCoords() {
 		fillDensityBoardWithZeros();
-		fillDensityBoard(board);
+		trackDensityBoard();
+		huntDensityBoard();
 		return getMaxDensity();
+	}
+
+	private int getDensity(int x, int y) {
+		return density[y][x];
+	}
+
+	private Coordinates getMaxDensity() {
+		int max = 0;
+		int x = -1;
+		int y = -1;
+		for (int i = 0; i < BoardH; i++)
+			for (int j = 0; j < BoardV; j++)
+				if (getDensity(i, j) > max) {
+					max = getDensity(i, j);
+					x = i;
+					y = j;
+				}
+		return new Coordinates(x, y);
+	}
+
+	private void fillDensityBoardWithZeros() {
+		for (int i = 0; i < BoardH; i++)
+			for (int j = 0; j < BoardV; j++) {
+				density[j][i] = 0;
+			}
+	}
+
+	private void increacseDensityBoard(int x, int y, int polesNumber,
+			Direction dir) {
+		for (int i = 0; i < polesNumber; i++) {
+			if (dir == Direction.HORIZONTAL) {
+				density[y + i][x]++;
+			} else {
+				density[y][x + i]++;
+			}
+		}
+	}
+
+	private void increacseHuntDensityBoard(int x, int y, int polesNumber,
+			Direction dir) {
+		for (int i = 0; i < polesNumber; i++) {
+			if (dir == Direction.HORIZONTAL) {
+				if (board.isBlank(x, y + i))
+					density[y + i][x]++;
+			} else {
+				if (board.isBlank(x + i, y))
+					density[y][x + i]++;
+			}
+		}
+	}
+
+	private void huntDensityBoard() {
+		for (int st = 0; st < shipTypes.length; st++)
+			for (int i = 0; i < BoardH; i++)
+				for (int j = 0; j < BoardV; j++) {
+					if (shipPlacingValidation(shipTypes[st],
+							Direction.HORIZONTAL, i, j))
+						increacseDensityBoard(i, j, shipTypes[st],
+								Direction.HORIZONTAL);
+					if (shipPlacingValidation(shipTypes[st],
+							Direction.VERTICAL, i, j))
+						increacseDensityBoard(i, j, shipTypes[st],
+								Direction.VERTICAL);
+				}
+	}
+
+	private void trackDensityBoard() {
+		for (int st = 0; st < shipTypes.length; st++)
+			for (int i = 0; i < BoardH; i++)
+				for (int j = 0; j < BoardV; j++) {
+					if (shipPlacingValidation(shipTypes[st],
+							Direction.HORIZONTAL, i, j))
+						increacseDensityBoard(i, j, shipTypes[st],
+								Direction.HORIZONTAL);
+					if (shipPlacingValidation(shipTypes[st],
+							Direction.VERTICAL, i, j))
+						increacseDensityBoard(i, j, shipTypes[st],
+								Direction.VERTICAL);
+				}
+	}
+
+	public boolean shipPlacingValidation(int polesNumber, Direction dir, int x,
+			int y) {
+		if (dir == Direction.HORIZONTAL) {
+			if (y + polesNumber > BoardV)
+				return false;
+		} else if (dir == Direction.VERTICAL) {
+			if (x + polesNumber > BoardH)
+				return false;
+		}
+		if (dir == Direction.HORIZONTAL) {
+			for (int i = 0; i < polesNumber; i++) {
+				if (board.isMiss(x, y + i)) {
+					return false;
+				}
+			}
+		} else {
+			for (int i = 0; i < polesNumber; i++) {
+				if (board.isMiss(x + i, y)) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	public void printDensityBoard() {
 		for (int i = 0; i < BoardH; i++) {
 			for (int j = 0; j < BoardV; j++)
-				if (getDensity(i, j) == -1)
+				if (getDensity(i, j) == 0)
 					System.out.print(" ");
 				else if (getDensity(i, j) < 5)
 					System.out.print("A");
@@ -65,93 +170,6 @@ public class DensityBoard {
 					System.out.print("X");
 			System.out.println();
 		}
-	}
-
-	private int getDensity(int x, int y) {
-		return density[y][x];
-	}
-
-	public void setDensityPlaceUsed(int x, int y) {
-		density[y][x] = -1;
-	}
-
-	private Coordinates getMaxDensity() {
-		int max = 0;
-		int x = -1;
-		int y = -1;
-		for (int i = 0; i < BoardH; i++)
-			for (int j = 0; j < BoardV; j++)
-				if (getDensity(i, j) > max) {
-					max = getDensity(i, j);
-					x = i;
-					y = j;
-				}
-		// System.out.print("max_d= ");
-		// System.out.println(max);
-
-		return new Coordinates(x, y);
-	}
-
-	private void fillDensityBoardWithZeros() {
-		for (int i = 0; i < BoardH; i++)
-			for (int j = 0; j < BoardV; j++) {
-				density[j][i] = 0;
-			}
-	}
-
-	private void increacseDensityBoard(int x, int y, int polesNumber,
-			Direction dir) {
-		for (int i = 0; i < polesNumber; i++) {
-			if (dir == Direction.HORIZONTAL) {
-				if (getDensity(x, y + i) != -1)
-					density[y + i][x]++;
-			} else {
-				if (getDensity(x + i, y) != -1)
-					density[y][x + i]++;
-			}
-		}
-	}
-
-	private void fillDensityBoard(ComputerBoard board) {
-		for (int st = 0; st < shipTypes.length; st++)
-			for (int i = 0; i < BoardH; i++)
-				for (int j = 0; j < BoardV; j++) {
-					if (shipPlacingValidation(board, shipTypes[st],
-							Direction.HORIZONTAL, i, j))
-						increacseDensityBoard(i, j, shipTypes[st],
-								Direction.HORIZONTAL);
-					if (shipPlacingValidation(board, shipTypes[st],
-							Direction.VERTICAL, i, j))
-						increacseDensityBoard(i, j, shipTypes[st],
-								Direction.VERTICAL);
-				}
-	}
-
-	public boolean shipPlacingValidation(ComputerBoard plansza,
-			int polesNumber, Direction dir, int x, int y) {
-		if (dir == Direction.HORIZONTAL) {
-			if (y + polesNumber > BoardV)
-				return false;
-		} else if (dir == Direction.VERTICAL) {
-			if (x + polesNumber > BoardH)
-				return false;
-		}
-		if (dir == Direction.HORIZONTAL) {
-			for (int i = 0; i < polesNumber; i++) {
-				if (plansza.isMiss(x, y + i)) {
-					// System.out.println(plansza.getBoard(x, y + i));
-					return false;
-				}
-			}
-		} else {
-			for (int i = 0; i < polesNumber; i++) {
-				if (plansza.isMiss(x + i, y)) {
-					// System.out.println(plansza.getBoard(x + i, y));
-					return false;
-				}
-			}
-		}
-		return true;
 	}
 
 }
