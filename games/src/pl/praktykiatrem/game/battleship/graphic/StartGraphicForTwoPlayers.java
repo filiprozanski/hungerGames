@@ -26,13 +26,6 @@ public class StartGraphicForTwoPlayers {
 
 	private IMenuCallObserver menuObserver;
 
-	/*
-	 * public static void main(String[] args) { StartGraphicLocal start = new
-	 * StartGraphicLocal();
-	 * 
-	 * start.initialize(); start.stageA(); }
-	 */
-
 	public StartGraphicForTwoPlayers(String name1, String name2,
 			IMenuCallObserver menuObserver, int rulesType) {
 		this.menuObserver = menuObserver;

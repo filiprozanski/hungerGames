@@ -9,4 +9,6 @@ public interface IRMIServer extends Remote {
 	public void logInClient(HGClient client) throws RemoteException;
 
 	public void logOutClient(HGClient client) throws RemoteException;
+
+	public void startGame();
 }
