@@ -63,7 +63,8 @@ public class menuStart {
 				f.enableButton();
 				break;
 			} catch (Exception e) {
-				System.out.println("Nie mog³em po³¹czyæ");
+				// wkurwia mnie to gówno
+				// System.out.println("Nie mog³em po³¹czyæ");
 				Thread.sleep(10000);
 			}
 		}

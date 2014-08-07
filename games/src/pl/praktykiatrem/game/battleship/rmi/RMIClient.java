@@ -14,7 +14,7 @@ public class RMIClient {
 				s.zshowConnection();
 				break;
 			} catch (Exception e) {
-				System.out.println("Nie mog³em po³¹czyæ");
+				// System.out.println("Nie mog³em po³¹czyæ");
 				Thread.sleep(1000);
 			}
 		}
