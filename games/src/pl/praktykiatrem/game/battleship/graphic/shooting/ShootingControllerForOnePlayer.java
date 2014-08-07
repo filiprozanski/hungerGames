@@ -3,6 +3,7 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 import java.rmi.RemoteException;
 
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Easy;
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Hard;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.IComputer;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Medium;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
