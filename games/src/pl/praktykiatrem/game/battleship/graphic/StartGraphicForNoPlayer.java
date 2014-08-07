@@ -1,15 +1,14 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerForOnePlayer;
+import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
-import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForOnePlayer;
+import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 
-public class StartGraphicForOnePlayer {
-
+public class StartGraphicForNoPlayer {
 	private PlayerStatus player1;
 
 	private PlayerStatus player2;
@@ -31,7 +30,7 @@ public class StartGraphicForOnePlayer {
 	 * start.initialize(); start.stageA(); }
 	 */
 
-	public StartGraphicForOnePlayer(String name1, String name2,
+	public StartGraphicForNoPlayer(String name1, String name2,
 			IMenuCallObserver menuObserver, int rulesType, int difficulty) {
 		this.menuObserver = menuObserver;
 		this.difficultyLevel = difficulty;
@@ -54,7 +53,7 @@ public class StartGraphicForOnePlayer {
 
 	public void stageA() {
 		try {
-			seController = new SettingControllerForOnePlayer(game, player1,
+			seController = new SettingControllerForNoPlayer(game, player1,
 					player2, this);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,7 +62,7 @@ public class StartGraphicForOnePlayer {
 	}
 
 	public void stageB() {
-		shController = new ShootingControllerForOnePlayer(player1, player2,
+		shController = new ShootingControllerForNoPlayer(player1, player2,
 				game, this, difficultyLevel);
 	}
 

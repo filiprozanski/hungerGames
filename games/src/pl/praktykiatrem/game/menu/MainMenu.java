@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 
@@ -315,7 +316,9 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	}
 
 	private void pcOnlyButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		new StartGraphicForNoPlayer("COM1", "COM2", this, getRulesChoice(),
+				getDifficultyChoice());
+		setVisible(false);
 	}
 
 	public void setPlayerName(String name) {
