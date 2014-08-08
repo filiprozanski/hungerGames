@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.rules;
 
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
@@ -20,6 +21,9 @@ public abstract class Rules {
 
 	public abstract boolean placeShips(BSPlayerStatus player, int id,
 			int polesNumber, Direction direction, int x, int y);
+
+	public abstract boolean shipPlacingValidation(ComputerBoard board,
+			int polesNumber, Direction dir, int x, int y);
 
 	public abstract boolean shipDisplacingValidation(BSBoard plansza,
 			int polesNumber, Direction dir, int x, int y);

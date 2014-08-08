@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.rules;
 
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
@@ -48,6 +49,31 @@ public class CustomRules extends Rules {
 			for (int i = 0; i < polesNumber; i++) {
 				if (plansza.isShipOnPlace(x + i, y))
 					return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean shipPlacingValidation(ComputerBoard board, int polesNumber,
+			Direction dir, int x, int y) {
+		if (dir == Direction.HORIZONTAL) {
+			if (y + polesNumber > BOARDSIZE_H)
+				return false;
+		} else if (dir == Direction.VERTICAL) {
+			if (x + polesNumber > BOARDSIZE_V)
+				return false;
+		}
+		if (dir == Direction.HORIZONTAL) {
+			for (int i = 0; i < polesNumber; i++) {
+				if (board.isMiss(x, y + i) || board.isSunk(x, y + i)) {
+					return false;
+				}
+			}
+		} else {
+			for (int i = 0; i < polesNumber; i++) {
+				if (board.isMiss(x + i, y) || board.isSunk(x + i, y)) {
+					return false;
+				}
 			}
 		}
 		return true;
@@ -107,7 +133,7 @@ public class CustomRules extends Rules {
 	@Override
 	public boolean displaceShips(BSPlayerStatus player, int id,
 			int polesNumber, Direction direction, int x, int y) {
-		BSBoard plansza = (BSBoard) player.getPlansza();
+		BSBoard plansza = player.getPlansza();
 		if (shipDisplacingValidation(plansza, polesNumber, direction, x, y)
 				&& player.getShip(id).isShipSet()) {
 			int x_temp = x;
