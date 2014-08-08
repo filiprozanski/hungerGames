@@ -58,7 +58,7 @@ public class BSBoard extends Board {
 	}
 
 	public void resetPlace(int x, int y) {
-		gameBoard[y][x].setPlaceClean();
+		gameBoard[y][x].resetPlace();
 	}
 
 	public void takeOut(int x, int y) {

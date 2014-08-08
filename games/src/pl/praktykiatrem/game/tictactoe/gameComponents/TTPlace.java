@@ -22,8 +22,12 @@ public class TTPlace extends Place {
 	}
 
 	@Override
-	public void setPlaceClean() {
+	public void resetPlace() {
 		isInGame = true;
 		xo = null;
+	}
+
+	public Sign getSign() {
+		return xo;
 	}
 }

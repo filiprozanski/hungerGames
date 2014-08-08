@@ -33,7 +33,7 @@ public class BSPlace extends Place {
 	 * restartuje ustawienia pola
 	 */
 	@Override
-	public void setPlaceClean() {
+	public void resetPlace() {
 		shipOnPlace = false;
 		isInGame = true;
 		shipID = -1;
