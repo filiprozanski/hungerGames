@@ -1,0 +1,30 @@
+package pl.praktykiatrem.game.tictactoe.rules;
+
+import java.util.ArrayList;
+
+import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
+
+public class CustomRules extends Rules {
+	private final int BOARDSIZEH = 3;
+	private final int BOARDSIZEV = 3;
+	private ArrayList<Sign> availableSigns;
+
+	public CustomRules() {
+		super();
+		availableSigns.add(Sign.X);
+		availableSigns.add(Sign.O);
+	}
+
+	public boolean makeMove(TTPlayerStatus player, int x, int y) {
+
+	}
+
+	public int getBOARDSIZEH() {
+		return BOARDSIZEH;
+	}
+
+	public int getBOARDSIZEV() {
+		return BOARDSIZEV;
+	}
+
+}

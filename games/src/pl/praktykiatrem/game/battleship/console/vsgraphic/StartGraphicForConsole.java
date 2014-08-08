@@ -4,13 +4,13 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class StartGraphicForConsole {
 	private JFrame frame1;
-	private PlayerStatus player1;
-	private PlayerStatus player2;
+	private BSPlayerStatus player1;
+	private BSPlayerStatus player2;
 	private Game game;
 	private ShootingControllerForConsole shController;
 	private SettingControllerForConsole seController;
@@ -26,8 +26,8 @@ public class StartGraphicForConsole {
 		int sizeY = game.getBoardSizeV();
 		int[] shipsType = game.getShipTypes();
 
-		player1 = new PlayerStatus(sizeX, sizeY, shipsType);
-		player2 = new PlayerStatus(sizeX, sizeY, shipsType);
+		player1 = new BSPlayerStatus(sizeX, sizeY, shipsType);
+		player2 = new BSPlayerStatus(sizeX, sizeY, shipsType);
 
 		player1.setName(name1);
 		player2.setName(name2);

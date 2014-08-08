@@ -11,8 +11,9 @@ import java.io.FileNotFoundException;
 
 import pl.praktykiatrem.game.battleship.factory.GameFactory;
 import pl.praktykiatrem.game.battleship.factory.ShipLoader;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 /**
  * 
@@ -23,14 +24,14 @@ import pl.praktykiatrem.game.battleship.rules.Game;
  *
  */
 public class BattleshipGame {
-	private PlayerStatus A;
-	private PlayerStatus B;
+	private BSPlayerStatus A;
+	private BSPlayerStatus B;
 	private ConsoleInteractions gameControl;
 	private Game gameRules;
 	private ShipLoader load;
 
 	public BattleshipGame() {
-		// gameRules = new Game();
+		// gameRules = new TTGame();
 
 		GameFactory start = new GameFactory(gameRules.getBoardSizeH(),
 				gameRules.getBoardSizeV(), gameRules.getShipTypes());
@@ -57,8 +58,8 @@ public class BattleshipGame {
 		setShips(A);
 		setShips(B);
 
-		PlayerStatus currentPlayer = A;
-		PlayerStatus enemy = B;
+		BSPlayerStatus currentPlayer = A;
+		BSPlayerStatus enemy = B;
 		int[] cords = { 0, 0 };
 		gameControl.showLegend();
 		while (!isGameOver(enemy)) {
@@ -107,7 +108,7 @@ public class BattleshipGame {
 	 *            aktualny gracz l
 	 * @return A lub B, czyli przeciwnika
 	 */
-	private PlayerStatus changePlayer(PlayerStatus X) {
+	private BSPlayerStatus changePlayer(PlayerStatus X) {
 		if (X.getName() == A.getName())
 			return B;
 		else
@@ -122,7 +123,7 @@ public class BattleshipGame {
 	 *            gracz
 	 * @return true, je¿eli gra zosta³a zakoñczona (wykonano wszystkie ruchy)
 	 */
-	private boolean isGameOver(PlayerStatus X) {
+	private boolean isGameOver(BSPlayerStatus X) {
 		if (X.getShipsNumber() > 0)
 			return false;
 		else
@@ -138,7 +139,7 @@ public class BattleshipGame {
 	 * @param gamer
 	 *            gracz
 	 */
-	private void setShips(PlayerStatus gamer) {
+	private void setShips(BSPlayerStatus gamer) {
 		try {
 			load.initializeShipsFromFile(gamer);
 		} catch (FileNotFoundException e) {

@@ -5,12 +5,13 @@ import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.Rand;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 public class SettingControllerForNoPlayer implements ISettingController {
 
@@ -20,8 +21,8 @@ public class SettingControllerForNoPlayer implements ISettingController {
 	private ISettingPresenterControll pres1;
 	private ISettingPresenterControll pres2;
 
-	public SettingControllerForNoPlayer(Game g, PlayerStatus player1,
-			PlayerStatus player2, StartGraphicForNoPlayer supervisor)
+	public SettingControllerForNoPlayer(Game g, BSPlayerStatus player1,
+			BSPlayerStatus player2, StartGraphicForNoPlayer supervisor)
 			throws RemoteException {
 		this.supervisor = supervisor;
 		this.gameRules = g;
@@ -50,23 +51,23 @@ public class SettingControllerForNoPlayer implements ISettingController {
 	}
 
 	@Override
-	public ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id) {
+	public ArrayList<Coordinates> getCoordsList(BSPlayerStatus player, int id) {
 		return gameRules.getCoordsList(player, id);
 	}
 
 	@Override
-	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
+	public boolean placeShips(BSPlayerStatus player, int id, int polesNumber,
 			Direction dir, int x, int y) {
 		return gameRules.placeShips(player, id, polesNumber, dir, x, y);
 	}
 
 	@Override
-	public int getActiveShipsNumber(PlayerStatus player) {
+	public int getActiveShipsNumber(BSPlayerStatus player) {
 		return gameRules.getActiveShipsNumber(player);
 	}
 
 	@Override
-	public boolean displaceShip(PlayerStatus player, int id, int polesNumber,
+	public boolean displaceShip(BSPlayerStatus player, int id, int polesNumber,
 			Direction dir, int x, int y) {
 		return gameRules.displaceShips(player, id, polesNumber, dir, x, y);
 	}
@@ -78,12 +79,16 @@ public class SettingControllerForNoPlayer implements ISettingController {
 
 	@Override
 	public void placeShipAtRandom(ISettingPresenterControll presenter,
-			PlayerStatus player) {
+			BSPlayerStatus player) {
 		Direction rand_dir;
 		int randX;
 		int randY;
 		int polesNumber;
-		presenter.resetBoard();
+		try {
+			presenter.resetBoard();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
 			polesNumber = gameRules.getShipTypes()[i];
 			rand_dir = Rand.getRandDirection();

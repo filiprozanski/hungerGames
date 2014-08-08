@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.gameComponents;
+package pl.praktykiatrem.game.uniElements;
 
 public class Player {
 	private String name;

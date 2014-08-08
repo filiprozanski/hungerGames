@@ -6,6 +6,9 @@
 
 package pl.praktykiatrem.game.menu;
 
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -13,6 +16,9 @@ import pl.praktykiatrem.game.battleship.files.ShipIcons;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnlineClient;
+import pl.praktykiatrem.game.battleship.rmi.HGClient;
+import pl.praktykiatrem.game.battleship.rmi.IRMIServer;
 
 /**
  *
@@ -127,7 +133,11 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		bsOnlineButton.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				bsOnlineButtonActionPerformed(evt);
+				try {
+					bsOnlineButtonActionPerformed(evt);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		getContentPane().add(bsOnlineButton);
@@ -262,9 +272,18 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		setVisible(false);
 	}
 
-	private void bsOnlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-
+	private void bsOnlineButtonActionPerformed(java.awt.event.ActionEvent evt)
+			throws InterruptedException {
+		try {
+			r = LocateRegistry.getRegistry("localhost", 9875);
+			IRMIServer s = (IRMIServer) r.lookup("RMIServer");
+			s.showConnection();
+			int port = s.logInClient(new HGClient());
+			new StartGraphicOnlineClient(port);
+		} catch (Exception e) {
+			System.out.println("Nie mog³em po³¹czyæ");
+			Thread.sleep(10000);
+		}
 	}
 
 	private void tttPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -355,6 +374,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private javax.swing.JButton tttPlayerButton;
 	private String name1;
 	private String name2;
+	private Registry r;
 
 	// End of variables declaration
 	@Override

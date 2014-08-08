@@ -1,10 +1,11 @@
 package pl.praktykiatrem.game.battleship.rules;
 
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.Board;
+import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 /**
  * klasa opisuj¹ca wszystkie zasady gry
@@ -14,24 +15,24 @@ import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
  */
 public class OriginalRules extends Rules {
 
-	private boolean putShipOnPlace(Board plansza, int id, int x, int y) {
+	private boolean putShipOnPlace(BSBoard plansza, int id, int x, int y) {
 		if (!plansza.isShipOnPlace(x, y)) {
-			plansza.placeShip(x, y, id);
+			plansza.placeOnBoard(x, y, id);
 			return true;
 		} else
 			return false;
 
 	}
 
-	private boolean takeShipOfPlace(Board plansza, int id, int x, int y) {
+	private boolean takeShipOfPlace(BSBoard plansza, int id, int x, int y) {
 		if (plansza.getShipID(x, y) == id) {
-			plansza.displaceShip(x, y);
+			plansza.resetPlace(x, y);
 			return true;
 		} else
 			return false;
 	}
 
-	private boolean shipPlacingValidation(Board plansza, int polesNumber,
+	public boolean shipPlacingValidation(BSBoard plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		int x_temp = 0;
 		int y_temp = 0;
@@ -121,7 +122,7 @@ public class OriginalRules extends Rules {
 		return true;
 	}
 
-	private boolean shipDisplacingValidation(Board plansza, int polesNumber,
+	public boolean shipDisplacingValidation(BSBoard plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
 			if (y + polesNumber > BOARDSIZE_V)
@@ -145,9 +146,9 @@ public class OriginalRules extends Rules {
 	}
 
 	@Override
-	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
+	public boolean placeShips(BSPlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
-		Board plansza = player.getPlansza();
+		BSBoard plansza = player.getPlansza();
 		if (shipPlacingValidation(plansza, polesNumber, direction, x, y)
 				&& !player.getShip(id).isShipSet()) {
 
@@ -172,9 +173,9 @@ public class OriginalRules extends Rules {
 	}
 
 	@Override
-	public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
-			Direction direction, int x, int y) {
-		Board plansza = player.getPlansza();
+	public boolean displaceShips(BSPlayerStatus player, int id,
+			int polesNumber, Direction direction, int x, int y) {
+		BSBoard plansza = player.getPlansza();
 		if (shipDisplacingValidation(plansza, polesNumber, direction, x, y)
 				&& player.getShip(id).isShipSet()) {
 			int x_temp = x;
@@ -197,7 +198,7 @@ public class OriginalRules extends Rules {
 	}
 
 	@Override
-	public int makeMove(PlayerStatus enemy, int x, int y) {
+	public int makeMove(BSPlayerStatus enemy, int x, int y) {
 		if (!enemy.getPlansza().isShipOnPlace(x, y)) {
 			enemy.getPlansza().takeOut(x, y);
 			return 0;
@@ -218,5 +219,4 @@ public class OriginalRules extends Rules {
 	public void resetGame(PlayerStatus player) {
 		player.resetStatus();
 	}
-
 }

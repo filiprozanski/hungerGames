@@ -8,7 +8,7 @@ import pl.praktykiatrem.game.battleship.console.BoardDrawing;
 import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 import pl.praktykiatrem.game.battleship.console.ValidationInstruments;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 /**
@@ -46,7 +46,7 @@ public class ShipLoader {
 	 * @param gamer
 	 *            gracz, w którego tablicy bêdziemy ustawiaæ statki
 	 */
-	public void initializeShipsFromFile(PlayerStatus gamer)
+	public void initializeShipsFromFile(BSPlayerStatus gamer)
 			throws FileNotFoundException {
 		File plik1 = new File("src/pl/praktykiatrem/game/battleship/files/"
 				+ gamer.getName() + ".txt");
@@ -77,7 +77,7 @@ public class ShipLoader {
 	 * @param gameRules
 	 *            instncja regu³ gry
 	 */
-	public void initializeShips(PlayerStatus gamer, Game gameRules) {
+	public void initializeShips(BSPlayerStatus gamer, Game gameRules) {
 		console.showYourMove(gamer);
 
 		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
@@ -101,7 +101,7 @@ public class ShipLoader {
 	 * @param gameControl
 	 *            instancja interfejsu konsoli
 	 */
-	private void fetchShipCoords(int polesNumber, int id, PlayerStatus gamer) {
+	private void fetchShipCoords(int polesNumber, int id, BSPlayerStatus gamer) {
 		Direction dir;
 		int[] tab = { 0, 0 };
 

@@ -1,10 +1,12 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter;
@@ -18,8 +20,12 @@ import pl.praktykiatrem.game.battleship.rules.GameConstants;
  * @author Filip Ró¿añski
  *
  */
-public class SettingPresenter implements ISettingPresenter,
-		ISettingPresenterControll {
+public class SettingPresenter extends UnicastRemoteObject implements
+		ISettingPresenter, ISettingPresenterControll {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8153221086917373820L;
 	/**
 	 * zmienna u¿ywana do ustawiania staków, przechowuje liczbe masztów
 	 * aktualnie wybranego statku
@@ -37,7 +43,7 @@ public class SettingPresenter implements ISettingPresenter,
 	/**
 	 * reprezentacja gracza, który wykonuje swoje ruchy poprzez dany interfejs
 	 */
-	private PlayerStatus player;
+	private BSPlayerStatus player;
 	/**
 	 * interfejs graficzny etapu ustawiania statków
 	 */
@@ -61,8 +67,8 @@ public class SettingPresenter implements ISettingPresenter,
 	 * @param player
 	 * @param observer
 	 */
-	public SettingPresenter(GameConstants gameConst, PlayerStatus player,
-			ISettingController controller) {
+	public SettingPresenter(GameConstants gameConst, BSPlayerStatus player,
+			ISettingController controller) throws RemoteException {
 		this.gameConstants = gameConst;
 		this.player = player;
 		this.controller = controller;
@@ -73,8 +79,8 @@ public class SettingPresenter implements ISettingPresenter,
 		view.changeStateAllBoardPlaces(false);
 	}
 
-	public SettingPresenter(GameConstants gameConst, PlayerStatus player,
-			ISettingController controller, int mode) {
+	public SettingPresenter(GameConstants gameConst, BSPlayerStatus player,
+			ISettingController controller, int mode) throws RemoteException {
 		this.gameConstants = gameConst;
 		this.player = player;
 		this.controller = controller;
@@ -154,6 +160,7 @@ public class SettingPresenter implements ISettingPresenter,
 		case 0:
 			clearLastChoice(x, y, Direction.VERTICAL);
 			view.changeButtonCallNumber(x, y, 1);
+			view.changeStateAllBoardPlaces(true);
 			break;
 		}
 	}
@@ -184,8 +191,10 @@ public class SettingPresenter implements ISettingPresenter,
 		if (controller.placeShips(player, id, polesNumber, Direction.VERTICAL,
 				x, y))
 			placeShipsOnView(x, y, Direction.VERTICAL, id, polesNumber);
-		else
+		else {
 			view.changeButtonCallNumber(x, y, 1);
+			view.changeStateAllBoardPlaces(true);
+		}
 	}
 
 	@Override

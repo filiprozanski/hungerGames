@@ -1,9 +1,11 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
@@ -21,8 +23,12 @@ import pl.praktykiatrem.game.battleship.rules.Game;
  * @version 30 lip 2014 15:18:49
  *
  */
-public class ShootingPresenter implements IShootingPresenter,
-		IShootingPresenterControll {
+public class ShootingPresenter extends UnicastRemoteObject implements
+		IShootingPresenter, IShootingPresenterControll {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3263489986702278924L;
 	/**
 	 * obiekt udostêpniaj±cy akcje wykonywane w trakcie gry
 	 */
@@ -30,7 +36,7 @@ public class ShootingPresenter implements IShootingPresenter,
 	/**
 	 * obiekt reprezentuj±cy gracza, który korzysta ze sterowanego interfejsu
 	 */
-	private PlayerStatus player;
+	private BSPlayerStatus player;
 	/**
 	 * obiekt przechowuj±cy interfejs graficzny
 	 */
@@ -59,8 +65,8 @@ public class ShootingPresenter implements IShootingPresenter,
 	 * @param player
 	 * @param controll
 	 */
-	public ShootingPresenter(Game gameRules, PlayerStatus player,
-			IShootingController controll) {
+	public ShootingPresenter(Game gameRules, BSPlayerStatus player,
+			IShootingController controll) throws RemoteException {
 		this.gameRules = gameRules;
 		this.player = player;
 		this.controll = controll;

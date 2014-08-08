@@ -7,7 +7,7 @@
 
 package pl.praktykiatrem.game.battleship.console;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Board;
+import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
 
 /**
  * 
@@ -27,7 +27,7 @@ public class BoardDrawing {
 	 * @param gamePlace
 	 *            tablica do wypisania w konsoli
 	 */
-	public static void drawGameBoardForOpponent(Board gamePlace) {
+	public static void drawGameBoardForOpponent(BSBoard gamePlace) {
 		System.out.print(" ");
 		for (int i = 0; i < gamePlace.getHorizontalSize(); i++)
 			System.out.print(i);
@@ -58,8 +58,8 @@ public class BoardDrawing {
 	 * @param gamePlace
 	 *            reprezentuje tablice do wypisania
 	 */
-	public static void drawGameBoardForPlayer(Board gamePlace) {
-		// Place[][] tab = gamePlace.getGameBoard();
+	public static void drawGameBoardForPlayer(BSBoard gamePlace) {
+		// BSPlace[][] tab = gamePlace.getGameBoard();
 
 		System.out.print(" ");
 		for (int i = 0; i < gamePlace.getHorizontalSize(); i++)

@@ -2,21 +2,15 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import java.rmi.RemoteException;
 
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Easy;
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Hard;
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.IComputer;
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Medium;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlace;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnlineServer;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
-public class ShootingControllerForNoPlayer implements IShootingController {
-
+public class ShootingControllerOnline implements IShootingController {
 	/**
 	 * obiekt reprezentuj±cy pierwszego z graczy
 	 */
@@ -50,11 +44,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 	 */
 	private int accuracy;
 
-	private IComputer iComputer1;
-
-	private IComputer iComputer2;
-
-	private StartGraphicForNoPlayer supervisor;
+	private StartGraphicOnlineServer supervisor;
 
 	/**
 	 * 
@@ -64,67 +54,47 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 	 * @param player2
 	 * @param g
 	 */
-	public ShootingControllerForNoPlayer(BSPlayerStatus player1,
-			BSPlayerStatus player2, Game g, StartGraphicForNoPlayer supervisor,
-			int difficultyLevel) {
+	public ShootingControllerOnline(BSPlayerStatus player1,
+			BSPlayerStatus player2, Game g, StartGraphicOnlineServer supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;
 		this.g = g;
 
-		setComputerOpponent(difficultyLevel);
-		iComputer2 = new Hard(g);
-
 		try {
 			pres1 = new ShootingPresenter(g, player1, this);
 			pres2 = new ShootingPresenter(g, player2, this);
 			pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
-			pres1.changeStatus(true);
-			pres1.showFrame();
-
 			pres2.setStats(g.getShipsNumber(), g.getShipsNumber());
+
+			pres1.changeStatus(true);
 			pres2.changeStatus(false);
+
+			pres1.showFrame();
 			pres2.showFrame();
 		} catch (RemoteException e) {
-			System.out.println("shootingcontroller");
+			System.out.println("shootingcontroller constructor");
 			e.printStackTrace();
 			System.exit(0);
 		}
 
-		play();
 	}
 
-	private void setComputerOpponent(int difficulty) {
-		switch (difficulty) {
-		case 1:
-			iComputer1 = new Easy(g);
-			break;
-		case 2:
-			iComputer1 = new Medium(g);
-			break;
-		case 3:
-			iComputer1 = new Hard(g);
-			break;
-		default:
-			iComputer1 = new Medium(g);
-		}
-	}
-
-	private void play() {
-		IComputer c = iComputer1;
-
-		while (true) {
-			if (makeComputedMove(c))
-				break;
-			else {
-				if (c == iComputer1)
-					c = iComputer2;
-				else if (c == iComputer2)
-					c = iComputer1;
-			}
-		}
-	}
-
+	/**
+	 * 
+	 * Metoda <code>makeMove</code>
+	 * 
+	 * koordynuje ruch, wykonuj±c odpowiednie akcje na presenterach
+	 * poszczególnych graczy
+	 *
+	 * @param player
+	 *            gracz strzelaj±cy
+	 * @param x
+	 *            wspó³rzêdna x strza³u
+	 * @param y
+	 *            wspó³rzêdna y strza³u
+	 * @return true je¶li trafiony, inaczej false
+	 */
 	public boolean makeMove(PlayerStatus player, int x, int y) {
 		if (player.equals(player1)) {
 			int result = g.makeMove(player2, x, y);
@@ -132,7 +102,6 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 				boardSettingHit(player1, player2, x, y);
 				if (result == 2) {
 					int id = g.getShipID(player2, x, y);
-					iComputer1.setSink(id, g.getCoordsList(player2, id));
 					try {
 						pres1.drawShip(g.getCoordsTable(player2, id));
 					} catch (RemoteException e) {
@@ -142,14 +111,10 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 					}
 					if (player2.getShipsNumber() == 0) {
 						gameOver(player1);
-						return true;
 					}
-				} else {
-					iComputer1.setHit(x, y);
 				}
-				return makeComputedMove(iComputer1);
+				return true;
 			} else {
-				iComputer1.setMiss(x, y);
 				boardSettingMiss(player1, player2, x, y);
 				return false;
 			}
@@ -159,7 +124,6 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 				boardSettingHit(player2, player1, x, y);
 				if (result == 2) {
 					int id = g.getShipID(player1, x, y);
-					iComputer2.setSink(id, g.getCoordsList(player1, id));
 					try {
 						pres2.drawShip(g.getCoordsTable(player1, id));
 					} catch (RemoteException e) {
@@ -169,28 +133,30 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 					}
 					if (player1.getShipsNumber() == 0) {
 						gameOver(player2);
-						return true;
 					}
-				} else {
-					iComputer2.setHit(x, y);
 				}
-				return makeComputedMove(iComputer2);
+				return true;
 			} else {
-				iComputer2.setMiss(x, y);
 				boardSettingMiss(player2, player1, x, y);
 				return false;
 			}
 		}
 	}
 
-	private boolean makeComputedMove(IComputer iComputer) {
-		Coordinates coords = iComputer.getCords();
-		if (iComputer == iComputer1)
-			return makeMove(player1, coords.getX(), coords.getY());
-		else if (iComputer == iComputer2)
-			return makeMove(player2, coords.getX(), coords.getY());
-		else
-			return false;
+	private void drawLeftShips1() {
+		for (int j = 0; j < g.getBoardSizeV(); j++)
+			for (int i = 0; i < g.getBoardSizeH(); i++) {
+				BSPlace place = (BSPlace) player1.getPlace(i, j);
+				if (place.isShipOnPlace()
+						&& player1.getPlace(i, j).isPlaceInGame())
+					try {
+						pres2.fchangeIcon(i, j, place.getShipId() + 1);
+					} catch (RemoteException e) {
+						System.out.println("drawLeftships");
+						e.printStackTrace();
+						System.exit(0);
+					}
+			}
 	}
 
 	private void drawLeftShips2() {
@@ -231,10 +197,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 			playerShips = g.getActiveShipsNumber(shooter);
 			enemyShips = g.getActiveShipsNumber(victim);
 			accuracy = shooter.getAccuracy(true);
-			sPres.setStats(playerShips, enemyShips, accuracy); // UWAGA!!!
-																// STATSY
-																// KOMPUTERA DO
-																// TESTÓW
+			sPres.setStats(playerShips, enemyShips, accuracy);
 			vPres.setStats(enemyShips, playerShips);
 		} catch (RemoteException e) {
 			System.out.println("boardSettingHit");
@@ -269,7 +232,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 			sPres.setStats(playerShips, enemyShips, accuracy);
 			vPres.setStats(enemyShips, playerShips);
 		} catch (RemoteException e) {
-			System.out.println("boardSettingHit");
+			System.out.println("boardSettingMiss");
 			e.printStackTrace();
 			System.exit(0);
 		}
@@ -296,6 +259,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 	public void gameOver(PlayerStatus player) {
 		try {
 			if (player.equals(player1)) {
+				drawLeftShips1();
 				pres1.gameOver(true);
 				pres2.gameOver(false);
 
@@ -324,6 +288,8 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 				pres1.gameOver(false);
 				pres2.gameOver(true);
 			}
+
+			drawLeftShips1();
 			drawLeftShips2();
 			pres1.changeGiveUpButtonLabel();
 			pres2.changeGiveUpButtonLabel();
@@ -337,12 +303,13 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 	public void callMenu() {
 		try {
 			pres1.closeFrame();
+			pres2.closeFrame();
 		} catch (RemoteException e) {
 			System.out.println("callMenu");
 			e.printStackTrace();
 			System.exit(0);
 		}
 		supervisor.callMenu();
-	}
 
+	}
 }

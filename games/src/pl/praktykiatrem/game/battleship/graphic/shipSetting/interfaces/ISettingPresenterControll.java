@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 
 public interface ISettingPresenterControll extends Remote {
-	public void resetBoard();
+	public void resetBoard() throws RemoteException;
 
 	public void playerIsReady() throws RemoteException;
 

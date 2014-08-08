@@ -4,7 +4,7 @@ import java.awt.Component;
 
 import javax.swing.JFrame;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter;
@@ -18,8 +18,8 @@ public class SettingControllerForConsole implements ISettingController {
 	private ConsoleSettingPresenter pres2;
 	private JFrame f;
 
-	public SettingControllerForConsole(Game g, PlayerStatus player1,
-			PlayerStatus player2, StartGraphicForConsole supervisor) {
+	public SettingControllerForConsole(Game g, BSPlayerStatus player1,
+			BSPlayerStatus player2, StartGraphicForConsole supervisor) {
 
 		this.supervisor = supervisor;
 		readyPlayers = 0;

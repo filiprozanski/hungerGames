@@ -6,29 +6,28 @@ import java.util.ArrayList;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnlineServer;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
-public class SettingControllerForTwoPlayers implements ISettingController {
+public class SettingControllerOnline implements ISettingController {
 	private int readyPlayers;
 	private Game gameRules;
-	private StartGraphicForTwoPlayers supervisor;
+	private StartGraphicOnlineServer supervisor;
 	private ISettingPresenterControll pres1;
 	private ISettingPresenterControll pres2;
 
-	public SettingControllerForTwoPlayers(Game g, BSPlayerStatus player1,
-			BSPlayerStatus player2, StartGraphicForTwoPlayers supervisor) {
+	public SettingControllerOnline(Game g, BSPlayerStatus player1,
+			BSPlayerStatus player2, StartGraphicOnlineServer supervisor) {
 		this.supervisor = supervisor;
 		this.gameRules = g;
 
 		try {
 			pres1 = new SettingPresenter(g.getConstants(), player1, this);
 			pres2 = new SettingPresenter(g.getConstants(), player2, this);
-
 			pres1.showFrame();
 			pres2.showFrame();
 		} catch (RemoteException e) {

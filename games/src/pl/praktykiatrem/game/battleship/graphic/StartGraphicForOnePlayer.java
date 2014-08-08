@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForOnePlayer;
@@ -10,9 +10,9 @@ import pl.praktykiatrem.game.menu.IMenuCallObserver;
 
 public class StartGraphicForOnePlayer {
 
-	private PlayerStatus player1;
+	private BSPlayerStatus player1;
 
-	private PlayerStatus player2;
+	private BSPlayerStatus player2;
 
 	private Game game;
 
@@ -45,8 +45,8 @@ public class StartGraphicForOnePlayer {
 		int sizeY = game.getBoardSizeV();
 		int[] shipsType = game.getShipTypes();
 
-		player1 = new PlayerStatus(sizeX, sizeY, shipsType);
-		player2 = new PlayerStatus(sizeX, sizeY, shipsType);
+		player1 = new BSPlayerStatus(sizeX, sizeY, shipsType);
+		player2 = new BSPlayerStatus(sizeX, sizeY, shipsType);
 
 		player1.setName(name1);
 		player2.setName(name2);

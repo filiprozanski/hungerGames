@@ -4,16 +4,17 @@ import java.awt.Component;
 
 import javax.swing.JFrame;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 public class ShootingControllerForConsole implements IShootingController {
-	private PlayerStatus player1;
-	private PlayerStatus player2;
+	private BSPlayerStatus player1;
+	private BSPlayerStatus player2;
 	private IShootingPresenter pres1;
 	private ConsoleShootingPresenter pres2;
 	private Game g;
@@ -23,8 +24,8 @@ public class ShootingControllerForConsole implements IShootingController {
 	private StartGraphicForConsole supervisor;
 	private JFrame f;
 
-	public ShootingControllerForConsole(PlayerStatus player1,
-			PlayerStatus player2, Game g, StartGraphicForConsole supervisor) {
+	public ShootingControllerForConsole(BSPlayerStatus player1,
+			BSPlayerStatus player2, Game g, StartGraphicForConsole supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;
@@ -84,7 +85,7 @@ public class ShootingControllerForConsole implements IShootingController {
 		}
 	}
 
-	private void boardSettingHit(PlayerStatus shooter, PlayerStatus victim,
+	private void boardSettingHit(BSPlayerStatus shooter, BSPlayerStatus victim,
 			int x, int y) {
 		IShootingPresenter sPres = getPresenter(shooter);
 		// ConsoleShootingPresenter vPres = getPresenter(victim);
