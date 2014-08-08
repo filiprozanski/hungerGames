@@ -2,6 +2,7 @@ package pl.praktykiatrem.game.battleship.rules;
 
 import java.util.ArrayList;
 
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
@@ -54,6 +55,11 @@ public class Game {
 
 	public int makeMove(PlayerStatus p, int x, int y) {
 		return rules.makeMove(p, x, y);
+	}
+
+	public boolean shipPlacingValidation(ComputerBoard board, int polesNumber,
+			Direction dir, int x, int y) {
+		return rules.shipPlacingValidation(board, polesNumber, dir, x, y);
 	}
 
 	public boolean placeShips(PlayerStatus p, int id, int polesNumber,

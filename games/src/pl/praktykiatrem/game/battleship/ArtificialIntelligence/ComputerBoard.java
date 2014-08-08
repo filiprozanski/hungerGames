@@ -41,8 +41,19 @@ public class ComputerBoard {
 		board[y][x] = 1;
 	}
 
+	public void setSunk(int x, int y) {
+		board[y][x] = 2;
+	}
+
 	public boolean isHit(int x, int y) {
 		if (getBoard(x, y) == 1)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isSunk(int x, int y) {
+		if (getBoard(x, y) == 2)
 			return true;
 		else
 			return false;
@@ -65,6 +76,8 @@ public class ComputerBoard {
 					System.out.print("M");
 				else if ((board[j][i] == 1))
 					System.out.print("H");
+				else if ((board[j][i] == 2))
+					System.out.print("S");
 				else
 					System.out.print(board[j][i]);
 			System.out.println();

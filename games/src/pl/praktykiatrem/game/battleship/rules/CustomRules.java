@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.rules;
 
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.Board;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
@@ -29,7 +30,6 @@ public class CustomRules extends Rules {
 			return false;
 	}
 
-	@Override
 	public boolean shipPlacingValidation(Board plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
@@ -53,8 +53,32 @@ public class CustomRules extends Rules {
 		return true;
 	}
 
-	@Override
-	public boolean shipDisplacingValidation(Board plansza, int polesNumber,
+	public boolean shipPlacingValidation(ComputerBoard board, int polesNumber,
+			Direction dir, int x, int y) {
+		if (dir == Direction.HORIZONTAL) {
+			if (y + polesNumber > BOARDSIZE_H)
+				return false;
+		} else if (dir == Direction.VERTICAL) {
+			if (x + polesNumber > BOARDSIZE_V)
+				return false;
+		}
+		if (dir == Direction.HORIZONTAL) {
+			for (int i = 0; i < polesNumber; i++) {
+				if (board.isMiss(x, y + i) || board.isSunk(x, y + i)) {
+					return false;
+				}
+			}
+		} else {
+			for (int i = 0; i < polesNumber; i++) {
+				if (board.isMiss(x + i, y) || board.isSunk(x + i, y)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	private boolean shipDisplacingValidation(Board plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
 			if (y + polesNumber > BOARDSIZE_V)

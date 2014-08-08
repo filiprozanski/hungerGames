@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.rules;
 
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.Board;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
@@ -30,7 +31,7 @@ public class OriginalRules extends Rules {
 			return false;
 	}
 
-	public boolean shipPlacingValidation(Board plansza, int polesNumber,
+	private boolean shipPlacingValidation(Board plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		int x_temp = 0;
 		int y_temp = 0;
@@ -67,7 +68,60 @@ public class OriginalRules extends Rules {
 		return true;
 	}
 
-	public boolean shipDisplacingValidation(Board plansza, int polesNumber,
+	public boolean shipPlacingValidation(ComputerBoard board, int polesNumber,
+			Direction dir, int x, int y) {
+		int x_temp = 0;
+		int y_temp = 0;
+		if (dir == Direction.HORIZONTAL) {
+			if (y + polesNumber > BOARDSIZE_V)
+				return false;
+		} else if (dir == Direction.VERTICAL) {
+			if (x + polesNumber > BOARDSIZE_H)
+				return false;
+		}
+
+		if (dir == Direction.HORIZONTAL) {
+			for (int i = 0; i < polesNumber + 2; i++) {
+				for (int j = 0; j < 3; j++) {
+					x_temp = x + j - 1;
+					y_temp = y + i - 1;
+					if ((x + j - 1) >= 0 && (x + j - 1) < BOARDSIZE_V
+							&& (y + i - 1) >= 0 && (y + i - 1) < BOARDSIZE_H)
+						if (board.isSunk(x_temp, y_temp))
+							return false;
+				}
+			}
+		} else {
+			for (int i = 0; i < polesNumber + 2; i++) {
+				for (int j = 0; j < 3; j++) {
+					x_temp = x + i - 1;
+					y_temp = y + j - 1;
+					if (x_temp >= 0 && x_temp < BOARDSIZE_V && y_temp >= 0
+							&& y_temp < BOARDSIZE_H)
+						if (board.isSunk(x_temp, y_temp))
+							return false;
+				}
+			}
+		}
+
+		if (dir == Direction.HORIZONTAL) {
+			for (int i = 0; i < polesNumber; i++) {
+				if (board.isMiss(x, y + i)) {
+					return false;
+				}
+			}
+		} else {
+			for (int i = 0; i < polesNumber; i++) {
+				if (board.isMiss(x + i, y)) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	private boolean shipDisplacingValidation(Board plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
 			if (y + polesNumber > BOARDSIZE_V)
@@ -164,4 +218,5 @@ public class OriginalRules extends Rules {
 	public void resetGame(PlayerStatus player) {
 		player.resetStatus();
 	}
+
 }

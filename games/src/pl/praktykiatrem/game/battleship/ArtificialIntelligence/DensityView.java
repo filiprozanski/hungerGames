@@ -9,9 +9,6 @@ import javax.swing.border.EmptyBorder;
 
 public class DensityView extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4884302083293184798L;
 	private JPanel contentPane;
 	private DensityPanel densityPanel;
