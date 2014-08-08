@@ -2,9 +2,10 @@ package pl.praktykiatrem.game.battleship.console.vsgraphic;
 
 import pl.praktykiatrem.game.battleship.console.ConsoleInteractions;
 import pl.praktykiatrem.game.battleship.factory.ShipLoader;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 public class ConsoleSettingPresenter {
 	private Game gameRules;
@@ -13,7 +14,7 @@ public class ConsoleSettingPresenter {
 	private ISettingController controller;
 	private ShipLoader loader;
 
-	public ConsoleSettingPresenter(Game gameRules, PlayerStatus player,
+	public ConsoleSettingPresenter(Game gameRules, BSPlayerStatus player,
 			ISettingController controller) {
 		this.gameRules = gameRules;
 		this.player = player;
@@ -25,7 +26,7 @@ public class ConsoleSettingPresenter {
 		setShips(player);
 	}
 
-	private void setShips(PlayerStatus gamer) {
+	private void setShips(BSPlayerStatus gamer) {
 		// try {
 		// loader.initializeShipsFromFile(gamer);
 		// } catch (FileNotFoundException e) {

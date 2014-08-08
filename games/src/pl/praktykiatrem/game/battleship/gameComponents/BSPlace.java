@@ -7,23 +7,24 @@
 
 package pl.praktykiatrem.game.battleship.gameComponents;
 
+import pl.praktykiatrem.game.uniElements.Place;
+
 /**
  * reprezentuje pole na planszy
  * 
  * @author Filip Ró¿añski
  *
  */
-public class Place {
+public class BSPlace extends Place {
 	private int shipID;
 	private Ship boat;
 	private boolean shipOnPlace;
-	private boolean isInGame;
 
 	/**
 	 * ustawia wartoœci charakteryzuj¹ce pole na stan pocz¹tkowy nie ma statku
 	 * pole jest w grze
 	 */
-	public Place() {
+	public BSPlace() {
 		shipOnPlace = false;
 		isInGame = true;
 	}
@@ -31,6 +32,7 @@ public class Place {
 	/**
 	 * restartuje ustawienia pola
 	 */
+	@Override
 	public void setPlaceClean() {
 		shipOnPlace = false;
 		isInGame = true;
@@ -38,7 +40,7 @@ public class Place {
 		boat = null;
 	}
 
-	public void setShipOnPlace(int id) {
+	public void setOnPlace(int id) {
 		shipOnPlace = true;
 		shipID = id;
 	}
@@ -47,6 +49,7 @@ public class Place {
 		return shipOnPlace;
 	}
 
+	@Override
 	public boolean isPlaceInGame() {
 		return isInGame;
 	}
@@ -66,6 +69,7 @@ public class Place {
 	/**
 	 * wy³¹cza pole z gry
 	 */
+	@Override
 	public void takeOut() {
 		isInGame = false;
 	}

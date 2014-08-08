@@ -5,7 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
@@ -36,7 +36,7 @@ public class ShootingPresenter extends UnicastRemoteObject implements
 	/**
 	 * obiekt reprezentuj±cy gracza, który korzysta ze sterowanego interfejsu
 	 */
-	private PlayerStatus player;
+	private BSPlayerStatus player;
 	/**
 	 * obiekt przechowuj±cy interfejs graficzny
 	 */
@@ -65,7 +65,7 @@ public class ShootingPresenter extends UnicastRemoteObject implements
 	 * @param player
 	 * @param controll
 	 */
-	public ShootingPresenter(Game gameRules, PlayerStatus player,
+	public ShootingPresenter(Game gameRules, BSPlayerStatus player,
 			IShootingController controll) throws RemoteException {
 		this.gameRules = gameRules;
 		this.player = player;

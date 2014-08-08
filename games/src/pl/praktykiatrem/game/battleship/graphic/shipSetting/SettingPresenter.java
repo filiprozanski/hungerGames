@@ -4,9 +4,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter;
@@ -43,7 +43,7 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	/**
 	 * reprezentacja gracza, który wykonuje swoje ruchy poprzez dany interfejs
 	 */
-	private PlayerStatus player;
+	private BSPlayerStatus player;
 	/**
 	 * interfejs graficzny etapu ustawiania statków
 	 */
@@ -67,7 +67,7 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	 * @param player
 	 * @param observer
 	 */
-	public SettingPresenter(GameConstants gameConst, PlayerStatus player,
+	public SettingPresenter(GameConstants gameConst, BSPlayerStatus player,
 			ISettingController controller) throws RemoteException {
 		this.gameConstants = gameConst;
 		this.player = player;
@@ -79,7 +79,7 @@ public class SettingPresenter extends UnicastRemoteObject implements
 		view.changeStateAllBoardPlaces(false);
 	}
 
-	public SettingPresenter(GameConstants gameConst, PlayerStatus player,
+	public SettingPresenter(GameConstants gameConst, BSPlayerStatus player,
 			ISettingController controller, int mode) throws RemoteException {
 		this.gameConstants = gameConst;
 		this.player = player;
@@ -160,6 +160,7 @@ public class SettingPresenter extends UnicastRemoteObject implements
 		case 0:
 			clearLastChoice(x, y, Direction.VERTICAL);
 			view.changeButtonCallNumber(x, y, 1);
+			view.changeStateAllBoardPlaces(true);
 			break;
 		}
 	}
@@ -190,8 +191,10 @@ public class SettingPresenter extends UnicastRemoteObject implements
 		if (controller.placeShips(player, id, polesNumber, Direction.VERTICAL,
 				x, y))
 			placeShipsOnView(x, y, Direction.VERTICAL, id, polesNumber);
-		else
+		else {
 			view.changeButtonCallNumber(x, y, 1);
+			view.changeStateAllBoardPlaces(true);
+		}
 	}
 
 	@Override

@@ -9,9 +9,10 @@ package pl.praktykiatrem.game.battleship.console;
 
 import java.util.Scanner;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Board;
+import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 /**
  * 
@@ -50,13 +51,13 @@ public class ConsoleInteractions implements Comunicatable {
 			System.out.println();
 	}
 
-	public static void showCountShips(PlayerStatus g) {
+	public static void showCountShips(BSPlayerStatus g) {
 		System.out.print(g.getName() + " ma ");
 		System.out.print(g.getShipsNumber());
 		System.out.println(" statków.");
 	}
 
-	public void showGameSummary(PlayerStatus g, PlayerStatus h) {
+	public void showGameSummary(BSPlayerStatus g, BSPlayerStatus h) {
 		ConsoleInteractions.showCountShips(g);
 		ConsoleInteractions.showCountShips(h);
 	}
@@ -123,11 +124,11 @@ public class ConsoleInteractions implements Comunicatable {
 		System.out.println("\"M\" chybione pole");
 	}
 
-	public void drawBoardForOpponent(Board gamePlace) {
+	public void drawBoardForOpponent(BSBoard gamePlace) {
 		BoardDrawing.drawGameBoardForOpponent(gamePlace);
 	}
 
-	public void drawBoardForPlayer(Board gamePlace) {
+	public void drawBoardForPlayer(BSBoard gamePlace) {
 		BoardDrawing.drawGameBoardForPlayer(gamePlace);
 	}
 }

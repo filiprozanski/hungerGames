@@ -7,7 +7,7 @@
 
 package pl.praktykiatrem.game.battleship.factory;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 
 public class GameFactory {
 	private int boardSize_x;
@@ -20,7 +20,7 @@ public class GameFactory {
 		this.shipTypes = shipTypes;
 	}
 
-	public PlayerStatus createPlayer() {
-		return new PlayerStatus(boardSize_x, boardSize_y, shipTypes);
+	public BSPlayerStatus createPlayer() {
+		return new BSPlayerStatus(boardSize_x, boardSize_y, shipTypes);
 	}
 }

@@ -1,8 +1,9 @@
 package pl.praktykiatrem.game.battleship.rules;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Board;
+import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 public abstract class Rules {
 
@@ -12,25 +13,25 @@ public abstract class Rules {
 	private final GameConstants constants = new GameConstants(BOARDSIZE_H,
 			BOARDSIZE_V, SHIPTYPES);
 
-	public abstract int makeMove(PlayerStatus enemy, int x, int y);
+	public abstract int makeMove(BSPlayerStatus enemy, int x, int y);
 
-	public abstract boolean displaceShips(PlayerStatus player, int id,
+	public abstract boolean displaceShips(BSPlayerStatus player, int id,
 			int polesNumber, Direction direction, int x, int y);
 
-	public abstract boolean placeShips(PlayerStatus player, int id,
+	public abstract boolean placeShips(BSPlayerStatus player, int id,
 			int polesNumber, Direction direction, int x, int y);
 
-	public abstract boolean shipDisplacingValidation(Board plansza,
+	public abstract boolean shipDisplacingValidation(BSBoard plansza,
 			int polesNumber, Direction dir, int x, int y);
 
-	public abstract boolean shipPlacingValidation(Board plansza,
+	public abstract boolean shipPlacingValidation(BSBoard plansza,
 			int polesNumber, Direction dir, int x, int y);
 
 	public Rules() {
 		super();
 	}
 
-	public int getShipID(PlayerStatus player, int x, int y) {
+	public int getShipID(BSPlayerStatus player, int x, int y) {
 		return player.getShipID(x, y);
 	}
 
@@ -54,11 +55,11 @@ public abstract class Rules {
 		return SHIPTYPES.length;
 	}
 
-	public int getActiveShipsNumber(PlayerStatus player) {
+	public int getActiveShipsNumber(BSPlayerStatus player) {
 		return player.getShipsNumber();
 	}
 
-	public int getAccuracy(PlayerStatus player, boolean hit) {
+	public int getAccuracy(BSPlayerStatus player, boolean hit) {
 		return player.getAccuracy(hit);
 	}
 

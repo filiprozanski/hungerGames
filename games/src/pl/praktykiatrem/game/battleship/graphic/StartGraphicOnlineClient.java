@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenterControll;
@@ -33,7 +33,7 @@ public class StartGraphicOnlineClient implements IRMIClient {
 	private static final long serialVersionUID = 9150849615735314473L;
 
 	@Override
-	public void stageA(GameConstants gameConst, PlayerStatus player,
+	public void stageA(GameConstants gameConst, BSPlayerStatus player,
 			ISettingController controller) throws RemoteException,
 			AlreadyBoundException {
 		pres = new SettingPresenter(gameConst, player, controller);

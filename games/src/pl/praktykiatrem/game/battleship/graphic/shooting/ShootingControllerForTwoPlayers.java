@@ -2,11 +2,13 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import java.rmi.RemoteException;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlace;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 /**
  * 
@@ -23,11 +25,11 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	/**
 	 * obiekt reprezentuj±cy pierwszego z graczy
 	 */
-	private PlayerStatus player1;
+	private BSPlayerStatus player1;
 	/**
 	 * obiekt reprezentuj±cy drugiego z graczy
 	 */
-	private PlayerStatus player2;
+	private BSPlayerStatus player2;
 	/**
 	 * obiekt reprezentuj±cy presenter gracza player1
 	 */
@@ -63,8 +65,8 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	 * @param player2
 	 * @param g
 	 */
-	public ShootingControllerForTwoPlayers(PlayerStatus player1,
-			PlayerStatus player2, Game g, StartGraphicForTwoPlayers supervisor) {
+	public ShootingControllerForTwoPlayers(BSPlayerStatus player1,
+			BSPlayerStatus player2, Game g, StartGraphicForTwoPlayers supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;
@@ -155,32 +157,34 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 
 	private void drawLeftShips1() {
 		for (int j = 0; j < g.getBoardSizeV(); j++)
-			for (int i = 0; i < g.getBoardSizeH(); i++)
-				if (player1.getPlace(i, j).isShipOnPlace()
+			for (int i = 0; i < g.getBoardSizeH(); i++) {
+				BSPlace place = (BSPlace) player1.getPlace(i, j);
+				if (place.isShipOnPlace()
 						&& player1.getPlace(i, j).isPlaceInGame())
 					try {
-						pres2.fchangeIcon(i, j, player1.getPlace(i, j)
-								.getShipId() + 1);
+						pres2.fchangeIcon(i, j, place.getShipId() + 1);
 					} catch (RemoteException e) {
 						System.out.println("drawLeftships");
 						e.printStackTrace();
 						System.exit(0);
 					}
+			}
 	}
 
 	private void drawLeftShips2() {
 		for (int j = 0; j < g.getBoardSizeV(); j++)
-			for (int i = 0; i < g.getBoardSizeH(); i++)
-				if (player2.getPlace(i, j).isShipOnPlace()
+			for (int i = 0; i < g.getBoardSizeH(); i++) {
+				BSPlace place = (BSPlace) player2.getPlace(i, j);
+				if (place.isShipOnPlace()
 						&& player2.getPlace(i, j).isPlaceInGame())
 					try {
-						pres1.fchangeIcon(i, j, player2.getPlace(i, j)
-								.getShipId() + 1);
+						pres1.fchangeIcon(i, j, place.getShipId() + 1);
 					} catch (RemoteException e) {
 						System.out.println("drawLeftships");
 						e.printStackTrace();
 						System.exit(0);
 					}
+			}
 	}
 
 	/**
@@ -194,7 +198,7 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	 * @param x
 	 * @param y
 	 */
-	private void boardSettingHit(PlayerStatus shooter, PlayerStatus victim,
+	private void boardSettingHit(BSPlayerStatus shooter, BSPlayerStatus victim,
 			int x, int y) {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
@@ -225,8 +229,8 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	 * @param x
 	 * @param y
 	 */
-	private void boardSettingMiss(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y) {
+	private void boardSettingMiss(BSPlayerStatus shooter,
+			BSPlayerStatus victim, int x, int y) {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
 

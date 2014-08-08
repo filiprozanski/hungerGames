@@ -8,7 +8,8 @@
 package pl.praktykiatrem.game.battleship.console;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 /**
  * 
@@ -26,7 +27,7 @@ public interface Comunicatable {
 
 	public void showErrorMessage1();
 
-	public void showGameSummary(PlayerStatus g, PlayerStatus h);
+	public void showGameSummary(BSPlayerStatus g, BSPlayerStatus h);
 
 	public void showYourMove(PlayerStatus gamer);
 

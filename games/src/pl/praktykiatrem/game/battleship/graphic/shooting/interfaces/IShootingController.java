@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting.interfaces;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 public interface IShootingController {
 

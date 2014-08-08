@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 /**
  * Klasa udostêpnia funckje, realizuj¹ce akcje dostêpne w trakcie rozgrywki
@@ -52,16 +53,16 @@ public class Game {
 		return rules.getShipTypes(id);
 	}
 
-	public int makeMove(PlayerStatus p, int x, int y) {
+	public int makeMove(BSPlayerStatus p, int x, int y) {
 		return rules.makeMove(p, x, y);
 	}
 
-	public boolean placeShips(PlayerStatus p, int id, int polesNumber,
+	public boolean placeShips(BSPlayerStatus p, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		return rules.placeShips(p, id, polesNumber, direction, x, y);
 	}
 
-	public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
+	public boolean displaceShips(BSPlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		return rules.displaceShips(player, id, polesNumber, direction, x, y);
 	}
@@ -70,23 +71,23 @@ public class Game {
 		return isGameOver;
 	}
 
-	public int getActiveShipsNumber(PlayerStatus player) {
+	public int getActiveShipsNumber(BSPlayerStatus player) {
 		return rules.getActiveShipsNumber(player);
 	}
 
-	public ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id) {
+	public ArrayList<Coordinates> getCoordsList(BSPlayerStatus player, int id) {
 		return player.getCoords(id);
 	}
 
-	public Coordinates[] getCoordsTable(PlayerStatus player, int id) {
+	public Coordinates[] getCoordsTable(BSPlayerStatus player, int id) {
 		return player.getCoordsTable(id);
 	}
 
-	public int getAccuracy(PlayerStatus player, boolean hit) {
+	public int getAccuracy(BSPlayerStatus player, boolean hit) {
 		return rules.getAccuracy(player, hit);
 	}
 
-	public int getShipID(PlayerStatus p, int x, int y) {
+	public int getShipID(BSPlayerStatus p, int x, int y) {
 		return rules.getShipID(p, x, y);
 	}
 

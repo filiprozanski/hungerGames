@@ -5,12 +5,13 @@ import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnlineServer;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.Rand;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 public class SettingControllerOnline implements ISettingController {
 	private int readyPlayers;
@@ -19,8 +20,8 @@ public class SettingControllerOnline implements ISettingController {
 	private ISettingPresenterControll pres1;
 	private ISettingPresenterControll pres2;
 
-	public SettingControllerOnline(Game g, PlayerStatus player1,
-			PlayerStatus player2, StartGraphicOnlineServer supervisor) {
+	public SettingControllerOnline(Game g, BSPlayerStatus player1,
+			BSPlayerStatus player2, StartGraphicOnlineServer supervisor) {
 		this.supervisor = supervisor;
 		this.gameRules = g;
 
@@ -66,23 +67,23 @@ public class SettingControllerOnline implements ISettingController {
 	}
 
 	@Override
-	public ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id) {
+	public ArrayList<Coordinates> getCoordsList(BSPlayerStatus player, int id) {
 		return gameRules.getCoordsList(player, id);
 	}
 
 	@Override
-	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
+	public boolean placeShips(BSPlayerStatus player, int id, int polesNumber,
 			Direction dir, int x, int y) {
 		return gameRules.placeShips(player, id, polesNumber, dir, x, y);
 	}
 
 	@Override
-	public int getActiveShipsNumber(PlayerStatus player) {
+	public int getActiveShipsNumber(BSPlayerStatus player) {
 		return gameRules.getActiveShipsNumber(player);
 	}
 
 	@Override
-	public boolean displaceShip(PlayerStatus player, int id, int polesNumber,
+	public boolean displaceShip(BSPlayerStatus player, int id, int polesNumber,
 			Direction dir, int x, int y) {
 		return gameRules.displaceShips(player, id, polesNumber, dir, x, y);
 	}
@@ -94,7 +95,7 @@ public class SettingControllerOnline implements ISettingController {
 
 	@Override
 	public void placeShipAtRandom(ISettingPresenterControll presenter,
-			PlayerStatus player) {
+			BSPlayerStatus player) {
 		Direction rand_dir;
 		int randX;
 		int randY;

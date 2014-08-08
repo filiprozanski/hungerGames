@@ -8,6 +8,9 @@ package pl.praktykiatrem.game.battleship.gameComponents;
 
 import java.util.ArrayList;
 
+import pl.praktykiatrem.game.uniElements.Player;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
+
 /**
  * Klasa odpowadia za przchowywanie informacji o statusie gracza m.in. liczbie
  * stakow. Przechowuje tez jego plansze, oraz tablice statków
@@ -15,20 +18,12 @@ import java.util.ArrayList;
  * @author Filip Ró¿añski
  *
  */
-public class PlayerStatus {
-	private Board plansza;
-
-	private Ship[] ships;
+public class BSPlayerStatus extends PlayerStatus {
+	Ship[] ships;
 
 	private int shipTypes[];
 
-	private int shipsNumber;
-
-	private Player gamer;
-
-	private int playerID;
-
-	private static int counter = 100001;
+	int shipsNumber;
 
 	private PlayerStats stats;
 
@@ -44,48 +39,16 @@ public class PlayerStatus {
 	 *            tablica przechowuj¹ca informacje o typie statków u¿ywanych w
 	 *            rozgrywce
 	 */
-	public PlayerStatus(int boardSizeH, int boardSizeV, int[] shipTypes) {
+	public BSPlayerStatus(int boardSizeH, int boardSizeV, int[] shipTypes) {
+		super();
 		this.shipsNumber = 0;
 		this.shipTypes = shipTypes;
-		playerID = counter++;
-		plansza = new Board(boardSizeH, boardSizeV);
+		plansza = new BSBoard(boardSizeH, boardSizeV);
 		ships = new Ship[shipTypes.length];
 		for (int i = 0; i < shipTypes.length; i++)
 			setShip(i, shipTypes[i]);
 		gamer = new Player();
 		stats = new PlayerStats();
-	}
-
-	/**
-	 * Porównuje graczy wykorzystuj¹c do tego nadane im ID
-	 */
-	@Override
-	public boolean equals(Object other) {
-		if (!(other instanceof PlayerStatus))
-			return false;
-
-		PlayerStatus other2 = (PlayerStatus) other;
-		if (this.playerID == other2.playerID)
-			return true;
-		else
-			return false;
-	}
-
-	/**
-	 * 
-	 * @return imiê gracza
-	 */
-	public String getName() {
-		return gamer.getName();
-	}
-
-	/**
-	 * Ustawia imiê gracza
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {
-		gamer.setName(name);
 	}
 
 	/**
@@ -113,18 +76,6 @@ public class PlayerStatus {
 
 	public void decreasePolesNumber(int id) {
 		ships[id].reducePolesNumber();
-	}
-
-	/**
-	 * 
-	 * @return zwraca plansze gracza
-	 */
-	public Board getPlansza() {
-		return plansza;
-	}
-
-	public Place getPlace(int x, int y) {
-		return plansza.getPlace(x, y);
 	}
 
 	/**
@@ -191,13 +142,13 @@ public class PlayerStatus {
 	 * @param y
 	 */
 	public int reducePolesNumber(int x, int y) {
-		Place p = plansza.getPlace(x, y);
+		BSPlace p = plansza.getPlace(x, y);
 		int shipID = p.getShipId();
 		return ships[shipID].reducePolesNumber();
 	}
 
 	public int getShipID(int x, int y) {
-		Place p = plansza.getPlace(x, y);
+		BSPlace p = plansza.getPlace(x, y);
 		return p.getShipId();
 
 	}

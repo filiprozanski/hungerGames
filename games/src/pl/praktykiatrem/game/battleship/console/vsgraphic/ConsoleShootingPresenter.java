@@ -1,8 +1,8 @@
 package pl.praktykiatrem.game.battleship.console.vsgraphic;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 public class ConsoleShootingPresenter {
 	private Game gameRules;
