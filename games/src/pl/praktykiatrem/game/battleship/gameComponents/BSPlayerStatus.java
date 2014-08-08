@@ -8,6 +8,7 @@ package pl.praktykiatrem.game.battleship.gameComponents;
 
 import java.util.ArrayList;
 
+import pl.praktykiatrem.game.uniElements.Place;
 import pl.praktykiatrem.game.uniElements.Player;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
@@ -27,6 +28,8 @@ public class BSPlayerStatus extends PlayerStatus {
 
 	private PlayerStats stats;
 
+	private BSBoard board;
+
 	/**
 	 * 
 	 * @param boardSize_x
@@ -43,12 +46,24 @@ public class BSPlayerStatus extends PlayerStatus {
 		super();
 		this.shipsNumber = 0;
 		this.shipTypes = shipTypes;
-		plansza = new BSBoard(boardSizeH, boardSizeV);
+		board = new BSBoard(boardSizeH, boardSizeV);
 		ships = new Ship[shipTypes.length];
 		for (int i = 0; i < shipTypes.length; i++)
 			setShip(i, shipTypes[i]);
 		gamer = new Player();
 		stats = new PlayerStats();
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof BSPlayerStatus))
+			return false;
+
+		BSPlayerStatus other2 = (BSPlayerStatus) other;
+		if (this.playerID == other2.playerID)
+			return true;
+		else
+			return false;
 	}
 
 	/**
@@ -83,6 +98,18 @@ public class BSPlayerStatus extends PlayerStatus {
 	 */
 	public void reduceShipsNumber() {
 		shipsNumber--;
+	}
+
+	/**
+	 * 
+	 * @return zwraca plansze gracza
+	 */
+	public BSBoard getPlansza() {
+		return board;
+	}
+
+	public Place getPlace(int x, int y) {
+		return board.getPlace(x, y);
 	}
 
 	/**
@@ -122,7 +149,7 @@ public class BSPlayerStatus extends PlayerStatus {
 	 *            wspó³rzêdna pionowa
 	 */
 	public void takeOutShip(int x, int y) {
-		plansza.takeOut(x, y);
+		board.takeOut(x, y);
 	}
 
 	/**
@@ -142,13 +169,13 @@ public class BSPlayerStatus extends PlayerStatus {
 	 * @param y
 	 */
 	public int reducePolesNumber(int x, int y) {
-		BSPlace p = plansza.getPlace(x, y);
+		BSPlace p = board.getPlace(x, y);
 		int shipID = p.getShipId();
 		return ships[shipID].reducePolesNumber();
 	}
 
 	public int getShipID(int x, int y) {
-		BSPlace p = plansza.getPlace(x, y);
+		BSPlace p = board.getPlace(x, y);
 		return p.getShipId();
 
 	}
@@ -201,7 +228,7 @@ public class BSPlayerStatus extends PlayerStatus {
 	}
 
 	public void resetStatus() {
-		plansza.clearBoard();
+		board.clearBoard();
 		for (Ship s : ships)
 			s.clearShip();
 		shipsNumber = 0;

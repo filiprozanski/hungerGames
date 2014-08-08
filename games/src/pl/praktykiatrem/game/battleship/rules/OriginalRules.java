@@ -148,7 +148,7 @@ public class OriginalRules extends Rules {
 	@Override
 	public boolean placeShips(BSPlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
-		BSBoard plansza = player.getPlansza();
+		BSBoard plansza = (BSBoard) player.getPlansza();
 		if (shipPlacingValidation(plansza, polesNumber, direction, x, y)
 				&& !player.getShip(id).isShipSet()) {
 
@@ -199,11 +199,12 @@ public class OriginalRules extends Rules {
 
 	@Override
 	public int makeMove(BSPlayerStatus enemy, int x, int y) {
-		if (!enemy.getPlansza().isShipOnPlace(x, y)) {
+		BSBoard board = (BSBoard) enemy.getPlansza();
+		if (!board.isShipOnPlace(x, y)) {
 			enemy.getPlansza().takeOut(x, y);
 			return 0;
 		} else {
-			if (enemy.getPlansza().isShipOnPlaceAndActive(x, y)) {
+			if (board.isShipOnPlaceAndActive(x, y)) {
 				enemy.takeOutShip(x, y);
 				if (enemy.reducePolesNumber(x, y) == 0) {
 					enemy.reduceShipsNumber();
