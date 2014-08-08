@@ -18,6 +18,7 @@ public class TTPlace extends Place {
 
 	public void setOnPlace(Sign xo) {
 		this.xo = xo;
+		isInGame = false;
 	}
 
 	@Override
