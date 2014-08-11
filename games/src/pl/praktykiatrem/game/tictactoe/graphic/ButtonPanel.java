@@ -1,16 +1,22 @@
 package pl.praktykiatrem.game.tictactoe.graphic;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.files.TTIcons;
+import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
 public class ButtonPanel extends JPanel {
+	private IButtonPanelObserver controller;
+
 	/**
 	 * Creates new form TTButtonPanel
 	 */
-	public ButtonPanel() {
+	public ButtonPanel(IButtonPanelObserver controller) {
+		this.controller = controller;
 		initComponents();
 	}
 
@@ -25,10 +31,17 @@ public class ButtonPanel extends JPanel {
 
 		goToMenuButton = new javax.swing.JButton();
 		signLabel = new javax.swing.JLabel();
+		signLabel.setAlignmentX(CENTER_ALIGNMENT);
+		signLabel.setAlignmentY(CENTER_ALIGNMENT);
 
 		setLayout(null);
 
 		goToMenuButton.setText("Przejdz do menu");
+		goToMenuButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				controller.abortGame();
+			}
+		});
 		add(goToMenuButton);
 		goToMenuButton.setBounds(0, 0, 200, 100);
 
@@ -36,8 +49,8 @@ public class ButtonPanel extends JPanel {
 		signLabel.setBounds(200, 0, 100, 100);
 	}// </editor-fold>
 
-	public void setSignIcon(int type) {
-		signLabel.setIcon(TTIcons.getIcon(type));
+	public void setSignIcon(Sign sign) {
+		signLabel.setIcon(TTIcons.getBigIcon(sign));
 	}
 
 	@Override
@@ -47,6 +60,11 @@ public class ButtonPanel extends JPanel {
 
 	@Override
 	public Dimension getMinimumSize() {
+		return new Dimension(300, 100);
+	}
+
+	@Override
+	public Dimension getMaximumSize() {
 		return new Dimension(300, 100);
 	}
 

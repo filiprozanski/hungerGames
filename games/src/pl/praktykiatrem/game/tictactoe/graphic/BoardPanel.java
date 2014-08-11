@@ -14,35 +14,46 @@ import pl.praktykiatrem.game.battleship.files.TTIcons;
 import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
 import pl.praktykiatrem.game.battleship.graphic.listeners.PlaceChoiceListener;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
+import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
 public class BoardPanel extends JPanel {
 	private int SIZEH;
 	private int SIZEV;
 	private IBoardPlaceObserver observer;
 	protected JButton[][] place;
+	private int prefferedX;
+	private int prefferedY;
 
-	public BoardPanel(int sizeH, int sizeV, IBoardPlaceObserver observer) {
+	public BoardPanel(int sizeH, int sizeV, int buttonSize,
+			IBoardPlaceObserver observer) {
 		super(new GridLayout(sizeH, sizeV));
 		this.observer = observer;
 		initialize(sizeH, sizeV);
 		initializeBoard();
+		prefferedX = buttonSize * sizeH;
+		prefferedY = buttonSize * sizeV;
+
 	}
 
 	private void initialize(int sizeH, int sizeV) {
 		SIZEH = sizeH;
 		SIZEV = sizeV;
 		place = new ShipButton[SIZEH][SIZEV];
-		setSize(100 * SIZEH, 100 * SIZEV);
 	}
 
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(100 * SIZEH, 100 * SIZEV);
+		return new Dimension(prefferedX, prefferedY);
 	}
 
 	@Override
 	public Dimension getMinimumSize() {
-		return new Dimension(100 * SIZEH, 100 * SIZEV);
+		return new Dimension(300, 300);
+	}
+
+	@Override
+	public Dimension getMaximumSize() {
+		return new Dimension(400, 400);
 	}
 
 	private void initializeBoard() {
@@ -67,15 +78,18 @@ public class BoardPanel extends JPanel {
 		}
 	}
 
-	public void changeIcon(int x, int y, int type) {
-		place[x][y].setIcon(TTIcons.getIcon(type));
-		place[x][y].setDisabledIcon(TTIcons.getIcon(type));
+	public void changeIcon(int x, int y, Sign sign) {
+		place[x][y].setIcon(TTIcons.getIcon(sign));
+		place[x][y].setDisabledIcon(TTIcons.getIcon(sign));
 	}
 
 	public void lock() {
 		for (int i = 0; i < SIZEH; i++)
 			for (int j = 0; j < SIZEV; j++)
 				place[i][j].setEnabled(false);
+	}
 
+	public void disableButton(int x, int y) {
+		place[x][y].setEnabled(false);
 	}
 }

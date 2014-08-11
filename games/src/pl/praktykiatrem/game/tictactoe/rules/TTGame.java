@@ -24,4 +24,8 @@ public class TTGame {
 	public int getHorizontalSize() {
 		return rules.getBOARDSIZEH();
 	}
+
+	public int getButtonSize() {
+		return rules.getBUTTONSIZE();
+	}
 }

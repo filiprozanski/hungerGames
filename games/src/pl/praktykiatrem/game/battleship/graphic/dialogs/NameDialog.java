@@ -21,6 +21,7 @@ public class NameDialog extends javax.swing.JDialog {
 		super(parent, name, modal);
 		initComponents();
 		setSize(330, 200);
+		setAlwaysOnTop(true);
 		setVisible(true);
 	}
 

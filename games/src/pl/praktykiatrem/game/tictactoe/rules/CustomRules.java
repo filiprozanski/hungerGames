@@ -6,9 +6,12 @@ import pl.praktykiatrem.game.tictactoe.gameComponents.TTBoard;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
 
 public class CustomRules extends Rules {
-	private final int BOARDSIZEH = 3;
-	private final int BOARDSIZEV = 3;
-	private final int SIGNSTOWIN = 3;
+	private final int BOARDSIZEH = 10;
+	private final int BOARDSIZEV = 10;
+	private final int SIGNSTOWIN = 5;
+
+	private final int BUTTONSIZE = 40;
+
 	private ArrayList<Sign> availableSigns;
 	private TTBoard board;
 
@@ -174,5 +177,9 @@ public class CustomRules extends Rules {
 
 	public Sign allocateSign() {
 		return availableSigns.remove(0);
+	}
+
+	public int getBUTTONSIZE() {
+		return BUTTONSIZE;
 	}
 }
