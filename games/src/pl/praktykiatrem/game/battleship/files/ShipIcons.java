@@ -133,7 +133,7 @@ public class ShipIcons {
 	 * 
 	 * Wiktor, czy móg³bym prosiæ Ciê o komentarz? ;*
 	 *
-	 * @param icon
+	 * @param IconPainting
 	 * @return i tu te¿
 	 */
 	public static BufferedImage iconToBufferedImage(Icon icon) {

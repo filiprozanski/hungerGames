@@ -16,4 +16,6 @@ public abstract class Rules {
 
 	public abstract int getBOARDSIZEV();
 
+	public abstract int getBUTTONSIZE();
+
 }

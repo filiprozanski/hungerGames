@@ -139,7 +139,7 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	 * @param y
 	 * @param dir
 	 *            kieunek ustawienia statku
-	 * @param icon
+	 * @param IconPainting
 	 *            typ ikony reprezentuj¹cej statek
 	 */
 	private void drawOnBoard(int x, int y, Direction dir, int icon,

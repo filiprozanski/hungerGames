@@ -64,9 +64,12 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		fileMenu = new javax.swing.JMenu();
 		closeButton = new javax.swing.JMenuItem();
 		settingsMenu = new javax.swing.JMenu();
-		rulesChoice = new javax.swing.JMenu();
-		customRulesField = new javax.swing.JRadioButtonMenuItem();
-		originalRulesField = new javax.swing.JRadioButtonMenuItem();
+		tttRulesChoice = new javax.swing.JMenu();
+		shipRulesChoice = new javax.swing.JMenu();
+		bsCustomRulesField = new javax.swing.JRadioButtonMenuItem();
+		bsOriginalRulesField = new javax.swing.JRadioButtonMenuItem();
+		tttCustomRulesField = new javax.swing.JRadioButtonMenuItem();
+		tttOriginalRulesField = new javax.swing.JRadioButtonMenuItem();
 		difficultyMenu = new javax.swing.JMenu();
 		easyRadioButton = new javax.swing.JRadioButtonMenuItem();
 		mediumRadioButton = new javax.swing.JRadioButtonMenuItem();
@@ -191,27 +194,51 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 
 		settingsMenu.setText("Settings");
 
-		rulesChoice.setText("Zasady");
+		shipRulesChoice.setText("Battleships game rules");
 
-		customRulesField.setSelected(true);
-		customRulesField.setText("CustomRules");
-		customRulesField.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				customRulesFieldActionPerformed(evt);
-			}
-		});
-		rulesChoice.add(customRulesField);
+		bsCustomRulesField.setSelected(true);
+		bsCustomRulesField.setText("CustomRules");
+		bsCustomRulesField
+				.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						customRulesFieldActionPerformed(evt);
+					}
+				});
+		shipRulesChoice.add(bsCustomRulesField);
 
-		originalRulesField.setText("OriginalRules");
-		originalRulesField
+		bsOriginalRulesField.setText("OriginalRules");
+		bsOriginalRulesField
 				.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						originalRulesFieldActionPerformed(evt);
 					}
 				});
-		rulesChoice.add(originalRulesField);
+		shipRulesChoice.add(bsOriginalRulesField);
 
-		settingsMenu.add(rulesChoice);
+		settingsMenu.add(shipRulesChoice);
+
+		tttRulesChoice.setText("TicTacToe game rules");
+
+		tttCustomRulesField.setSelected(true);
+		tttCustomRulesField.setText("CustomRules");
+		tttCustomRulesField
+				.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						tttCustomRulesFieldActionPerformed(evt);
+					}
+				});
+		tttRulesChoice.add(tttCustomRulesField);
+
+		tttOriginalRulesField.setText("OriginalRules");
+		tttOriginalRulesField
+				.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						tttOriginalRulesFieldActionPerformed(evt);
+					}
+				});
+		tttRulesChoice.add(tttOriginalRulesField);
+
+		settingsMenu.add(tttRulesChoice);
 
 		difficultyMenu.setText("Difficulty");
 
@@ -261,14 +288,15 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private void bsPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
 		new StartGraphicForOnePlayer("Wiktor", "Komputer", this,
-				getRulesChoice(), getDifficultyChoice());
+				getShipsRulesChoice(), getDifficultyChoice());
 		setVisible(false);
 	}
 
 	private void bsPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
 		// dialog = new NameDialog(this, "Gracz 2", true);
-		new StartGraphicForTwoPlayers("Filip", "Wiktor", this, getRulesChoice());
+		new StartGraphicForTwoPlayers("Filip", "Wiktor", this,
+				getShipsRulesChoice());
 		setVisible(false);
 	}
 
@@ -291,7 +319,9 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	}
 
 	private void tttPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		new pl.praktykiatrem.game.tictactoe.graphic.StartGraphicForTwoPlayers(
+				"Filip", "Wiktor", this, getTTTRulesChoice());
+		setVisible(false);
 	}
 
 	private void tttOnlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,14 +329,26 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	}
 
 	private void customRulesFieldActionPerformed(java.awt.event.ActionEvent evt) {
-		originalRulesField.setSelected(false);
-		originalRulesField.setSelectedIcon(null);
+		bsOriginalRulesField.setSelected(false);
+		bsOriginalRulesField.setSelectedIcon(null);
+	}
+
+	private void tttCustomRulesFieldActionPerformed(
+			java.awt.event.ActionEvent evt) {
+		tttOriginalRulesField.setSelected(false);
+		tttOriginalRulesField.setSelectedIcon(null);
 	}
 
 	private void originalRulesFieldActionPerformed(
 			java.awt.event.ActionEvent evt) {
-		customRulesField.setSelected(false);
-		customRulesField.setSelectedIcon(null);
+		bsCustomRulesField.setSelected(false);
+		bsCustomRulesField.setSelectedIcon(null);
+	}
+
+	private void tttOriginalRulesFieldActionPerformed(
+			java.awt.event.ActionEvent evt) {
+		tttCustomRulesField.setSelected(false);
+		tttCustomRulesField.setSelectedIcon(null);
 	}
 
 	private void easyRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,8 +377,8 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	}
 
 	private void pcOnlyButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		new StartGraphicForNoPlayer("COM1", "COM2", this, getRulesChoice(),
-				getDifficultyChoice());
+		new StartGraphicForNoPlayer("COM1", "COM2", this,
+				getShipsRulesChoice(), getDifficultyChoice());
 		setVisible(false);
 	}
 
@@ -354,7 +396,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private javax.swing.JButton bsPCButton;
 	private javax.swing.JButton bsPlayerButton;
 	private javax.swing.JMenuItem closeButton;
-	private javax.swing.JRadioButtonMenuItem customRulesField;
+	private javax.swing.JRadioButtonMenuItem bsCustomRulesField;
 	private javax.swing.JMenu difficultyMenu;
 	private javax.swing.JRadioButtonMenuItem easyRadioButton;
 	private javax.swing.JMenu fileMenu;
@@ -363,13 +405,16 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private javax.swing.JLabel jLabel6;
 	private javax.swing.JRadioButtonMenuItem mediumRadioButton;
 	private javax.swing.JMenuBar menuBar;
-	private javax.swing.JRadioButtonMenuItem originalRulesField;
+	private javax.swing.JRadioButtonMenuItem bsOriginalRulesField;
 	private javax.swing.JMenuItem pcOnlyButton;
-	private javax.swing.JMenu rulesChoice;
+	private javax.swing.JMenu shipRulesChoice;
+	private javax.swing.JMenu tttRulesChoice;
 	private javax.swing.JMenu settingsMenu;
 	private javax.swing.JLabel titleLabel;
+	private javax.swing.JRadioButtonMenuItem tttCustomRulesField;
 	private javax.swing.JLabel tttLabel;
 	private javax.swing.JButton tttOnlineButton;
+	private javax.swing.JRadioButtonMenuItem tttOriginalRulesField;
 	private javax.swing.JButton tttPCButton;
 	private javax.swing.JButton tttPlayerButton;
 	private String name1;
@@ -382,10 +427,19 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		setVisible(true);
 	}
 
-	private int getRulesChoice() {
-		if (customRulesField.isSelected())
+	private int getShipsRulesChoice() {
+		if (bsCustomRulesField.isSelected())
 			return 1;
-		else if (originalRulesField.isSelected())
+		else if (bsOriginalRulesField.isSelected())
+			return 2;
+		else
+			return 1;
+	}
+
+	private int getTTTRulesChoice() {
+		if (bsCustomRulesField.isSelected())
+			return 1;
+		else if (bsOriginalRulesField.isSelected())
 			return 2;
 		else
 			return 1;
