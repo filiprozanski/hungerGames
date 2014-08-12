@@ -115,8 +115,8 @@ public class Medium implements IComputer {
 	}
 
 	private void discardSingleAreas() {
-		for (int i = 0; i < game.getBoardSizeH(); i++)
-			for (int j = 0; j < game.getBoardSizeV(); j++)
+		for (int i = 0; i < game.getBoardSizeV(); i++)
+			for (int j = 0; j < game.getBoardSizeH(); j++)
 				if (board.getBoard(i, j) == -2 && board.getBoard(i - 1, j) > -2
 						&& board.getBoard(i + 1, j) > -2
 						&& board.getBoard(i, j - 1) > -2

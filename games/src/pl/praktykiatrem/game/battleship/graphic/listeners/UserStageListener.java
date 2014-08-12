@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
 import pl.praktykiatrem.game.battleship.graphic.observers.ISettingButtonsObserver;
 
 public class UserStageListener implements ActionListener {
-    private ISettingButtonsObserver observer;
+	private ISettingButtonsObserver observer;
 
-    public UserStageListener(ISettingButtonsObserver observer) {
-	this.observer = observer;
-    }
+	public UserStageListener(ISettingButtonsObserver observer) {
+		this.observer = observer;
+	}
 
-    public void actionPerformed(ActionEvent event) {
-	observer.playerIsReady();
-    }
+	public void actionPerformed(ActionEvent event) {
+		observer.playerIsReady();
+	}
 }

@@ -4,8 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
@@ -74,7 +74,7 @@ public class ShootingPresenter extends UnicastRemoteObject implements
 		giveUpButtonCallNumber = 0;
 
 		view = new ShootingPanel(this);
-		view.initialize(gameRules.getBoardSizeH(), gameRules.getBoardSizeV());
+		view.initialize(gameRules.getBoardSizeV(), gameRules.getBoardSizeH());
 		drawShips();
 		view.disableAllPlayerBoardPlaces();
 	}

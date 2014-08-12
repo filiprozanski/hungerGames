@@ -156,8 +156,8 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	}
 
 	private void drawLeftShips1() {
-		for (int j = 0; j < g.getBoardSizeV(); j++)
-			for (int i = 0; i < g.getBoardSizeH(); i++) {
+		for (int j = 0; j < g.getBoardSizeH(); j++)
+			for (int i = 0; i < g.getBoardSizeV(); i++) {
 				BSPlace place = (BSPlace) player1.getPlace(i, j);
 				if (place.isShipOnPlace()
 						&& player1.getPlace(i, j).isPlaceInGame())
@@ -172,8 +172,8 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	}
 
 	private void drawLeftShips2() {
-		for (int j = 0; j < g.getBoardSizeV(); j++)
-			for (int i = 0; i < g.getBoardSizeH(); i++) {
+		for (int j = 0; j < g.getBoardSizeH(); j++)
+			for (int i = 0; i < g.getBoardSizeV(); i++) {
 				BSPlace place = (BSPlace) player2.getPlace(i, j);
 				if (place.isShipOnPlace()
 						&& player2.getPlace(i, j).isPlaceInGame())

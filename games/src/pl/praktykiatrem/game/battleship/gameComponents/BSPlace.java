@@ -16,7 +16,7 @@ import pl.praktykiatrem.game.uniElements.Place;
  *
  */
 public class BSPlace extends Place {
-	private int shipID;
+	private int shipID = -1;
 	private Ship boat;
 	private boolean shipOnPlace;
 
@@ -42,7 +42,7 @@ public class BSPlace extends Place {
 
 	public void setOnPlace(int id) {
 		shipOnPlace = true;
-		shipID = id;
+		setShipID(id);
 	}
 
 	public boolean isShipOnPlace() {

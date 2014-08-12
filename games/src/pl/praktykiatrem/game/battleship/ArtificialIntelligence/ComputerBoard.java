@@ -10,8 +10,8 @@ public class ComputerBoard {
 		this.gameRules = gameRules;
 		this.board = new int[gameRules.getBoardSizeH()][gameRules
 				.getBoardSizeV()];
-		for (int i = 0; i < gameRules.getBoardSizeH(); i++)
-			for (int j = 0; j < gameRules.getBoardSizeV(); j++)
+		for (int i = 0; i < gameRules.getBoardSizeV(); i++)
+			for (int j = 0; j < gameRules.getBoardSizeH(); j++)
 				board[j][i] = -1;
 	}
 
@@ -60,16 +60,16 @@ public class ComputerBoard {
 	}
 
 	public int getBoard(int x, int y) {
-		if (x >= 0 && x < gameRules.getBoardSizeH() && y >= 0
-				&& y < gameRules.getBoardSizeV())
+		if (x >= 0 && x < gameRules.getBoardSizeV() && y >= 0
+				&& y < gameRules.getBoardSizeH())
 			return board[y][x];
 		else
 			return 0;
 	}
 
 	public void printBoard() {
-		for (int i = 0; i < gameRules.getBoardSizeH(); i++) {
-			for (int j = 0; j < gameRules.getBoardSizeV(); j++)
+		for (int i = 0; i < gameRules.getBoardSizeV(); i++) {
+			for (int j = 0; j < gameRules.getBoardSizeH(); j++)
 				if (board[j][i] == -1)
 					System.out.print("+");
 				else if ((board[j][i] == 0))

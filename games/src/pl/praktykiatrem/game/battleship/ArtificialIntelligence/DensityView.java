@@ -21,10 +21,10 @@ public class DensityView extends JFrame {
 	private double green;
 	private double blue;
 
-	public DensityView(int sizeH, int sizeV) {
+	public DensityView(int sizeV, int sizeH) {
 		this.sizeH = sizeH;
 		this.sizeV = sizeV;
-		densityPanel = new DensityPanel(sizeH, sizeV);
+		densityPanel = new DensityPanel(sizeV, sizeH);
 		initialize();
 	}
 
@@ -32,8 +32,8 @@ public class DensityView extends JFrame {
 	 * Create the frame.
 	 */
 	public void updateView(DensityBoard board) {
-		for (int i = 0; i < sizeH; i++)
-			for (int j = 0; j < sizeV; j++) {
+		for (int i = 0; i < sizeV; i++)
+			for (int j = 0; j < sizeH; j++) {
 				temp = ((double) board.getDensity(i, j)
 						/ (double) board.getMaxDensity() * 255);
 				temp2 = (int) temp;

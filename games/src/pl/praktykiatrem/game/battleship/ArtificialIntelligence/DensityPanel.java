@@ -22,26 +22,26 @@ public class DensityPanel extends JPanel {
 	private int SIZEV;
 	protected ShipButton[][] place;
 
-	public DensityPanel(int sizeH, int sizeV) {
-		super(new GridLayout(sizeH + 1, sizeV + 1));
+	public DensityPanel(int sizeV, int sizeH) {
+		super(new GridLayout(sizeV + 1, sizeH + 1));
 		this.SIZEH = sizeH;
 		this.SIZEV = sizeV;
 		place = new ShipButton[SIZEH][SIZEV];
-		setSize(30 * SIZEH, 30 * SIZEV);
+		setSize(30 * SIZEV, 30 * SIZEH);
 		initializeBoard();
 	}
 
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(30 * SIZEH, 30 * SIZEV);
+		return new Dimension(30 * SIZEV, 30 * SIZEH);
 	}
 
 	public Dimension getMinimumDimension() {
-		return new Dimension(30 * SIZEH, 30 * SIZEV);
+		return new Dimension(30 * SIZEV, 30 * SIZEH);
 	}
 
 	public Dimension getMaximDimension() {
-		return new Dimension(30 * SIZEH, 30 * SIZEV);
+		return new Dimension(30 * SIZEV, 30 * SIZEH);
 	}
 
 	private void initializeBoard() {
@@ -52,9 +52,9 @@ public class DensityPanel extends JPanel {
 
 	private void fillGameBoard() {
 		Insets buttonMargin = new Insets(0, 0, 0, 0);
-		for (int i = 0; i < place.length; i++) {
-			for (int j = 0; j < place[i].length; j++) {
-				ShipButton b = new ShipButton();
+		for (int j = 0; j < place.length; j++) {
+			for (int i = 0; i < place[j].length; i++) {
+				ShipButton b = new ShipButton(false);
 
 				b.setMargin(buttonMargin);
 				ImageIcon icon = new ImageIcon(new BufferedImage(30, 30,
@@ -77,8 +77,8 @@ public class DensityPanel extends JPanel {
 			add(new JLabel("" + i, SwingConstants.CENTER));
 
 		// pierwsza kolumna to SwingConstant cyfry
-		for (int i = 0; i < SIZEH; i++) {
-			for (int j = 0; j < SIZEV; j++) {
+		for (int i = 0; i < SIZEV; i++) {
+			for (int j = 0; j < SIZEH; j++) {
 				switch (j) {
 				case 0:
 					add(new JLabel("" + i, SwingConstants.CENTER));

@@ -150,11 +150,12 @@ public class OriginalRules extends Rules {
 			Direction direction, int x, int y) {
 		BSBoard plansza = (BSBoard) player.getPlansza();
 		if (shipPlacingValidation(plansza, polesNumber, direction, x, y)
-				&& !player.getShip(id).isShipSet()) {
+				&& !player.isShipSet(id)) {
 
 			int x_temp = x;
 			int y_temp = y;
 			player.getShip(id).setShipSet(true);
+			player.getShip(id).setDirection(direction);
 			player.increaseShipsNumber();
 
 			for (int i = 0; i < polesNumber; i++) {
@@ -177,7 +178,7 @@ public class OriginalRules extends Rules {
 			int polesNumber, Direction direction, int x, int y) {
 		BSBoard plansza = player.getPlansza();
 		if (shipDisplacingValidation(plansza, polesNumber, direction, x, y)
-				&& player.getShip(id).isShipSet()) {
+				&& player.isShipSet(id)) {
 			int x_temp = x;
 			int y_temp = y;
 			player.getShip(id).setShipSet(false);

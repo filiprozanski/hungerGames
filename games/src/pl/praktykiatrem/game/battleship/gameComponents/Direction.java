@@ -10,4 +10,13 @@ public enum Direction {
 			return VERTICAL;
 		}
 	}
+
+	public static Direction getOpposite(Direction dir) {
+		if (dir == VERTICAL) {
+			return HORIZONTAL;
+		} else {
+			return VERTICAL;
+		}
+	}
+
 }

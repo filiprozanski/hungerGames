@@ -25,7 +25,7 @@ public class Hard implements IComputer {
 		this.BoardH = game.getBoardSizeH();
 		this.BoardV = game.getBoardSizeV();
 		this.shipTypes = game.getShipTypes();
-		this.densityView = new DensityView(BoardH, BoardV);
+		this.densityView = new DensityView(BoardV, BoardH);
 
 	}
 
@@ -45,12 +45,11 @@ public class Hard implements IComputer {
 			fillHuntDensityBoard();
 		coords = density.getRandomMaxDensityCoords();
 		densityView.updateView(density);
-		System.out.println(shotCounter);
 	}
 
 	private void fillHuntDensityBoard() {
-		for (int i = 0; i < BoardH; i++)
-			for (int j = 0; j < BoardV; j++)
+		for (int i = 0; i < BoardV; i++)
+			for (int j = 0; j < BoardH; j++)
 				if (board.isHit(i, j)) {
 					fillHuntDensityBoardForPoint(i, j);
 				}
@@ -58,8 +57,8 @@ public class Hard implements IComputer {
 
 	private void fillHuntDensityBoardForPoint(int x, int y) {
 		for (int st = 0; st < shipTypes.length; st++)
-			for (int i = 0; i < BoardH; i++)
-				for (int j = 0; j < BoardV; j++) {
+			for (int i = 0; i < BoardV; i++)
+				for (int j = 0; j < BoardH; j++) {
 					if (game.shipPlacingValidation(board, shipTypes[st],
 							Direction.HORIZONTAL, i, j)
 							&& shipContainsPoint(x, y, shipTypes[st],
@@ -77,8 +76,8 @@ public class Hard implements IComputer {
 
 	private void fillTrackDensityBoard() {
 		for (int st = 0; st < shipTypes.length; st++)
-			for (int i = 0; i < BoardH; i++)
-				for (int j = 0; j < BoardV; j++) {
+			for (int i = 0; i < BoardV; i++)
+				for (int j = 0; j < BoardH; j++) {
 					if (game.shipPlacingValidation(board, shipTypes[st],
 							Direction.HORIZONTAL, i, j))
 						density.increaseDensityBoard(i, j, shipTypes[st],

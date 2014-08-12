@@ -15,6 +15,8 @@ public class Ship {
 
 	private boolean shipSet;
 
+	private Direction dir;
+
 	/**
 	 * przechowuje wszystkie koordynaty, na których statek jest umieszczony
 	 */
@@ -106,9 +108,22 @@ public class Ship {
 		return coords;
 	}
 
+	public Coordinates getInitialCoords() {
+		return coords.get(0);
+	}
+
 	void clearShip() {
 		shipSet = false;
 		polesNumber = 0;
 		coords.clear();
 	}
+
+	public Direction getDirection() {
+		return dir;
+	}
+
+	public void setDirection(Direction dir) {
+		this.dir = dir;
+	}
+
 }

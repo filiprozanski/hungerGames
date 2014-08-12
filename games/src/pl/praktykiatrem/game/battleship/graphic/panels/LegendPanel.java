@@ -20,28 +20,42 @@ public class LegendPanel extends JPanel {
 	private static final long serialVersionUID = -5110374745603365105L;
 
 	public LegendPanel() {
-		super(new GridLayout(10, 0));
+		super(new GridLayout(3, 0));
 		setBackground(new Color(135, 206, 235));
 		initialize();
 	}
 
 	private void initialize() {
 		ShipIcons.createImages();
-		// statusLabel.setIcon(ready_icon);
+		JPanel shipsLeft = new JPanel(new GridLayout(2, 0));
+		JPanel legend1 = new JPanel(new GridLayout(3, 0));
+		JPanel legend2 = new JPanel(new GridLayout(3, 0));
 
-		add(new JLabel("Legenda:", JLabel.CENTER));
-		add(new JLabel("Statek", ShipIcons.getShipIcon(1), JLabel.CENTER));
+		shipsLeft.setBackground(new Color(135, 206, 235));
+		legend1.setBackground(new Color(135, 206, 235));
+		legend2.setBackground(new Color(135, 206, 235));
 
-		add(new JLabel("Ustawiony Statek", ShipIcons.getOkIcon(2),
+		// shipsLeft.add(new JLabel("Tutaj bêd± statki przeciwnika"));
+		// shipsLeft.add(new JLabel("Tutaj bêd± statki przeciwnika"));
+		legend1.add(new JLabel("Legenda:", JLabel.CENTER));
+		legend1.add(new JLabel("Statek", ShipIcons.getShipIcon(1),
 				JLabel.CENTER));
 
-		add(new JLabel("Zatopiony Statek", ShipIcons.getStateIcon(0),
+		legend1.add(new JLabel("Ustawiony Statek", ShipIcons.getOkIcon(2),
 				JLabel.CENTER));
 
-		add(new JLabel("Pud³o", ShipIcons.getStateIcon(1), JLabel.CENTER));
-
-		add(new JLabel("Trafiony Statek", ShipIcons.getStateIcon(2),
+		legend2.add(new JLabel("Zatopiony Statek", ShipIcons.getStateIcon(0),
 				JLabel.CENTER));
+
+		legend2.add(new JLabel("Pud³o", ShipIcons.getStateIcon(1),
+				JLabel.CENTER));
+
+		legend2.add(new JLabel("Trafiony Statek", ShipIcons.getStateIcon(2),
+				JLabel.CENTER));
+
+		add(shipsLeft);
+		add(legend1);
+		add(legend2);
 
 	}
 

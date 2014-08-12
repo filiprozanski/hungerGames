@@ -11,8 +11,8 @@ import pl.praktykiatrem.game.uniElements.Board;
  */
 
 public class BSBoard extends Board {
-	public BSBoard(int horizontal, int vertical) {
-		super(horizontal, vertical);
+	public BSBoard(int vertical, int horizontal) {
+		super(vertical, horizontal);
 	}
 
 	public boolean isShipOnPlace(int x, int y) {

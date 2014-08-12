@@ -24,13 +24,6 @@ public class StartGraphicForOnePlayer {
 
 	private int difficultyLevel;
 
-	/*
-	 * public static void main(String[] args) { StartGraphicLocal start = new
-	 * StartGraphicLocal();
-	 * 
-	 * start.initialize(); start.stageA(); }
-	 */
-
 	public StartGraphicForOnePlayer(String name1, String name2,
 			IMenuCallObserver menuObserver, int rulesType, int difficulty) {
 		this.menuObserver = menuObserver;
@@ -41,8 +34,8 @@ public class StartGraphicForOnePlayer {
 	}
 
 	public void initialize(String name1, String name2) {
-		int sizeX = game.getBoardSizeH();
-		int sizeY = game.getBoardSizeV();
+		int sizeX = game.getBoardSizeV();
+		int sizeY = game.getBoardSizeH();
 		int[] shipsType = game.getShipTypes();
 
 		player1 = new BSPlayerStatus(sizeX, sizeY, shipsType);

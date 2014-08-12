@@ -1,15 +1,13 @@
 package pl.praktykiatrem.game.battleship.graphic.listeners;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 
-public class PlaceChoiceListener implements ActionListener {
+public class PlaceChoiceListener implements MouseListener {
 	private int x;
 	private int y;
-	private int freq;
 	private IBoardPlaceObserver observer;
 
 	public PlaceChoiceListener(int x, int y, IBoardPlaceObserver observer) {
@@ -19,9 +17,35 @@ public class PlaceChoiceListener implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent evt) {
-		ShipButton b = (ShipButton) evt.getSource();
-		freq = b.getCallNumber();
-		observer.clicked(x, y, freq);
+	public void mouseClicked(MouseEvent e) {
+		if (e.getButton() == MouseEvent.BUTTON1) {
+			observer.clickedLeft(x, y);
+		} else if (e.getButton() == MouseEvent.BUTTON3) {
+			observer.clickedRight(x, y);
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }

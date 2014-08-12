@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
+import pl.praktykiatrem.game.battleship.graphic.listeners.PlaceChoiceDropListener;
 import pl.praktykiatrem.game.battleship.graphic.listeners.PlaceChoiceListener;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 
@@ -32,20 +33,21 @@ public class BoardGraphicPanel extends JPanel {
 	protected ShipButton[][] place;
 	private IBoardPlaceObserver observer;
 
-	public BoardGraphicPanel(int sizeH, int sizeV) {
-		super(new GridLayout(sizeH + 1, sizeV + 1));
-		initialize(sizeH, sizeV);
-		initializeBoard();
+	public BoardGraphicPanel(int sizeV, int sizeH, boolean dragable) {
+		super(new GridLayout(sizeV + 1, sizeH + 1));
+		initialize(sizeV, sizeH);
+		initializeBoard(dragable);
 	}
 
-	public BoardGraphicPanel(IBoardPlaceObserver observer, int sizeH, int sizeV) {
-		super(new GridLayout(sizeH + 1, sizeV + 1));
+	public BoardGraphicPanel(IBoardPlaceObserver observer, int sizeV,
+			int sizeH, boolean dragable) {
+		super(new GridLayout(sizeV + 1, sizeH + 1));
 		this.observer = observer;
-		initialize(sizeH, sizeV);
-		initializeBoard();
+		initialize(sizeV, sizeH);
+		initializeBoard(dragable);
 	}
 
-	private void initialize(int sizeH, int sizeV) {
+	private void initialize(int sizeV, int sizeH) {
 
 		SIZEH = sizeH;
 		SIZEV = sizeV;
@@ -61,6 +63,17 @@ public class BoardGraphicPanel extends JPanel {
 		place[y][x].setPlaceIcon(type);
 	}
 
+	public void changeStateAllButtons(boolean enable) {
+		for (int i = 0; i < SIZEH; i++) {
+			for (int j = 0; j < SIZEV; j++)
+				place[j][i].setEnabled(enable);
+		}
+	}
+
+	public void disableButton(int x, int y) {
+		place[y][x].setEnabled(false);
+	}
+
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(30 * SIZEH, 30 * SIZEV);
@@ -74,46 +87,27 @@ public class BoardGraphicPanel extends JPanel {
 		return new Dimension(30 * SIZEH, 30 * SIZEV);
 	}
 
-	private void initializeBoard() {
+	private void initializeBoard(boolean dragable) {
 		setBackground(new Color(135, 206, 235));
-		fillGameBoard();
+		fillGameBoard(dragable);
 		drawNumbers();
 	}
 
-	public void changeStateAllButtons(boolean enable) {
-		for (int i = 0; i < SIZEH; i++) {
-			for (int j = 0; j < SIZEV; j++)
-				place[j][i].setEnabled(enable);
-		}
-	}
-
-	public void enableButton(int x, int y) {
-		place[y][x].setEnabled(true);
-	}
-
-	public void disableButton(int x, int y) {
-		place[y][x].setEnabled(false);
-	}
-
-	public void changeButtonCallNumber(int x, int y, int number) {
-		place[y][x].changeCallNumber(number);
-	}
-
-	private void fillGameBoard() {
+	private void fillGameBoard(boolean dragable) {
 		Insets buttonMargin = new Insets(0, 0, 0, 0);
-		for (int i = 0; i < place.length; i++) {
-			for (int j = 0; j < place[i].length; j++) {
-				ShipButton b = new ShipButton();
+		for (int j = 0; j < place.length; j++) {
+			for (int i = 0; i < place[j].length; i++) {
+				ShipButton b = new ShipButton(i, j, dragable, observer);
 
-				if (observer != null)
-					b.addActionListener(new PlaceChoiceListener(i, j, observer));
-
+				if (observer != null) {
+					b.addMouseListener(new PlaceChoiceListener(i, j, observer));
+				}
 				b.setMargin(buttonMargin);
 				ImageIcon icon = new ImageIcon(new BufferedImage(30, 30,
 						BufferedImage.TYPE_INT_ARGB));
 				b.setIcon(icon);
 				b.setBackground(Color.WHITE);
-				// b.setEnabled(false);
+				new PlaceChoiceDropListener(b, i, j, observer);
 				place[j][i] = b;
 			}
 		}
@@ -122,12 +116,12 @@ public class BoardGraphicPanel extends JPanel {
 	private void drawNumbers() {
 		add(new JLabel(""));
 		// pierwszy rz±d cyfr
-		for (int i = 0; i < SIZEH; i++)
+		for (int i = 0; i < SIZEV; i++)
 			add(new JLabel("" + i, SwingConstants.CENTER));
 
 		// pierwsza kolumna to SwingConstant cyfry
-		for (int i = 0; i < SIZEH; i++) {
-			for (int j = 0; j < SIZEV; j++) {
+		for (int i = 0; i < SIZEV; i++) {
+			for (int j = 0; j < SIZEH; j++) {
 				switch (j) {
 				case 0:
 					add(new JLabel("" + i, SwingConstants.CENTER));

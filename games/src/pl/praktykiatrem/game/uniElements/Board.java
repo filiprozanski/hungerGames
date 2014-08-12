@@ -13,12 +13,12 @@ public class Board {
 	protected int horizontalSize;
 	protected int verticalSize;
 
-	public Board(int horizontal, int vertical) {
+	public Board(int vertical, int horizontal) {
 		super();
 		horizontalSize = horizontal;
 		verticalSize = vertical;
 
-		gameBoard = new BSPlace[verticalSize][horizontalSize];
+		gameBoard = new BSPlace[horizontalSize][verticalSize];
 		fillGameBoard();
 	}
 
@@ -58,8 +58,8 @@ public class Board {
 	}
 
 	public void clearBoard() {
-		for (int i = 0; i < gameBoard.length; i++)
-			for (int j = 0; j < gameBoard[i].length; j++)
+		for (int j = 0; j < gameBoard.length; j++)
+			for (int i = 0; i < gameBoard[j].length; i++)
 				resetPlace(i, j);
 	}
 
