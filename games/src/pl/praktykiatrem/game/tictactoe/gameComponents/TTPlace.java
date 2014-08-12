@@ -18,11 +18,16 @@ public class TTPlace extends Place {
 
 	public void setOnPlace(Sign xo) {
 		this.xo = xo;
+		isInGame = false;
 	}
 
 	@Override
-	public void setPlaceClean() {
+	public void resetPlace() {
 		isInGame = true;
 		xo = null;
+	}
+
+	public Sign getSign() {
+		return xo;
 	}
 }

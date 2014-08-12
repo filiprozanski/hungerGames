@@ -10,4 +10,10 @@ public abstract class Rules {
 
 	public abstract boolean makeMove(TTPlayerStatus player, int x, int y);
 
+	public abstract Sign allocateSign();
+
+	public abstract int getBOARDSIZEH();
+
+	public abstract int getBOARDSIZEV();
+
 }

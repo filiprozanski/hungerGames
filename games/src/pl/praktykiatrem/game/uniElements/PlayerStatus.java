@@ -9,6 +9,7 @@ public abstract class PlayerStatus {
 	private static int counter = 100001;
 
 	public PlayerStatus() {
+		gamer = new Player();
 		playerID = counter++;
 	}
 

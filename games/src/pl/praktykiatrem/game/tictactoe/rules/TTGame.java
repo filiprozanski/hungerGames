@@ -12,4 +12,16 @@ public class TTGame {
 	public boolean makeMove(TTPlayerStatus player, int x, int y) {
 		return rules.makeMove(player, x, y);
 	}
+
+	public Sign allocateSign() {
+		return rules.allocateSign();
+	}
+
+	public int getVerticalSize() {
+		return rules.getBOARDSIZEV();
+	}
+
+	public int getHorizontalSize() {
+		return rules.getBOARDSIZEH();
+	}
 }

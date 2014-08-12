@@ -8,7 +8,7 @@ public abstract class Place {
 
 	public abstract boolean isPlaceInGame();
 
-	public abstract void setPlaceClean();
+	public abstract void resetPlace();
 
 	public Place() {
 		super();
