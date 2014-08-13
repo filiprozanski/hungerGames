@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.uniElements;
 
-public abstract class Place {
+public abstract class Place implements Cloneable {
 
 	protected boolean isInGame;
 
@@ -12,6 +12,19 @@ public abstract class Place {
 
 	public Place() {
 		super();
+		isInGame = true;
+	}
+
+	public Place(boolean isInGame) {
+		this.isInGame = isInGame;
+	}
+
+	public Object clone() {
+		try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
 	}
 
 }

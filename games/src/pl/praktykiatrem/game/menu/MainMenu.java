@@ -19,6 +19,8 @@ import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnlineClient;
 import pl.praktykiatrem.game.battleship.rmi.HGClient;
 import pl.praktykiatrem.game.battleship.rmi.IRMIServer;
+import pl.praktykiatrem.game.tictactoe.graphic.StartTicTacToeForOnePlayer;
+import pl.praktykiatrem.game.tictactoe.graphic.StartTicTacToeForTwoPlayers;
 
 /**
  *
@@ -315,12 +317,13 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	}
 
 	private void tttPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		new StartTicTacToeForOnePlayer("Filip", this, getTTTRulesChoice());
+		setVisible(false);
 	}
 
 	private void tttPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		new pl.praktykiatrem.game.tictactoe.graphic.StartGraphicForTwoPlayers(
-				"Filip", "Wiktor", this, getTTTRulesChoice());
+		new StartTicTacToeForTwoPlayers("Filip", "Wiktor", this,
+				getTTTRulesChoice());
 		setVisible(false);
 	}
 

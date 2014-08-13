@@ -3,8 +3,17 @@ package pl.praktykiatrem.game.tictactoe.gameComponents;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 import pl.praktykiatrem.game.uniElements.Place;
 
-public class TTPlace extends Place {
+public class TTPlace extends Place implements Cloneable {
 	private Sign xo;
+
+	public TTPlace() {
+		super();
+	}
+
+	public TTPlace(TTPlace p) {
+		super(p.isPlaceInGame());
+		this.xo = p.getSign();
+	}
 
 	@Override
 	public void takeOut() {
@@ -29,5 +38,10 @@ public class TTPlace extends Place {
 
 	public Sign getSign() {
 		return xo;
+	}
+
+	@Override
+	public Object clone() {
+		return super.clone();
 	}
 }

@@ -3,13 +3,25 @@ package pl.praktykiatrem.game.tictactoe.gameComponents;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 import pl.praktykiatrem.game.uniElements.Board;
 
-public class TTBoard extends Board {
+public class TTBoard extends Board implements Cloneable {
 	private TTPlace[][] gameBoard;
 
 	public TTBoard(int horizontal, int vertical) {
 		super(horizontal, vertical);
 		gameBoard = new TTPlace[horizontal][vertical];
 		fillGameBoard();
+	}
+
+	public TTBoard(TTBoard b) {
+		super(b.getHorizontalSize(), b.getVerticalSize());
+		gameBoard = new TTPlace[b.getHorizontalSize()][b.getVerticalSize()];
+
+		TTPlace[][] cBoard = b.getGameBoard();
+
+		for (int i = 0; i < gameBoard.length; i++)
+			for (int j = 0; j < gameBoard[i].length; j++) {
+				gameBoard[i][j] = new TTPlace(cBoard[i][j]);
+			}
 	}
 
 	private void fillGameBoard() {
@@ -43,5 +55,14 @@ public class TTBoard extends Board {
 
 	public Sign getSign(int x, int y) {
 		return gameBoard[x][y].getSign();
+	}
+
+	public TTPlace[][] getGameBoard() {
+		return gameBoard;
+	}
+
+	@Override
+	public Object clone() {
+		return super.clone();
 	}
 }
