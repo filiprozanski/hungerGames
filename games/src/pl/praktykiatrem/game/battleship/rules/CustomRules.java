@@ -14,8 +14,8 @@ import pl.praktykiatrem.game.uniElements.enums.Direction;
  */
 public class CustomRules extends Rules {
 
-	private final int BOARDSIZE_H = 10;
-	private final int BOARDSIZE_V = 10;
+	private final int BOARDSIZE_H = 11;
+	private final int BOARDSIZE_V = 12;
 	private final int SHIPTYPES[] = { 5, 5, 5 };
 
 	public int getBoardSize_H() {
