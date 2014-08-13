@@ -20,15 +20,15 @@ public class TTGame {
 	}
 
 	public int getVerticalSize() {
-		return rules.getBOARDSIZEV();
+		return rules.getBoardSizeV();
 	}
 
 	public int getHorizontalSize() {
-		return rules.getBOARDSIZEH();
+		return rules.getBoardSizeH();
 	}
 
 	public int getButtonSize() {
-		return rules.getBUTTONSIZE();
+		return rules.getButtonSize();
 	}
 
 	public TTBoard getBoard() {

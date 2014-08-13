@@ -22,7 +22,7 @@ public class StartTicTacToeForOnePlayer implements IController, IDialogOwner {
 	private TTPlayerStatus player1;
 	private TTPlayerStatus player2;
 	private TTPlayerStatus currentPlayer;
-	private TTTDifficulty john;
+	private TTTDifficulty dummy;
 	private TTGame g;
 	private GamePresenter pres;
 	private IMenuCallObserver menuObserver;
@@ -42,10 +42,10 @@ public class StartTicTacToeForOnePlayer implements IController, IDialogOwner {
 
 		switch (dif) {
 		case EASY:
-			john = new TTTEasy(g.getRules(), player2);
+			dummy = new TTTEasy(g.getRules(), player2);
 			break;
 		case MEDIUM:
-			john = new TTTMedium(g.getRules(), player2);
+			dummy = new TTTMedium(g.getRules(), player2);
 			break;
 		}
 
@@ -88,7 +88,7 @@ public class StartTicTacToeForOnePlayer implements IController, IDialogOwner {
 	public void changePlayer() {
 		if (currentPlayer == player1) {
 			currentPlayer = player2;
-			Coordinates c = john.getMove();
+			Coordinates c = dummy.getMove();
 			makeMove(c.getX(), c.getY());
 		} else
 			currentPlayer = player1;

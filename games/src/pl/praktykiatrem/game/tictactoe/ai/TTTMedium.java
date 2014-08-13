@@ -1,15 +1,15 @@
 package pl.praktykiatrem.game.tictactoe.ai;
 
+//https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaGame_TicTacToe_AI.html
+
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTBoard;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlace;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
-import pl.praktykiatrem.game.tictactoe.rules.CustomRules;
 import pl.praktykiatrem.game.tictactoe.rules.Rules;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
-import pl.praktykiatrem.game.uniElements.enums.GameState;
 
 public class TTTMedium implements TTTDifficulty {
 	private TTPlayerStatus computer;
@@ -28,60 +28,60 @@ public class TTTMedium implements TTTDifficulty {
 	}
 
 	public Coordinates getMove() {
-		currentPlayer = computer;
-		int index;
-		ArrayList<Coordinates> moves = new ArrayList<Coordinates>();
-		getPossibleMoves(rules.getActualBoard(), moves);
-
-		scores = computeMove(rules, 0);
-
-		for (int i = 0; i < scores.size(); i++) {
-			if (scores.contains(10 + i)) {
-				index = scores.indexOf(new Integer(10 + i));
-				return moves.get(index);
-			}
-		}
-
-		if (scores.contains(0)) {
-			index = scores.indexOf(new Integer(0));
-			return moves.get(index);
-		} else
-			return moves.get(0);
+		Coordinates result = computeMove(rules.getActualBoard(), 5, computer);
+		return result;
 
 	}
 
-	private ArrayList<Integer> computeMove(Rules rules, int depth) {
+	private Coordinates computeMove(TTBoard board, int depth,
+			TTPlayerStatus currentPlayer) {
+
 		ArrayList<Integer> internalScores = new ArrayList<Integer>();
-		ArrayList<Coordinates> internalMoves = new ArrayList<Coordinates>();
-		int myDepth = depth++;
-		CustomRules temp = (CustomRules) rules;
-		Rules myRules = new CustomRules(temp);
+		ArrayList<Coordinates> nextMoves = new ArrayList<Coordinates>();
 
-		getPossibleMoves(myRules.getActualBoard(), internalMoves);
+		TTBoard myBoard = new TTBoard(board);
+		TTPlace[][] gameBoard = myBoard.getGameBoard();
+		LineChecker check = new LineChecker(computer.getSign(),
+				player.getSign(), rules.getSignsToWin());
 
-		for (int i = 0; i < internalMoves.size(); i++) {
-			Coordinates coord = internalMoves.get(i);
-			GameState result = myRules.makeMove(currentPlayer, coord.getX(),
-					coord.getY());
-			if (result == GameState.WINNER && currentPlayer == computer) {
-				internalScores.add(10);
-			} else if (result == GameState.WINNER && currentPlayer != computer) {
-				internalScores.add(-10);
-			} else if (result == GameState.DRAW) {
-				internalScores.add(0);
-			} else if (result == GameState.GAME) {
-				changePlayer();
-				ArrayList<Integer> list = computeMove(myRules, myDepth);
-				if (list.contains(-10))
-					internalScores.add(-10);
-				else if (list.contains(0))
-					internalScores.add(0);
-				else
-					internalScores.add(10 + myDepth);
+		getPossibleMoves(myBoard, nextMoves);
+
+		int bestScore = 0;
+		int currentScore = 0;
+		Coordinates best = new Coordinates(-1, -1);
+
+		if (currentPlayer == computer)
+			bestScore = Integer.MIN_VALUE;
+		else if (currentPlayer == player)
+			bestScore = Integer.MAX_VALUE;
+
+		if (nextMoves.isEmpty() || depth == 0)
+			bestScore = check.evaluateCoords(gameBoard);
+		else {
+			for (Coordinates move : nextMoves) {
+				int x = move.getX();
+				int y = move.getY();
+
+				myBoard.setSign(currentPlayer.getSign(), x, y);
+
+				if (currentPlayer == computer) {
+					currentScore = computeMove(myBoard, depth - 1, player)
+							.getX();
+					if (currentScore > bestScore) {
+						bestScore = currentScore;
+						best = move;
+					}
+				} else {
+					currentScore = computeMove(myBoard, depth - 1, computer)
+							.getX();
+					if (currentScore < bestScore) {
+						bestScore = currentScore;
+						best = move;
+					}
+				}
 			}
 		}
-
-		return internalScores;
+		return best;
 	}
 
 	private void changePlayer() {
@@ -100,5 +100,4 @@ public class TTTMedium implements TTTDifficulty {
 					moves.add(tab);
 				}
 	}
-
 }

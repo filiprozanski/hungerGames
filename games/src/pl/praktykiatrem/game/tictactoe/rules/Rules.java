@@ -4,7 +4,7 @@ import pl.praktykiatrem.game.tictactoe.gameComponents.TTBoard;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.GameState;
 
-public abstract class Rules implements Cloneable {
+public abstract class Rules {
 
 	public Rules() {
 		super();
@@ -14,19 +14,13 @@ public abstract class Rules implements Cloneable {
 
 	public abstract Sign allocateSign();
 
-	public abstract int getBOARDSIZEH();
+	public abstract int getBoardSizeH();
 
-	public abstract int getBOARDSIZEV();
+	public abstract int getBoardSizeV();
 
-	public abstract int getBUTTONSIZE();
+	public abstract int getButtonSize();
+
+	public abstract int getSignsToWin();
 
 	public abstract TTBoard getActualBoard();
-
-	public Object clone() {
-		try {
-			return super.clone();
-		} catch (CloneNotSupportedException e) {
-			return null;
-		}
-	}
 }
