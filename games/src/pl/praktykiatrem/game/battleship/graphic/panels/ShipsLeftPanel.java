@@ -15,11 +15,11 @@ import pl.praktykiatrem.game.battleship.files.ShipIcons;
  * @author Filip Ró¿añski
  *
  */
-public class LegendPanel extends JPanel {
+public class ShipsLeftPanel extends JPanel {
 
 	private static final long serialVersionUID = -5110374745603365105L;
 
-	public LegendPanel() {
+	public ShipsLeftPanel() {
 		super(new GridLayout(3, 0));
 		setBackground(new Color(135, 206, 235));
 		initialize();
@@ -27,19 +27,17 @@ public class LegendPanel extends JPanel {
 
 	private void initialize() {
 		ShipIcons.createImages();
-		JPanel instruciton = new JPanel(new GridLayout(1, 0));
+		JPanel shipsLeft = new JPanel();
 		JPanel legend1 = new JPanel(new GridLayout(3, 0));
 		JPanel legend2 = new JPanel(new GridLayout(3, 0));
 
-		instruciton.setBackground(new Color(135, 206, 235));
+		shipsLeft.setBackground(new Color(135, 206, 235));
 		legend1.setBackground(new Color(135, 206, 235));
 		legend2.setBackground(new Color(135, 206, 235));
 
-		String instruction = "<html><p>Ustawianie statku na planszy - przeci±gni go <b>prawym</b> przyciskiem myszy na plansze.</p>"
-				+ "<p>Obracanie statku - klikni na niego <b>prawym</b> przyciskiem myszy.</p>"
-				+ "<p>Usuwanie statku, klikni na niego <b>lewym</b> przyciskiem myszy.</p></html>";
+		for (int i = 0; i < 8; i++)
+			shipsLeft.add(new JLabel(ShipIcons.getShipIcon(i, 3, null)));
 
-		instruciton.add(new JLabel(instruction));
 		legend1.add(new JLabel("Legenda:", JLabel.CENTER));
 		legend1.add(new JLabel("Statek", ShipIcons.getShipIcon(1),
 				JLabel.CENTER));
@@ -56,7 +54,7 @@ public class LegendPanel extends JPanel {
 		legend2.add(new JLabel("Trafiony Statek", ShipIcons.getStateIcon(2),
 				JLabel.CENTER));
 
-		add(instruciton);
+		add(shipsLeft);
 		add(legend1);
 		add(legend2);
 
