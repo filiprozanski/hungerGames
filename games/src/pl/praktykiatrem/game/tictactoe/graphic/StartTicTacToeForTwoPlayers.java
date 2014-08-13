@@ -5,6 +5,8 @@ import java.awt.Frame;
 import pl.praktykiatrem.game.battleship.files.TTIcons;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
+import pl.praktykiatrem.game.tictactoe.graphic.interfaces.IController;
+import pl.praktykiatrem.game.tictactoe.graphic.interfaces.IDialogOwner;
 import pl.praktykiatrem.game.tictactoe.rules.TTGame;
 
 public class StartTicTacToeForTwoPlayers implements IController, IDialogOwner {

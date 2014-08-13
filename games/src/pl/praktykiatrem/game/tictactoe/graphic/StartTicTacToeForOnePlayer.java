@@ -7,6 +7,8 @@ import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 import pl.praktykiatrem.game.tictactoe.TTTEasy;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
+import pl.praktykiatrem.game.tictactoe.graphic.interfaces.IController;
+import pl.praktykiatrem.game.tictactoe.graphic.interfaces.IDialogOwner;
 import pl.praktykiatrem.game.tictactoe.rules.TTGame;
 
 public class StartTicTacToeForOnePlayer implements IController, IDialogOwner {
