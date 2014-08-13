@@ -16,7 +16,7 @@ public class BSBoard extends Board {
 
 	public BSBoard(int vertical, int horizontal) {
 		super(vertical, horizontal);
-		gameBoard = new BSPlace[verticalSize][horizontalSize];
+		gameBoard = new BSPlace[horizontalSize][verticalSize];
 		fillGameBoard();
 	}
 
@@ -52,8 +52,8 @@ public class BSBoard extends Board {
 	}
 
 	public void clearBoard() {
-		for (int i = 0; i < gameBoard.length; i++)
-			for (int j = 0; j < gameBoard[i].length; j++)
+		for (int j = 0; j < gameBoard.length; j++)
+			for (int i = 0; i < gameBoard[j].length; i++)
 				resetPlace(i, j);
 	}
 

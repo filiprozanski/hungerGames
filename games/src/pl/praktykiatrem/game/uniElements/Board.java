@@ -5,7 +5,7 @@ public abstract class Board implements Cloneable {
 	protected int horizontalSize;
 	protected int verticalSize;
 
-	public Board(int horizontal, int vertical) {
+	public Board(int vertical, int horizontal) { // zamieniona kolejno¶æ
 		super();
 		horizontalSize = horizontal;
 		verticalSize = vertical;

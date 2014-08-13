@@ -33,10 +33,10 @@ public class PlaceChoiceDropListener extends DropTargetAdapter {
 	public void drop(DropTargetDropEvent event) {
 		try {
 			Transferable tr = event.getTransferable();
-			int id = (int) tr.getTransferData(TransferableId.idFlavor);
+			int id = (int) tr.getTransferData(ListenerClipboard.idFlavor);
 			Direction dir = (Direction) tr
-					.getTransferData(TransferableId.dirFlavor);
-			if (event.isDataFlavorSupported(TransferableId.idFlavor)) {
+					.getTransferData(ListenerClipboard.dirFlavor);
+			if (event.isDataFlavorSupported(ListenerClipboard.idFlavor)) {
 				event.acceptDrop(DnDConstants.ACTION_COPY);
 				observer.dropShip(id, x, y, dir);
 				event.dropComplete(true);

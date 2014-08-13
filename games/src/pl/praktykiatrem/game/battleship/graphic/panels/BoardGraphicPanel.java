@@ -64,8 +64,8 @@ public class BoardGraphicPanel extends JPanel {
 	}
 
 	public void changeStateAllButtons(boolean enable) {
-		for (int i = 0; i < SIZEH; i++) {
-			for (int j = 0; j < SIZEV; j++)
+		for (int i = 0; i < SIZEV; i++) {
+			for (int j = 0; j < SIZEH; j++)
 				place[j][i].setEnabled(enable);
 		}
 	}
@@ -101,6 +101,7 @@ public class BoardGraphicPanel extends JPanel {
 
 				if (observer != null) {
 					b.addMouseListener(new PlaceChoiceListener(i, j, observer));
+					b.addActionListener(new PlaceChoiceListener(i, j, observer));
 				}
 				b.setMargin(buttonMargin);
 				ImageIcon icon = new ImageIcon(new BufferedImage(30, 30,
@@ -115,21 +116,17 @@ public class BoardGraphicPanel extends JPanel {
 
 	private void drawNumbers() {
 		add(new JLabel(""));
-		// pierwszy rz±d cyfr
-		for (int i = 0; i < SIZEV; i++)
+		// pierwszy wiersz cyfr
+		for (int i = 0; i < SIZEH; i++)
 			add(new JLabel("" + i, SwingConstants.CENTER));
 
-		// pierwsza kolumna to SwingConstant cyfry
-		for (int i = 0; i < SIZEV; i++) {
-			for (int j = 0; j < SIZEH; j++) {
-				switch (j) {
-				case 0:
+		// pierwsza kolumna to SwingConstant cyfr
+		for (int i = 0; i < SIZEV; i++)
+			for (int j = 0; j < SIZEH + 1; j++)
+				if (j == 0)
 					add(new JLabel("" + i, SwingConstants.CENTER));
-				default:
-					add(place[j][i]);
-				}
-			}
-		}
+				else
+					add(place[j - 1][i]);
 	}
 
 	public void changePlaceStateIcon(int x, int y, int type) {

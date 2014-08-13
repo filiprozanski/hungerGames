@@ -40,9 +40,9 @@ public class ShipIcons {
 
 	/**
 	 * 
-	 * Metoda <code>createImages</code>
+	 * Metoda <code>createColors</code>
 	 * 
-	 * wype³nia tablicê obrazami
+	 * wype³nia tablicê colorów kolorami
 	 *
 	 */
 	public static final void createColors(int wieViel) {
@@ -64,17 +64,31 @@ public class ShipIcons {
 			colors[i] = Rand.getRandColor();
 	}
 
+	/**
+	 * 
+	 * Metoda <code>createImages</code>
+	 * 
+	 * wype³nia tablicê stateIcons oraz zmienne okIcon i defaultShipIcon grafik±
+	 *
+	 */
 	public static final void createImages() {
 		try {
 			stateIcons[0] = new ImageIcon(
-					ShipIcons.class.getResource("\\stateIcons\\8.png"));
+					ShipIcons.class.getResource("\\stateIcons\\8.png"));// statek
+																		// zatopiony
 			stateIcons[1] = new ImageIcon(
-					ShipIcons.class.getResource("\\stateIcons\\9.png"));
+					ShipIcons.class.getResource("\\stateIcons\\9.png"));// pud³o
 			stateIcons[2] = new ImageIcon(
-					ShipIcons.class.getResource("\\stateIcons\\10.png"));
-			okIcon = new ImageIcon(ShipIcons.class.getResource("ok1.png"));
+					ShipIcons.class.getResource("\\stateIcons\\10.png"));// statek
+																			// w
+																			// ogniu
+			okIcon = new ImageIcon(ShipIcons.class.getResource("ok.png"));// zielone
+																			// kó³ko
+																			// OK
 			defaultShipIcon = new ImageIcon(
-					ShipIcons.class.getResource("default.png"));
+					ShipIcons.class.getResource("default.png"));// statek bez
+																// narysowanego
+																// ¿agla
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -85,14 +99,17 @@ public class ShipIcons {
 	 * 
 	 * Metoda <code>getOkIcon</code>
 	 * 
-	 * zwraca ikonê "ok"
+	 * zwraca ikonê statku z ikon± OK
 	 *
 	 * @param type
+	 * @param horizontal
+	 * @param shipTypes
 	 * @return ikona ok
 	 */
-	public static ImageIcon getOkIcon(int type) {
+	public static ImageIcon getOkIcon(int type, int shipTypes, Direction dir) {
 
-		final BufferedImage img1 = iconToBufferedImage(getShipIcon(type));
+		final BufferedImage img1 = iconToBufferedImage(getShipIcon(type,
+				shipTypes, dir));
 		final BufferedImage img2 = iconToBufferedImage(okIcon);
 		final BufferedImage combinedImage = new BufferedImage(img1.getWidth()
 				+ img2.getWidth(),
@@ -105,6 +122,15 @@ public class ShipIcons {
 		return new ImageIcon(combinedImage);
 	}
 
+	/**
+	 * 
+	 * Metoda <code>shipDrawIcon</code>
+	 * 
+	 * rysuje na default.png ¿agiel o kolorze (type) i zwraca ikone statku
+	 *
+	 * @param type
+	 * @return ikona ok
+	 */
 	private static ImageIcon shipDrawIcon(int type) {
 		final BufferedImage img1 = iconToBufferedImage(defaultShipIcon);
 		final BufferedImage img2 = new BufferedImage(15, 15,
@@ -131,9 +157,9 @@ public class ShipIcons {
 	 * 
 	 * Metoda <code>iconToBufferedImage</code>
 	 * 
-	 * Wiktor, czy móg³bym prosiæ Ciê o komentarz? ;*
+	 * konwertuje ikone do typu BufferedImage
 	 *
-	 * @param IconPainting
+	 * @param Icon
 	 * @return i tu te¿
 	 */
 	public static BufferedImage iconToBufferedImage(Icon icon) {
@@ -158,11 +184,29 @@ public class ShipIcons {
 		return shipDrawIcon(type);
 	}
 
+	/**
+	 * 
+	 * Metoda <code>getShipImage</code>
+	 *
+	 * @param type
+	 *            okre¶la typ ikony
+	 * @param polesNumber
+	 *            okre¶la ilosæ masztów
+	 * @param dir
+	 *            okre¶la kierunek masztów
+	 * @return obraz statków o okre¶lonej ilo¶ci masztów i kierunku
+	 */
+	public static ImageIcon getShipIcon(int type, int polesNumber, Direction dir) {
+		return new ImageIcon(getShipImage(type, polesNumber, dir));
+	}
+
 	public static BufferedImage getShipImage(int type, int polesNumber,
 			Direction dir) {
 
 		final BufferedImage img = iconToBufferedImage(shipDrawIcon(type));
 		final BufferedImage combinedImage;
+		if (dir == null)
+			dir = Direction.HORIZONTAL;
 		if (dir == Direction.HORIZONTAL)
 			combinedImage = new BufferedImage(img.getWidth() * polesNumber,
 					img.getHeight(), BufferedImage.TYPE_INT_ARGB);

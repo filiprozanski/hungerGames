@@ -38,10 +38,7 @@ public class ShipChoiceDragListener implements DragGestureListener {
 		}
 		if (polesNumber > 0)
 			event.startDrag(null,
-					ShipIcons.getShipImage(id + 1, polesNumber, dir), // dodaæ
-																		// dir
-																		// do
-																		// ikon
-					new Point(15, 15), new TransferableId(id, dir), null);
+					ShipIcons.getShipImage(id + 1, polesNumber, dir),
+					new Point(15, 15), new ListenerClipboard(id, dir), null);
 	}
 }

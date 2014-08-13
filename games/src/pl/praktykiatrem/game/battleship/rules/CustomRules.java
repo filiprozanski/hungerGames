@@ -12,7 +12,6 @@ import pl.praktykiatrem.game.battleship.gameComponents.Direction;
  * @author Filip Ró¿añski
  *
  */
-
 public class CustomRules extends Rules {
 
 	private final int BOARDSIZE_H = 10;
@@ -66,6 +65,7 @@ public class CustomRules extends Rules {
 	@Override
 	public boolean shipPlacingValidation(BSBoard plansza, int polesNumber,
 			Direction dir, int x, int y) {
+
 		if (dir == Direction.HORIZONTAL) {
 			if (y + polesNumber > BOARDSIZE_H)
 				return false;
@@ -89,6 +89,7 @@ public class CustomRules extends Rules {
 
 	public boolean shipPlacingValidation(ComputerBoard board, int polesNumber,
 			Direction dir, int x, int y) {
+
 		if (dir == Direction.HORIZONTAL) {
 			if (y + polesNumber > BOARDSIZE_H)
 				return false;
@@ -148,6 +149,7 @@ public class CustomRules extends Rules {
 			player.getShip(id).setShipSet(true);
 			player.getShip(id).setDirection(direction);
 			player.increaseShipsNumber();
+
 			for (int i = 0; i < polesNumber; i++) {
 				if (direction == Direction.HORIZONTAL)
 					y_temp = y + i;

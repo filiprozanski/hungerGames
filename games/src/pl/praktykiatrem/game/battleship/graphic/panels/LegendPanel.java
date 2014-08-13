@@ -41,8 +41,8 @@ public class LegendPanel extends JPanel {
 		legend1.add(new JLabel("Statek", ShipIcons.getShipIcon(1),
 				JLabel.CENTER));
 
-		legend1.add(new JLabel("Ustawiony Statek", ShipIcons.getOkIcon(2),
-				JLabel.CENTER));
+		legend1.add(new JLabel("Ustawiony Statek", ShipIcons.getOkIcon(2, 1,
+				null), JLabel.CENTER));
 
 		legend2.add(new JLabel("Zatopiony Statek", ShipIcons.getStateIcon(0),
 				JLabel.CENTER));

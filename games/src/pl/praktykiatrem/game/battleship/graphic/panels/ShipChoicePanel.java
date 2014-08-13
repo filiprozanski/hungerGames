@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
+import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 
@@ -23,11 +24,13 @@ public class ShipChoicePanel extends JPanel {
 	private IBoardPlaceObserver observer;
 
 	private ArrayList<ShipButton> ships;
+	private int[] shipTypes;
 
 	public ShipChoicePanel(IBoardPlaceObserver observer, int[] shipsTypes) {
 		super(new GridLayout(shipsTypes.length, 0));
 		ships = new ArrayList<ShipButton>();
 		this.observer = observer;
+		this.shipTypes = shipsTypes;
 		initialize(shipsTypes);
 	}
 
@@ -35,10 +38,9 @@ public class ShipChoicePanel extends JPanel {
 		ShipIcons.createImages();
 		ShipIcons.createColors(shipTypes.length);
 		for (int i = 0; i < shipTypes.length; i++) {
-			ships.add(new ShipButton("Liczba masztow: " + shipTypes[i], i,
-					ShipIcons.getShipIcon(i + 1), observer));
+			ships.add(new ShipButton(" ", i, ShipIcons.getShipIcon(i + 1,
+					shipTypes[i], Direction.HORIZONTAL), observer));
 			ships.get(i).setContentAreaFilled(false);
-			// new ShipChoiceDragListener(ships.get(i));
 		}
 		setBackground(new Color(135, 206, 235));
 
@@ -58,9 +60,13 @@ public class ShipChoicePanel extends JPanel {
 
 	public void setOkIconShipButton(int id, boolean ok) {
 		if (ok == true) {
-			ships.get(id).setIcon(ShipIcons.getOkIcon(id + 1));
+			ships.get(id).setIcon(ShipIcons.getOkIcon(id + 1, 1, null));
+			ships.get(id)
+					.setText("Ustawi³e¶ " + shipTypes[id] + " masztowiec.");
 		} else {
-			ships.get(id).setIcon(ShipIcons.getShipIcon(id + 1));
+			ships.get(id).setIcon(
+					ShipIcons.getShipIcon(id + 1, shipTypes[id], null));
+			ships.get(id).setText("");
 		}
 
 	}

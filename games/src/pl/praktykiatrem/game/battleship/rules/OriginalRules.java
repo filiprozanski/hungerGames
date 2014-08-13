@@ -5,7 +5,6 @@ import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
-import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 /**
  * klasa opisuj¹ca wszystkie zasady gry
@@ -14,6 +13,37 @@ import pl.praktykiatrem.game.uniElements.PlayerStatus;
  *
  */
 public class OriginalRules extends Rules {
+
+	private final int BOARDSIZE_H = 10;
+	private final int BOARDSIZE_V = 10;
+	private final int SHIPTYPES[] = { 6, 4, 4, 3, 3, 2, 2 };
+
+	public int getBoardSize_H() {
+		return BOARDSIZE_H;
+	}
+
+	public int getBoardSize_V() {
+		return BOARDSIZE_V;
+	}
+
+	public int[] getShipTypes() {
+		return SHIPTYPES;
+	}
+
+	public int getShipsNumber() {
+		return SHIPTYPES.length;
+	}
+
+	public int getShipTypes(int id) {
+		return SHIPTYPES[id];
+	}
+
+	private final GameConstants constants = new GameConstants(BOARDSIZE_V,
+			BOARDSIZE_H, SHIPTYPES);
+
+	public GameConstants getConstants() {
+		return constants;
+	}
 
 	private boolean putShipOnPlace(BSBoard plansza, int id, int x, int y) {
 		if (!plansza.isShipOnPlace(x, y)) {
@@ -32,17 +62,18 @@ public class OriginalRules extends Rules {
 			return false;
 	}
 
+	@Override
 	public boolean shipPlacingValidation(BSBoard plansza, int polesNumber,
 			Direction dir, int x, int y) {
-		int x_temp = 0;
-		int y_temp = 0;
 		if (dir == Direction.HORIZONTAL) {
-			if (y + polesNumber > BOARDSIZE_V)
+			if (y + polesNumber > BOARDSIZE_H)
 				return false;
 		} else if (dir == Direction.VERTICAL) {
-			if (x + polesNumber > BOARDSIZE_H)
+			if (x + polesNumber > BOARDSIZE_V)
 				return false;
 		}
+		int x_temp = 0;
+		int y_temp = 0;
 		if (dir == Direction.HORIZONTAL) {
 			for (int i = 0; i < polesNumber + 2; i++) {
 				for (int j = 0; j < 3; j++) {
@@ -71,15 +102,17 @@ public class OriginalRules extends Rules {
 
 	public boolean shipPlacingValidation(ComputerBoard board, int polesNumber,
 			Direction dir, int x, int y) {
-		int x_temp = 0;
-		int y_temp = 0;
+
 		if (dir == Direction.HORIZONTAL) {
-			if (y + polesNumber > BOARDSIZE_V)
+			if (y + polesNumber > BOARDSIZE_H)
 				return false;
 		} else if (dir == Direction.VERTICAL) {
-			if (x + polesNumber > BOARDSIZE_H)
+			if (x + polesNumber > BOARDSIZE_V)
 				return false;
 		}
+
+		int x_temp = 0;
+		int y_temp = 0;
 
 		if (dir == Direction.HORIZONTAL) {
 			for (int i = 0; i < polesNumber + 2; i++) {
@@ -118,17 +151,17 @@ public class OriginalRules extends Rules {
 				}
 			}
 		}
-
 		return true;
 	}
 
+	@Override
 	public boolean shipDisplacingValidation(BSBoard plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
-			if (y + polesNumber > BOARDSIZE_V)
+			if (y + polesNumber > BOARDSIZE_H)
 				return false;
 		} else if (dir == Direction.VERTICAL) {
-			if (x + polesNumber > BOARDSIZE_H)
+			if (x + polesNumber > BOARDSIZE_V)
 				return false;
 		}
 		if (dir == Direction.HORIZONTAL) {
@@ -182,6 +215,7 @@ public class OriginalRules extends Rules {
 			int x_temp = x;
 			int y_temp = y;
 			player.getShip(id).setShipSet(false);
+			player.getShip(id).setDirection(Direction.HORIZONTAL);
 			player.decreaseShipsNumber();
 			for (int i = 0; i < polesNumber; i++) {
 				if (direction == Direction.HORIZONTAL)
@@ -215,10 +249,5 @@ public class OriginalRules extends Rules {
 			} else
 				return 0;
 		}
-	}
-
-	@Override
-	public void resetGame(PlayerStatus player) {
-		player.resetStatus();
 	}
 }

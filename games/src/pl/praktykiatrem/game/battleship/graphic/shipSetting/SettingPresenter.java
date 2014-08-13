@@ -180,7 +180,9 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	public void dropShip(int id, int x, int y, Direction dir) {
 		int temp_x = -1;
 		int temp_y = -1;
+		boolean wasSet = false;
 		if (player.isShipSet(id)) {
+			wasSet = true;
 			temp_x = player.getShip(id).getInitialCoords().getX();
 			temp_y = player.getShip(id).getInitialCoords().getY();
 			displaceShip(id);
@@ -188,8 +190,16 @@ public class SettingPresenter extends UnicastRemoteObject implements
 		if (controller.placeShips(player, id, gameConstants.getShipTypes()[id],
 				dir, x, y))
 			placeShipsOnView(x, y, dir, id, gameConstants.getShipTypes()[id]);
+
 		else if (controller.placeShips(player, id,
-				gameConstants.getShipTypes()[id], dir, temp_x, temp_y))
+				gameConstants.getShipTypes()[id], Direction.getOpposite(dir),
+				x, y))
+			placeShipsOnView(x, y, Direction.getOpposite(dir), id,
+					gameConstants.getShipTypes()[id]);
+
+		else if (wasSet
+				&& controller.placeShips(player, id,
+						gameConstants.getShipTypes()[id], dir, temp_x, temp_y))
 			placeShipsOnView(temp_x, temp_y, dir, id,
 					gameConstants.getShipTypes()[id]);
 	}
