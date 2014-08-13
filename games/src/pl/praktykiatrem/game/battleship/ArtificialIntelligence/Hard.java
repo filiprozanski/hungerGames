@@ -3,8 +3,8 @@ package pl.praktykiatrem.game.battleship.ArtificialIntelligence;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public class Hard implements IComputer {
 	private ComputerBoard board;

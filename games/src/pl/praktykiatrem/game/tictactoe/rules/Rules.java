@@ -2,7 +2,7 @@ package pl.praktykiatrem.game.tictactoe.rules;
 
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTBoard;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
-import pl.praktykiatrem.game.tictactoe.graphic.GameState;
+import pl.praktykiatrem.game.uniElements.enums.GameState;
 
 public abstract class Rules implements Cloneable {
 

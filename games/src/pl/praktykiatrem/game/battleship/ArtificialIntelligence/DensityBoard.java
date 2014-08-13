@@ -1,9 +1,9 @@
 package pl.praktykiatrem.game.battleship.ArtificialIntelligence;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.Rand;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public class DensityBoard {
 	private Game game;

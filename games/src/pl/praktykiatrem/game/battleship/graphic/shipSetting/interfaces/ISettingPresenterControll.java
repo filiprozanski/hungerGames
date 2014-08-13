@@ -3,7 +3,7 @@ package pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public interface ISettingPresenterControll extends Remote {
 	public void resetBoard() throws RemoteException;

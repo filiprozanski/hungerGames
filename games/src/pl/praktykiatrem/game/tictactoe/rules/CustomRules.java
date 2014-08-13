@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTBoard;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
-import pl.praktykiatrem.game.tictactoe.graphic.GameState;
+import pl.praktykiatrem.game.uniElements.enums.GameState;
 
 public class CustomRules extends Rules implements Cloneable {
 	private final int BOARDSIZEH = 3;

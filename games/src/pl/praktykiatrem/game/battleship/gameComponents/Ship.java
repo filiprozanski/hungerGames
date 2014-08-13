@@ -2,6 +2,8 @@ package pl.praktykiatrem.game.battleship.gameComponents;
 
 import java.util.ArrayList;
 
+import pl.praktykiatrem.game.uniElements.enums.Direction;
+
 /**
  * reprezentuje statek ustawiany na planszy
  * 

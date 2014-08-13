@@ -7,9 +7,9 @@ import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public class ShipChoiceDragListener implements DragGestureListener {
 	IBoardPlaceObserver observer;

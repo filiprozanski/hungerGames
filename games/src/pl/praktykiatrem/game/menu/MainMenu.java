@@ -19,8 +19,10 @@ import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnlineClient;
 import pl.praktykiatrem.game.battleship.rmi.HGClient;
 import pl.praktykiatrem.game.battleship.rmi.IRMIServer;
-import pl.praktykiatrem.game.tictactoe.graphic.StartTicTacToeForOnePlayer;
-import pl.praktykiatrem.game.tictactoe.graphic.StartTicTacToeForTwoPlayers;
+import pl.praktykiatrem.game.tictactoe.StartTicTacToeForOnePlayer;
+import pl.praktykiatrem.game.tictactoe.StartTicTacToeForTwoPlayers;
+import pl.praktykiatrem.game.uniElements.enums.Difficulty;
+import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
 /**
  *
@@ -252,6 +254,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		});
 		difficultyMenu.add(easyRadioButton);
 
+		mediumRadioButton.setSelected(true);
 		mediumRadioButton.setText("Medium");
 		mediumRadioButton
 				.addActionListener(new java.awt.event.ActionListener() {
@@ -261,7 +264,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 				});
 		difficultyMenu.add(mediumRadioButton);
 
-		hardRadioButton.setSelected(true);
+		hardRadioButton.setSelected(false);
 		hardRadioButton.setText("Hard");
 		hardRadioButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -317,7 +320,8 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	}
 
 	private void tttPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		new StartTicTacToeForOnePlayer("Filip", this, getTTTRulesChoice());
+		new StartTicTacToeForOnePlayer("Filip", this, getTTTRulesChoice(),
+				getDifficultyChoice());
 		setVisible(false);
 	}
 
@@ -430,33 +434,33 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		setVisible(true);
 	}
 
-	private int getShipsRulesChoice() {
+	private RulesType getShipsRulesChoice() {
 		if (bsCustomRulesField.isSelected())
-			return 1;
+			return RulesType.CUSTOMRULES;
 		else if (bsOriginalRulesField.isSelected())
-			return 2;
+			return RulesType.ORIGINALRULES;
 		else
-			return 1;
+			return RulesType.CUSTOMRULES;
 	}
 
-	private int getTTTRulesChoice() {
+	private RulesType getTTTRulesChoice() {
 		if (bsCustomRulesField.isSelected())
-			return 1;
+			return RulesType.CUSTOMRULES;
 		else if (bsOriginalRulesField.isSelected())
-			return 2;
+			return RulesType.ORIGINALRULES;
 		else
-			return 1;
+			return RulesType.CUSTOMRULES;
 	}
 
-	private int getDifficultyChoice() {
+	private Difficulty getDifficultyChoice() {
 		if (easyRadioButton.isSelected())
-			return 1;
+			return Difficulty.EASY;
 		else if (mediumRadioButton.isSelected())
-			return 2;
+			return Difficulty.MEDIUM;
 		else if (hardRadioButton.isSelected())
-			return 3;
+			return Difficulty.HARD;
 		else
-			return 2;
+			return Difficulty.MEDIUM;
 	}
 
 	public void enableButton() {

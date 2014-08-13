@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
+import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
 /**
  * Klasa udostêpnia funckje, realizuj¹ce akcje dostêpne w trakcie rozgrywki
@@ -19,12 +20,12 @@ public class Game {
 
 	private boolean isGameOver;
 
-	public Game(int rulesType) {
+	public Game(RulesType rulesType) {
 		switch (rulesType) {
-		case 1:
+		case CUSTOMRULES:
 			rules = new CustomRules();
 			break;
-		case 2:
+		case ORIGINALRULES:
 			rules = new OriginalRules();
 			break;
 		default:

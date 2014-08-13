@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic.observers;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public interface IBoardPlaceObserver {
 
