@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public interface ISettingPresenter {
 	// public void shipChoiceDone(int polesNumber, int id);

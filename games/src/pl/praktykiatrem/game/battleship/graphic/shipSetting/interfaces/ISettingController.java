@@ -3,9 +3,9 @@ package pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public interface ISettingController {
 

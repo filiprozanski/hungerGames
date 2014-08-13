@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.tictactoe;
+package pl.praktykiatrem.game.tictactoe.ai;
 
 import java.util.ArrayList;
 
@@ -6,19 +6,19 @@ import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTBoard;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlace;
 import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
-import pl.praktykiatrem.game.tictactoe.graphic.GameState;
 import pl.praktykiatrem.game.tictactoe.rules.CustomRules;
 import pl.praktykiatrem.game.tictactoe.rules.Rules;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
+import pl.praktykiatrem.game.uniElements.enums.GameState;
 
-public class TTTEasy {
+public class TTTMedium implements TTTDifficulty {
 	private TTPlayerStatus computer;
 	private TTPlayerStatus player;
 	private TTPlayerStatus currentPlayer;
 	private ArrayList<Integer> scores;
 	private Rules rules;
 
-	public TTTEasy(Rules rules, TTPlayerStatus me) {
+	public TTTMedium(Rules rules, TTPlayerStatus me) {
 		computer = me;
 		this.rules = rules;
 		player = new TTPlayerStatus(Sign.X);
@@ -29,27 +29,31 @@ public class TTTEasy {
 
 	public Coordinates getMove() {
 		currentPlayer = computer;
+		int index;
 		ArrayList<Coordinates> moves = new ArrayList<Coordinates>();
 		getPossibleMoves(rules.getActualBoard(), moves);
 
-		scores = computeMove(rules);
+		scores = computeMove(rules, 0);
 
-		int index = scores.indexOf(new Integer(10));
-		if (index >= 0) {
-			return moves.get(index);
-		} else {
-			index = scores.indexOf(new Integer(0));
-			if (index >= 0) {
+		for (int i = 0; i < scores.size(); i++) {
+			if (scores.contains(10 + i)) {
+				index = scores.indexOf(new Integer(10 + i));
 				return moves.get(index);
-			} else {
-				return moves.get(0);
 			}
 		}
+
+		if (scores.contains(0)) {
+			index = scores.indexOf(new Integer(0));
+			return moves.get(index);
+		} else
+			return moves.get(0);
+
 	}
 
-	private ArrayList<Integer> computeMove(Rules rules) {
+	private ArrayList<Integer> computeMove(Rules rules, int depth) {
 		ArrayList<Integer> internalScores = new ArrayList<Integer>();
 		ArrayList<Coordinates> internalMoves = new ArrayList<Coordinates>();
+		int myDepth = depth++;
 		CustomRules temp = (CustomRules) rules;
 		Rules myRules = new CustomRules(temp);
 
@@ -67,13 +71,13 @@ public class TTTEasy {
 				internalScores.add(0);
 			} else if (result == GameState.GAME) {
 				changePlayer();
-				ArrayList<Integer> list = computeMove(myRules);
+				ArrayList<Integer> list = computeMove(myRules, myDepth);
 				if (list.contains(-10))
 					internalScores.add(-10);
 				else if (list.contains(0))
 					internalScores.add(0);
 				else
-					internalScores.add(10);
+					internalScores.add(10 + myDepth);
 			}
 		}
 

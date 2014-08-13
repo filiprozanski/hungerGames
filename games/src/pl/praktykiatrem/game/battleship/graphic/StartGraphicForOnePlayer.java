@@ -7,6 +7,8 @@ import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForOn
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
+import pl.praktykiatrem.game.uniElements.enums.Difficulty;
+import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
 public class StartGraphicForOnePlayer {
 
@@ -22,10 +24,11 @@ public class StartGraphicForOnePlayer {
 
 	private IMenuCallObserver menuObserver;
 
-	private int difficultyLevel;
+	private Difficulty difficultyLevel;
 
 	public StartGraphicForOnePlayer(String name1, String name2,
-			IMenuCallObserver menuObserver, int rulesType, int difficulty) {
+			IMenuCallObserver menuObserver, RulesType rulesType,
+			Difficulty difficulty) {
 		this.menuObserver = menuObserver;
 		this.difficultyLevel = difficulty;
 		game = new Game(rulesType);

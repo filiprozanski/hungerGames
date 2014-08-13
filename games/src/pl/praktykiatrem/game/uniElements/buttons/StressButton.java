@@ -4,7 +4,7 @@
  * Copyright ATREM S.A. ATREM 2014(C)
  */
 
-package pl.praktykiatrem.game.battleship.graphic.buttons;
+package pl.praktykiatrem.game.uniElements.buttons;
 
 import java.awt.Color;
 import java.awt.Font;

@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.tictactoe.graphic;
+package pl.praktykiatrem.game.tictactoe.graphic.panels;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,21 +11,21 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.files.TTIcons;
-import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
-import pl.praktykiatrem.game.battleship.graphic.listeners.PlaceChoiceListener;
-import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
+import pl.praktykiatrem.game.tictactoe.graphic.listeners.PlaceChoiceListener;
+import pl.praktykiatrem.game.tictactoe.graphic.observers.IBoardObserver;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
+import pl.praktykiatrem.game.uniElements.buttons.CoordsButton;
 
 public class BoardPanel extends JPanel {
 	private int SIZEH;
 	private int SIZEV;
-	private IBoardPlaceObserver observer;
+	private IBoardObserver observer;
 	protected JButton[][] place;
 	private int prefferedX;
 	private int prefferedY;
 
 	public BoardPanel(int sizeH, int sizeV, int buttonSize,
-			IBoardPlaceObserver observer) {
+			IBoardObserver observer) {
 		super(new GridLayout(sizeH, sizeV));
 		this.observer = observer;
 		initialize(sizeH, sizeV);
@@ -38,7 +38,7 @@ public class BoardPanel extends JPanel {
 	private void initialize(int sizeH, int sizeV) {
 		SIZEH = sizeH;
 		SIZEV = sizeV;
-		place = new ShipButton[SIZEH][SIZEV];
+		place = new CoordsButton[SIZEH][SIZEV];
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class BoardPanel extends JPanel {
 		Insets buttonMargin = new Insets(0, 0, 0, 0);
 		for (int i = 0; i < place.length; i++) {
 			for (int j = 0; j < place[i].length; j++) {
-				ShipButton b = new ShipButton();
+				CoordsButton b = new CoordsButton();
 				b.setMargin(buttonMargin);
 				b.addActionListener(new PlaceChoiceListener(i, j, observer));
 				ImageIcon icon = new ImageIcon(new BufferedImage(30, 30,

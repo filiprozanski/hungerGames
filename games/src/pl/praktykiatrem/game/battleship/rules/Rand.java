@@ -3,7 +3,7 @@ package pl.praktykiatrem.game.battleship.rules;
 import java.awt.Color;
 import java.util.Random;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public class Rand {
 

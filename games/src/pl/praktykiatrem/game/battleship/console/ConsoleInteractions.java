@@ -10,9 +10,9 @@ package pl.praktykiatrem.game.battleship.console;
 import java.util.Scanner;
 
 import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 /**
  * 

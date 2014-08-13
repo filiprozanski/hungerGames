@@ -5,10 +5,14 @@ import java.awt.Insets;
 
 import javax.swing.JFrame;
 
-import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
+import pl.praktykiatrem.game.tictactoe.graphic.interfaces.IController;
+import pl.praktykiatrem.game.tictactoe.graphic.observers.IBoardObserver;
+import pl.praktykiatrem.game.tictactoe.graphic.observers.IButtonPanelObserver;
+import pl.praktykiatrem.game.tictactoe.graphic.panels.BoardPanel;
+import pl.praktykiatrem.game.tictactoe.graphic.panels.ButtonPanel;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
-public class GamePresenter implements IBoardPlaceObserver, IButtonPanelObserver {
+public class GamePresenter implements IBoardObserver, IButtonPanelObserver {
 	private BoardPanel boardPanel;
 	private ButtonPanel buttonPanel;
 	private IController supervisor;
@@ -46,7 +50,7 @@ public class GamePresenter implements IBoardPlaceObserver, IButtonPanelObserver 
 	}
 
 	@Override
-	public void clicked(int x, int y, int freq) {
+	public void clicked(int x, int y) {
 		supervisor.makeMove(x, y);
 	}
 

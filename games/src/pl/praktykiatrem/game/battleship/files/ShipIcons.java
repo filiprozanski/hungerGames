@@ -7,8 +7,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.rules.Rand;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 /**
  * 

@@ -5,6 +5,7 @@ import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerFor
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForTwoPlayers;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
+import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
 public class StartGraphicForTwoPlayers {
 
@@ -21,7 +22,7 @@ public class StartGraphicForTwoPlayers {
 	private IMenuCallObserver menuObserver;
 
 	public StartGraphicForTwoPlayers(String name1, String name2,
-			IMenuCallObserver menuObserver, int rulesType) {
+			IMenuCallObserver menuObserver, RulesType rulesType) {
 		this.menuObserver = menuObserver;
 		game = new Game(rulesType);
 		initialize(name1, name2);

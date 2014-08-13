@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic.dialogs;
+package pl.praktykiatrem.game.uniElements.dialogs;
 
 import pl.praktykiatrem.game.menu.MainMenu;
 

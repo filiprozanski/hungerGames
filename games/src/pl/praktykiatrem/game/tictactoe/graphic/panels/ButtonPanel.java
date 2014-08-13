@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.tictactoe.graphic;
+package pl.praktykiatrem.game.tictactoe.graphic.panels;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.files.TTIcons;
+import pl.praktykiatrem.game.tictactoe.graphic.observers.IButtonPanelObserver;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
 public class ButtonPanel extends JPanel {

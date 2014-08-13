@@ -14,6 +14,7 @@ import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingCon
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
+import pl.praktykiatrem.game.uniElements.enums.Difficulty;
 
 /**
  * 
@@ -74,7 +75,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	 */
 	public ShootingControllerForOnePlayer(BSPlayerStatus player1,
 			BSPlayerStatus player2, Game g,
-			StartGraphicForOnePlayer supervisor, int difficultyLevel) {
+			StartGraphicForOnePlayer supervisor, Difficulty difficultyLevel) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;
@@ -96,15 +97,15 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		}
 	}
 
-	private void setComputerOpponent(int difficulty) {
+	private void setComputerOpponent(Difficulty difficulty) {
 		switch (difficulty) {
-		case 1:
+		case EASY:
 			iComputer = new Easy(g);
 			break;
-		case 2:
+		case MEDIUM:
 			iComputer = new Medium(g);
 			break;
-		case 3:
+		case HARD:
 			iComputer = new Hard(g);
 			break;
 		default:

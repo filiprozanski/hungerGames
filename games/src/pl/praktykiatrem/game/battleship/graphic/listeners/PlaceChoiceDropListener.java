@@ -8,8 +8,8 @@ import java.awt.dnd.DropTargetDropEvent;
 
 import javax.swing.JButton;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public class PlaceChoiceDropListener extends DropTargetAdapter {
 

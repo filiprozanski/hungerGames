@@ -4,7 +4,7 @@ import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.Direction;
+import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 /**
  * klasa opisuj¹ca wszystkie zasady gry
