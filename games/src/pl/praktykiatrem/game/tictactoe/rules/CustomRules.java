@@ -7,10 +7,10 @@ import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.GameState;
 
 public class CustomRules extends Rules implements Cloneable {
-	private final int BOARDSIZEH = 3;
-	private final int BOARDSIZEV = 3;
-	private final int SIGNSTOWIN = 3;
-	private final int BUTTONSIZE = 100; // powinno byæ w sumie wiêcej ni¿ 300
+	private final int BOARD_SIZE_H = 3;
+	private final int BOARD_SIZE_V = 3;
+	private final int SIGNS_TO_WIN = 3;
+	private final int BUTTON_SIZE = 100; // powinno byæ w sumie wiêcej ni¿ 300
 
 	private ArrayList<Sign> availableSigns;
 	private TTBoard board;
@@ -22,7 +22,7 @@ public class CustomRules extends Rules implements Cloneable {
 		availableSigns = new ArrayList<Sign>();
 		availableSigns.add(Sign.X);
 		availableSigns.add(Sign.O);
-		board = new TTBoard(BOARDSIZEH, BOARDSIZEV);
+		board = new TTBoard(BOARD_SIZE_H, BOARD_SIZE_V);
 	}
 
 	public CustomRules(CustomRules r) {
@@ -43,7 +43,7 @@ public class CustomRules extends Rules implements Cloneable {
 				|| checkDiagonal(x, y, playerSign))
 			return GameState.WINNER;
 
-		if (moves == BOARDSIZEH * BOARDSIZEV)
+		if (moves == BOARD_SIZE_H * BOARD_SIZE_V)
 			return GameState.DRAW;
 
 		return GameState.GAME;
@@ -54,11 +54,11 @@ public class CustomRules extends Rules implements Cloneable {
 		int xTemp = x;
 		int yTemp = y;
 
-		while (x < (BOARDSIZEH - 1)) {
+		while (x < (BOARD_SIZE_H - 1)) {
 			x++;
 			if (board.getSign(x, y) == playerSign) {
 				signsInRow++;
-				if (signsInRow == SIGNSTOWIN) {
+				if (signsInRow == SIGNS_TO_WIN) {
 					return true;
 				}
 				continue;
@@ -72,7 +72,7 @@ public class CustomRules extends Rules implements Cloneable {
 			x--;
 			if (board.getSign(x, y) == playerSign) {
 				signsInRow++;
-				if (signsInRow == SIGNSTOWIN) {
+				if (signsInRow == SIGNS_TO_WIN) {
 					return true;
 				}
 
@@ -89,11 +89,11 @@ public class CustomRules extends Rules implements Cloneable {
 		int xTemp = x;
 		int yTemp = y;
 
-		while (y < (BOARDSIZEV - 1)) {
+		while (y < (BOARD_SIZE_V - 1)) {
 			y++;
 			if (board.getSign(x, y) == playerSign) {
 				signsInRow++;
-				if (signsInRow == SIGNSTOWIN) {
+				if (signsInRow == SIGNS_TO_WIN) {
 					return true;
 				}
 				continue;
@@ -107,7 +107,7 @@ public class CustomRules extends Rules implements Cloneable {
 			y--;
 			if (board.getSign(x, y) == playerSign) {
 				signsInRow++;
-				if (signsInRow == SIGNSTOWIN) {
+				if (signsInRow == SIGNS_TO_WIN) {
 					return true;
 				}
 
@@ -124,12 +124,12 @@ public class CustomRules extends Rules implements Cloneable {
 		int xTemp = x;
 		int yTemp = y;
 
-		while (y < (BOARDSIZEV - 1) && x < (BOARDSIZEH - 1)) {
+		while (y < (BOARD_SIZE_V - 1) && x < (BOARD_SIZE_H - 1)) {
 			x++;
 			y++;
 			if (board.getSign(x, y) == playerSign) {
 				signsInRow++;
-				if (signsInRow == SIGNSTOWIN) {
+				if (signsInRow == SIGNS_TO_WIN) {
 					return true;
 				}
 
@@ -146,7 +146,7 @@ public class CustomRules extends Rules implements Cloneable {
 			y--;
 			if (board.getSign(x, y) == playerSign) {
 				signsInRow++;
-				if (signsInRow == SIGNSTOWIN) {
+				if (signsInRow == SIGNS_TO_WIN) {
 					return true;
 				}
 
@@ -159,12 +159,12 @@ public class CustomRules extends Rules implements Cloneable {
 		y = yTemp;
 		x = xTemp;
 
-		while (y < (BOARDSIZEV - 1) && x > 0) {
+		while (y < (BOARD_SIZE_V - 1) && x > 0) {
 			x--;
 			y++;
 			if (board.getSign(x, y) == playerSign) {
 				signsInRow++;
-				if (signsInRow == SIGNSTOWIN) {
+				if (signsInRow == SIGNS_TO_WIN) {
 					return true;
 				}
 
@@ -176,12 +176,12 @@ public class CustomRules extends Rules implements Cloneable {
 		y = yTemp;
 		x = xTemp;
 
-		while (y > 0 && x < (BOARDSIZEH - 1)) {
+		while (y > 0 && x < (BOARD_SIZE_H - 1)) {
 			x++;
 			y--;
 			if (board.getSign(x, y) == playerSign) {
 				signsInRow++;
-				if (signsInRow == SIGNSTOWIN) {
+				if (signsInRow == SIGNS_TO_WIN) {
 					return true;
 				}
 
@@ -193,20 +193,24 @@ public class CustomRules extends Rules implements Cloneable {
 		return false;
 	}
 
-	public int getBOARDSIZEH() {
-		return BOARDSIZEH;
+	public int getBoardSizeH() {
+		return BOARD_SIZE_H;
 	}
 
-	public int getBOARDSIZEV() {
-		return BOARDSIZEV;
+	public int getBoardSizeV() {
+		return BOARD_SIZE_V;
 	}
 
 	public Sign allocateSign() {
 		return availableSigns.remove(0);
 	}
 
-	public int getBUTTONSIZE() {
-		return BUTTONSIZE;
+	public int getButtonSize() {
+		return BUTTON_SIZE;
+	}
+
+	public int getSignsToWin() {
+		return SIGNS_TO_WIN;
 	}
 
 	public TTBoard getActualBoard() {
@@ -219,10 +223,5 @@ public class CustomRules extends Rules implements Cloneable {
 
 	private int getMovesNumber() {
 		return moves;
-	}
-
-	@Override
-	public Object clone() {
-		return super.clone();
 	}
 }
