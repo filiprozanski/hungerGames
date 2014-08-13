@@ -29,8 +29,8 @@ public class StartGraphicForTwoPlayers {
 	}
 
 	public void initialize(String name1, String name2) {
-		int sizeX = game.getBoardSizeH();
-		int sizeY = game.getBoardSizeV();
+		int sizeX = game.getBoardSizeV();
+		int sizeY = game.getBoardSizeH();
 		int[] shipsType = game.getShipTypes();
 
 		player1 = new BSPlayerStatus(sizeX, sizeY, shipsType);

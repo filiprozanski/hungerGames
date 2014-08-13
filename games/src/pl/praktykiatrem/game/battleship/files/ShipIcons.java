@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 
 /**
@@ -135,7 +136,7 @@ public class ShipIcons {
 	 * @param IconPainting
 	 * @return i tu te¿
 	 */
-	private static BufferedImage iconToBufferedImage(Icon icon) {
+	public static BufferedImage iconToBufferedImage(Icon icon) {
 		if (icon == null)
 			return null;
 
@@ -155,6 +156,29 @@ public class ShipIcons {
 	 */
 	public static ImageIcon getShipIcon(int type) {
 		return shipDrawIcon(type);
+	}
+
+	public static BufferedImage getShipImage(int type, int polesNumber,
+			Direction dir) {
+
+		final BufferedImage img = iconToBufferedImage(shipDrawIcon(type));
+		final BufferedImage combinedImage;
+		if (dir == Direction.HORIZONTAL)
+			combinedImage = new BufferedImage(img.getWidth() * polesNumber,
+					img.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		else
+			combinedImage = new BufferedImage(img.getWidth(), img.getHeight()
+					* polesNumber, BufferedImage.TYPE_INT_ARGB);
+
+		Graphics2D image = combinedImage.createGraphics();
+		for (int i = 0; i < polesNumber; i++)
+			if (dir == Direction.HORIZONTAL)
+				image.drawImage(img, i * img.getWidth(), 0, null);
+			else
+				image.drawImage(img, 0, i * img.getHeight(), null);
+
+		image.dispose();
+		return combinedImage;
 	}
 
 	public static ImageIcon getInfoIcon(int type) {

@@ -11,9 +11,9 @@ public class GameConstants {
 		SHIPTYPES = new int[] { 6, 4, 4, 3, 3, 2, 2 };
 	}
 
-	public GameConstants(int h, int v, int[] ships) {
-		BOARDSIZE_H = h;
-		BOARDSIZE_V = v;
+	public GameConstants(int V, int H, int[] ships) {
+		BOARDSIZE_H = H;
+		BOARDSIZE_V = V;
 		SHIPTYPES = ships;
 	}
 

@@ -42,11 +42,11 @@ public class BSPlayerStatus extends PlayerStatus {
 	 *            tablica przechowuj¹ca informacje o typie statków u¿ywanych w
 	 *            rozgrywce
 	 */
-	public BSPlayerStatus(int boardSizeH, int boardSizeV, int[] shipTypes) {
+	public BSPlayerStatus(int boardSizeV, int boardSizeH, int[] shipTypes) {
 		super();
 		this.shipsNumber = 0;
 		this.shipTypes = shipTypes;
-		board = new BSBoard(boardSizeH, boardSizeV);
+		board = new BSBoard(boardSizeV, boardSizeH);
 		ships = new Ship[shipTypes.length];
 		for (int i = 0; i < shipTypes.length; i++)
 			setShip(i, shipTypes[i]);

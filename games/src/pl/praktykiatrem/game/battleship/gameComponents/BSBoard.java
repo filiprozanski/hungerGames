@@ -11,11 +11,11 @@ import pl.praktykiatrem.game.uniElements.Board;
  */
 
 public class BSBoard extends Board {
+
 	protected BSPlace[][] gameBoard;
 
-	public BSBoard(int horizontal, int vertical) {
-		super(horizontal, vertical);
-
+	public BSBoard(int vertical, int horizontal) {
+		super(vertical, horizontal);
 		gameBoard = new BSPlace[verticalSize][horizontalSize];
 		fillGameBoard();
 	}

@@ -32,8 +32,8 @@ public class CoordsList {
 	}
 
 	public void addTopOfList(int x, int y) {
-		if (x >= 0 && y >= 0 && x < game.getBoardSizeH()
-				&& y < game.getBoardSizeV())
+		if (x >= 0 && y >= 0 && x < game.getBoardSizeV()
+				&& y < game.getBoardSizeH())
 			if (board.isBlank(x, y))
 				if (!list.contains(new Coordinates(x, y)))
 					list.add(0, new Coordinates(x, y));
@@ -41,8 +41,8 @@ public class CoordsList {
 	}
 
 	public void addToList(int x, int y) {
-		if (x >= 0 && y >= 0 && x < game.getBoardSizeH()
-				&& y < game.getBoardSizeV())
+		if (x >= 0 && y >= 0 && x < game.getBoardSizeV()
+				&& y < game.getBoardSizeH())
 			if (board.isBlank(x, y))
 				if (!list.contains(new Coordinates(x, y)))
 					list.add(new Coordinates(x, y));
@@ -54,5 +54,10 @@ public class CoordsList {
 
 	public void removeFromList(int x, int y) {
 		list.remove(new Coordinates(x, y));
+	}
+
+	public void clear() {
+		list.clear();
+
 	}
 }

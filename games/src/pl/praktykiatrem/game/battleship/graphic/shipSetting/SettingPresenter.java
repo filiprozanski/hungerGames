@@ -2,10 +2,8 @@ package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
@@ -26,16 +24,7 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	 * 
 	 */
 	private static final long serialVersionUID = -8153221086917373820L;
-	/**
-	 * zmienna u¿ywana do ustawiania staków, przechowuje liczbe masztów
-	 * aktualnie wybranego statku
-	 */
-	private int polesNumber;
-	/**
-	 * zmienna u¿ywana do ustawiania statków, przechowuje ID aktualnie wybranego
-	 * statku
-	 */
-	private int id;
+
 	/**
 	 * obiekt który koordynuje korzystanie z odpowiednich zasad
 	 */
@@ -48,10 +37,6 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	 * interfejs graficzny etapu ustawiania statków
 	 */
 	private ISettingView view;
-	/**
-	 * lista przycisków, które powinny byæ zablokowane
-	 */
-	private ArrayList<Coordinates> locked;
 	/**
 	 * obserwator zmiany etapu gry poprzez klikniêcie przycisku "ready"
 	 */
@@ -72,11 +57,10 @@ public class SettingPresenter extends UnicastRemoteObject implements
 		this.gameConstants = gameConst;
 		this.player = player;
 		this.controller = controller;
-		locked = new ArrayList<Coordinates>();
 		view = new ShipSettingPanel(this);
-		view.initialize(gameConst.getShipTypes(), gameConst.getBoardSizeH(),
-				gameConst.getBoardSizeV());
-		view.changeStateAllBoardPlaces(false);
+		view.initialize(gameConst.getShipTypes(), gameConst.getBoardSizeV(),
+				gameConst.getBoardSizeH());
+		// view.changeStateAllBoardPlaces(false);
 	}
 
 	public SettingPresenter(GameConstants gameConst, BSPlayerStatus player,
@@ -84,11 +68,10 @@ public class SettingPresenter extends UnicastRemoteObject implements
 		this.gameConstants = gameConst;
 		this.player = player;
 		this.controller = controller;
-		locked = new ArrayList<Coordinates>();
 		view = new ShipSettingPanel(this);
-		view.initialize(gameConst.getShipTypes(), gameConst.getBoardSizeH(),
-				gameConst.getBoardSizeV());
-		view.changeStateAllBoardPlaces(false);
+		view.initialize(gameConst.getShipTypes(), gameConst.getBoardSizeV(),
+				gameConst.getBoardSizeH());
+		// view.changeStateAllBoardPlaces(false);
 		controller.placeShipAtRandom(this, player);
 	}
 
@@ -101,110 +84,10 @@ public class SettingPresenter extends UnicastRemoteObject implements
 		return view;
 	}
 
-	/**
-	 * tworzy listê zawieraj¹c¹ miejsca, na których ustawione zosta³y ju¿ statki
-	 */
-	private void getLockedPlaces() {
-		ArrayList<Coordinates> tab = new ArrayList<Coordinates>();
-
-		for (int a = 0; a < gameConstants.getShipsNumber(); a++)
-			tab.addAll(controller.getCoordsList(player, a));
-
-		this.locked = tab;
-	}
-
-	/**
-	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter#shipChoiceDone(int,
-	 *      int)
-	 */
-	@Override
-	public void shipChoiceDone(int polesNumber, int id) {
-		this.polesNumber = polesNumber;
-		this.id = id;
-		ArrayList<Coordinates> list = controller.getCoordsList(player, id);
-		Coordinates[] tab = list.toArray(new Coordinates[list.size()]);
-		if (!player.isShipSet(id)) {
-			lockUsedPlaces();
-		} else {
-			view.disableAllBoardPlaces(tab[0].getX(), tab[0].getY());
-		}
-	}
-
-	/**
-	 * odblokowuje wszystkie miejsca, po czym blokuje te znajduj¹ce siê na
-	 * liœcie locked
-	 */
-	private void lockUsedPlaces() {
-		view.changeStateAllBoardPlaces(true);
-		getLockedPlaces();
-		for (Coordinates coord : locked)
-			view.disableOneBoardPlace(coord.getX(), coord.getY());
-	}
-
-	/**
-	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter#placeShip(int,
-	 *      int, int)
-	 */
-	@Override
-	public void placeShip(int x, int y, int freq) {
-		switch (freq) {
-		case 1:
-			firstClick(x, y);
-			break;
-		case 2:
-			clearLastChoice(x, y, Direction.HORIZONTAL);
-			secondClick(x, y);
-			break;
-		case 0:
-			clearLastChoice(x, y, Direction.VERTICAL);
-			view.changeButtonCallNumber(x, y, 1);
-			view.changeStateAllBoardPlaces(true);
-			break;
-		}
-	}
-
-	/**
-	 * akcje wywolywane po pierwszym kliknieciu guzika
-	 * 
-	 * @param x
-	 *            wspolrzedna guzika
-	 * @param y
-	 */
-	private void firstClick(int x, int y) {
-		if (controller.placeShips(player, id, polesNumber,
-				Direction.HORIZONTAL, x, y))
-			placeShipsOnView(x, y, Direction.HORIZONTAL, id, polesNumber);
-		else
-			secondClick(x, y);
-	}
-
-	/**
-	 * akcje wywolywane po drugim klikniêciu guzika
-	 * 
-	 * @param x
-	 *            wspo³rzêdna guzika
-	 * @param y
-	 */
-	private void secondClick(int x, int y) {
-		if (controller.placeShips(player, id, polesNumber, Direction.VERTICAL,
-				x, y))
-			placeShipsOnView(x, y, Direction.VERTICAL, id, polesNumber);
-		else {
-			view.changeButtonCallNumber(x, y, 1);
-			view.changeStateAllBoardPlaces(true);
-		}
-	}
-
 	@Override
 	public void placeShipsOnView(int x, int y, Direction dir, int id,
 			int polesNumber) {
 		drawOnBoard(x, y, dir, id + 1, polesNumber);
-		if (dir == Direction.VERTICAL)
-			view.changeButtonCallNumber(x, y, 0);
-		else
-			view.changeButtonCallNumber(x, y, 2);
 		view.setOkIconShipButton(id, true);
 		view.setReadyButtonState(gameConstants.getShipsNumber()
 				- controller.getActiveShipsNumber(player));
@@ -219,16 +102,9 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	 * @param dir
 	 *            kierunek ustawienia statku
 	 */
+
 	public void clearLastChoice(int x, int y, Direction dir) {
-		if (controller.displaceShip(player, id, polesNumber, dir, x, y)) {
-			drawOnBoard(x, y, dir, 0, polesNumber);
-			view.setOkIconShipButton(id, false);
-			view.setReadyButtonState(gameConstants.getShipsNumber()
-					- controller.getActiveShipsNumber(player));
-			getLockedPlaces();
-			for (Coordinates coord : locked)
-				view.disableOneBoardPlace(coord.getX(), coord.getY());
-		}
+
 	}
 
 	/**
@@ -243,12 +119,10 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	}
 
 	private void clearBoardView() {
-		for (int i = 0; i < gameConstants.getBoardSizeH(); i++)
-			for (int j = 0; j < gameConstants.getBoardSizeV(); j++) {
+		for (int i = 0; i < gameConstants.getBoardSizeV(); i++)
+			for (int j = 0; j < gameConstants.getBoardSizeH(); j++) {
 				view.changePlaceIcon(i, j, 0);
-				view.changeButtonCallNumber(i, j, 1);
 			}
-		locked.clear();
 
 		for (int i = 0; i < gameConstants.getShipsNumber(); i++)
 			view.setOkIconShipButton(i, false);
@@ -271,15 +145,13 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	private void drawOnBoard(int x, int y, Direction dir, int icon,
 			int polesNumber) {
 		if (dir == Direction.HORIZONTAL) {
-			for (int i = 0; i < polesNumber; i++) {
-				view.changePlaceIcon(x, y, icon);
-				y++;
-			}
+			for (int i = 0; i < polesNumber; i++)
+				view.changePlaceIcon(x, y + i, icon);
+
 		} else {
-			for (int i = 0; i < polesNumber; i++) {
-				view.changePlaceIcon(x, y, icon);
-				x++;
-			}
+			for (int i = 0; i < polesNumber; i++)
+				view.changePlaceIcon(x + i, y, icon);
+
 		}
 	}
 
@@ -303,4 +175,81 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	public void placeShipAtRandom() {
 		controller.placeShipAtRandom(this, player);
 	}
+
+	@Override
+	public void dropShip(int id, int x, int y, Direction dir) {
+		int temp_x = -1;
+		int temp_y = -1;
+		if (player.isShipSet(id)) {
+			temp_x = player.getShip(id).getInitialCoords().getX();
+			temp_y = player.getShip(id).getInitialCoords().getY();
+			displaceShip(id);
+		}
+		if (controller.placeShips(player, id, gameConstants.getShipTypes()[id],
+				dir, x, y))
+			placeShipsOnView(x, y, dir, id, gameConstants.getShipTypes()[id]);
+		else if (controller.placeShips(player, id,
+				gameConstants.getShipTypes()[id], dir, temp_x, temp_y))
+			placeShipsOnView(temp_x, temp_y, dir, id,
+					gameConstants.getShipTypes()[id]);
+	}
+
+	private boolean displaceShip(int id) {
+		Direction dir = player.getShip(id).getDirection();
+		int x = player.getShip(id).getInitialCoords().getX();
+		int y = player.getShip(id).getInitialCoords().getY();
+		int polesNumber = gameConstants.getShipTypes()[id];
+		if (controller.displaceShip(player, id, polesNumber, dir, x, y)) {
+			drawOnBoard(x, y, dir, 0, polesNumber);
+			view.setOkIconShipButton(id, false);
+			view.setReadyButtonState(gameConstants.getShipsNumber()
+					- controller.getActiveShipsNumber(player));
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void clickedRight(int x, int y) {
+		int id = player.getShipID(x, y);
+		if (id >= 0 && player.isShipSet(id))
+			displaceShip(id);
+	}
+
+	@Override
+	public void clickedLeft(int x, int y) {
+		int id = player.getShipID(x, y);
+		if (id >= 0) {
+			x = player.getShip(id).getInitialCoords().getX();
+			y = player.getShip(id).getInitialCoords().getY();
+			Direction dir = Direction.getOpposite(getDirection(id));
+			if (player.isShipSet(id))
+				displaceShip(id);
+			if (controller.placeShips(player, id,
+					gameConstants.getShipTypes()[id], dir, x, y))
+				placeShipsOnView(x, y, dir, id,
+						gameConstants.getShipTypes()[id]);
+			else if (controller.placeShips(player, id,
+					gameConstants.getShipTypes()[id],
+					Direction.getOpposite(dir), x, y))
+				placeShipsOnView(x, y, Direction.getOpposite(dir), id,
+						gameConstants.getShipTypes()[id]);
+		}
+	}
+
+	@Override
+	public int getPolesNumber(int id) {
+		return gameConstants.getShipType(id);
+	}
+
+	@Override
+	public int getID(int x, int y) {
+		return player.getShipID(x, y);
+	}
+
+	@Override
+	public Direction getDirection(int id) {
+		return player.getShip(id).getDirection();
+	}
+
 }

@@ -12,7 +12,40 @@ import pl.praktykiatrem.game.battleship.gameComponents.Direction;
  * @author Filip Ró¿añski
  *
  */
+
 public class CustomRules extends Rules {
+
+	private final int BOARDSIZE_H = 10;
+	private final int BOARDSIZE_V = 10;
+	private final int SHIPTYPES[] = { 5, 5, 5 };
+
+	public int getBoardSize_H() {
+		return BOARDSIZE_H;
+	}
+
+	public int getBoardSize_V() {
+		return BOARDSIZE_V;
+	}
+
+	public int[] getShipTypes() {
+		return SHIPTYPES;
+	}
+
+	public int getShipsNumber() {
+		return SHIPTYPES.length;
+	}
+
+	public int getShipTypes(int id) {
+		return SHIPTYPES[id];
+	}
+
+	private final GameConstants constants = new GameConstants(BOARDSIZE_V,
+			BOARDSIZE_H, SHIPTYPES);
+
+	public GameConstants getConstants() {
+		return constants;
+	}
+
 	private boolean putShipOnPlace(BSBoard plansza, int id, int x, int y) {
 		if (!plansza.isShipOnPlace(x, y)) {
 			plansza.placeOnBoard(x, y, id);
@@ -34,10 +67,10 @@ public class CustomRules extends Rules {
 	public boolean shipPlacingValidation(BSBoard plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
-			if (y + polesNumber > BOARDSIZE_V)
+			if (y + polesNumber > BOARDSIZE_H)
 				return false;
 		} else if (dir == Direction.VERTICAL) {
-			if (x + polesNumber > BOARDSIZE_H)
+			if (x + polesNumber > BOARDSIZE_V)
 				return false;
 		}
 		if (dir == Direction.HORIZONTAL) {
@@ -83,10 +116,10 @@ public class CustomRules extends Rules {
 	public boolean shipDisplacingValidation(BSBoard plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
-			if (y + polesNumber > BOARDSIZE_V)
+			if (y + polesNumber > BOARDSIZE_H)
 				return false;
 		} else if (dir == Direction.VERTICAL) {
-			if (x + polesNumber > BOARDSIZE_H)
+			if (x + polesNumber > BOARDSIZE_V)
 				return false;
 		}
 		if (dir == Direction.HORIZONTAL) {
@@ -108,13 +141,13 @@ public class CustomRules extends Rules {
 			Direction direction, int x, int y) {
 		BSBoard plansza = (BSBoard) player.getPlansza();
 		if (shipPlacingValidation(plansza, polesNumber, direction, x, y)
-				&& !player.getShip(id).isShipSet()) {
+				&& !player.isShipSet(id)) {
 
 			int x_temp = x;
 			int y_temp = y;
 			player.getShip(id).setShipSet(true);
+			player.getShip(id).setDirection(direction);
 			player.increaseShipsNumber();
-
 			for (int i = 0; i < polesNumber; i++) {
 				if (direction == Direction.HORIZONTAL)
 					y_temp = y + i;
@@ -135,10 +168,11 @@ public class CustomRules extends Rules {
 			int polesNumber, Direction direction, int x, int y) {
 		BSBoard plansza = player.getPlansza();
 		if (shipDisplacingValidation(plansza, polesNumber, direction, x, y)
-				&& player.getShip(id).isShipSet()) {
+				&& player.isShipSet(id)) {
 			int x_temp = x;
 			int y_temp = y;
 			player.getShip(id).setShipSet(false);
+			player.getShip(id).setDirection(Direction.HORIZONTAL);
 			player.decreaseShipsNumber();
 			for (int i = 0; i < polesNumber; i++) {
 				if (direction == Direction.HORIZONTAL)

@@ -11,8 +11,8 @@ public abstract class Rules {
 	protected final int BOARDSIZE_H = 10;
 	protected final int BOARDSIZE_V = 10;
 	private final int SHIPTYPES[] = { 6, 4, 4, 3, 3, 2, 2 };
-	private final GameConstants constants = new GameConstants(BOARDSIZE_H,
-			BOARDSIZE_V, SHIPTYPES);
+	private final GameConstants constants = new GameConstants(BOARDSIZE_V,
+			BOARDSIZE_H, SHIPTYPES);
 
 	public abstract int makeMove(BSPlayerStatus enemy, int x, int y);
 

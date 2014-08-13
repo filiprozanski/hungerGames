@@ -1,8 +1,13 @@
 package pl.praktykiatrem.game.battleship.graphic.buttons;
 
+import javax.swing.DefaultButtonModel;
+import javax.swing.Icon;
 import javax.swing.JButton;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
+import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.graphic.listeners.ShipChoiceDragListener;
+import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 
 /**
  * Klasa opisuje przycisk bêd¹cy graficzn¹ reprezentacj¹ pola gry na planszy
@@ -11,20 +16,37 @@ import pl.praktykiatrem.game.battleship.files.ShipIcons;
  *
  */
 public class ShipButton extends JButton {
-	private static final long serialVersionUID = 4064035001395922627L;
-	private int callNumber = 1;
 
-	public int getCallNumber() {
-		return callNumber;
+	private static final long serialVersionUID = 1L;
+	private int id = -1;
+	private int x;
+	private int y;
+
+	public ShipButton(String text, int id, Icon icon,
+			IBoardPlaceObserver observer) {
+		setModel(new DefaultButtonModel());
+		this.id = id;
+		init(text, icon);
+		new ShipChoiceDragListener(this, observer);
 	}
 
-	public void changeCallNumber(int number) {
-		if (number == 2)
-			callNumber = 2;
-		else if (number == 1)
-			callNumber = 1;
-		else
-			callNumber = 0;
+	public ShipButton(int x, int y, boolean dragable,
+			IBoardPlaceObserver observer) {
+		this.x = x;
+		this.y = y;
+		if (dragable)
+			new ShipChoiceDragListener(this, observer);
+	}
+
+	public ShipButton(boolean b) {
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public Coordinates gerCoords() {
+		return new Coordinates(x, y);
 	}
 
 	public void setPlaceIcon(int type) {

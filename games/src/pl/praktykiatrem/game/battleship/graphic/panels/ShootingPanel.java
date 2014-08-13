@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.IShootingButtonsObserver;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
@@ -69,10 +70,10 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	 *      int)
 	 */
 	@Override
-	public void initialize(int sizeH, int sizeV) {
+	public void initialize(int sizeV, int sizeH) {
 		setLayout(new GridLayout(2, 2));
-		playerBoardPanel = new BoardGraphicPanel(sizeH, sizeV);
-		enemyBoardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
+		playerBoardPanel = new BoardGraphicPanel(sizeV, sizeH, false);
+		enemyBoardPanel = new BoardGraphicPanel(this, sizeV, sizeH, false);
 		infoPanel = new InfoPanel(this);
 		legendPanel = new LegendPanel();
 
@@ -186,7 +187,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	 *      int, int)
 	 */
 	@Override
-	public void clicked(int x, int y, int freq) {
+	public void clickedLeft(int x, int y) {
 		presenter.shot(x, y);
 	}
 
@@ -262,5 +263,34 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void closeFrame() {
 		frame.dispose();
+	}
+
+	@Override
+	public void dropShip(int id, int x, int y, Direction dir) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public int getPolesNumber(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getID(int x, int y) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Direction getDirection(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void clickedRight(int x, int y) {
+		// TODO Auto-generated method stub
+
 	}
 }

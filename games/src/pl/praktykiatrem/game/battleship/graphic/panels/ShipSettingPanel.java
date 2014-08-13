@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Direction;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.ISettingButtonsObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
@@ -36,9 +37,9 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	}
 
 	@Override
-	public void initialize(int[] shipTypes, int sizeH, int sizeV) {
+	public void initialize(int[] shipTypes, int sizeV, int sizeH) {
 		setLayout(new GridLayout(2, 2));
-		boardPanel = new BoardGraphicPanel(this, sizeH, sizeV);
+		boardPanel = new BoardGraphicPanel(this, sizeV, sizeH, true);
 		choicePanel = new ShipChoicePanel(this, shipTypes);
 		readyPanel = new ButtonsPanel(this);
 		legendPanel = new LegendPanel();
@@ -65,37 +66,6 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 		return new Dimension(660, 660);
 	}
 
-	@Override
-	public void clicked(int x, int y, int freq) {
-		presenter.placeShip(x, y, freq);
-	}
-
-	@Override
-	public void choiceDone(int id, int polesNumber) {
-		presenter.shipChoiceDone(polesNumber, id);
-	}
-
-	@Override
-	public void disableOneBoardPlace(int x, int y) {
-		boardPanel.disableButton(x, y);
-	}
-
-	@Override
-	public void changeStateAllBoardPlaces(boolean enable) {
-		boardPanel.changeStateAllButtons(enable);
-	}
-
-	@Override
-	public void disableAllBoardPlaces(int x, int y) {
-		boardPanel.changeStateAllButtons(false);
-		boardPanel.enableButton(x, y);
-	}
-
-	@Override
-	public void enableOneBoardPlace(int x, int y) {
-		boardPanel.enableButton(x, y);
-	}
-
 	public void enableShipButton(int id) {
 		choicePanel.enableShipButton(id);
 	}
@@ -107,11 +77,6 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
 	public void disableShipButton(int id) {
 		choicePanel.disableShipButton(id);
-	}
-
-	@Override
-	public void changeButtonCallNumber(int x, int y, int number) {
-		boardPanel.changeButtonCallNumber(x, y, number);
 	}
 
 	@Override
@@ -154,5 +119,36 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void closeFrame() {
 		frame.dispose();
+	}
+
+	@Override
+	public void dropShip(int id, int x, int y, Direction dir) {
+		presenter.dropShip(id, x, y, dir);
+	}
+
+	@Override
+	public void clickedLeft(int x, int y) {
+		presenter.clickedLeft(x, y);
+
+	}
+
+	@Override
+	public int getPolesNumber(int id) {
+		return presenter.getPolesNumber(id);
+	}
+
+	@Override
+	public int getID(int x, int y) {
+		return presenter.getID(x, y);
+	}
+
+	@Override
+	public Direction getDirection(int id) {
+		return presenter.getDirection(id);
+	}
+
+	@Override
+	public void clickedRight(int x, int y) {
+		presenter.clickedRight(x, y);
 	}
 }

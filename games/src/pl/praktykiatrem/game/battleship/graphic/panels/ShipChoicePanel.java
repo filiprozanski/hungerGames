@@ -5,12 +5,11 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
-import pl.praktykiatrem.game.battleship.graphic.listeners.ShipChoiceListener;
-import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
+import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
+import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 
 /**
  * Panel zawieraj¹cy dostêpne statki
@@ -21,13 +20,13 @@ import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
 public class ShipChoicePanel extends JPanel {
 	private static final long serialVersionUID = -5010598464397087691L;
 
-	private IShipChoiceObserver observer;
+	private IBoardPlaceObserver observer;
 
-	private ArrayList<JButton> ships;
+	private ArrayList<ShipButton> ships;
 
-	public ShipChoicePanel(IShipChoiceObserver observer, int[] shipsTypes) {
+	public ShipChoicePanel(IBoardPlaceObserver observer, int[] shipsTypes) {
 		super(new GridLayout(shipsTypes.length, 0));
-		ships = new ArrayList<JButton>();
+		ships = new ArrayList<ShipButton>();
 		this.observer = observer;
 		initialize(shipsTypes);
 	}
@@ -36,15 +35,14 @@ public class ShipChoicePanel extends JPanel {
 		ShipIcons.createImages();
 		ShipIcons.createColors(shipTypes.length);
 		for (int i = 0; i < shipTypes.length; i++) {
-			ships.add(new JButton("Liczba masztow: " + shipTypes[i], ShipIcons
-					.getShipIcon(i + 1)));
+			ships.add(new ShipButton("Liczba masztow: " + shipTypes[i], i,
+					ShipIcons.getShipIcon(i + 1), observer));
 			ships.get(i).setContentAreaFilled(false);
-			ships.get(i).addActionListener(
-					new ShipChoiceListener(shipTypes[i], i, observer));
+			// new ShipChoiceDragListener(ships.get(i));
 		}
 		setBackground(new Color(135, 206, 235));
 
-		for (JButton button : ships)
+		for (ShipButton button : ships)
 			add(button);
 	}
 
