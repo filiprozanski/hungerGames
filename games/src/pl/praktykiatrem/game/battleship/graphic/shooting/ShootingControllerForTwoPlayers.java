@@ -115,6 +115,7 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 				if (result == 2) {
 					int id = g.getShipID(player2, x, y);
 					try {
+						pres1.changeShipState(id);
 						pres1.drawShip(g.getCoordsTable(player2, id));
 					} catch (RemoteException e) {
 						System.out.println("makeMove");
@@ -137,6 +138,7 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 				if (result == 2) {
 					int id = g.getShipID(player1, x, y);
 					try {
+						pres2.changeShipState(id);
 						pres2.drawShip(g.getCoordsTable(player1, id));
 					} catch (RemoteException e) {
 						System.out.println("makeMove");

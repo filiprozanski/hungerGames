@@ -135,6 +135,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 					int id = g.getShipID(player2, x, y);
 					iComputer1.setSink(id, g.getCoordsList(player2, id));
 					try {
+						pres1.changeShipState(id);
 						pres1.drawShip(g.getCoordsTable(player2, id));
 					} catch (RemoteException e) {
 						System.out.println("makeMove");
@@ -162,6 +163,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 					int id = g.getShipID(player1, x, y);
 					iComputer2.setSink(id, g.getCoordsList(player1, id));
 					try {
+						pres2.changeShipState(id);
 						pres2.drawShip(g.getCoordsTable(player1, id));
 					} catch (RemoteException e) {
 						System.out.println("makeMove");

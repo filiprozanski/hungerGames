@@ -29,7 +29,7 @@ public interface IShootingView {
 	 * @param type
 	 *            okre¶la typ ikony
 	 */
-	void changePlaceIcon(int x, int y, int type);
+	void changePlayerBattlePlaceIcon(int x, int y, int type);
 
 	/**
 	 * 
@@ -76,7 +76,9 @@ public interface IShootingView {
 	 * @param sizeV
 	 *            wysoko¶æ pola gry
 	 */
-	void initialize(int sizeH, int sizeV);
+	// void initialize(int sizeH, int sizeV);
+
+	void initialize(int[] shipTypes, int sizeV, int sizeH);
 
 	/**
 	 * 
@@ -148,11 +150,13 @@ public interface IShootingView {
 	 */
 	void setStats(int playerShips, int enemyShips);
 
+	void changeShipState(int shipID);
+
 	void GameOver(boolean win);
 
 	void changePlaceStateIcon(int x, int y, int type);
 
-	void fchangeBattlePlaceIcon(int x, int y, int type);
+	void changeEnemyBattlePlaceIcon(int x, int y, int type);
 
 	void changeGiveUpButtonLabel(String text);
 

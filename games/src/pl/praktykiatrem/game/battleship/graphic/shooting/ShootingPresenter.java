@@ -74,7 +74,8 @@ public class ShootingPresenter extends UnicastRemoteObject implements
 		giveUpButtonCallNumber = 0;
 
 		view = new ShootingPanel(this);
-		view.initialize(gameRules.getBoardSizeV(), gameRules.getBoardSizeH());
+		view.initialize(gameRules.getShipTypes(), gameRules.getBoardSizeV(),
+				gameRules.getBoardSizeH());
 		drawShips();
 		view.disableAllPlayerBoardPlaces();
 	}
@@ -121,12 +122,12 @@ public class ShootingPresenter extends UnicastRemoteObject implements
 	 */
 	@Override
 	public void changeIcon(int x, int y, int type) {
-		view.changePlaceIcon(x, y, type);
+		view.changePlayerBattlePlaceIcon(x, y, type);
 	}
 
 	@Override
 	public void fchangeIcon(int x, int y, int type) {
-		view.fchangeBattlePlaceIcon(x, y, type);
+		view.changeEnemyBattlePlaceIcon(x, y, type);
 	}
 
 	@Override
@@ -203,5 +204,11 @@ public class ShootingPresenter extends UnicastRemoteObject implements
 	@Override
 	public void closeFrame() {
 		view.closeFrame();
+	}
+
+	@Override
+	public void changeShipState(int shipID) {
+		view.changeShipState(shipID);
+
 	}
 }

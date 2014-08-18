@@ -70,12 +70,12 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	 *      int)
 	 */
 	@Override
-	public void initialize(int sizeV, int sizeH) {
+	public void initialize(int[] shipTypes, int sizeV, int sizeH) {
 		setLayout(new GridLayout(2, 2));
 		playerBoardPanel = new BoardGraphicPanel(sizeV, sizeH, false);
 		enemyBoardPanel = new BoardGraphicPanel(this, sizeV, sizeH, false);
 		infoPanel = new InfoPanel(this);
-		shipsLeftPanel = new ShipsLeftPanel();
+		shipsLeftPanel = new ShipsLeftPanel(shipTypes);
 
 		add(playerBoardPanel);
 		add(enemyBoardPanel);
@@ -87,16 +87,16 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#changePlaceIcon(int,
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#changePlayerBattlePlaceIcon(int,
 	 *      int, int)
 	 */
 	@Override
-	public void changePlaceIcon(int x, int y, int type) {
+	public void changePlayerBattlePlaceIcon(int x, int y, int type) {
 		playerBoardPanel.changePlaceIcon(x, y, type);
 	}
 
 	@Override
-	public void fchangeBattlePlaceIcon(int x, int y, int type) {
+	public void changeEnemyBattlePlaceIcon(int x, int y, int type) {
 		enemyBoardPanel.changePlaceIcon(x, y, type);
 	}
 
@@ -178,7 +178,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void drawShipLocation(Coordinates[] tab, int id) {
 		for (Coordinates coord : tab)
-			changePlaceIcon(coord.getX(), coord.getY(), id + 1);
+			changePlayerBattlePlaceIcon(coord.getX(), coord.getY(), id + 1);
 	}
 
 	/**
@@ -292,5 +292,10 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	public void clickedRight(int x, int y) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void changeShipState(int shipID) {
+		shipsLeftPanel.changeShipIcon(shipID);
 	}
 }

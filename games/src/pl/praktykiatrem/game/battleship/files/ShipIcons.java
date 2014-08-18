@@ -202,8 +202,12 @@ public class ShipIcons {
 
 	public static BufferedImage getShipImage(int type, int polesNumber,
 			Direction dir) {
+		final BufferedImage img;
+		if (type == 0)
+			img = iconToBufferedImage(stateIcons[0]);
+		else
+			img = iconToBufferedImage(shipDrawIcon(type));
 
-		final BufferedImage img = iconToBufferedImage(shipDrawIcon(type));
 		final BufferedImage combinedImage;
 		if (dir == null)
 			dir = Direction.HORIZONTAL;

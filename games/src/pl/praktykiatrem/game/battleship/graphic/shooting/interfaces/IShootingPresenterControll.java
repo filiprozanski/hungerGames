@@ -30,4 +30,6 @@ public interface IShootingPresenterControll extends Remote {
 	public void closeFrame() throws RemoteException;
 
 	public void drawShip(Coordinates[] tab) throws RemoteException;
+
+	public void changeShipState(int id) throws RemoteException;
 }
