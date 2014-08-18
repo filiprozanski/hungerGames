@@ -16,7 +16,7 @@ import pl.praktykiatrem.game.tictactoe.graphic.observers.IBoardObserver;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 import pl.praktykiatrem.game.uniElements.buttons.CoordsButton;
 
-public class BoardPanel extends JPanel {
+public class BoardPanel extends JPanel implements IView {
 	private int SIZEH;
 	private int SIZEV;
 	private IBoardObserver observer;
@@ -78,17 +78,20 @@ public class BoardPanel extends JPanel {
 		}
 	}
 
+	@Override
 	public void changeIcon(int x, int y, Sign sign) {
 		place[x][y].setIcon(TTIcons.getIcon(sign));
 		place[x][y].setDisabledIcon(TTIcons.getIcon(sign));
 	}
 
+	@Override
 	public void lock() {
 		for (int i = 0; i < SIZEH; i++)
 			for (int j = 0; j < SIZEV; j++)
 				place[i][j].setEnabled(false);
 	}
 
+	@Override
 	public void disableButton(int x, int y) {
 		place[x][y].setEnabled(false);
 	}

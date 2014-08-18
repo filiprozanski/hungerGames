@@ -10,10 +10,11 @@ import pl.praktykiatrem.game.tictactoe.graphic.observers.IBoardObserver;
 import pl.praktykiatrem.game.tictactoe.graphic.observers.IButtonPanelObserver;
 import pl.praktykiatrem.game.tictactoe.graphic.panels.BoardPanel;
 import pl.praktykiatrem.game.tictactoe.graphic.panels.ButtonPanel;
+import pl.praktykiatrem.game.tictactoe.graphic.panels.IView;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
 public class GamePresenter implements IBoardObserver, IButtonPanelObserver {
-	private BoardPanel boardPanel;
+	private IView boardPanel;
 	private ButtonPanel buttonPanel;
 	private IController supervisor;
 	private JFrame f;
