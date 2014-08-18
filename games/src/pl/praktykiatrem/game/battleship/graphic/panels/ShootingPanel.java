@@ -46,7 +46,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	/**
 	 * panel zawieraj±cy u¿ywanych w trakcie rzgrywki oznaczeñ
 	 */
-	private LegendPanel legendPanel;
+	private ShipsLeftPanel shipsLeftPanel;
 	/**
 	 * presenter steruj±cy wygl±dem i dzia³aniem panelu
 	 */
@@ -75,12 +75,12 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 		playerBoardPanel = new BoardGraphicPanel(sizeV, sizeH, false);
 		enemyBoardPanel = new BoardGraphicPanel(this, sizeV, sizeH, false);
 		infoPanel = new InfoPanel(this);
-		legendPanel = new LegendPanel();
+		shipsLeftPanel = new ShipsLeftPanel();
 
 		add(playerBoardPanel);
 		add(enemyBoardPanel);
 		add(infoPanel);
-		add(legendPanel);
+		add(shipsLeftPanel);
 
 		repaint();
 	}
