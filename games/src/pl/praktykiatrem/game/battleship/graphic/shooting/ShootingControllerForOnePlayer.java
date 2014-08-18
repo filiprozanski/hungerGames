@@ -327,4 +327,9 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		}
 		supervisor.callMenu();
 	}
+
+	@Override
+	public void setHint() {
+		hint.setHint(true);
+	}
 }

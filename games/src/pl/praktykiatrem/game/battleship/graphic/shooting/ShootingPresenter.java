@@ -204,4 +204,9 @@ public class ShootingPresenter extends UnicastRemoteObject implements
 	public void closeFrame() {
 		view.closeFrame();
 	}
+
+	@Override
+	public void showHint() {
+		controll.setHint();
+	}
 }

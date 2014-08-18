@@ -21,6 +21,7 @@ public class HintController {
 	}
 
 	public void setHint(boolean status) {
+		den.updateDensityBoard(hitCounter, board);
 		den.showHint();
 	}
 
