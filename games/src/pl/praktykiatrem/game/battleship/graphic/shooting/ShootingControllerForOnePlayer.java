@@ -6,6 +6,7 @@ import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Easy;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Hard;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.IComputer;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Medium;
+import pl.praktykiatrem.game.battleship.density.HintController;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlace;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
@@ -65,6 +66,8 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 
 	private StartGraphicForOnePlayer supervisor;
 
+	private HintController hint;
+
 	/**
 	 * 
 	 * Tworzy nowy obiekt klasy <code>ShootingController</code>
@@ -78,6 +81,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 			StartGraphicForOnePlayer supervisor, Difficulty difficultyLevel) {
 		this.player1 = player1;
 		this.player2 = player2;
+		hint = new HintController(g);
 		this.supervisor = supervisor;
 		this.g = g;
 
@@ -113,13 +117,16 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		}
 	}
 
+	@Override
 	public boolean makeMove(PlayerStatus player, int x, int y) {
 		if (player.equals(player1)) {
 			int result = g.makeMove(player2, x, y);
 			if (result >= 1) {
 				boardSettingHit(player1, player2, x, y);
+				hint.setHit(x, y);
 				if (result == 2) {
 					int id = g.getShipID(player2, x, y);
+					hint.setSink(id, g.getCoordsList(player2, id));
 					try {
 						pres1.drawShip(g.getCoordsTable(player2, id));
 					} catch (RemoteException e) {
@@ -134,6 +141,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				return true;
 			} else {
 				boardSettingMiss(player1, player2, x, y);
+				hint.setMiss(x, y);
 				makeComputedMove();
 				return false;
 			}
@@ -287,6 +295,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		}
 	}
 
+	@Override
 	public void resign(PlayerStatus player) {
 		try {
 			if (player.equals(player2)) {
@@ -307,6 +316,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		}
 	}
 
+	@Override
 	public void callMenu() {
 		try {
 			pres1.closeFrame();

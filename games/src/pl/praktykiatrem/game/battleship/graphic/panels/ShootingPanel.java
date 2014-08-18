@@ -3,6 +3,8 @@ package pl.praktykiatrem.game.battleship.graphic.panels;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -25,7 +27,7 @@ import pl.praktykiatrem.game.uniElements.enums.Direction;
  *
  */
 public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
-		IShootingView, IShootingButtonsObserver {
+		IShootingView, IShootingButtonsObserver, KeyListener {
 
 	/**
 	 * Pole <code>serialVersionUID</code>
@@ -290,6 +292,24 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void clickedRight(int x, int y) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
 	}

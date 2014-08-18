@@ -1,40 +1,29 @@
-package pl.praktykiatrem.game.battleship.ArtificialIntelligence;
+package pl.praktykiatrem.game.battleship.density;
 
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.battleship.density.DensityController;
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
-public class Hard implements IComputer {
+public class HintController {
 	private ComputerBoard board;
 	private Game game;
-	private int shotCounter = 0;
-	private int BoardH;
-	private int BoardV;
 	private int[] shipTypes;
 	private int hitCounter = 0;
 	private DensityController den;
 
-	public Hard(Game game) {
-		this.board = new ComputerBoard(game);
+	public HintController(Game game) {
+		board = new ComputerBoard(game);
 		this.game = game;
-		this.BoardH = game.getBoardSizeH();
-		this.BoardV = game.getBoardSizeV();
-		this.shipTypes = game.getShipTypes();
-		this.den = new DensityController(game, board);
+		shipTypes = game.getShipTypes();
+		den = new DensityController(game, board);
 	}
 
-	@Override
-	public Coordinates getCords() {
-		if (shotCounter == 0) {
-			den.updateDensityBoard(hitCounter, board);
-		}
-		shotCounter++;
-		return den.getCords(hitCounter, board);
+	public void setHint(boolean status) {
+		den.showHint();
 	}
 
-	@Override
 	public void setSink(int id, ArrayList<Coordinates> arrayList) {
 		for (int i = 0; i < arrayList.size(); i++) {
 			board.setSunk(arrayList.get(i).getX(), arrayList.get(i).getY());
@@ -44,14 +33,12 @@ public class Hard implements IComputer {
 		den.updateDensityBoard(hitCounter, board);
 	}
 
-	@Override
 	public void setHit(int x, int y) {
 		board.setHit(x, y);
 		this.hitCounter++;
 		den.updateDensityBoard(hitCounter, board);
 	}
 
-	@Override
 	public void setMiss(int x, int y) {
 		board.setMiss(x, y);
 		den.updateDensityBoard(hitCounter, board);

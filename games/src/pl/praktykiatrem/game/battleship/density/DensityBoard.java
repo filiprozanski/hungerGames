@@ -1,5 +1,7 @@
-package pl.praktykiatrem.game.battleship.ArtificialIntelligence;
+package pl.praktykiatrem.game.battleship.density;
 
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
+import pl.praktykiatrem.game.battleship.ArtificialIntelligence.CoordsList;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.Rand;
