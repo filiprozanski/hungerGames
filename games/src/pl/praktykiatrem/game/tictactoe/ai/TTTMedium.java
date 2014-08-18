@@ -28,12 +28,12 @@ public class TTTMedium implements TTTDifficulty {
 	}
 
 	public Coordinates getMove() {
-		Coordinates result = computeMove(rules.getActualBoard(), 5, computer);
-		return result;
+		int[] result = computeMove(rules.getActualBoard(), 5, computer);
+		return new Coordinates(result[1], result[2]);
 
 	}
 
-	private Coordinates computeMove(TTBoard board, int depth,
+	private int[] computeMove(TTBoard board, int depth,
 			TTPlayerStatus currentPlayer) {
 
 		ArrayList<Integer> internalScores = new ArrayList<Integer>();
@@ -65,15 +65,15 @@ public class TTTMedium implements TTTDifficulty {
 				myBoard.setSign(currentPlayer.getSign(), x, y);
 
 				if (currentPlayer == computer) {
-					currentScore = computeMove(myBoard, depth - 1, player)
-							.getX();
+					int[] result = computeMove(myBoard, depth - 1, player);
+					currentScore = result[0];
 					if (currentScore > bestScore) {
 						bestScore = currentScore;
 						best = move;
 					}
 				} else {
-					currentScore = computeMove(myBoard, depth - 1, computer)
-							.getX();
+					int[] result = computeMove(myBoard, depth - 1, computer);
+					currentScore = result[0];
 					if (currentScore < bestScore) {
 						bestScore = currentScore;
 						best = move;
@@ -81,7 +81,7 @@ public class TTTMedium implements TTTDifficulty {
 				}
 			}
 		}
-		return best;
+		return new int[] { currentScore, best.getX(), best.getY() };
 	}
 
 	private void changePlayer() {
