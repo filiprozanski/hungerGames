@@ -3,8 +3,6 @@ package pl.praktykiatrem.game.tictactoe.graphic.listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import pl.praktykiatrem.game.tictactoe.graphic.observers.IBoardObserver;
-
 public class PlaceChoiceListener implements ActionListener {
 	private int x;
 	private int y;

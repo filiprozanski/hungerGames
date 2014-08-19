@@ -7,17 +7,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.files.TTIcons;
-import pl.praktykiatrem.game.tictactoe.graphic.observers.IButtonPanelObserver;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
 public class ButtonPanel extends JPanel {
-	private IButtonPanelObserver controller;
+	private GamePanel controller;
 
 	/**
 	 * Creates new form TTButtonPanel
 	 */
-	public ButtonPanel(IButtonPanelObserver controller) {
-		this.controller = controller;
+	public ButtonPanel(GamePanel superVisor) {
 		initComponents();
 	}
 
@@ -39,6 +37,7 @@ public class ButtonPanel extends JPanel {
 
 		goToMenuButton.setText("Przejdz do menu");
 		goToMenuButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent evt) {
 				controller.abortGame();
 			}

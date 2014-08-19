@@ -10,4 +10,10 @@ public interface IView {
 
 	public abstract void disableButton(int x, int y);
 
+	public abstract void showGame();
+
+	public abstract void setSignIcon(Sign sign);
+
+	public abstract void closeFrame();
+
 }

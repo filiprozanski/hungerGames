@@ -11,21 +11,20 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pl.praktykiatrem.game.battleship.files.TTIcons;
+import pl.praktykiatrem.game.tictactoe.graphic.listeners.IBoardObserver;
 import pl.praktykiatrem.game.tictactoe.graphic.listeners.PlaceChoiceListener;
-import pl.praktykiatrem.game.tictactoe.graphic.observers.IBoardObserver;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 import pl.praktykiatrem.game.uniElements.buttons.CoordsButton;
 
-public class BoardPanel extends JPanel implements IView {
+public class BoardPanel extends JPanel implements IBoardObserver {
 	private int SIZEH;
 	private int SIZEV;
-	private IBoardObserver observer;
+	private GamePanel observer;
 	protected JButton[][] place;
 	private int prefferedX;
 	private int prefferedY;
 
-	public BoardPanel(int sizeH, int sizeV, int buttonSize,
-			IBoardObserver observer) {
+	public BoardPanel(int sizeH, int sizeV, int buttonSize, GamePanel observer) {
 		super(new GridLayout(sizeH, sizeV));
 		this.observer = observer;
 		initialize(sizeH, sizeV);
@@ -78,21 +77,23 @@ public class BoardPanel extends JPanel implements IView {
 		}
 	}
 
-	@Override
 	public void changeIcon(int x, int y, Sign sign) {
 		place[x][y].setIcon(TTIcons.getIcon(sign));
 		place[x][y].setDisabledIcon(TTIcons.getIcon(sign));
 	}
 
-	@Override
 	public void lock() {
 		for (int i = 0; i < SIZEH; i++)
 			for (int j = 0; j < SIZEV; j++)
 				place[i][j].setEnabled(false);
 	}
 
-	@Override
 	public void disableButton(int x, int y) {
 		place[x][y].setEnabled(false);
+	}
+
+	@Override
+	public void clicked(int x, int y) {
+		observer.clicked(x, y);
 	}
 }

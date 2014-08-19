@@ -1,53 +1,31 @@
 package pl.praktykiatrem.game.tictactoe.graphic;
 
-import java.awt.Dimension;
-import java.awt.Insets;
-
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.tictactoe.graphic.interfaces.IController;
-import pl.praktykiatrem.game.tictactoe.graphic.observers.IBoardObserver;
-import pl.praktykiatrem.game.tictactoe.graphic.observers.IButtonPanelObserver;
-import pl.praktykiatrem.game.tictactoe.graphic.panels.BoardPanel;
+import pl.praktykiatrem.game.tictactoe.graphic.observers.IGameObserver;
 import pl.praktykiatrem.game.tictactoe.graphic.panels.ButtonPanel;
+import pl.praktykiatrem.game.tictactoe.graphic.panels.GamePanel;
 import pl.praktykiatrem.game.tictactoe.graphic.panels.IView;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
-public class GamePresenter implements IBoardObserver, IButtonPanelObserver {
-	private IView boardPanel;
+public class GamePresenter implements IGameObserver {
+	private IView gamePanel;
 	private ButtonPanel buttonPanel;
 	private IController supervisor;
 	private JFrame f;
 
 	public GamePresenter(int sizeH, int sizeV, int bSize, IController supervisor) {
-		boardPanel = new BoardPanel(sizeH, sizeV, bSize, this);
-		buttonPanel = new ButtonPanel(this);
+		gamePanel = new GamePanel(sizeH, sizeV, bSize, this);
 		this.supervisor = supervisor;
 	}
 
 	public void showGame() {
-		f = new JFrame("Tic Tac Toe");
-
-		f.getContentPane().setLayout(null);
-		f.getContentPane().add(boardPanel);
-		f.getContentPane().add(buttonPanel);
-
-		Insets inset = f.getContentPane().getInsets();
-		Dimension size = boardPanel.getPreferredSize();
-		boardPanel.setBounds(0, 0, size.width, size.height);
-
-		Dimension size2 = buttonPanel.getPreferredSize();
-		int posX = size.width / 2 - size2.width / 2;
-		buttonPanel.setBounds(posX, size.height, size2.width, size2.height);
-
-		f.setSize(size.width + 15, size.height + size2.height + 37);
-		// f.setResizable(false);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setVisible(true);
+		gamePanel.showGame();
 	}
 
 	public void closeGame() {
-		f.dispose();
+		gamePanel.closeFrame();
 	}
 
 	@Override
@@ -57,28 +35,34 @@ public class GamePresenter implements IBoardObserver, IButtonPanelObserver {
 
 	public void changeIcon(Sign sign, int x, int y) {
 		if (sign == Sign.O)
-			boardPanel.changeIcon(x, y, sign);
+			gamePanel.changeIcon(x, y, sign);
 		else if (sign == Sign.X)
-			boardPanel.changeIcon(x, y, sign);
+			gamePanel.changeIcon(x, y, sign);
 
 		disableButton(x, y);
 	}
 
 	public void lockGameBoard() {
-		boardPanel.lock();
+		gamePanel.lock();
 	}
 
 	public void disableButton(int x, int y) {
-		boardPanel.disableButton(x, y);
+		gamePanel.disableButton(x, y);
 	}
 
 	public void setSignIcon(Sign sign) {
-		buttonPanel.setSignIcon(sign);
+		gamePanel.setSignIcon(sign);
 	}
 
 	@Override
 	public void abortGame() {
 		supervisor.abortGame();
+	}
+
+	@Override
+	public void buttonClicked(int x, int y) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
