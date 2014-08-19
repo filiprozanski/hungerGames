@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.ArtificialIntelligence;
+package pl.praktykiatrem.game.battleship.density;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -61,6 +61,9 @@ public class DensityView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.add(densityPanel);
 		pack();
+	}
+
+	public void showHint() {
 		setVisible(true);
 	}
 }

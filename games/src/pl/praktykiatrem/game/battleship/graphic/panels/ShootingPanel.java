@@ -3,6 +3,8 @@ package pl.praktykiatrem.game.battleship.graphic.panels;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -25,7 +27,7 @@ import pl.praktykiatrem.game.uniElements.enums.Direction;
  *
  */
 public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
-		IShootingView, IShootingButtonsObserver {
+		IShootingView, IShootingButtonsObserver, KeyListener {
 
 	/**
 	 * Pole <code>serialVersionUID</code>
@@ -72,7 +74,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void initialize(int[] shipTypes, int sizeV, int sizeH) {
 		setLayout(new GridLayout(2, 2));
-		playerBoardPanel = new BoardGraphicPanel(sizeV, sizeH, false);
+		playerBoardPanel = new BoardGraphicPanel(sizeV, sizeH, false, this);
 		enemyBoardPanel = new BoardGraphicPanel(this, sizeV, sizeH, false);
 		infoPanel = new InfoPanel(this);
 		shipsLeftPanel = new ShipsLeftPanel(shipTypes);
@@ -83,6 +85,10 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 		add(shipsLeftPanel);
 
 		repaint();
+
+		setFocusable(true);
+		requestFocus();
+		addKeyListener(this);
 	}
 
 	/**
@@ -93,11 +99,15 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void changePlayerBattlePlaceIcon(int x, int y, int type) {
 		playerBoardPanel.changePlaceIcon(x, y, type);
+		setFocusable(true);
+		requestFocus();
 	}
 
 	@Override
 	public void changeEnemyBattlePlaceIcon(int x, int y, int type) {
 		enemyBoardPanel.changePlaceIcon(x, y, type);
+		setFocusable(true);
+		requestFocus();
 	}
 
 	/**
@@ -108,6 +118,8 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void changeBattlePlaceIcon(int x, int y, int type) {
 		enemyBoardPanel.changePlaceStateIcon(x, y, type);
+		setFocusable(true);
+		requestFocus();
 	}
 
 	/**
@@ -136,6 +148,8 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void disableBatlleBoardPlace(int x, int y) {
 		enemyBoardPanel.disableButton(x, y);
+		setFocusable(true);
+		requestFocus();
 	}
 
 	/**
@@ -145,6 +159,8 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void disableAllPlayerBoardPlaces() {
 		playerBoardPanel.changeStateAllButtons(false);
+		setFocusable(true);
+		requestFocus();
 	}
 
 	/**
@@ -168,6 +184,8 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 				enemyBoardPanel.disableButton(x, y);
 			}
 		}
+		setFocusable(true);
+		requestFocus();
 	}
 
 	/**
@@ -178,7 +196,13 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void drawShipLocation(Coordinates[] tab, int id) {
 		for (Coordinates coord : tab)
+
 			changePlayerBattlePlaceIcon(coord.getX(), coord.getY(), id + 1);
+
+		// changePlaceIcon(coord.getX(), coord.getY(), id + 1);
+
+		setFocusable(true);
+		requestFocus();
 	}
 
 	/**
@@ -201,6 +225,8 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 			infoPanel.changeStatus(1);
 		else if (ready == false)
 			infoPanel.changeStatus(0);
+		setFocusable(true);
+		requestFocus();
 	}
 
 	/**
@@ -211,6 +237,8 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void setStats(int playerShips, int enemyShips, int accuracy) {
 		infoPanel.setStats(playerShips, enemyShips, accuracy);
+		setFocusable(true);
+		requestFocus();
 	}
 
 	/**
@@ -221,6 +249,8 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void setStats(int playerShips, int enemyShips) {
 		infoPanel.setStats(playerShips, enemyShips);
+		setFocusable(true);
+		requestFocus();
 	}
 
 	@Override
@@ -235,6 +265,8 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void changePlaceStateIcon(int x, int y, int type) {
 		playerBoardPanel.changePlaceStateIcon(x, y, type);
+		setFocusable(true);
+		requestFocus();
 
 	}
 
@@ -297,5 +329,22 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 	@Override
 	public void changeShipState(int shipID) {
 		shipsLeftPanel.changeShipIcon(shipID);
+	}
+
+	public void showHint() {
+		presenter.showHint();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		presenter.showHint();
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
 	}
 }

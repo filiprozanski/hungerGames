@@ -17,30 +17,35 @@ public class CustomRules extends Rules {
 	private final int BOARDSIZE_H = 11;
 	private final int BOARDSIZE_V = 12;
 	private final int SHIPTYPES[] = { 5, 5, 5 };
+	private final GameConstants constants = new GameConstants(BOARDSIZE_V,
+			BOARDSIZE_H, SHIPTYPES);
 
+	@Override
 	public int getBoardSize_H() {
 		return BOARDSIZE_H;
 	}
 
+	@Override
 	public int getBoardSize_V() {
 		return BOARDSIZE_V;
 	}
 
+	@Override
 	public int[] getShipTypes() {
 		return SHIPTYPES;
 	}
 
+	@Override
 	public int getShipsNumber() {
 		return SHIPTYPES.length;
 	}
 
+	@Override
 	public int getShipTypes(int id) {
 		return SHIPTYPES[id];
 	}
 
-	private final GameConstants constants = new GameConstants(BOARDSIZE_V,
-			BOARDSIZE_H, SHIPTYPES);
-
+	@Override
 	public GameConstants getConstants() {
 		return constants;
 	}
@@ -87,6 +92,7 @@ public class CustomRules extends Rules {
 		return true;
 	}
 
+	@Override
 	public boolean shipPlacingValidation(ComputerBoard board, int polesNumber,
 			Direction dir, int x, int y) {
 
@@ -140,7 +146,7 @@ public class CustomRules extends Rules {
 	@Override
 	public boolean placeShips(BSPlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
-		BSBoard plansza = (BSBoard) player.getPlansza();
+		BSBoard plansza = player.getPlansza();
 		if (shipPlacingValidation(plansza, polesNumber, direction, x, y)
 				&& !player.isShipSet(id)) {
 
@@ -193,7 +199,7 @@ public class CustomRules extends Rules {
 
 	@Override
 	public int makeMove(BSPlayerStatus enemy, int x, int y) {
-		BSBoard board = (BSBoard) enemy.getPlansza();
+		BSBoard board = enemy.getPlansza();
 		if (!board.isShipOnPlace(x, y)) {
 			enemy.getPlansza().takeOut(x, y);
 			return 0;

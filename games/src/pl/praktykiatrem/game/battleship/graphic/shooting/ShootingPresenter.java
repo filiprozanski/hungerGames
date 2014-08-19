@@ -209,6 +209,9 @@ public class ShootingPresenter extends UnicastRemoteObject implements
 	@Override
 	public void changeShipState(int shipID) {
 		view.changeShipState(shipID);
+	}
 
+	public void showHint() {
+		controll.setHint();
 	}
 }

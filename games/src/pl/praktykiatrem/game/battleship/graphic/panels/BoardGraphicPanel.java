@@ -33,7 +33,8 @@ public class BoardGraphicPanel extends JPanel {
 	protected ShipButton[][] place;
 	private IBoardPlaceObserver observer;
 
-	public BoardGraphicPanel(int sizeV, int sizeH, boolean dragable) {
+	public BoardGraphicPanel(int sizeV, int sizeH, boolean dragable,
+			ShootingPanel superPanel) {
 		super(new GridLayout(sizeV + 1, sizeH + 1));
 		initialize(sizeV, sizeH);
 		initializeBoard(dragable);
