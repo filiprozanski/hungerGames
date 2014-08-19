@@ -37,6 +37,8 @@ public class HintController {
 			board.setSunk(arrayList.get(i).getX(), arrayList.get(i).getY());
 		}
 		shipTypes[id] = -1;
+		// dlaczego tu jest +1 ? bo nie wywy³ujemy setHit jak statek jest
+		// zatapiany
 		hitCounter = hitCounter - arrayList.size() + 1;
 		den.updateDensityBoard(hitCounter, board);
 	}

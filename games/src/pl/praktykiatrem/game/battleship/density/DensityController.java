@@ -8,7 +8,6 @@ import pl.praktykiatrem.game.uniElements.enums.Direction;
 public class DensityController {
 	private DensityBoard density;
 	private DensityView densityView;
-	// private Coordinates coords = new Coordinates(9, 9);
 	private Game game;
 	private int[] shipTypes;
 
@@ -24,7 +23,7 @@ public class DensityController {
 		densityView.showHint(status);
 	}
 
-	public Coordinates getCords(int hitCounter, ComputerBoard computerBoard) {
+	public Coordinates getCords(ComputerBoard computerBoard) {
 		return density.getRandomMaxDensityCoords();
 	}
 

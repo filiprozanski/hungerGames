@@ -23,6 +23,7 @@ public class Hard implements IComputer {
 		this.BoardV = game.getBoardSizeV();
 		this.shipTypes = game.getShipTypes();
 		this.den = new DensityController(game, board);
+		// debug
 		// den.showHint(true);
 	}
 
@@ -32,7 +33,7 @@ public class Hard implements IComputer {
 			den.updateDensityBoard(hitCounter, board);
 		}
 		shotCounter++;
-		return den.getCords(hitCounter, board);
+		return den.getCords(board);
 	}
 
 	@Override
@@ -41,6 +42,8 @@ public class Hard implements IComputer {
 			board.setSunk(arrayList.get(i).getX(), arrayList.get(i).getY());
 		}
 		shipTypes[id] = -1;
+		// dlaczego tu jest +1 ? bo nie wywy³ujemy setHit jak statek jest
+		// zatapiany
 		hitCounter = hitCounter - arrayList.size() + 1;
 		den.updateDensityBoard(hitCounter, board);
 	}

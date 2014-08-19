@@ -123,7 +123,6 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 			int result = g.makeMove(player2, x, y);
 			if (result >= 1) {
 				boardSettingHit(player1, player2, x, y);
-				hint.setHit(x, y);
 				if (result == 2) {
 					int id = g.getShipID(player2, x, y);
 					hint.setSink(id, g.getCoordsList(player2, id));
@@ -138,6 +137,8 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 					if (player2.getShipsNumber() == 0) {
 						gameOver(player1);
 					}
+				} else {
+					hint.setHit(x, y);
 				}
 				return true;
 			} else {
