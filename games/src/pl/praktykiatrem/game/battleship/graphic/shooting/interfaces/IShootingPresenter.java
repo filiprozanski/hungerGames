@@ -9,4 +9,6 @@ public interface IShootingPresenter {
 
 	public void giveUp();
 
+	public void showHint();
+
 }

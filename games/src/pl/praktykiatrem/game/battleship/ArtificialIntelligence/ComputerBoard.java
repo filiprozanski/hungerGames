@@ -6,7 +6,7 @@ public class ComputerBoard {
 	private Game gameRules;
 	private int board[][];
 
-	ComputerBoard(Game gameRules) {
+	public ComputerBoard(Game gameRules) {
 		this.gameRules = gameRules;
 		this.board = new int[gameRules.getBoardSizeH()][gameRules
 				.getBoardSizeV()];

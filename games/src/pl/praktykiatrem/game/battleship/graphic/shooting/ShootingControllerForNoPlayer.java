@@ -126,6 +126,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 		}
 	}
 
+	@Override
 	public boolean makeMove(PlayerStatus player, int x, int y) {
 		if (player.equals(player1)) {
 			int result = g.makeMove(player2, x, y);
@@ -317,6 +318,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 		}
 	}
 
+	@Override
 	public void resign(PlayerStatus player) {
 		try {
 			if (player.equals(player2)) {
@@ -337,6 +339,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 		}
 	}
 
+	@Override
 	public void callMenu() {
 		try {
 			pres1.closeFrame();
@@ -346,6 +349,12 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 			System.exit(0);
 		}
 		supervisor.callMenu();
+	}
+
+	@Override
+	public void setHint() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

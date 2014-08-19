@@ -70,6 +70,7 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 		choicePanel.enableShipButton(id);
 	}
 
+	@Override
 	public void setOkIconShipButton(int id, boolean ok) {
 		choicePanel.setOkIconShipButton(id, ok);
 

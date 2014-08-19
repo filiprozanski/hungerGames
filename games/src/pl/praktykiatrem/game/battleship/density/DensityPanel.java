@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.ArtificialIntelligence;
+package pl.praktykiatrem.game.battleship.density;
 
 import java.awt.Color;
 import java.awt.Dimension;
