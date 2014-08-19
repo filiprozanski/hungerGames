@@ -20,8 +20,8 @@ public class DensityController {
 				game.getBoardSizeH());
 	}
 
-	public void showHint() {
-		densityView.showHint();
+	public void showHint(boolean status) {
+		densityView.showHint(status);
 	}
 
 	public Coordinates getCords(int hitCounter, ComputerBoard computerBoard) {

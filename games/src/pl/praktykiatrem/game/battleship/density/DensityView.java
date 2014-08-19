@@ -63,7 +63,7 @@ public class DensityView extends JFrame {
 		pack();
 	}
 
-	public void showHint() {
-		setVisible(true);
+	public void showHint(boolean status) {
+		setVisible(status);
 	}
 }

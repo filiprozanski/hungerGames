@@ -12,12 +12,12 @@ import pl.praktykiatrem.game.menu.MainMenu;
  *
  * @author Filip Ró¿añski
  */
-public class NameDialog extends javax.swing.JDialog {
+public class PlayerNameDialog extends javax.swing.JDialog {
 
 	/**
-	 * Creates new form NameDialog
+	 * Creates new form PlayerNameDialog
 	 */
-	public NameDialog(MainMenu parent, String name, boolean modal) {
+	public PlayerNameDialog(MainMenu parent, String name, boolean modal) {
 		super(parent, name, modal);
 		initComponents();
 		setSize(330, 200);
@@ -101,16 +101,16 @@ public class NameDialog extends javax.swing.JDialog {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(NameDialog.class.getName()).log(
+			java.util.logging.Logger.getLogger(PlayerNameDialog.class.getName()).log(
 					java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(NameDialog.class.getName()).log(
+			java.util.logging.Logger.getLogger(PlayerNameDialog.class.getName()).log(
 					java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(NameDialog.class.getName()).log(
+			java.util.logging.Logger.getLogger(PlayerNameDialog.class.getName()).log(
 					java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(NameDialog.class.getName()).log(
+			java.util.logging.Logger.getLogger(PlayerNameDialog.class.getName()).log(
 					java.util.logging.Level.SEVERE, null, ex);
 		}
 		// </editor-fold>
@@ -118,7 +118,7 @@ public class NameDialog extends javax.swing.JDialog {
 		/* Create and display the dialog */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				NameDialog dialog = new NameDialog(new MainMenu(), "test", true);
+				PlayerNameDialog dialog = new PlayerNameDialog(new MainMenu(), "test", true);
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 					@Override
 					public void windowClosing(java.awt.event.WindowEvent e) {

@@ -23,6 +23,7 @@ public class Hard implements IComputer {
 		this.BoardV = game.getBoardSizeV();
 		this.shipTypes = game.getShipTypes();
 		this.den = new DensityController(game, board);
+		// den.showHint(true);
 	}
 
 	@Override

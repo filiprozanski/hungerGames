@@ -12,17 +12,24 @@ public class HintController {
 	private int[] shipTypes;
 	private int hitCounter = 0;
 	private DensityController den;
+	private boolean isHintOn;
 
 	public HintController(Game game) {
 		board = new ComputerBoard(game);
 		this.game = game;
 		shipTypes = game.getShipTypes();
 		den = new DensityController(game, board);
+		isHintOn = false;
 	}
 
 	public void setHint(boolean status) {
 		den.updateDensityBoard(hitCounter, board);
-		den.showHint();
+		den.showHint(status);
+		isHintOn = status;
+	}
+
+	public boolean isHintOn() {
+		return isHintOn;
 	}
 
 	public void setSink(int id, ArrayList<Coordinates> arrayList) {

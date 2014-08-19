@@ -341,7 +341,10 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		presenter.showHint();
+		if (e.getKeyCode() == KeyEvent.VK_H
+				&& (e.getModifiers() & KeyEvent.CTRL_MASK) != 0) {
+			presenter.showHint();
+		}
 	}
 
 	@Override

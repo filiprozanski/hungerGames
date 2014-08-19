@@ -291,15 +291,15 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	}// </editor-fold>
 
 	private void bsPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
+		// JDialog dialog = new PlayerNameDialog(this, "Gracz 1", true);
 		new StartGraphicForOnePlayer("Wiktor", "Komputer", this,
 				getShipsRulesChoice(), getDifficultyChoice());
 		setVisible(false);
 	}
 
 	private void bsPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// JDialog dialog = new NameDialog(this, "Gracz 1", true);
-		// dialog = new NameDialog(this, "Gracz 2", true);
+		// JDialog dialog = new PlayerNameDialog(this, "Gracz 1", true);
+		// dialog = new PlayerNameDialog(this, "Gracz 2", true);
 		new StartGraphicForTwoPlayers("Filip", "Wiktor", this,
 				getShipsRulesChoice());
 		setVisible(false);

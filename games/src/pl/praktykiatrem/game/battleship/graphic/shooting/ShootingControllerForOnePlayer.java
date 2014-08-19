@@ -331,6 +331,6 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 
 	@Override
 	public void setHint() {
-		hint.setHint(true);
+		hint.setHint(!hint.isHintOn());
 	}
 }
