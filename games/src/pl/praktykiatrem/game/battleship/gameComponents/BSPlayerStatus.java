@@ -6,6 +6,7 @@
 
 package pl.praktykiatrem.game.battleship.gameComponents;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.uniElements.Place;
@@ -19,7 +20,9 @@ import pl.praktykiatrem.game.uniElements.PlayerStatus;
  * @author Filip Ró¿añski
  *
  */
-public class BSPlayerStatus extends PlayerStatus {
+public class BSPlayerStatus extends PlayerStatus implements Serializable {
+	private static final long serialVersionUID = 5449970724238076901L;
+
 	Ship[] ships;
 
 	private int shipTypes[];
@@ -29,6 +32,10 @@ public class BSPlayerStatus extends PlayerStatus {
 	private PlayerStats stats;
 
 	private BSBoard board;
+
+	public BSPlayerStatus() {
+
+	}
 
 	/**
 	 * 

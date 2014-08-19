@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.ISettingButtonsObserver;
@@ -119,7 +120,14 @@ public class ShipSettingPanel extends JPanel implements IBoardPlaceObserver,
 
 	@Override
 	public void closeFrame() {
-		frame.dispose();
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				frame.dispose();
+
+			}
+		});
 	}
 
 	@Override

@@ -3,12 +3,15 @@ package pl.praktykiatrem.game.battleship.rmi;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.rules.Game;
+
 public interface IRMIServer extends Remote {
-	public void showConnection() throws RemoteException;
+	public static final String SERVICE_NAME = "hungerService";
+	public static final int PORTNUMBER = 8888;
 
-	public int logInClient(HGClient client) throws RemoteException;
+	public Game getGame() throws RemoteException;
 
-	public void logOutClient(HGClient client) throws RemoteException;
-
-	public void startGame() throws RemoteException;
+	public void setPlayer(BSPlayerStatus player, IRMIClient client)
+			throws RemoteException;
 }

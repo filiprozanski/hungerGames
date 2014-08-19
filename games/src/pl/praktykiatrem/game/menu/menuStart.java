@@ -2,7 +2,7 @@ package pl.praktykiatrem.game.menu;
 
 import java.rmi.registry.Registry;
 
-import pl.praktykiatrem.game.battleship.rmi.HGClient;
+import pl.praktykiatrem.game.battleship.rmi.RMIClient;
 
 public class menuStart {
 	private static MainMenu f;
@@ -17,7 +17,7 @@ public class menuStart {
 		 * http://download.oracle.com/javase
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
-		HGClient client = new HGClient();
+		RMIClient client = new RMIClient();
 		Registry r;
 
 		try {

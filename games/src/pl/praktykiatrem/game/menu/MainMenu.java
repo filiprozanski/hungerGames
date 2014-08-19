@@ -6,7 +6,8 @@
 
 package pl.praktykiatrem.game.menu;
 
-import java.rmi.registry.LocateRegistry;
+import java.rmi.AlreadyBoundException;
+import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 
 import javax.swing.ImageIcon;
@@ -17,8 +18,7 @@ import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnlineClient;
-import pl.praktykiatrem.game.battleship.rmi.HGClient;
-import pl.praktykiatrem.game.battleship.rmi.IRMIServer;
+import pl.praktykiatrem.game.battleship.graphic.StartOnlineServer;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForOnePlayer;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForTwoPlayers;
 import pl.praktykiatrem.game.uniElements.enums.Difficulty;
@@ -136,7 +136,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 
 		bsOnlineButton.setFont(new java.awt.Font("SimHei", 1, 18)); // NOI18N
 		bsOnlineButton.setText("Online");
-		bsOnlineButton.setEnabled(false);
+		bsOnlineButton.setEnabled(true);
 		bsOnlineButton.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,7 +155,15 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		tttOnlineButton.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				tttOnlineButtonActionPerformed(evt);
+				try {
+					tttOnlineButtonActionPerformed(evt);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (AlreadyBoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		getContentPane().add(tttOnlineButton);
@@ -308,15 +316,12 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private void bsOnlineButtonActionPerformed(java.awt.event.ActionEvent evt)
 			throws InterruptedException {
 		try {
-			r = LocateRegistry.getRegistry("localhost", 9875);
-			IRMIServer s = (IRMIServer) r.lookup("RMIServer");
-			s.showConnection();
-			int port = s.logInClient(new HGClient());
-			new StartGraphicOnlineClient(port);
-		} catch (Exception e) {
-			System.out.println("Nie mog³em po³¹czyæ");
-			Thread.sleep(10000);
+			new StartGraphicOnlineClient("wiktor");
+		} catch (RemoteException e) {
+			System.out.println("StartGraphic");
+			e.printStackTrace();
 		}
+		dispose();
 	}
 
 	private void tttPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,8 +336,9 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		setVisible(false);
 	}
 
-	private void tttOnlineButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+	private void tttOnlineButtonActionPerformed(java.awt.event.ActionEvent evt)
+			throws RemoteException, AlreadyBoundException {
+		new StartOnlineServer(getShipsRulesChoice());
 	}
 
 	private void customRulesFieldActionPerformed(java.awt.event.ActionEvent evt) {
@@ -461,9 +467,5 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 			return Difficulty.HARD;
 		else
 			return Difficulty.MEDIUM;
-	}
-
-	public void enableButton() {
-		bsOnlineButton.setEnabled(true);
 	}
 }

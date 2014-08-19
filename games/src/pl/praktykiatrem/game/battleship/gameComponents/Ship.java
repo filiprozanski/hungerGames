@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.gameComponents;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.uniElements.enums.Direction;
@@ -10,7 +11,9 @@ import pl.praktykiatrem.game.uniElements.enums.Direction;
  * @author Filip Rózanski
  *
  */
-public class Ship {
+public class Ship implements Serializable {
+	private static final long serialVersionUID = -7693863964444631323L;
+
 	private int shipID;
 
 	private int polesNumber;
@@ -24,7 +27,9 @@ public class Ship {
 	 */
 	private ArrayList<Coordinates> coords;
 
-	// private Coordinate direction;
+	public Ship() {
+
+	}
 
 	/**
 	 *

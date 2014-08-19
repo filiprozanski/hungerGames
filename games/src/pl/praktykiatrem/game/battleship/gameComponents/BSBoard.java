@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.battleship.gameComponents;
 
+import java.io.Serializable;
+
 import pl.praktykiatrem.game.uniElements.Board;
 
 /**
@@ -10,9 +12,14 @@ import pl.praktykiatrem.game.uniElements.Board;
  *
  */
 
-public class BSBoard extends Board {
+public class BSBoard extends Board implements Serializable {
+	private static final long serialVersionUID = 5263724430201879087L;
 
 	protected BSPlace[][] gameBoard;
+
+	public BSBoard() {
+		super();
+	}
 
 	public BSBoard(int vertical, int horizontal) {
 		super(vertical, horizontal);

@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlace;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnlineServer;
+import pl.praktykiatrem.game.battleship.graphic.StartOnlineServer;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
@@ -44,7 +44,7 @@ public class ShootingControllerOnline implements IShootingController {
 	 */
 	private int accuracy;
 
-	private StartGraphicOnlineServer supervisor;
+	private StartOnlineServer supervisor;
 
 	/**
 	 * 
@@ -55,7 +55,7 @@ public class ShootingControllerOnline implements IShootingController {
 	 * @param g
 	 */
 	public ShootingControllerOnline(BSPlayerStatus player1,
-			BSPlayerStatus player2, Game g, StartGraphicOnlineServer supervisor) {
+			BSPlayerStatus player2, Game g, StartOnlineServer supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;
@@ -314,7 +314,7 @@ public class ShootingControllerOnline implements IShootingController {
 			e.printStackTrace();
 			System.exit(0);
 		}
-		supervisor.callMenu();
+		// supervisor.callMenu();
 
 	}
 

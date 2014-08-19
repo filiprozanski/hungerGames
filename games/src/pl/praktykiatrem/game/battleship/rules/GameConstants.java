@@ -1,6 +1,9 @@
 package pl.praktykiatrem.game.battleship.rules;
 
-public class GameConstants {
+import java.io.Serializable;
+
+public class GameConstants implements Serializable {
+	private static final long serialVersionUID = -3960105237070583994L;
 	private final int BOARDSIZE_H;
 	private final int BOARDSIZE_V;
 	private final int[] SHIPTYPES;

@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.rules;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
@@ -15,7 +16,9 @@ import pl.praktykiatrem.game.uniElements.enums.RulesType;
  * @author Filip Ró¿añski
  *
  */
-public class Game {
+public class Game implements Serializable {
+	private static final long serialVersionUID = 9219908609794206521L;
+
 	private Rules rules;
 
 	private boolean isGameOver;

@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.battleship.rules;
 
+import java.io.Serializable;
+
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
@@ -12,8 +14,8 @@ import pl.praktykiatrem.game.uniElements.enums.Direction;
  * @author Filip Ró¿añski
  *
  */
-public class CustomRules extends Rules {
-
+public class CustomRules extends Rules implements Serializable {
+	private static final long serialVersionUID = -2745861399581281629L;
 	private final int BOARDSIZE_H = 11;
 	private final int BOARDSIZE_V = 12;
 	private final int SHIPTYPES[] = { 5, 5, 5 };

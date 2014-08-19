@@ -6,37 +6,41 @@
 
 package pl.praktykiatrem.game.battleship.gameComponents;
 
-public class PlayerStats {
-    private float shots;
+import java.io.Serializable;
 
-    private float hits;
+public class PlayerStats implements Serializable {
+	private static final long serialVersionUID = -1825707879916783870L;
 
-    private int   accuracy;
+	private float shots;
 
-    PlayerStats() {
-        shots = 0f;
-        hits = 0f;
-        accuracy = 0;
-    }
+	private float hits;
 
-    public int getAccuracy(boolean hit) {
-        if (hit)
-            hits++;
-        shots++;
-        accuracy = (int) ((hits / shots) * 100);
+	private int accuracy;
 
-        return accuracy;
-    }
+	PlayerStats() {
+		shots = 0f;
+		hits = 0f;
+		accuracy = 0;
+	}
 
-    public int getAccuracy() {
-        return accuracy;
-    }
+	public int getAccuracy(boolean hit) {
+		if (hit)
+			hits++;
+		shots++;
+		accuracy = (int) ((hits / shots) * 100);
 
-    public int getShots() {
-        return (int) shots;
-    }
+		return accuracy;
+	}
 
-    public int getHits() {
-        return (int) hits;
-    }
+	public int getAccuracy() {
+		return accuracy;
+	}
+
+	public int getShots() {
+		return (int) shots;
+	}
+
+	public int getHits() {
+		return (int) hits;
+	}
 }

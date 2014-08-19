@@ -7,6 +7,8 @@
 
 package pl.praktykiatrem.game.battleship.gameComponents;
 
+import java.io.Serializable;
+
 import pl.praktykiatrem.game.uniElements.Place;
 
 /**
@@ -15,7 +17,8 @@ import pl.praktykiatrem.game.uniElements.Place;
  * @author Filip Ró¿añski
  *
  */
-public class BSPlace extends Place {
+public class BSPlace extends Place implements Serializable {
+	private static final long serialVersionUID = 1126275031769002150L;
 	private int shipID = -1;
 	private Ship boat;
 	private boolean shipOnPlace;
