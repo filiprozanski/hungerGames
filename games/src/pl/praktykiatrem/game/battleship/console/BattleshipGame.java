@@ -14,6 +14,7 @@ import pl.praktykiatrem.game.battleship.factory.ShipLoader;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
+import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
 /**
  * 
@@ -31,7 +32,7 @@ public class BattleshipGame {
 	private ShipLoader load;
 
 	public BattleshipGame() {
-		// gameRules = new TTGame();
+		gameRules = new Game(RulesType.CUSTOMRULES);
 
 		GameFactory start = new GameFactory(gameRules.getBoardSizeH(),
 				gameRules.getBoardSizeV(), gameRules.getShipTypes());

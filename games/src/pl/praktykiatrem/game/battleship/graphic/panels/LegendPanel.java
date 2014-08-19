@@ -35,9 +35,9 @@ public class LegendPanel extends JPanel {
 		legend1.setBackground(new Color(135, 206, 235));
 		legend2.setBackground(new Color(135, 206, 235));
 
-		String instruction = "<html><p>Ustawianie statku na planszy - przeci±gni go <b>prawym</b> przyciskiem myszy na plansze.</p>"
-				+ "<p>Obracanie statku - klikni na niego <b>prawym</b> przyciskiem myszy.</p>"
-				+ "<p>Usuwanie statku, klikni na niego <b>lewym</b> przyciskiem myszy.</p></html>";
+		String instruction = "<html><p>Ustawianie statku na planszy - przeci±gni go <b>lewym</b> przyciskiem myszy na plansze.</p>"
+				+ "<p>Obracanie statku - klikni na niego <b>lewym</b> przyciskiem myszy.</p>"
+				+ "<p>Usuwanie statku, klikni na niego <b>prawem</b> przyciskiem myszy.</p></html>";
 
 		instruciton.add(new JLabel(instruction));
 		legend1.add(new JLabel("Legenda:", JLabel.CENTER));
