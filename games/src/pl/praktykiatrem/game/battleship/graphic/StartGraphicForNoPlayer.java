@@ -25,13 +25,6 @@ public class StartGraphicForNoPlayer {
 
 	private Difficulty difficultyLevel;
 
-	/*
-	 * public static void main(String[] args) { StartGraphicLocal start = new
-	 * StartGraphicLocal();
-	 * 
-	 * start.initialize(); start.stageA(); }
-	 */
-
 	public StartGraphicForNoPlayer(String name1, String name2,
 			IMenuCallObserver menuObserver, RulesType rulesType,
 			Difficulty difficulty) {
