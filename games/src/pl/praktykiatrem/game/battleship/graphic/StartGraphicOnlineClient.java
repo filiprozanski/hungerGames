@@ -79,9 +79,7 @@ public class StartGraphicOnlineClient extends UnicastRemoteObject implements
 	@Override
 	public void changeStage() {
 		try {
-			System.out.println("zamkni siê");
 			seController.closeSettingStage();
-			System.out.println("zamk³em siê");
 		} catch (RemoteException e) {
 			System.out.println("closeSetting");
 			e.printStackTrace();
