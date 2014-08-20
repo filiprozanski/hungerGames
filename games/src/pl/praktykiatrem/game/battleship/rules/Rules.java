@@ -3,6 +3,7 @@ package pl.praktykiatrem.game.battleship.rules;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
@@ -14,7 +15,7 @@ public abstract class Rules {
 	private final GameConstants constants = new GameConstants(BOARDSIZE_V,
 			BOARDSIZE_H, SHIPTYPES);
 
-	public abstract int makeMove(BSPlayerStatus enemy, int x, int y);
+	public abstract ShootResult makeMove(BSPlayerStatus enemy, int x, int y);
 
 	public abstract boolean displaceShips(BSPlayerStatus player, int id,
 			int polesNumber, Direction direction, int x, int y);

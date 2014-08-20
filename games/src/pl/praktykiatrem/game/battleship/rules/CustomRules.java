@@ -6,6 +6,7 @@ import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 /**
@@ -200,21 +201,21 @@ public class CustomRules extends Rules implements Serializable {
 	}
 
 	@Override
-	public int makeMove(BSPlayerStatus enemy, int x, int y) {
+	public ShootResult makeMove(BSPlayerStatus enemy, int x, int y) {
 		BSBoard board = enemy.getPlansza();
 		if (!board.isShipOnPlace(x, y)) {
 			enemy.getPlansza().takeOut(x, y);
-			return 0;
+			return ShootResult.MISS;
 		} else {
 			if (board.isShipOnPlaceAndActive(x, y)) {
 				enemy.takeOutShip(x, y);
 				if (enemy.reducePolesNumber(x, y) == 0) {
 					enemy.reduceShipsNumber();
-					return 2;
+					return ShootResult.SINK;
 				}
-				return 1;
+				return ShootResult.HIT;
 			} else
-				return 0;
+				return ShootResult.MISS;
 		}
 	}
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
@@ -58,7 +59,7 @@ public class Game implements Serializable {
 		return rules.getShipTypes(id);
 	}
 
-	public int makeMove(BSPlayerStatus p, int x, int y) {
+	public ShootResult makeMove(BSPlayerStatus p, int x, int y) {
 		return rules.makeMove(p, x, y);
 	}
 

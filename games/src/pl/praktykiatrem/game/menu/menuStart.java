@@ -1,8 +1,5 @@
 package pl.praktykiatrem.game.menu;
 
-import java.rmi.registry.Registry;
-
-import pl.praktykiatrem.game.battleship.rmi.RMIClient;
 
 public class menuStart {
 	private static MainMenu f;
@@ -17,8 +14,6 @@ public class menuStart {
 		 * http://download.oracle.com/javase
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
-		RMIClient client = new RMIClient();
-		Registry r;
 
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager

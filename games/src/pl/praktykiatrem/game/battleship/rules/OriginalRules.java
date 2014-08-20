@@ -4,6 +4,7 @@ import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 /**
@@ -18,22 +19,27 @@ public class OriginalRules extends Rules {
 	private final int BOARDSIZE_V = 10;
 	private final int SHIPTYPES[] = { 6, 4, 4, 3, 3, 2, 2 };
 
+	@Override
 	public int getBoardSize_H() {
 		return BOARDSIZE_H;
 	}
 
+	@Override
 	public int getBoardSize_V() {
 		return BOARDSIZE_V;
 	}
 
+	@Override
 	public int[] getShipTypes() {
 		return SHIPTYPES;
 	}
 
+	@Override
 	public int getShipsNumber() {
 		return SHIPTYPES.length;
 	}
 
+	@Override
 	public int getShipTypes(int id) {
 		return SHIPTYPES[id];
 	}
@@ -41,6 +47,7 @@ public class OriginalRules extends Rules {
 	private final GameConstants constants = new GameConstants(BOARDSIZE_V,
 			BOARDSIZE_H, SHIPTYPES);
 
+	@Override
 	public GameConstants getConstants() {
 		return constants;
 	}
@@ -100,6 +107,7 @@ public class OriginalRules extends Rules {
 		return true;
 	}
 
+	@Override
 	public boolean shipPlacingValidation(ComputerBoard board, int polesNumber,
 			Direction dir, int x, int y) {
 
@@ -181,7 +189,7 @@ public class OriginalRules extends Rules {
 	@Override
 	public boolean placeShips(BSPlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
-		BSBoard plansza = (BSBoard) player.getPlansza();
+		BSBoard plansza = player.getPlansza();
 		if (shipPlacingValidation(plansza, polesNumber, direction, x, y)
 				&& !player.isShipSet(id)) {
 
@@ -233,21 +241,21 @@ public class OriginalRules extends Rules {
 	}
 
 	@Override
-	public int makeMove(BSPlayerStatus enemy, int x, int y) {
-		BSBoard board = (BSBoard) enemy.getPlansza();
+	public ShootResult makeMove(BSPlayerStatus enemy, int x, int y) {
+		BSBoard board = enemy.getPlansza();
 		if (!board.isShipOnPlace(x, y)) {
 			enemy.getPlansza().takeOut(x, y);
-			return 0;
+			return ShootResult.MISS;
 		} else {
 			if (board.isShipOnPlaceAndActive(x, y)) {
 				enemy.takeOutShip(x, y);
 				if (enemy.reducePolesNumber(x, y) == 0) {
 					enemy.reduceShipsNumber();
-					return 2;
+					return ShootResult.SINK;
 				}
-				return 1;
+				return ShootResult.HIT;
 			} else
-				return 0;
+				return ShootResult.MISS;
 		}
 	}
 }
