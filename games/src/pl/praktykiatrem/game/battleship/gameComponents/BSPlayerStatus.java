@@ -25,8 +25,6 @@ public class BSPlayerStatus extends PlayerStatus implements Serializable {
 
 	Ship[] ships;
 
-	private int shipTypes[];
-
 	int shipsNumber;
 
 	private PlayerStats stats;
@@ -52,7 +50,6 @@ public class BSPlayerStatus extends PlayerStatus implements Serializable {
 	public BSPlayerStatus(int boardSizeV, int boardSizeH, int[] shipTypes) {
 		super();
 		this.shipsNumber = 0;
-		this.shipTypes = shipTypes;
 		board = new BSBoard(boardSizeV, boardSizeH);
 		ships = new Ship[shipTypes.length];
 		for (int i = 0; i < shipTypes.length; i++)
@@ -157,16 +154,6 @@ public class BSPlayerStatus extends PlayerStatus implements Serializable {
 	 */
 	public void takeOutShip(int x, int y) {
 		board.takeOut(x, y);
-	}
-
-	/**
-	 * 
-	 * @param i
-	 * @return zwraca liczbe masztów statku znajduj¹cego siê w tablicy pod
-	 *         indeksem i
-	 */
-	public int getShipTypes(int i) {
-		return shipTypes[i];
 	}
 
 	/**
