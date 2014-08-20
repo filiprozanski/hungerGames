@@ -9,21 +9,23 @@ import java.rmi.server.UnicastRemoteObject;
 
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerOffline;
-import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForTwoPlayers;
+import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.rmi.IRMIClient;
 import pl.praktykiatrem.game.battleship.rmi.IRMIServer;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 public class StartGraphicOnlineClient extends UnicastRemoteObject implements
-		IRMIClient, Serializable {
+		IRMIClient, Serializable, IShootingController {
 	private static final long serialVersionUID = 1604629930082397823L;
 
 	private BSPlayerStatus player;
 
 	private Game game;
 
-	private ShootingControllerForTwoPlayers shController;
+	private ShootingPresenter shPresenter;
 
 	private SettingControllerOffline seController;
 
@@ -86,6 +88,7 @@ public class StartGraphicOnlineClient extends UnicastRemoteObject implements
 		}
 	}
 
+	@Override
 	public void callMenu() {
 		menuObserver.callMenu();
 	}
@@ -97,5 +100,22 @@ public class StartGraphicOnlineClient extends UnicastRemoteObject implements
 			System.out.println("setReady");
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean makeMove(PlayerStatus player, int x, int y) {
+		return server.makeMove(player, x, y);
+	}
+
+	@Override
+	public void resign(PlayerStatus player) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setHint() {
+		// TODO Auto-generated method stub
+
 	}
 }

@@ -4,11 +4,14 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForTwoPlayers;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
 public class RMIServer extends UnicastRemoteObject implements IRMIServer {
 	private static final long serialVersionUID = -8259936918557298858L;
+	private ShootingControllerForTwoPlayers shController;
 	private BSPlayerStatus player1;
 	private BSPlayerStatus player2;
 	private Game game;
@@ -38,6 +41,16 @@ public class RMIServer extends UnicastRemoteObject implements IRMIServer {
 
 			client1.changeStage();
 			client2.changeStage();
+			setNextStage();
 		}
+	}
+
+	private void setNextStage() {
+		shController = new ShootingControllerForTwoPlayers(player1, player2, game, supervisor)
+	}
+
+	@Override
+	public boolean makeMove(PlayerStatus player, int x, int y) {
+
 	}
 }
