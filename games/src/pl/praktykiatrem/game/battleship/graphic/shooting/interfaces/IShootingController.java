@@ -11,4 +11,5 @@ public interface IShootingController {
 	void callMenu();
 
 	void setHint();
+
 }
