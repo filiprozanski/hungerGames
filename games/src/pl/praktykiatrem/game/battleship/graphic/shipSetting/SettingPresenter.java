@@ -1,8 +1,5 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
@@ -18,8 +15,8 @@ import pl.praktykiatrem.game.uniElements.enums.Direction;
  * @author Filip Ró¿añski
  *
  */
-public class SettingPresenter extends UnicastRemoteObject implements
-		ISettingPresenter, ISettingPresenterControll {
+public class SettingPresenter implements ISettingPresenter,
+		ISettingPresenterControll {
 	/**
 	 * 
 	 */
@@ -53,7 +50,7 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	 * @param observer
 	 */
 	public SettingPresenter(GameConstants gameConst, BSPlayerStatus player,
-			ISettingController controller) throws RemoteException {
+			ISettingController controller) {
 		this.gameConstants = gameConst;
 		this.player = player;
 		this.controller = controller;
@@ -64,7 +61,7 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	}
 
 	public SettingPresenter(GameConstants gameConst, BSPlayerStatus player,
-			ISettingController controller, int mode) throws RemoteException {
+			ISettingController controller, int mode) {
 		this.gameConstants = gameConst;
 		this.player = player;
 		this.controller = controller;
@@ -111,6 +108,7 @@ public class SettingPresenter extends UnicastRemoteObject implements
 	 * losowo ustawia statki na planszy
 	 */
 
+	@Override
 	public void resetBoard() {
 		controller.resetGame(player);
 		clearBoardView();
@@ -155,6 +153,7 @@ public class SettingPresenter extends UnicastRemoteObject implements
 		}
 	}
 
+	@Override
 	public void playerIsReady() {
 		ready = true;
 		controller.playerIsReady();

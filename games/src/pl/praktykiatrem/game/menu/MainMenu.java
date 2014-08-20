@@ -17,7 +17,7 @@ import pl.praktykiatrem.game.battleship.files.ShipIcons;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnlineClient;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
 import pl.praktykiatrem.game.battleship.graphic.StartOnlineServer;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForOnePlayer;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForTwoPlayers;
@@ -316,7 +316,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private void bsOnlineButtonActionPerformed(java.awt.event.ActionEvent evt)
 			throws InterruptedException {
 		try {
-			new StartGraphicOnlineClient("wiktor");
+			new StartGraphicOnline("wiktor");
 		} catch (RemoteException e) {
 			System.out.println("StartGraphic");
 			e.printStackTrace();

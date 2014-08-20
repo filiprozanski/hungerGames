@@ -1,7 +1,5 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
@@ -23,8 +21,8 @@ import pl.praktykiatrem.game.battleship.rules.Game;
  * @version 30 lip 2014 15:18:49
  *
  */
-public class ShootingPresenter extends UnicastRemoteObject implements
-		IShootingPresenter, IShootingPresenterControll {
+public class ShootingPresenter implements IShootingPresenter,
+		IShootingPresenterControll {
 	/**
 	 * 
 	 */
@@ -66,7 +64,7 @@ public class ShootingPresenter extends UnicastRemoteObject implements
 	 * @param controll
 	 */
 	public ShootingPresenter(Game gameRules, BSPlayerStatus player,
-			IShootingController controll) throws RemoteException {
+			IShootingController controll) {
 		this.gameRules = gameRules;
 		this.player = player;
 		this.controll = controll;
@@ -211,6 +209,7 @@ public class ShootingPresenter extends UnicastRemoteObject implements
 		view.changeShipState(shipID);
 	}
 
+	@Override
 	public void showHint() {
 		controll.setHint();
 	}

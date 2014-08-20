@@ -1,19 +1,16 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
-public interface ISettingPresenterControll extends Remote {
-	public void resetBoard() throws RemoteException;
+public interface ISettingPresenterControll {
+	public void resetBoard();
 
-	public void playerIsReady() throws RemoteException;
+	public void playerIsReady();
 
-	public void showFrame() throws RemoteException;
+	public void showFrame();
 
-	public void closeFrame() throws RemoteException;
+	public void closeFrame();
 
 	public void placeShipsOnView(int randX, int randY, Direction rand_dir,
-			int i, int polesNumber) throws RemoteException;
+			int i, int polesNumber);
 }
