@@ -6,8 +6,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 	private Registry r;
@@ -16,23 +18,15 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 
 	private StartGraphicOnline starter;
 
-	public RMIClient(StartGraphicOnline starter) throws RemoteException {
+	public RMIClient(StartGraphicOnline starter) throws RemoteException,
+			NotBoundException {
 		super();
 
 		this.starter = starter;
 
-		try {
-			r = LocateRegistry.getRegistry("localhost", IRMIServer.PORTNUMBER);
-		} catch (RemoteException e) {
-			System.out.println("getRegistry");
-			e.printStackTrace();
-		}
-		try {
-			server = (IRMIServer) r.lookup(IRMIServer.SERVICE_NAME);
-		} catch (RemoteException | NotBoundException e) {
-			System.out.println("lookup");
-			e.printStackTrace();
-		}
+		r = LocateRegistry.getRegistry("localhost", IRMIServer.PORTNUMBER);
+		server = (IRMIServer) r.lookup(IRMIServer.SERVICE_NAME);
+
 	}
 
 	/**
@@ -47,6 +41,36 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 
 	public Game getGame() throws RemoteException {
 		return server.getGame();
+	}
+
+	public boolean makeMove(PlayerStatus player, int x, int y) {
+		return server.makeMove(player, x, y);
+	}
+
+	public void setPlayer(BSPlayerStatus player) throws RemoteException {
+		server.setPlayer(player, this);
+
+	}
+
+	@Override
+	public void hitSetting(int x, int y, int playerShipsNumber,
+			int enemyShipsNumber, int accuracy) throws RemoteException {
+		starter.hitSetting(x, y, playerShipsNumber, enemyShipsNumber, accuracy);
+	}
+
+	@Override
+	public void missSetting(int x, int y) throws RemoteException {
+		starter.missSetting(x, y);
+	}
+
+	@Override
+	public void loseShipSetting(int x, int y) throws RemoteException {
+		starter.loseShipSetting(x, y);
+	}
+
+	@Override
+	public void shipSunkSetting(int x, int y) throws RemoteException {
+		starter.shipSunkSetting(x, y);
 	}
 
 }

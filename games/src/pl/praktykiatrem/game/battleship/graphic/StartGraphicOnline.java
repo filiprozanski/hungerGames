@@ -1,6 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
 import java.io.Serializable;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
@@ -30,7 +31,12 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 	public StartGraphicOnline(String name) throws RemoteException {
 		System.out.println("Klient Start");
 
-		client = new RMIClient(this);
+		try {
+			client = new RMIClient(this);
+		} catch (NotBoundException e) {
+			System.out.println("Client creating");
+			e.printStackTrace();
+		}
 
 		initialize(name);
 
@@ -61,7 +67,6 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 		// shController = new ShootingController(player, game, this);
 	}
 
-	@Override
 	public void changeStage() {
 		try {
 			seController.closeSettingStage();
@@ -78,7 +83,7 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	public void playerIsReady() {
 		try {
-			server.setPlayer(this);
+			client.setPlayer(player);
 		} catch (RemoteException e) {
 			System.out.println("setReady");
 			e.printStackTrace();
@@ -91,7 +96,7 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	@Override
 	public boolean makeMove(PlayerStatus player, int x, int y) {
-		return server.makeMove(player, x, y);
+		return client.makeMove(player, x, y);
 	}
 
 	@Override
@@ -102,6 +107,27 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	@Override
 	public void setHint() {
+		// TODO Auto-generated method stub
+	}
+
+	public void hitSetting(int x, int y, int playerShips, int enemyShips,
+			int accuracy) {
+		shPresenter.setStats(playerShips, enemyShips, accuracy);
+		shPresenter.changeBattlePlaceIcon(x, y, 2);
+
+	}
+
+	public void loseShipSetting(int x, int y) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void shipSunkSetting(int x, int y) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void missSetting(int x, int y) {
 		// TODO Auto-generated method stub
 
 	}

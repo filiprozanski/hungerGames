@@ -11,7 +11,7 @@ import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
 public class RMIServer extends UnicastRemoteObject implements IRMIServer {
 	private static final long serialVersionUID = -8259936918557298858L;
-	private ShootingControllerForTwoPlayers shController;
+	private ShootingControllerOnline shController;
 	private BSPlayerStatus player1;
 	private BSPlayerStatus player2;
 	private Game game;
@@ -46,11 +46,12 @@ public class RMIServer extends UnicastRemoteObject implements IRMIServer {
 	}
 
 	private void setNextStage() {
-		shController = new ShootingControllerForTwoPlayers(player1, player2, game, supervisor)
+		shController = new ShootingControllerOnline(player1, player2,
+				game, );
 	}
 
 	@Override
 	public boolean makeMove(PlayerStatus player, int x, int y) {
-
+		return shController.makeMove(player, x, y);
 	}
 }
