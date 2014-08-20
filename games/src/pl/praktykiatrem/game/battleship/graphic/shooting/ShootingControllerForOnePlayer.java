@@ -1,7 +1,5 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
-import java.rmi.RemoteException;
-
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Easy;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Hard;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.IComputer;
@@ -87,18 +85,12 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 
 		setComputerOpponent(difficultyLevel);
 
-		try {
-			pres1 = new ShootingPresenter(g, player1, this);
-			pres2 = new ShootingPresenter(g, player2, this);
+		pres1 = new ShootingPresenter(g, player1, this);
+		pres2 = new ShootingPresenter(g, player2, this);
 
-			pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
-			pres1.changeStatus(true);
-			pres1.showFrame();
-		} catch (RemoteException e) {
-			System.out.println("shootingcontroller");
-			e.printStackTrace();
-			System.exit(0);
-		}
+		pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
+		pres1.changeStatus(true);
+		pres1.showFrame();
 	}
 
 	private void setComputerOpponent(Difficulty difficulty) {
@@ -126,14 +118,9 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				if (result == 2) {
 					int id = g.getShipID(player2, x, y);
 					hint.setSink(id, g.getCoordsList(player2, id));
-					try {
-						pres1.changeShipState(id);
-						pres1.drawShip(g.getCoordsTable(player2, id));
-					} catch (RemoteException e) {
-						System.out.println("makeMove");
-						e.printStackTrace();
-						System.exit(0);
-					}
+					pres1.changeShipState(id);
+					pres1.drawShip(g.getCoordsTable(player2, id));
+
 					if (player2.getShipsNumber() == 0) {
 						gameOver(player1);
 					}
@@ -182,13 +169,8 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				BSPlace place = (BSPlace) player2.getPlace(i, j);
 				if (place.isShipOnPlace()
 						&& player2.getPlace(i, j).isPlaceInGame())
-					try {
-						pres1.fchangeIcon(i, j, place.getShipId() + 1);
-					} catch (RemoteException e) {
-						System.out.println("drawLeftships");
-						e.printStackTrace();
-						System.exit(0);
-					}
+					pres1.fchangeIcon(i, j, place.getShipId() + 1);
+
 			}
 	}
 
@@ -207,23 +189,17 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 			int x, int y) {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
+		vPres.changeStateIcon(x, y, 0);
+		sPres.changeBattlePlaceIcon(x, y, 2);
+		playerShips = g.getActiveShipsNumber(shooter);
+		enemyShips = g.getActiveShipsNumber(victim);
+		accuracy = victim.getAccuracy(true);
+		sPres.setStats(playerShips, enemyShips, accuracy); // UWAGA!!!
+															// STATSY
+															// KOMPUTERA DO
+															// TESTÓW
+		vPres.setStats(enemyShips, playerShips);
 
-		try {
-			vPres.changeStateIcon(x, y, 0);
-			sPres.changeBattlePlaceIcon(x, y, 2);
-			playerShips = g.getActiveShipsNumber(shooter);
-			enemyShips = g.getActiveShipsNumber(victim);
-			accuracy = victim.getAccuracy(true);
-			sPres.setStats(playerShips, enemyShips, accuracy); // UWAGA!!!
-																// STATSY
-																// KOMPUTERA DO
-																// TESTÓW
-			vPres.setStats(enemyShips, playerShips);
-		} catch (RemoteException e) {
-			System.out.println("boardSettingHit");
-			e.printStackTrace();
-			System.exit(0);
-		}
 	}
 
 	/**
@@ -242,20 +218,15 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
 
-		try {
-			vPres.changeStateIcon(x, y, 1);
-			vPres.changeStatus(true);
-			sPres.changeStatus(false);
-			playerShips = g.getActiveShipsNumber(shooter);
-			enemyShips = g.getActiveShipsNumber(victim);
-			accuracy = shooter.getAccuracy(false);
-			sPres.setStats(playerShips, enemyShips, accuracy);
-			vPres.setStats(enemyShips, playerShips);
-		} catch (RemoteException e) {
-			System.out.println("boardSettingHit");
-			e.printStackTrace();
-			System.exit(0);
-		}
+		vPres.changeStateIcon(x, y, 1);
+		vPres.changeStatus(true);
+		sPres.changeStatus(false);
+		playerShips = g.getActiveShipsNumber(shooter);
+		enemyShips = g.getActiveShipsNumber(victim);
+		accuracy = shooter.getAccuracy(false);
+		sPres.setStats(playerShips, enemyShips, accuracy);
+		vPres.setStats(enemyShips, playerShips);
+
 	}
 
 	/**
@@ -277,56 +248,41 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	}
 
 	public void gameOver(PlayerStatus player) {
-		try {
-			if (player.equals(player1)) {
-				pres1.gameOver(true);
-				pres2.gameOver(false);
+		if (player.equals(player1)) {
+			pres1.gameOver(true);
+			pres2.gameOver(false);
 
-			} else if (player.equals(player2)) {
-				drawLeftShips2();
-				pres1.gameOver(false);
-				pres2.gameOver(true);
-			}
-
-			pres1.changeGiveUpButtonLabel();
-			pres2.changeGiveUpButtonLabel();
-		} catch (RemoteException e) {
-			System.out.println("gameOver");
-			e.printStackTrace();
-			System.exit(0);
+		} else if (player.equals(player2)) {
+			drawLeftShips2();
+			pres1.gameOver(false);
+			pres2.gameOver(true);
 		}
+
+		pres1.changeGiveUpButtonLabel();
+		pres2.changeGiveUpButtonLabel();
+
 	}
 
 	@Override
 	public void resign(PlayerStatus player) {
-		try {
-			if (player.equals(player2)) {
-				pres1.gameOver(true);
-				pres2.gameOver(false);
+		if (player.equals(player2)) {
+			pres1.gameOver(true);
+			pres2.gameOver(false);
 
-			} else if (player.equals(player1)) {
-				pres1.gameOver(false);
-				pres2.gameOver(true);
-			}
-			drawLeftShips2();
-			pres1.changeGiveUpButtonLabel();
-			pres2.changeGiveUpButtonLabel();
-		} catch (RemoteException e) {
-			System.out.println("resign");
-			e.printStackTrace();
-			System.exit(0);
+		} else if (player.equals(player1)) {
+			pres1.gameOver(false);
+			pres2.gameOver(true);
 		}
+		drawLeftShips2();
+		pres1.changeGiveUpButtonLabel();
+		pres2.changeGiveUpButtonLabel();
+
 	}
 
 	@Override
 	public void callMenu() {
-		try {
-			pres1.closeFrame();
-		} catch (RemoteException e) {
-			System.out.println("callMenu");
-			e.printStackTrace();
-			System.exit(0);
-		}
+		pres1.closeFrame();
+
 		supervisor.callMenu();
 	}
 

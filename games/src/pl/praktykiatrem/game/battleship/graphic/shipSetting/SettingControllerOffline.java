@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnlineClient;
+import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
@@ -16,22 +16,17 @@ import pl.praktykiatrem.game.uniElements.enums.Direction;
 public class SettingControllerOffline implements ISettingController {
 	private int readyPlayers;
 	private Game gameRules;
-	private StartGraphicOnlineClient supervisor;
+	private StartGraphicOnline supervisor;
 	private ISettingPresenterControll pres;
 
 	public SettingControllerOffline(Game g, BSPlayerStatus player,
-			StartGraphicOnlineClient supervisor) {
+			StartGraphicOnline supervisor) {
 		this.supervisor = supervisor;
 		this.gameRules = g;
 
-		try {
-			pres = new SettingPresenter(g.getConstants(), player, this);
-			pres.showFrame();
-		} catch (RemoteException e) {
-			System.out.println("controllerset constructor");
-			e.printStackTrace();
-			System.exit(0);
-		}
+		pres = new SettingPresenter(g.getConstants(), player, this);
+		pres.showFrame();
+
 		readyPlayers = 0;
 	}
 
@@ -83,11 +78,8 @@ public class SettingControllerOffline implements ISettingController {
 		int randX;
 		int randY;
 		int polesNumber;
-		try {
-			presenter.resetBoard();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		presenter.resetBoard();
+
 		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
 			polesNumber = gameRules.getShipTypes()[i];
 			rand_dir = Rand.getRandDirection();
@@ -95,14 +87,10 @@ public class SettingControllerOffline implements ISettingController {
 				randX = Rand.getRandX(gameRules);
 				randY = Rand.getRandY(gameRules);
 				if (placeShips(player, i, polesNumber, rand_dir, randX, randY)) {
-					try {
-						presenter.placeShipsOnView(randX, randY, rand_dir, i,
-								polesNumber);
-					} catch (RemoteException e) {
-						System.out.println("placeShipAtRandom");
-						e.printStackTrace();
-						System.exit(0);
-					}
+
+					presenter.placeShipsOnView(randX, randY, rand_dir, i,
+							polesNumber);
+
 					break;
 				}
 			}
