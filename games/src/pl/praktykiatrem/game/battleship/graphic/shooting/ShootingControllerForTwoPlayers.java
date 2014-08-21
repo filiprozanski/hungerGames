@@ -193,6 +193,7 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 		vPres.changeStateIcon(x, y, 1);
 		vPres.changeStatus(true);
 		sPres.changeStatus(false);
+		sPres.changeBattlePlaceIcon(x, y, 1);
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(false);

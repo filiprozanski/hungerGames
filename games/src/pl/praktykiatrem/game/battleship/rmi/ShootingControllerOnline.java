@@ -1,10 +1,10 @@
 package pl.praktykiatrem.game.battleship.rmi;
 
+import java.rmi.RemoteException;
+
 import pl.praktykiatrem.game.battleship.gameComponents.Place;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
-import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
-import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
@@ -54,7 +54,7 @@ public class ShootingControllerOnline implements IShootingController {
 	 */
 	private int accuracy;
 
-	private StartGraphicForTwoPlayers supervisor;
+	private RMIServer supervisor;
 
 	/**
 	 * 
@@ -65,24 +65,11 @@ public class ShootingControllerOnline implements IShootingController {
 	 * @param g
 	 */
 	public ShootingControllerOnline(PlayerStatus player1, PlayerStatus player2,
-			Game g, StartGraphicForTwoPlayers supervisor) {
+			Game g, RMIServer supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;
 		this.g = g;
-
-		pres1 = new ShootingPresenter(g, player1, this);
-		pres2 = new ShootingPresenter(g, player2, this);
-
-		pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
-		pres2.setStats(g.getShipsNumber(), g.getShipsNumber());
-
-		pres1.changeStatus(true);
-		pres2.changeStatus(false);
-
-		pres1.showFrame();
-		pres2.showFrame();
-
 	}
 
 	/**
@@ -99,9 +86,11 @@ public class ShootingControllerOnline implements IShootingController {
 	 * @param y
 	 *            wspó³rzêdna y strza³u
 	 * @return true je¶li trafiony, inaczej false
+	 * @throws RemoteException
 	 */
 	@Override
-	public boolean makeMove(PlayerStatus player, int x, int y) {
+	public boolean makeMove(PlayerStatus player, int x, int y)
+			throws RemoteException {
 		if (player.equals(player1)) {
 			return makeMove(player1, player2, x, y);
 		} else {
@@ -110,7 +99,7 @@ public class ShootingControllerOnline implements IShootingController {
 	}
 
 	private boolean makeMove(PlayerStatus shooter, PlayerStatus victim, int x,
-			int y) {
+			int y) throws RemoteException {
 		ShootResult result = g.makeMove(victim, x, y);
 		switch (result) {
 		case HIT:
@@ -157,25 +146,19 @@ public class ShootingControllerOnline implements IShootingController {
 	 * @param y
 	 */
 	private void boardSettingHit(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y) {
-		IShootingPresenterControll sPres = getPresenter(shooter);
-		IShootingPresenterControll vPres = getPresenter(victim);
-
-		vPres.changeStateIcon(x, y, 0);
-		sPres.changeBattlePlaceIcon(x, y, 2);
+			int x, int y) throws RemoteException {
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(true);
-		sPres.setStats(playerShips, enemyShips, accuracy);
-		vPres.setStats(enemyShips, playerShips);
+		supervisor.setHitSetting(shooter, x, y, playerShips, enemyShips,
+				accuracy);
+		supervisor.losePoleSetting(victim, x, y, enemyShips, playerShips);
 	}
 
 	private void boardSettingSink(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y, int id) {
+			int x, int y, int id) throws RemoteException {
 		boardSettingHit(shooter, victim, x, y);
-		IShootingPresenterControll spres = getPresenter(shooter);
-		spres.changeShipState(id);
-		spres.drawShip(g.getCoordsTable(victim, id));
+		supervisor.shipSunkSetting(shooter, id);
 	}
 
 	/**
@@ -190,17 +173,13 @@ public class ShootingControllerOnline implements IShootingController {
 	 * @param y
 	 */
 	private void boardSettingMiss(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y) {
-		IShootingPresenterControll sPres = getPresenter(shooter);
-		IShootingPresenterControll vPres = getPresenter(victim);
-
-		vPres.changeStateIcon(x, y, 1);
-		vPres.changeStatus(true);
-		sPres.changeStatus(false);
+			int x, int y) throws RemoteException {
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(false);
-		sPres.setStats(playerShips, enemyShips, accuracy);
+		supervisor
+				.missSetting(shooter, x, y, playerShips, enemyShips, accuracy);
+		supervisor.allowToMove(victim, x, y);
 
 	}
 

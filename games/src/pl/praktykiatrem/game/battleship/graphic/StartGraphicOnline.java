@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerOffline;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
@@ -66,9 +67,10 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 		// shController = new ShootingController(player, game, this);
 	}
 
-	public void changeStage() {
+	public void changeStage(boolean start) {
 		try {
 			seController.closeSettingStage();
+			startShootingStage(start);
 		} catch (RemoteException e) {
 			System.out.println("closeSetting");
 			e.printStackTrace();
@@ -95,7 +97,13 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	@Override
 	public boolean makeMove(PlayerStatus player, int x, int y) {
-		return client.makeMove(player, x, y);
+		try {
+			return client.makeMove(player, x, y);
+		} catch (RemoteException e) {
+			System.out.println("makeMove");
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
@@ -116,18 +124,32 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	}
 
-	public void loseShipSetting(int x, int y) {
-		// TODO Auto-generated method stub
+	public void losePoleSetting(int x, int y, int playerShips, int enemyShips) {
+		shPresenter.setStats(playerShips, enemyShips);
+		shPresenter.changeStateIcon(x, y, 0);
+	}
+
+	public void shipSunkSetting(Coordinates[] list, int id) {
+		shPresenter.changeShipState(id);
+		shPresenter.drawShip(list);
+	}
+
+	public void missSetting(int playerShips, int x, int y, int enemyShips,
+			int accuracy) {
+		shPresenter.changeStatus(false);
+		shPresenter.changeBattlePlaceIcon(x, y, 1);
+		shPresenter.setStats(playerShips, enemyShips, accuracy);
 
 	}
 
-	public void shipSunkSetting(int x, int y) {
-		// TODO Auto-generated method stub
-
+	private void startShootingStage(boolean start) {
+		shPresenter = new ShootingPresenter(game, player, this, start);
+		shPresenter.setStats(game.getShipsNumber(), game.getShipsNumber());
+		shPresenter.showFrame();
 	}
 
-	public void missSetting(int x, int y) {
-		// TODO Auto-generated method stub
-
+	public void allowToMove(int x, int y) {
+		shPresenter.changeStateIcon(x, y, 1);
+		shPresenter.changeStatus(true);
 	}
 }

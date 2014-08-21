@@ -18,7 +18,7 @@ import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
-import pl.praktykiatrem.game.battleship.graphic.StartOnlineServer;
+import pl.praktykiatrem.game.battleship.rmi.ServerApp;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForOnePlayer;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForTwoPlayers;
 import pl.praktykiatrem.game.uniElements.enums.Difficulty;
@@ -338,7 +338,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 
 	private void tttOnlineButtonActionPerformed(java.awt.event.ActionEvent evt)
 			throws RemoteException, AlreadyBoundException {
-		new StartOnlineServer(getShipsRulesChoice());
+		new ServerApp(getShipsRulesChoice());
 	}
 
 	private void customRulesFieldActionPerformed(java.awt.event.ActionEvent evt) {

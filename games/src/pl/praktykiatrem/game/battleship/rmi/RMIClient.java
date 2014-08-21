@@ -6,6 +6,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
 import pl.praktykiatrem.game.battleship.rules.Game;
@@ -25,7 +26,6 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 
 		r = LocateRegistry.getRegistry("localhost", IRMIServer.PORTNUMBER);
 		server = (IRMIServer) r.lookup(IRMIServer.SERVICE_NAME);
-
 	}
 
 	/**
@@ -34,15 +34,16 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 	private static final long serialVersionUID = -1921402231416408470L;
 
 	@Override
-	public void changeStage() throws RemoteException {
-		starter.changeStage();
+	public void changeStage(boolean start) throws RemoteException {
+		starter.changeStage(start);
 	}
 
 	public Game getGame() throws RemoteException {
 		return server.getGame();
 	}
 
-	public boolean makeMove(PlayerStatus player, int x, int y) {
+	public boolean makeMove(PlayerStatus player, int x, int y)
+			throws RemoteException {
 		return server.makeMove(player, x, y);
 	}
 
@@ -58,18 +59,26 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 	}
 
 	@Override
-	public void missSetting(int x, int y) throws RemoteException {
-		starter.missSetting(x, y);
+	public void missSetting(int playerShips, int x, int y, int enemyShips,
+			int accuracy) throws RemoteException {
+		starter.missSetting(playerShips, x, y, enemyShips, accuracy);
 	}
 
 	@Override
-	public void loseShipSetting(int x, int y) throws RemoteException {
-		starter.loseShipSetting(x, y);
+	public void losePoleSetting(int x, int y, int pNumber, int eNumber)
+			throws RemoteException {
+		starter.losePoleSetting(x, y, pNumber, eNumber);
 	}
 
 	@Override
-	public void shipSunkSetting(int x, int y) throws RemoteException {
-		starter.shipSunkSetting(x, y);
+	public void shipSunkSetting(Coordinates[] list, int id)
+			throws RemoteException {
+		starter.shipSunkSetting(list, id);
+	}
+
+	@Override
+	public void allowToMove(int x, int y) throws RemoteException {
+		starter.allowToMove(x, y);
 	}
 
 }

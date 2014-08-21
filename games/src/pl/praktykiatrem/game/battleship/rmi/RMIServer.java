@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForTwoPlayers;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
@@ -38,19 +37,64 @@ public class RMIServer extends UnicastRemoteObject implements IRMIServer {
 			player2 = player;
 			client2 = client;
 
-			client1.changeStage();
-			client2.changeStage();
+			client1.changeStage(true);
+			client2.changeStage(false);
 			setNextStage();
 		}
 	}
 
+	private IRMIClient getClient(PlayerStatus player) {
+		if (player == player1)
+			return client1;
+		else if (player == player2)
+			return client2;
+		else
+			return null;
+	}
+
 	private void setNextStage() {
-		shController = new ShootingControllerOnline(player1, player2,
-				game, );
+		shController = new ShootingControllerOnline(player1, player2, game,
+				this);
 	}
 
 	@Override
-	public boolean makeMove(PlayerStatus player, int x, int y) {
+	public boolean makeMove(PlayerStatus player, int x, int y)
+			throws RemoteException {
 		return shController.makeMove(player, x, y);
+	}
+
+	public void callMenu() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setHitSetting(PlayerStatus player, int x, int y, int pNumber,
+			int eNumber, int accuracy) throws RemoteException {
+		IRMIClient client = getClient(player);
+		client.hitSetting(x, y, pNumber, eNumber, accuracy);
+	}
+
+	public void losePoleSetting(PlayerStatus player, int x, int y, int pNumber,
+			int eNumber) throws RemoteException {
+		IRMIClient client = getClient(player);
+		client.losePoleSetting(x, y, pNumber, eNumber);
+	}
+
+	public void shipSunkSetting(PlayerStatus player, int id)
+			throws RemoteException {
+		IRMIClient client = getClient(player);
+		client.shipSunkSetting(game.getCoordsTable(player, id), id);
+	}
+
+	public void missSetting(PlayerStatus player, int x, int y, int playerShips,
+			int enemyShips, int accuracy) throws RemoteException {
+		IRMIClient client = getClient(player);
+		client.missSetting(playerShips, x, y, enemyShips, accuracy);
+	}
+
+	public void allowToMove(PlayerStatus player, int x, int y)
+			throws RemoteException {
+		IRMIClient client = getClient(player);
+		client.allowToMove(x, y);
 	}
 }

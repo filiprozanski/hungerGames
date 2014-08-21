@@ -15,5 +15,6 @@ public interface IRMIServer extends Remote {
 	public void setPlayer(PlayerStatus player, IRMIClient client)
 			throws RemoteException;
 
-	public boolean makeMove(PlayerStatus player, int x, int y);
+	public boolean makeMove(PlayerStatus player, int x, int y)
+			throws RemoteException;
 }

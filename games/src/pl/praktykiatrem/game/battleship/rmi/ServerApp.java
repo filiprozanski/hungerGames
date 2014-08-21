@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.graphic;
+package pl.praktykiatrem.game.battleship.rmi;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
@@ -8,12 +8,10 @@ import java.util.concurrent.TimeUnit;
 
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerOnline;
-import pl.praktykiatrem.game.battleship.rmi.IRMIServer;
-import pl.praktykiatrem.game.battleship.rmi.RMIServer;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
-public class StartOnlineServer {
+public class ServerApp {
 	private PlayerStatus player1;
 
 	private PlayerStatus player2;
@@ -22,7 +20,7 @@ public class StartOnlineServer {
 
 	private ShootingControllerOnline shController;
 
-	public StartOnlineServer(RulesType rulesType) throws RemoteException,
+	public ServerApp(RulesType rulesType) throws RemoteException,
 			AlreadyBoundException {
 		Registry r = LocateRegistry.createRegistry(IRMIServer.PORTNUMBER);
 		r.bind(IRMIServer.SERVICE_NAME, new RMIServer());

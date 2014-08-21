@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
@@ -109,7 +110,13 @@ public class ShootingPresenter implements IShootingPresenter,
 	public void shot(int x, int y) {
 		this.x = x;
 		this.y = y;
-		controll.makeMove(player, x, y);
+
+		try {
+			controll.makeMove(player, x, y);
+		} catch (RemoteException e) {
+			System.out.println("makeMove presenter");
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -147,8 +154,6 @@ public class ShootingPresenter implements IShootingPresenter,
 	public void changeStatus(boolean ableToMove) {
 		view.changeStateAllEnemyBoardPlaces(ableToMove, lockedPlaces);
 		view.changeStatus(ableToMove);
-		if (!ableToMove)
-			view.changeBattlePlaceIcon(x, y, 1);
 	}
 
 	/**

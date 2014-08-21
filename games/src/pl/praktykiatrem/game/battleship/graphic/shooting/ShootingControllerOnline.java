@@ -2,9 +2,9 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Place;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.StartOnlineServer;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
+import pl.praktykiatrem.game.battleship.rmi.ServerApp;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class ShootingControllerOnline implements IShootingController {
@@ -41,7 +41,7 @@ public class ShootingControllerOnline implements IShootingController {
 	 */
 	private int accuracy;
 
-	private StartOnlineServer supervisor;
+	private ServerApp supervisor;
 
 	/**
 	 * 
@@ -52,7 +52,7 @@ public class ShootingControllerOnline implements IShootingController {
 	 * @param g
 	 */
 	public ShootingControllerOnline(PlayerStatus player1, PlayerStatus player2,
-			Game g, StartOnlineServer supervisor) {
+			Game g, ServerApp supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;
