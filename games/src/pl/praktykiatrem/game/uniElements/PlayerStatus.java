@@ -1,7 +1,5 @@
 package pl.praktykiatrem.game.uniElements;
 
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
-
 public abstract class PlayerStatus {
 
 	protected Player gamer;
@@ -18,7 +16,7 @@ public abstract class PlayerStatus {
 	 */
 	@Override
 	public boolean equals(Object other) {
-		if (!(other instanceof BSPlayerStatus))
+		if (!(other instanceof PlayerStatus))
 			return false;
 
 		PlayerStatus other2 = (PlayerStatus) other;

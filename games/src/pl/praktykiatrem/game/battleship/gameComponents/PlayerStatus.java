@@ -9,9 +9,7 @@ package pl.praktykiatrem.game.battleship.gameComponents;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.uniElements.Place;
 import pl.praktykiatrem.game.uniElements.Player;
-import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 /**
  * Klasa odpowadia za przchowywanie informacji o statusie gracza m.in. liczbie
@@ -20,7 +18,8 @@ import pl.praktykiatrem.game.uniElements.PlayerStatus;
  * @author Filip Ró¿añski
  *
  */
-public class BSPlayerStatus extends PlayerStatus implements Serializable {
+public class PlayerStatus extends
+		pl.praktykiatrem.game.uniElements.PlayerStatus implements Serializable {
 	private static final long serialVersionUID = 5449970724238076901L;
 
 	Ship[] ships;
@@ -29,9 +28,9 @@ public class BSPlayerStatus extends PlayerStatus implements Serializable {
 
 	private PlayerStats stats;
 
-	private BSBoard board;
+	private Board board;
 
-	public BSPlayerStatus() {
+	public PlayerStatus() {
 
 	}
 
@@ -47,10 +46,10 @@ public class BSPlayerStatus extends PlayerStatus implements Serializable {
 	 *            tablica przechowuj¹ca informacje o typie statków u¿ywanych w
 	 *            rozgrywce
 	 */
-	public BSPlayerStatus(int boardSizeV, int boardSizeH, int[] shipTypes) {
+	public PlayerStatus(int boardSizeV, int boardSizeH, int[] shipTypes) {
 		super();
 		this.shipsNumber = 0;
-		board = new BSBoard(boardSizeV, boardSizeH);
+		board = new Board(boardSizeV, boardSizeH);
 		ships = new Ship[shipTypes.length];
 		for (int i = 0; i < shipTypes.length; i++)
 			setShip(i, shipTypes[i]);
@@ -60,10 +59,10 @@ public class BSPlayerStatus extends PlayerStatus implements Serializable {
 
 	@Override
 	public boolean equals(Object other) {
-		if (!(other instanceof BSPlayerStatus))
+		if (!(other instanceof PlayerStatus))
 			return false;
 
-		BSPlayerStatus other2 = (BSPlayerStatus) other;
+		PlayerStatus other2 = (PlayerStatus) other;
 		if (this.playerID == other2.playerID)
 			return true;
 		else
@@ -108,7 +107,7 @@ public class BSPlayerStatus extends PlayerStatus implements Serializable {
 	 * 
 	 * @return zwraca plansze gracza
 	 */
-	public BSBoard getPlansza() {
+	public Board getPlansza() {
 		return board;
 	}
 
@@ -163,13 +162,13 @@ public class BSPlayerStatus extends PlayerStatus implements Serializable {
 	 * @param y
 	 */
 	public int reducePolesNumber(int x, int y) {
-		BSPlace p = board.getPlace(x, y);
+		Place p = board.getPlace(x, y);
 		int shipID = p.getShipId();
 		return ships[shipID].reducePolesNumber();
 	}
 
 	public int getShipID(int x, int y) {
-		BSPlace p = board.getPlace(x, y);
+		Place p = board.getPlace(x, y);
 		return p.getShipId();
 
 	}
@@ -221,6 +220,7 @@ public class BSPlayerStatus extends PlayerStatus implements Serializable {
 		return stats.getAccuracy(hit);
 	}
 
+	@Override
 	public void resetStatus() {
 		board.clearBoard();
 		for (Ship s : ships)

@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic.shipSetting;
 
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter;
@@ -29,7 +29,7 @@ public class SettingPresenter implements ISettingPresenter,
 	/**
 	 * reprezentacja gracza, który wykonuje swoje ruchy poprzez dany interfejs
 	 */
-	private BSPlayerStatus player;
+	private PlayerStatus player;
 	/**
 	 * interfejs graficzny etapu ustawiania statków
 	 */
@@ -49,7 +49,7 @@ public class SettingPresenter implements ISettingPresenter,
 	 * @param player
 	 * @param observer
 	 */
-	public SettingPresenter(GameConstants gameConst, BSPlayerStatus player,
+	public SettingPresenter(GameConstants gameConst, PlayerStatus player,
 			ISettingController controller) {
 		this.gameConstants = gameConst;
 		this.player = player;
@@ -60,7 +60,7 @@ public class SettingPresenter implements ISettingPresenter,
 		// view.changeStateAllBoardPlaces(false);
 	}
 
-	public SettingPresenter(GameConstants gameConst, BSPlayerStatus player,
+	public SettingPresenter(GameConstants gameConst, PlayerStatus player,
 			ISettingController controller, int mode) {
 		this.gameConstants = gameConst;
 		this.player = player;

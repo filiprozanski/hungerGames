@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
@@ -59,7 +59,7 @@ public class Game implements Serializable {
 		return rules.getShipTypes(id);
 	}
 
-	public ShootResult makeMove(BSPlayerStatus p, int x, int y) {
+	public ShootResult makeMove(PlayerStatus p, int x, int y) {
 		return rules.makeMove(p, x, y);
 	}
 
@@ -68,12 +68,12 @@ public class Game implements Serializable {
 		return rules.shipPlacingValidation(board, polesNumber, dir, x, y);
 	}
 
-	public boolean placeShips(BSPlayerStatus p, int id, int polesNumber,
+	public boolean placeShips(PlayerStatus p, int id, int polesNumber,
 			Direction direction, int x, int y) {
 		return rules.placeShips(p, id, polesNumber, direction, x, y);
 	}
 
-	public boolean displaceShips(BSPlayerStatus player, int id,
+	public boolean displaceShips(PlayerStatus player, int id,
 			int polesNumber, Direction direction, int x, int y) {
 		return rules.displaceShips(player, id, polesNumber, direction, x, y);
 	}
@@ -82,23 +82,23 @@ public class Game implements Serializable {
 		return isGameOver;
 	}
 
-	public int getActiveShipsNumber(BSPlayerStatus player) {
+	public int getActiveShipsNumber(PlayerStatus player) {
 		return rules.getActiveShipsNumber(player);
 	}
 
-	public ArrayList<Coordinates> getCoordsList(BSPlayerStatus player, int id) {
+	public ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id) {
 		return player.getCoords(id);
 	}
 
-	public Coordinates[] getCoordsTable(BSPlayerStatus player, int id) {
+	public Coordinates[] getCoordsTable(PlayerStatus player, int id) {
 		return player.getCoordsTable(id);
 	}
 
-	public int getAccuracy(BSPlayerStatus player, boolean hit) {
+	public int getAccuracy(PlayerStatus player, boolean hit) {
 		return rules.getAccuracy(player, hit);
 	}
 
-	public int getShipID(BSPlayerStatus p, int x, int y) {
+	public int getShipID(PlayerStatus p, int x, int y) {
 		return rules.getShipID(p, x, y);
 	}
 

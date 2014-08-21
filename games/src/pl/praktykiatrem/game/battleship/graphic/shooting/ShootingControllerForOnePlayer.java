@@ -5,14 +5,14 @@ import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Hard;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.IComputer;
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Medium;
 import pl.praktykiatrem.game.battleship.density.HintController;
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlace;
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.Place;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
-import pl.praktykiatrem.game.uniElements.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.Difficulty;
 
 /**
@@ -30,11 +30,11 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	/**
 	 * obiekt reprezentuj±cy pierwszego z graczy
 	 */
-	private BSPlayerStatus player1;
+	private PlayerStatus player1;
 	/**
 	 * obiekt reprezentuj±cy drugiego z graczy
 	 */
-	private BSPlayerStatus player2;
+	private PlayerStatus player2;
 	/**
 	 * obiekt reprezentuj±cy presenter gracza player1
 	 */
@@ -74,9 +74,9 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	 * @param player2
 	 * @param g
 	 */
-	public ShootingControllerForOnePlayer(BSPlayerStatus player1,
-			BSPlayerStatus player2, Game g,
-			StartGraphicForOnePlayer supervisor, Difficulty difficultyLevel) {
+	public ShootingControllerForOnePlayer(PlayerStatus player1,
+			PlayerStatus player2, Game g, StartGraphicForOnePlayer supervisor,
+			Difficulty difficultyLevel) {
 		this.player1 = player1;
 		this.player2 = player2;
 		hint = new HintController(g);
@@ -112,47 +112,51 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	@Override
 	public boolean makeMove(PlayerStatus player, int x, int y) {
 		if (player.equals(player1)) {
-			int result = g.makeMove(player2, x, y);
-			if (result >= 1) {
+			ShootResult result = g.makeMove(player2, x, y);
+			switch (result) {
+			case HIT:
 				boardSettingHit(player1, player2, x, y);
-				if (result == 2) {
-					int id = g.getShipID(player2, x, y);
-					hint.setSink(id, g.getCoordsList(player2, id));
-					pres1.changeShipState(id);
-					pres1.drawShip(g.getCoordsTable(player2, id));
-
-					if (player2.getShipsNumber() == 0) {
-						gameOver(player1);
-					}
-				} else {
-					hint.setHit(x, y);
+				hint.setHit(x, y);
+				return true;
+			case SINK:
+				int id = g.getShipID(player2, x, y);
+				hint.setSink(id, g.getCoordsList(player2, id));
+				boardSettingSink(player1, player2, x, y, id);
+				if (player2.getShipsNumber() == 0) {
+					gameOver(player1);
 				}
 				return true;
-			} else {
+			case MISS:
 				boardSettingMiss(player1, player2, x, y);
 				hint.setMiss(x, y);
 				makeComputedMove();
 				return false;
+			default:
+				return false;
 			}
 		} else {
-			int result = g.makeMove(player1, x, y);
-			if (result >= 1) {
+			ShootResult result = g.makeMove(player1, x, y);
+			switch (result) {
+			case HIT:
 				boardSettingHit(player2, player1, x, y);
-				if (result == 2) {
-					int id = g.getShipID(player1, x, y);
-					iComputer.setSink(id, g.getCoordsList(player1, id));
-					if (player1.getShipsNumber() == 0) {
-						gameOver(player2);
-						return true;
-					}
-				} else {
-					iComputer.setHit(x, y);
+				iComputer.setHit(x, y);
+				makeComputedMove();
+				return true;
+			case SINK:
+				int id = g.getShipID(player1, x, y);
+				boardSettingHit(player2, player1, x, y);
+				iComputer.setSink(id, g.getCoordsList(player1, id));
+				if (player1.getShipsNumber() == 0) {
+					gameOver(player2);
+					return true;
 				}
 				makeComputedMove();
 				return true;
-			} else {
+			case MISS:
 				iComputer.setMiss(x, y);
 				boardSettingMiss(player2, player1, x, y);
+				return false;
+			default:
 				return false;
 			}
 		}
@@ -163,10 +167,10 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		makeMove(player2, coords.getX(), coords.getY());
 	}
 
-	private void drawLeftShips2() {
+	private void drawLeftShips() {
 		for (int i = 0; i < g.getBoardSizeV(); i++)
 			for (int j = 0; j < g.getBoardSizeH(); j++) {
-				BSPlace place = (BSPlace) player2.getPlace(i, j);
+				Place place = player2.getPlace(i, j);
 				if (place.isShipOnPlace()
 						&& player2.getPlace(i, j).isPlaceInGame())
 					pres1.fchangeIcon(i, j, place.getShipId() + 1);
@@ -185,7 +189,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	 * @param x
 	 * @param y
 	 */
-	private void boardSettingHit(BSPlayerStatus shooter, BSPlayerStatus victim,
+	private void boardSettingHit(PlayerStatus shooter, PlayerStatus victim,
 			int x, int y) {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
@@ -193,13 +197,17 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 		sPres.changeBattlePlaceIcon(x, y, 2);
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
-		accuracy = victim.getAccuracy(true);
-		sPres.setStats(playerShips, enemyShips, accuracy); // UWAGA!!!
-															// STATSY
-															// KOMPUTERA DO
-															// TESTÓW
+		accuracy = shooter.getAccuracy(true);
+		sPres.setStats(playerShips, enemyShips, accuracy);
 		vPres.setStats(enemyShips, playerShips);
 
+	}
+
+	private void boardSettingSink(PlayerStatus shooter, PlayerStatus victim,
+			int x, int y, int id) {
+		boardSettingHit(shooter, victim, x, y);
+		pres1.changeShipState(id);
+		pres1.drawShip(g.getCoordsTable(player2, id));
 	}
 
 	/**
@@ -213,8 +221,8 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	 * @param x
 	 * @param y
 	 */
-	private void boardSettingMiss(BSPlayerStatus shooter,
-			BSPlayerStatus victim, int x, int y) {
+	private void boardSettingMiss(PlayerStatus shooter, PlayerStatus victim,
+			int x, int y) {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
 
@@ -253,7 +261,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 			pres2.gameOver(false);
 
 		} else if (player.equals(player2)) {
-			drawLeftShips2();
+			drawLeftShips();
 			pres1.gameOver(false);
 			pres2.gameOver(true);
 		}
@@ -273,7 +281,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 			pres1.gameOver(false);
 			pres2.gameOver(true);
 		}
-		drawLeftShips2();
+		drawLeftShips();
 		pres1.changeGiveUpButtonLabel();
 		pres2.changeGiveUpButtonLabel();
 

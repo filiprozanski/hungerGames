@@ -9,15 +9,14 @@ package pl.praktykiatrem.game.battleship.gameComponents;
 
 import java.io.Serializable;
 
-import pl.praktykiatrem.game.uniElements.Place;
-
 /**
  * reprezentuje pole na planszy
  * 
  * @author Filip Ró¿añski
  *
  */
-public class BSPlace extends Place implements Serializable {
+public class Place extends pl.praktykiatrem.game.uniElements.Place implements
+		Serializable {
 	private static final long serialVersionUID = 1126275031769002150L;
 	private int shipID = -1;
 	private Ship boat;
@@ -27,7 +26,7 @@ public class BSPlace extends Place implements Serializable {
 	 * ustawia wartoœci charakteryzuj¹ce pole na stan pocz¹tkowy nie ma statku
 	 * pole jest w grze
 	 */
-	public BSPlace() {
+	public Place() {
 		shipOnPlace = false;
 		isInGame = true;
 	}

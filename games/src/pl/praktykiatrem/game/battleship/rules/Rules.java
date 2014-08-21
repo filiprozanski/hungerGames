@@ -1,8 +1,8 @@
 package pl.praktykiatrem.game.battleship.rules;
 
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.Board;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
 import pl.praktykiatrem.game.uniElements.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
@@ -15,28 +15,28 @@ public abstract class Rules {
 	private final GameConstants constants = new GameConstants(BOARDSIZE_V,
 			BOARDSIZE_H, SHIPTYPES);
 
-	public abstract ShootResult makeMove(BSPlayerStatus enemy, int x, int y);
+	public abstract ShootResult makeMove(PlayerStatus enemy, int x, int y);
 
-	public abstract boolean displaceShips(BSPlayerStatus player, int id,
+	public abstract boolean displaceShips(PlayerStatus player, int id,
 			int polesNumber, Direction direction, int x, int y);
 
-	public abstract boolean placeShips(BSPlayerStatus player, int id,
+	public abstract boolean placeShips(PlayerStatus player, int id,
 			int polesNumber, Direction direction, int x, int y);
 
 	public abstract boolean shipPlacingValidation(ComputerBoard board,
 			int polesNumber, Direction dir, int x, int y);
 
-	public abstract boolean shipDisplacingValidation(BSBoard plansza,
+	public abstract boolean shipDisplacingValidation(Board plansza,
 			int polesNumber, Direction dir, int x, int y);
 
-	public abstract boolean shipPlacingValidation(BSBoard plansza,
+	public abstract boolean shipPlacingValidation(Board plansza,
 			int polesNumber, Direction dir, int x, int y);
 
 	public Rules() {
 		super();
 	}
 
-	public int getShipID(BSPlayerStatus player, int x, int y) {
+	public int getShipID(PlayerStatus player, int x, int y) {
 		return player.getShipID(x, y);
 	}
 
@@ -60,11 +60,11 @@ public abstract class Rules {
 		return SHIPTYPES.length;
 	}
 
-	public int getActiveShipsNumber(BSPlayerStatus player) {
+	public int getActiveShipsNumber(PlayerStatus player) {
 		return player.getShipsNumber();
 	}
 
-	public int getAccuracy(BSPlayerStatus player, boolean hit) {
+	public int getAccuracy(PlayerStatus player, boolean hit) {
 		return player.getAccuracy(hit);
 	}
 

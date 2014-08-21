@@ -6,7 +6,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.concurrent.TimeUnit;
 
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerOnline;
 import pl.praktykiatrem.game.battleship.rmi.IRMIServer;
 import pl.praktykiatrem.game.battleship.rmi.RMIServer;
@@ -14,9 +14,9 @@ import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
 public class StartOnlineServer {
-	private BSPlayerStatus player1;
+	private PlayerStatus player1;
 
-	private BSPlayerStatus player2;
+	private PlayerStatus player2;
 
 	private Game game;
 

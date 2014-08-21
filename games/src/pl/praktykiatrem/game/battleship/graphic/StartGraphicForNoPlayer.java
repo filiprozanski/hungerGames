@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForNoPlayer;
@@ -11,9 +11,9 @@ import pl.praktykiatrem.game.uniElements.enums.Difficulty;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
 public class StartGraphicForNoPlayer {
-	private BSPlayerStatus player1;
+	private PlayerStatus player1;
 
-	private BSPlayerStatus player2;
+	private PlayerStatus player2;
 
 	private Game game;
 
@@ -40,8 +40,8 @@ public class StartGraphicForNoPlayer {
 		int sizeY = game.getBoardSizeH();
 		int[] shipsType = game.getShipTypes();
 
-		player1 = new BSPlayerStatus(sizeX, sizeY, shipsType);
-		player2 = new BSPlayerStatus(sizeX, sizeY, shipsType);
+		player1 = new PlayerStatus(sizeX, sizeY, shipsType);
+		player2 = new PlayerStatus(sizeX, sizeY, shipsType);
 
 		player1.setName(name1);
 		player2.setName(name2);

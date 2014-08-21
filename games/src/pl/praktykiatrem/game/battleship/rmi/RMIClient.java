@@ -6,10 +6,9 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
 import pl.praktykiatrem.game.battleship.rules.Game;
-import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 	private Registry r;
@@ -47,7 +46,7 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 		return server.makeMove(player, x, y);
 	}
 
-	public void setPlayer(BSPlayerStatus player) throws RemoteException {
+	public void setPlayer(PlayerStatus player) throws RemoteException {
 		server.setPlayer(player, this);
 
 	}

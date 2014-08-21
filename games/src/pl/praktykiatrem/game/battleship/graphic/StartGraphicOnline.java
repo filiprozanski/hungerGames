@@ -4,19 +4,18 @@ import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerOffline;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.rmi.RMIClient;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
-import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
 public class StartGraphicOnline implements Serializable, IShootingController {
 	private static final long serialVersionUID = 1604629930082397823L;
 
-	private BSPlayerStatus player;
+	private PlayerStatus player;
 
 	private Game game;
 
@@ -55,7 +54,7 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 		int sizeY = game.getBoardSizeH();
 		int[] shipsType = game.getShipTypes();
 
-		player = new BSPlayerStatus(sizeX, sizeY, shipsType);
+		player = new PlayerStatus(sizeX, sizeY, shipsType);
 		player.setName(name);
 	}
 
@@ -90,7 +89,7 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 		}
 	}
 
-	public BSPlayerStatus getPlayer() {
+	public PlayerStatus getPlayer() {
 		return player;
 	}
 

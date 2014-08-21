@@ -2,7 +2,7 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
@@ -34,7 +34,7 @@ public class ShootingPresenter implements IShootingPresenter,
 	/**
 	 * obiekt reprezentuj±cy gracza, który korzysta ze sterowanego interfejsu
 	 */
-	private BSPlayerStatus player;
+	private PlayerStatus player;
 	/**
 	 * obiekt przechowuj±cy interfejs graficzny
 	 */
@@ -63,7 +63,7 @@ public class ShootingPresenter implements IShootingPresenter,
 	 * @param player
 	 * @param controll
 	 */
-	public ShootingPresenter(Game gameRules, BSPlayerStatus player,
+	public ShootingPresenter(Game gameRules, PlayerStatus player,
 			IShootingController controll) {
 		this.gameRules = gameRules;
 		this.player = player;

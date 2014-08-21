@@ -3,8 +3,8 @@ package pl.praktykiatrem.game.battleship.rules;
 import java.io.Serializable;
 
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.BSBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.Board;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
@@ -53,7 +53,7 @@ public class CustomRules extends Rules implements Serializable {
 		return constants;
 	}
 
-	private boolean putShipOnPlace(BSBoard plansza, int id, int x, int y) {
+	private boolean putShipOnPlace(Board plansza, int id, int x, int y) {
 		if (!plansza.isShipOnPlace(x, y)) {
 			plansza.placeOnBoard(x, y, id);
 			return true;
@@ -62,7 +62,7 @@ public class CustomRules extends Rules implements Serializable {
 
 	}
 
-	private boolean takeShipOfPlace(BSBoard plansza, int id, int x, int y) {
+	private boolean takeShipOfPlace(Board plansza, int id, int x, int y) {
 		if (plansza.getShipID(x, y) == id) {
 			plansza.resetPlace(x, y);
 			return true;
@@ -71,7 +71,7 @@ public class CustomRules extends Rules implements Serializable {
 	}
 
 	@Override
-	public boolean shipPlacingValidation(BSBoard plansza, int polesNumber,
+	public boolean shipPlacingValidation(Board plansza, int polesNumber,
 			Direction dir, int x, int y) {
 
 		if (dir == Direction.HORIZONTAL) {
@@ -123,7 +123,7 @@ public class CustomRules extends Rules implements Serializable {
 	}
 
 	@Override
-	public boolean shipDisplacingValidation(BSBoard plansza, int polesNumber,
+	public boolean shipDisplacingValidation(Board plansza, int polesNumber,
 			Direction dir, int x, int y) {
 		if (dir == Direction.HORIZONTAL) {
 			if (y + polesNumber > BOARDSIZE_H)
@@ -147,9 +147,9 @@ public class CustomRules extends Rules implements Serializable {
 	}
 
 	@Override
-	public boolean placeShips(BSPlayerStatus player, int id, int polesNumber,
+	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
 			Direction direction, int x, int y) {
-		BSBoard plansza = player.getPlansza();
+		Board plansza = player.getPlansza();
 		if (shipPlacingValidation(plansza, polesNumber, direction, x, y)
 				&& !player.isShipSet(id)) {
 
@@ -175,9 +175,9 @@ public class CustomRules extends Rules implements Serializable {
 	}
 
 	@Override
-	public boolean displaceShips(BSPlayerStatus player, int id,
+	public boolean displaceShips(PlayerStatus player, int id,
 			int polesNumber, Direction direction, int x, int y) {
-		BSBoard plansza = player.getPlansza();
+		Board plansza = player.getPlansza();
 		if (shipDisplacingValidation(plansza, polesNumber, direction, x, y)
 				&& player.isShipSet(id)) {
 			int x_temp = x;
@@ -201,8 +201,8 @@ public class CustomRules extends Rules implements Serializable {
 	}
 
 	@Override
-	public ShootResult makeMove(BSPlayerStatus enemy, int x, int y) {
-		BSBoard board = enemy.getPlansza();
+	public ShootResult makeMove(PlayerStatus enemy, int x, int y) {
+		Board board = enemy.getPlansza();
 		if (!board.isShipOnPlace(x, y)) {
 			enemy.getPlansza().takeOut(x, y);
 			return ShootResult.MISS;

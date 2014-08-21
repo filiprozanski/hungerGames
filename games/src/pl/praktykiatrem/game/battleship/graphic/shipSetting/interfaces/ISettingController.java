@@ -3,8 +3,7 @@ package pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.BSPlayerStatus;
-import pl.praktykiatrem.game.uniElements.PlayerStatus;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public interface ISettingController {
@@ -13,19 +12,19 @@ public interface ISettingController {
 
 	void playerIsNotReady();
 
-	ArrayList<Coordinates> getCoordsList(BSPlayerStatus player, int id);
+	ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id);
 
-	boolean placeShips(BSPlayerStatus player, int id, int polesNumber,
+	boolean placeShips(PlayerStatus player, int id, int polesNumber,
 			Direction dir, int x, int y);
 
-	int getActiveShipsNumber(BSPlayerStatus player);
+	int getActiveShipsNumber(PlayerStatus player);
 
-	boolean displaceShip(BSPlayerStatus player, int id, int polesNumber,
+	boolean displaceShip(PlayerStatus player, int id, int polesNumber,
 			Direction dir, int x, int y);
 
 	void resetGame(PlayerStatus player);
 
 	public void placeShipAtRandom(ISettingPresenterControll presenter,
-			BSPlayerStatus player);
+			PlayerStatus player);
 
 }
