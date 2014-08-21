@@ -1,4 +1,4 @@
-package pl.praktykiatrem.game.battleship.files;
+package pl.praktykiatrem.game.tictactoe.files;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -9,18 +9,18 @@ import javax.swing.ImageIcon;
 
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
-public class TTIcons {
+public class Icons {
 	private static ImageIcon[] signIcons = new ImageIcon[2];
 	private static int size;
 
 	public static final void createImages(int size) {
-		TTIcons.size = size;
+		Icons.size = size;
 
 		try {
 			signIcons[0] = new ImageIcon(
-					ShipIcons.class.getResource("\\tttIcons\\O.png"));
+					Icons.class.getResource("\\icons\\O.png"));
 			signIcons[1] = new ImageIcon(
-					ShipIcons.class.getResource("\\tttIcons\\X.png"));
+					Icons.class.getResource("\\icons\\X.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);

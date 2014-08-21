@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import pl.praktykiatrem.game.battleship.files.TTIcons;
+import pl.praktykiatrem.game.tictactoe.files.Icons;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
 public class ButtonPanel extends JPanel {
@@ -50,7 +50,7 @@ public class ButtonPanel extends JPanel {
 	}// </editor-fold>
 
 	public void setSignIcon(Sign sign) {
-		signLabel.setIcon(TTIcons.getBigIcon(sign));
+		signLabel.setIcon(Icons.getBigIcon(sign));
 	}
 
 	@Override

@@ -1,33 +1,33 @@
 package pl.praktykiatrem.game.tictactoe.gameComponents;
 
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
-import pl.praktykiatrem.game.uniElements.Board;
 
-public class TTBoard extends Board implements Cloneable {
-	private TTPlace[][] gameBoard;
+public class Board extends pl.praktykiatrem.game.uniElements.Board implements
+		Cloneable {
+	private Place[][] gameBoard;
 
-	public TTBoard(int horizontal, int vertical) {
+	public Board(int horizontal, int vertical) {
 		super(horizontal, vertical);
-		gameBoard = new TTPlace[horizontal][vertical];
+		gameBoard = new Place[horizontal][vertical];
 		fillGameBoard();
 	}
 
-	public TTBoard(TTBoard b) {
+	public Board(Board b) {
 		super(b.getHorizontalSize(), b.getVerticalSize());
-		gameBoard = new TTPlace[b.getHorizontalSize()][b.getVerticalSize()];
+		gameBoard = new Place[b.getHorizontalSize()][b.getVerticalSize()];
 
-		TTPlace[][] cBoard = b.getGameBoard();
+		Place[][] cBoard = b.getGameBoard();
 
 		for (int i = 0; i < gameBoard.length; i++)
 			for (int j = 0; j < gameBoard[i].length; j++) {
-				gameBoard[i][j] = new TTPlace(cBoard[i][j]);
+				gameBoard[i][j] = new Place(cBoard[i][j]);
 			}
 	}
 
 	private void fillGameBoard() {
 		for (int i = 0; i < gameBoard.length; i++)
 			for (int j = 0; j < gameBoard[i].length; j++)
-				gameBoard[i][j] = new TTPlace();
+				gameBoard[i][j] = new Place();
 	}
 
 	public void setSign(Sign sign, int x, int y) {
@@ -57,7 +57,7 @@ public class TTBoard extends Board implements Cloneable {
 		return gameBoard[x][y].getSign();
 	}
 
-	public TTPlace[][] getGameBoard() {
+	public Place[][] getGameBoard() {
 		return gameBoard;
 	}
 

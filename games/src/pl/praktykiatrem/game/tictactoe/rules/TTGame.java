@@ -1,7 +1,7 @@
 package pl.praktykiatrem.game.tictactoe.rules;
 
-import pl.praktykiatrem.game.tictactoe.gameComponents.TTBoard;
-import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
+import pl.praktykiatrem.game.tictactoe.gameComponents.Board;
+import pl.praktykiatrem.game.tictactoe.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.GameState;
 
 public class TTGame {
@@ -11,7 +11,7 @@ public class TTGame {
 		rules = new CustomRules();
 	}
 
-	public GameState makeMove(TTPlayerStatus player, int x, int y) {
+	public GameState makeMove(PlayerStatus player, int x, int y) {
 		return rules.makeMove(player, x, y);
 	}
 
@@ -31,7 +31,7 @@ public class TTGame {
 		return rules.getButtonSize();
 	}
 
-	public TTBoard getBoard() {
+	public Board getBoard() {
 		return rules.getActualBoard();
 	}
 

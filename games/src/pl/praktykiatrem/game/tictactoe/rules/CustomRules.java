@@ -2,8 +2,8 @@ package pl.praktykiatrem.game.tictactoe.rules;
 
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.tictactoe.gameComponents.TTBoard;
-import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
+import pl.praktykiatrem.game.tictactoe.gameComponents.Board;
+import pl.praktykiatrem.game.tictactoe.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.GameState;
 
 public class CustomRules extends Rules implements Cloneable {
@@ -13,7 +13,7 @@ public class CustomRules extends Rules implements Cloneable {
 	private final int BUTTON_SIZE = 100; // powinno byæ w sumie wiêcej ni¿ 300
 
 	private ArrayList<Sign> availableSigns;
-	private TTBoard board;
+	private Board board;
 	private int moves;
 
 	public CustomRules() {
@@ -22,17 +22,17 @@ public class CustomRules extends Rules implements Cloneable {
 		availableSigns = new ArrayList<Sign>();
 		availableSigns.add(Sign.X);
 		availableSigns.add(Sign.O);
-		board = new TTBoard(BOARD_SIZE_H, BOARD_SIZE_V);
+		board = new Board(BOARD_SIZE_H, BOARD_SIZE_V);
 	}
 
 	public CustomRules(CustomRules r) {
 		super();
 		this.availableSigns = r.getAvailableSigns();
 		this.moves = r.getMovesNumber();
-		this.board = new TTBoard(r.getActualBoard());
+		this.board = new Board(r.getActualBoard());
 	}
 
-	public GameState makeMove(TTPlayerStatus player, int x, int y) {
+	public GameState makeMove(PlayerStatus player, int x, int y) {
 		Sign playerSign = player.getSign();
 		board.setSign(playerSign, x, y);
 		board.takeOut(x, y);
@@ -213,7 +213,7 @@ public class CustomRules extends Rules implements Cloneable {
 		return SIGNS_TO_WIN;
 	}
 
-	public TTBoard getActualBoard() {
+	public Board getActualBoard() {
 		return board;
 	}
 

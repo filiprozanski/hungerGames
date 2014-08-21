@@ -3,7 +3,7 @@ package pl.praktykiatrem.game.tictactoe.ai;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlace;
+import pl.praktykiatrem.game.tictactoe.gameComponents.Place;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
 public class LineChecker {
@@ -17,7 +17,7 @@ public class LineChecker {
 		expectedInLine = expected;
 	}
 
-	public int evaluateCoords(TTPlace[][] board) {
+	public int evaluateCoords(Place[][] board) {
 		ArrayList<Coordinates[]> toCheck = getSpacesToCheck(board.length,
 				board[0].length);
 		int finalScore = 0;

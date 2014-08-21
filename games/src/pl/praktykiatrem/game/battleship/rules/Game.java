@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
-import pl.praktykiatrem.game.uniElements.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
@@ -73,8 +72,8 @@ public class Game implements Serializable {
 		return rules.placeShips(p, id, polesNumber, direction, x, y);
 	}
 
-	public boolean displaceShips(PlayerStatus player, int id,
-			int polesNumber, Direction direction, int x, int y) {
+	public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
+			Direction direction, int x, int y) {
 		return rules.displaceShips(player, id, polesNumber, direction, x, y);
 	}
 

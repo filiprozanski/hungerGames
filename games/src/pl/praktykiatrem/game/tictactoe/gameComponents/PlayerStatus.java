@@ -1,12 +1,12 @@
 package pl.praktykiatrem.game.tictactoe.gameComponents;
 
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
-import pl.praktykiatrem.game.uniElements.PlayerStatus;
 
-public class TTPlayerStatus extends PlayerStatus {
+public class PlayerStatus extends
+		pl.praktykiatrem.game.uniElements.PlayerStatus {
 	private Sign sign;
 
-	public TTPlayerStatus(Sign sign) {
+	public PlayerStatus(Sign sign) {
 		super();
 		this.sign = sign;
 	}

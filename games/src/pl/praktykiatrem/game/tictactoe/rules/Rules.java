@@ -1,7 +1,7 @@
 package pl.praktykiatrem.game.tictactoe.rules;
 
-import pl.praktykiatrem.game.tictactoe.gameComponents.TTBoard;
-import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
+import pl.praktykiatrem.game.tictactoe.gameComponents.Board;
+import pl.praktykiatrem.game.tictactoe.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.GameState;
 
 public abstract class Rules {
@@ -10,7 +10,7 @@ public abstract class Rules {
 		super();
 	}
 
-	public abstract GameState makeMove(TTPlayerStatus player, int x, int y);
+	public abstract GameState makeMove(PlayerStatus player, int x, int y);
 
 	public abstract Sign allocateSign();
 
@@ -22,5 +22,5 @@ public abstract class Rules {
 
 	public abstract int getSignsToWin();
 
-	public abstract TTBoard getActualBoard();
+	public abstract Board getActualBoard();
 }

@@ -68,13 +68,11 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 		this.g = g;
 		setComputerOpponent(difficultyLevel);
 		iComputer2 = new Hard(g);
-		pres1 = new ShootingPresenter(g, player1, this);
-		pres2 = new ShootingPresenter(g, player2, this);
+		pres1 = new ShootingPresenter(g, player1, this, true);
+		pres2 = new ShootingPresenter(g, player2, this, false);
 		pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
-		pres1.changeStatus(true);
 		pres1.showFrame();
 		pres2.setStats(g.getShipsNumber(), g.getShipsNumber());
-		pres2.changeStatus(false);
 		pres2.showFrame();
 		play();
 	}

@@ -2,8 +2,8 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
@@ -55,14 +55,9 @@ public class ShootingPresenter implements IShootingPresenter,
 
 	private int giveUpButtonCallNumber;
 
-	/**
-	 * 
-	 * Tworzy nowy obiekt klasy <code>ShootingPresenterRMI</code>
-	 *
-	 * @param gameRules
-	 * @param player
-	 * @param controll
-	 */
+	private int x = -1;
+	private int y = -1;
+
 	public ShootingPresenter(Game gameRules, PlayerStatus player,
 			IShootingController controll) {
 		this.gameRules = gameRules;
@@ -76,6 +71,21 @@ public class ShootingPresenter implements IShootingPresenter,
 				gameRules.getBoardSizeH());
 		drawShips();
 		view.disableAllPlayerBoardPlaces();
+	}
+
+	/**
+	 * 
+	 * Tworzy nowy obiekt klasy <code>ShootingPresenterRMI</code>
+	 *
+	 * @param gameRules
+	 * @param player
+	 * @param controll
+	 */
+	public ShootingPresenter(Game gameRules, PlayerStatus player,
+			IShootingController controll, boolean move) {
+		this(gameRules, player, controll);
+		view.changeStateAllEnemyBoardPlaces(move, lockedPlaces);
+		view.changeStatus(move);
 	}
 
 	/**
@@ -97,20 +107,16 @@ public class ShootingPresenter implements IShootingPresenter,
 	 */
 	@Override
 	public void shot(int x, int y) {
-		if (!gameOver) {
-			if (controll.makeMove(player, x, y)) {
-				// view.changeBattlePlaceIcon(x, y, 10);
-				view.disableBatlleBoardPlace(x, y);
-				lockedPlaces.add(new Coordinates(x, y));
-			} else {
-				view.changeBattlePlaceIcon(x, y, 1);
-			}
-		}
+		this.x = x;
+		this.y = y;
+		controll.makeMove(player, x, y);
 	}
 
 	@Override
 	public void changeBattlePlaceIcon(int x, int y, int type) {
 		view.changeBattlePlaceIcon(x, y, type);
+		view.disableBatlleBoardPlace(x, y);
+		lockedPlaces.add(new Coordinates(x, y));
 	}
 
 	/**
@@ -141,6 +147,8 @@ public class ShootingPresenter implements IShootingPresenter,
 	public void changeStatus(boolean ableToMove) {
 		view.changeStateAllEnemyBoardPlaces(ableToMove, lockedPlaces);
 		view.changeStatus(ableToMove);
+		if (!ableToMove)
+			view.changeBattlePlaceIcon(x, y, 1);
 	}
 
 	/**

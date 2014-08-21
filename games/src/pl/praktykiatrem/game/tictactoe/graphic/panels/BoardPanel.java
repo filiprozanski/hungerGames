@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import pl.praktykiatrem.game.battleship.files.TTIcons;
+import pl.praktykiatrem.game.tictactoe.files.Icons;
 import pl.praktykiatrem.game.tictactoe.graphic.listeners.IBoardObserver;
 import pl.praktykiatrem.game.tictactoe.graphic.listeners.PlaceChoiceListener;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
@@ -78,8 +78,8 @@ public class BoardPanel extends JPanel implements IBoardObserver {
 	}
 
 	public void changeIcon(int x, int y, Sign sign) {
-		place[x][y].setIcon(TTIcons.getIcon(sign));
-		place[x][y].setDisabledIcon(TTIcons.getIcon(sign));
+		place[x][y].setIcon(Icons.getIcon(sign));
+		place[x][y].setDisabledIcon(Icons.getIcon(sign));
 	}
 
 	public void lock() {

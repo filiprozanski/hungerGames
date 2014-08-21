@@ -85,11 +85,10 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 
 		setComputerOpponent(difficultyLevel);
 
-		pres1 = new ShootingPresenter(g, player1, this);
+		pres1 = new ShootingPresenter(g, player1, this, true);
 		pres2 = new ShootingPresenter(g, player2, this);
 
 		pres1.setStats(g.getShipsNumber(), g.getShipsNumber());
-		pres1.changeStatus(true);
 		pres1.showFrame();
 	}
 

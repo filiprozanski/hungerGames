@@ -3,25 +3,25 @@ package pl.praktykiatrem.game.tictactoe.ai;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.tictactoe.gameComponents.TTBoard;
-import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlace;
-import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
+import pl.praktykiatrem.game.tictactoe.gameComponents.Board;
+import pl.praktykiatrem.game.tictactoe.gameComponents.Place;
+import pl.praktykiatrem.game.tictactoe.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.tictactoe.rules.CustomRules;
 import pl.praktykiatrem.game.tictactoe.rules.Rules;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 import pl.praktykiatrem.game.uniElements.enums.GameState;
 
 public class TTTEasy implements TTTDifficulty {
-	private TTPlayerStatus computer;
-	private TTPlayerStatus player;
-	private TTPlayerStatus currentPlayer;
+	private PlayerStatus computer;
+	private PlayerStatus player;
+	private PlayerStatus currentPlayer;
 	private ArrayList<Integer> scores;
 	private Rules rules;
 
-	public TTTEasy(Rules rules, TTPlayerStatus me) {
+	public TTTEasy(Rules rules, PlayerStatus me) {
 		computer = me;
 		this.rules = rules;
-		player = new TTPlayerStatus(Sign.X);
+		player = new PlayerStatus(Sign.X);
 		scores = new ArrayList<Integer>();
 
 		currentPlayer = computer;
@@ -91,8 +91,8 @@ public class TTTEasy implements TTTDifficulty {
 			currentPlayer = computer;
 	}
 
-	private void getPossibleMoves(TTBoard board, ArrayList<Coordinates> moves) {
-		TTPlace[][] gameBoard = board.getGameBoard();
+	private void getPossibleMoves(Board board, ArrayList<Coordinates> moves) {
+		Place[][] gameBoard = board.getGameBoard();
 		for (int i = 0; i < gameBoard.length; i++)
 			for (int j = 0; j < gameBoard[i].length; j++)
 				if (gameBoard[i][j].isPlaceInGame()) {

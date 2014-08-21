@@ -2,9 +2,9 @@ package pl.praktykiatrem.game.tictactoe;
 
 import java.awt.Frame;
 
-import pl.praktykiatrem.game.battleship.files.TTIcons;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
-import pl.praktykiatrem.game.tictactoe.gameComponents.TTPlayerStatus;
+import pl.praktykiatrem.game.tictactoe.files.Icons;
+import pl.praktykiatrem.game.tictactoe.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.tictactoe.graphic.GamePresenter;
 import pl.praktykiatrem.game.tictactoe.graphic.interfaces.IController;
 import pl.praktykiatrem.game.tictactoe.graphic.interfaces.IDialogOwner;
@@ -14,9 +14,9 @@ import pl.praktykiatrem.game.uniElements.enums.GameState;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
 public class StartTicTacToeForTwoPlayers implements IController, IDialogOwner {
-	private TTPlayerStatus player1;
-	private TTPlayerStatus player2;
-	private TTPlayerStatus currentPlayer;
+	private PlayerStatus player1;
+	private PlayerStatus player2;
+	private PlayerStatus currentPlayer;
 	private TTGame g;
 	private GamePresenter pres;
 	private IMenuCallObserver menuObserver;
@@ -24,14 +24,14 @@ public class StartTicTacToeForTwoPlayers implements IController, IDialogOwner {
 	public StartTicTacToeForTwoPlayers(String name1, String name2,
 			IMenuCallObserver menuObserver, RulesType gameRules) {
 		g = new TTGame();
-		TTIcons.createImages(g.getButtonSize());
+		Icons.createImages(g.getButtonSize());
 
 		this.menuObserver = menuObserver;
 
-		player1 = new TTPlayerStatus(g.allocateSign());
+		player1 = new PlayerStatus(g.allocateSign());
 		player1.setName(name1);
 
-		player2 = new TTPlayerStatus(g.allocateSign());
+		player2 = new PlayerStatus(g.allocateSign());
 		player2.setName(name2);
 
 		pres = new GamePresenter(g.getHorizontalSize(), g.getVerticalSize(),
@@ -58,7 +58,7 @@ public class StartTicTacToeForTwoPlayers implements IController, IDialogOwner {
 		}
 	}
 
-	public void gameOver(TTPlayerStatus player) {
+	public void gameOver(PlayerStatus player) {
 		MessageDialog dialog;
 		if (player != null) {
 			dialog = new MessageDialog(new Frame(), "Winner: "

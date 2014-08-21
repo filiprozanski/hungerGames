@@ -1,16 +1,16 @@
 package pl.praktykiatrem.game.tictactoe.gameComponents;
 
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
-import pl.praktykiatrem.game.uniElements.Place;
 
-public class TTPlace extends Place implements Cloneable {
+public class Place extends pl.praktykiatrem.game.uniElements.Place implements
+		Cloneable {
 	private Sign xo;
 
-	public TTPlace() {
+	public Place() {
 		super();
 	}
 
-	public TTPlace(TTPlace p) {
+	public Place(Place p) {
 		super(p.isPlaceInGame());
 		this.xo = p.getSign();
 	}
