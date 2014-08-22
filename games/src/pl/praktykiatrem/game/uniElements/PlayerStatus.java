@@ -1,6 +1,8 @@
 package pl.praktykiatrem.game.uniElements;
 
-public abstract class PlayerStatus {
+import java.io.Serializable;
+
+public abstract class PlayerStatus implements Serializable {
 
 	protected Player gamer;
 	protected int playerID;
@@ -20,7 +22,7 @@ public abstract class PlayerStatus {
 			return false;
 
 		PlayerStatus other2 = (PlayerStatus) other;
-		if (this.playerID == other2.playerID)
+		if (this.getName().equals(other2.getName()))
 			return true;
 		else
 			return false;

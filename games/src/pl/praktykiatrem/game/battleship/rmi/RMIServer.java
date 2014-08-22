@@ -83,7 +83,7 @@ public class RMIServer extends UnicastRemoteObject implements IRMIServer {
 	public void shipSunkSetting(PlayerStatus player, int id)
 			throws RemoteException {
 		IRMIClient client = getClient(player);
-		client.shipSunkSetting(game.getCoordsTable(player, id), id);
+		client.shipSunkSetting(game.getCoordsTable(getOpponent(player), id), id);
 	}
 
 	public void missSetting(PlayerStatus player, int x, int y, int playerShips,
@@ -96,5 +96,14 @@ public class RMIServer extends UnicastRemoteObject implements IRMIServer {
 			throws RemoteException {
 		IRMIClient client = getClient(player);
 		client.allowToMove(x, y);
+	}
+
+	private PlayerStatus getOpponent(PlayerStatus player) {
+		if (player == player1)
+			return player2;
+		else if (player == player2)
+			return player1;
+		else
+			return null;
 	}
 }

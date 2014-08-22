@@ -6,7 +6,6 @@
 
 package pl.praktykiatrem.game.battleship.gameComponents;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.uniElements.Player;
@@ -19,12 +18,12 @@ import pl.praktykiatrem.game.uniElements.Player;
  *
  */
 public class PlayerStatus extends
-		pl.praktykiatrem.game.uniElements.PlayerStatus implements Serializable {
+		pl.praktykiatrem.game.uniElements.PlayerStatus {
 	private static final long serialVersionUID = 5449970724238076901L;
 
-	Ship[] ships;
+	private Ship[] ships;
 
-	int shipsNumber;
+	private int shipsNumber;
 
 	private PlayerStats stats;
 
@@ -57,16 +56,15 @@ public class PlayerStatus extends
 		stats = new PlayerStats();
 	}
 
+	public PlayerStatus(int boardSizeV, int boardSizeH, int[] shipTypes,
+			String name) {
+		this(boardSizeV, boardSizeH, shipTypes);
+		gamer.setName(name);
+	}
+
 	@Override
 	public boolean equals(Object other) {
-		if (!(other instanceof PlayerStatus))
-			return false;
-
-		PlayerStatus other2 = (PlayerStatus) other;
-		if (this.playerID == other2.playerID)
-			return true;
-		else
-			return false;
+		return super.equals(other);
 	}
 
 	/**

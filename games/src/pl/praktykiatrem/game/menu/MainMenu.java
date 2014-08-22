@@ -11,6 +11,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import pl.praktykiatrem.game.battleship.files.ShipIcons;
@@ -21,6 +22,7 @@ import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
 import pl.praktykiatrem.game.battleship.rmi.ServerApp;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForOnePlayer;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForTwoPlayers;
+import pl.praktykiatrem.game.uniElements.dialogs.PlayerNameDialog;
 import pl.praktykiatrem.game.uniElements.enums.Difficulty;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
@@ -196,6 +198,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 
 		closeButton.setText("Quit");
 		closeButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				closeButtonActionPerformed(evt);
 			}
@@ -212,6 +215,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		bsCustomRulesField.setText("CustomRules");
 		bsCustomRulesField
 				.addActionListener(new java.awt.event.ActionListener() {
+					@Override
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						customRulesFieldActionPerformed(evt);
 					}
@@ -221,6 +225,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		bsOriginalRulesField.setText("OriginalRules");
 		bsOriginalRulesField
 				.addActionListener(new java.awt.event.ActionListener() {
+					@Override
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						originalRulesFieldActionPerformed(evt);
 					}
@@ -235,6 +240,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		tttCustomRulesField.setText("CustomRules");
 		tttCustomRulesField
 				.addActionListener(new java.awt.event.ActionListener() {
+					@Override
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						tttCustomRulesFieldActionPerformed(evt);
 					}
@@ -244,6 +250,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		tttOriginalRulesField.setText("OriginalRules");
 		tttOriginalRulesField
 				.addActionListener(new java.awt.event.ActionListener() {
+					@Override
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						tttOriginalRulesFieldActionPerformed(evt);
 					}
@@ -256,6 +263,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 
 		easyRadioButton.setText("Easy");
 		easyRadioButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				easyRadioButtonActionPerformed(evt);
 			}
@@ -266,6 +274,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		mediumRadioButton.setText("Medium");
 		mediumRadioButton
 				.addActionListener(new java.awt.event.ActionListener() {
+					@Override
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
 						mediumRadioButtonActionPerformed(evt);
 					}
@@ -275,6 +284,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		hardRadioButton.setSelected(false);
 		hardRadioButton.setText("Hard");
 		hardRadioButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				hardRadioButtonActionPerformed(evt);
 			}
@@ -285,6 +295,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 
 		pcOnlyButton.setText("PC vs PC");
 		pcOnlyButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				pcOnlyButtonActionPerformed(evt);
 			}
@@ -299,24 +310,24 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	}// </editor-fold>
 
 	private void bsPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// JDialog dialog = new PlayerNameDialog(this, "Gracz 1", true);
-		new StartGraphicForOnePlayer("Wiktor", "Komputer", this,
+		JDialog dialog = new PlayerNameDialog(this, "Gracz 1", true);
+		new StartGraphicForOnePlayer(name1, "Komputer", this,
 				getShipsRulesChoice(), getDifficultyChoice());
 		setVisible(false);
 	}
 
 	private void bsPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// JDialog dialog = new PlayerNameDialog(this, "Gracz 1", true);
-		// dialog = new PlayerNameDialog(this, "Gracz 2", true);
-		new StartGraphicForTwoPlayers("Filip", "Wiktor", this,
-				getShipsRulesChoice());
+		JDialog dialog = new PlayerNameDialog(this, "Gracz 1", true);
+		dialog = new PlayerNameDialog(this, "Gracz 2", true);
+		new StartGraphicForTwoPlayers(name1, name2, this, getShipsRulesChoice());
 		setVisible(false);
 	}
 
 	private void bsOnlineButtonActionPerformed(java.awt.event.ActionEvent evt)
 			throws InterruptedException {
+		JDialog dialog = new PlayerNameDialog(this, "Gracz 1", true);
 		try {
-			new StartGraphicOnline("wiktor");
+			new StartGraphicOnline(name1);
 		} catch (RemoteException e) {
 			System.out.println("StartGraphic");
 			e.printStackTrace();
