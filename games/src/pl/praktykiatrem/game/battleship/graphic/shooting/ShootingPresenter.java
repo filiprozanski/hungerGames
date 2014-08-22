@@ -197,7 +197,8 @@ public class ShootingPresenter implements IShootingPresenter,
 			controll.resign(player);
 			changeGiveUpButtonLabel();
 		} else if (giveUpButtonCallNumber == 2) {
-			controll.callMenu();
+			controll.endGame();
+			closeFrame();
 		}
 	}
 

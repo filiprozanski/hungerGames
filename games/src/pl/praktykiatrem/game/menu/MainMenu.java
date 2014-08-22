@@ -327,7 +327,7 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 			throws InterruptedException {
 		JDialog dialog = new PlayerNameDialog(this, "Gracz 1", true);
 		try {
-			new StartGraphicOnline(name1);
+			new StartGraphicOnline(name1, this);
 		} catch (RemoteException e) {
 			System.out.println("StartGraphic");
 			e.printStackTrace();

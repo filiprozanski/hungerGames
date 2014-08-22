@@ -288,7 +288,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	}
 
 	@Override
-	public void callMenu() {
+	public void endGame() {
 		pres1.closeFrame();
 
 		supervisor.callMenu();

@@ -45,7 +45,7 @@ public class Board extends pl.praktykiatrem.game.uniElements.Board implements
 	private void fillGameBoard() {
 		for (int i = 0; i < verticalSize; i++) {
 			for (int j = 0; j < horizontalSize; j++)
-				gameBoard[j][i] = new Place();
+				gameBoard[j][i] = new Place(i, j);
 		}
 	}
 

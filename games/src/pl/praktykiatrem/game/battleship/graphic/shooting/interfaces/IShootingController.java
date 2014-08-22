@@ -10,7 +10,7 @@ public interface IShootingController {
 
 	void resign(PlayerStatus player);
 
-	void callMenu();
+	void endGame();
 
 	void setHint();
 }

@@ -2,8 +2,7 @@ package pl.praktykiatrem.game.tictactoe.gameComponents;
 
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
-public class Board extends pl.praktykiatrem.game.uniElements.Board implements
-		Cloneable {
+public class Board extends pl.praktykiatrem.game.uniElements.Board {
 	private Place[][] gameBoard;
 
 	public Board(int horizontal, int vertical) {
@@ -59,10 +58,5 @@ public class Board extends pl.praktykiatrem.game.uniElements.Board implements
 
 	public Place[][] getGameBoard() {
 		return gameBoard;
-	}
-
-	@Override
-	public Object clone() {
-		return super.clone();
 	}
 }

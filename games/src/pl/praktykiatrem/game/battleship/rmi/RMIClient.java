@@ -5,8 +5,10 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.Place;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
 import pl.praktykiatrem.game.battleship.rules.Game;
@@ -24,7 +26,8 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 
 		this.starter = starter;
 
-		r = LocateRegistry.getRegistry("localhost", IRMIServer.PORTNUMBER);
+		r = LocateRegistry.getRegistry(IRMIServer.SERVER_LOCAL,
+				IRMIServer.PORTNUMBER);
 		server = (IRMIServer) r.lookup(IRMIServer.SERVICE_NAME);
 	}
 
@@ -79,6 +82,21 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 	@Override
 	public void allowToMove(int x, int y) throws RemoteException {
 		starter.allowToMove(x, y);
+	}
+
+	@Override
+	public void gameOver(boolean isWinner) throws RemoteException {
+		starter.gameOver(isWinner);
+	}
+
+	@Override
+	public void resign(PlayerStatus player) throws RemoteException {
+		server.resign(player);
+	}
+
+	@Override
+	public void drawLeftShips(ArrayList<Place> leftShips) {
+		starter.drawLeftShips(leftShips);
 	}
 
 }

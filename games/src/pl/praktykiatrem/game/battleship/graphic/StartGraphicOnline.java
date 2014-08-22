@@ -3,8 +3,10 @@ package pl.praktykiatrem.game.battleship.graphic;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.gameComponents.Place;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerOffline;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
@@ -28,8 +30,9 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	private RMIClient client;
 
-	public StartGraphicOnline(String name) throws RemoteException {
-		System.out.println("Klient Start");
+	public StartGraphicOnline(String name, IMenuCallObserver menuObserver)
+			throws RemoteException {
+		this.menuObserver = menuObserver;
 
 		try {
 			client = new RMIClient(this);
@@ -78,7 +81,7 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 	}
 
 	@Override
-	public void callMenu() {
+	public void endGame() {
 		menuObserver.callMenu();
 	}
 
@@ -108,8 +111,12 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	@Override
 	public void resign(PlayerStatus player) {
-		// TODO Auto-generated method stub
-
+		try {
+			client.resign(player);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -151,5 +158,17 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 	public void allowToMove(int x, int y) {
 		shPresenter.changeStateIcon(x, y, 1);
 		shPresenter.changeStatus(true);
+	}
+
+	public void gameOver(boolean isWinner) {
+		shPresenter.gameOver(isWinner);
+		shPresenter.changeGiveUpButtonLabel();
+	}
+
+	public void drawLeftShips(ArrayList<Place> leftShips) {
+		for (Place place : leftShips) {
+			shPresenter.fchangeIcon(place.getX(), place.getY(),
+					place.getShipId() + 1);
+		}
 	}
 }

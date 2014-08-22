@@ -263,7 +263,7 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	}
 
 	@Override
-	public void callMenu() {
+	public void endGame() {
 		pres1.closeFrame();
 		pres2.closeFrame();
 

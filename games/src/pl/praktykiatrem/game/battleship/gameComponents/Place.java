@@ -31,6 +31,11 @@ public class Place extends pl.praktykiatrem.game.uniElements.Place implements
 		isInGame = true;
 	}
 
+	public Place(int x, int y) {
+		super(x, y);
+		shipOnPlace = false;
+	}
+
 	/**
 	 * restartuje ustawienia pola
 	 */

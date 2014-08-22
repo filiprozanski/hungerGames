@@ -1,6 +1,9 @@
 package pl.praktykiatrem.game.uniElements;
 
-public abstract class Place implements Cloneable {
+import java.io.Serializable;
+
+public abstract class Place implements Serializable {
+	private static final long serialVersionUID = 1496352068486445757L;
 
 	protected boolean isInGame;
 
@@ -10,21 +13,30 @@ public abstract class Place implements Cloneable {
 
 	public abstract void resetPlace();
 
+	private int x;
+
+	private int y;
+
 	public Place() {
 		super();
 		isInGame = true;
+	}
+
+	public Place(int x, int y) {
+		this();
+		this.x = x;
+		this.y = y;
 	}
 
 	public Place(boolean isInGame) {
 		this.isInGame = isInGame;
 	}
 
-	public Object clone() {
-		try {
-			return super.clone();
-		} catch (CloneNotSupportedException e) {
-			return null;
-		}
+	public int getX() {
+		return x;
 	}
 
+	public int getY() {
+		return y;
+	}
 }

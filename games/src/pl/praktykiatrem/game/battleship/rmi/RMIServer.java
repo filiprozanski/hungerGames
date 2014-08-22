@@ -2,7 +2,9 @@ package pl.praktykiatrem.game.battleship.rmi;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
+import pl.praktykiatrem.game.battleship.gameComponents.Place;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
@@ -105,5 +107,41 @@ public class RMIServer extends UnicastRemoteObject implements IRMIServer {
 			return player1;
 		else
 			return null;
+	}
+
+	public void showWinMessage(PlayerStatus winner) {
+		IRMIClient client = getClient(winner);
+		try {
+			client.gameOver(true);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void showLoseMessage(PlayerStatus opposePlayer) {
+		IRMIClient client = getClient(opposePlayer);
+		try {
+			client.gameOver(false);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void resign(PlayerStatus player) throws RemoteException {
+		shController.resign(player);
+	}
+
+	public void drawLeftShips(ArrayList<Place> leftShips, PlayerStatus player) {
+		IRMIClient client = getClient(player);
+		try {
+			client.drawLeftShips(leftShips);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -1,6 +1,7 @@
 package pl.praktykiatrem.game.battleship.rmi;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.gameComponents.Place;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
@@ -121,17 +122,17 @@ public class ShootingControllerOnline implements IShootingController {
 	}
 
 	private void drawLeftShips(PlayerStatus opponent) {
-
-		IShootingPresenterControll playerPres = getPresenter(getOpposePlayer(opponent));
+		ArrayList<Place> leftShips = new ArrayList<Place>();
 
 		for (int j = 0; j < g.getBoardSizeH(); j++)
 			for (int i = 0; i < g.getBoardSizeV(); i++) {
 				Place place = opponent.getPlace(i, j);
 				if (place.isShipOnPlace()
 						&& opponent.getPlace(i, j).isPlaceInGame())
-					playerPres.fchangeIcon(i, j, place.getShipId() + 1);
-
+					leftShips.add(place);
 			}
+
+		supervisor.drawLeftShips(leftShips, getOpposePlayer(opponent));
 	}
 
 	/**
@@ -183,24 +184,6 @@ public class ShootingControllerOnline implements IShootingController {
 
 	}
 
-	/**
-	 * 
-	 * Metoda <code>getPresenter</code>ss
-	 * 
-	 * wi±¿e obiekt gracza z odpowiednim presenterem
-	 *
-	 * @param player
-	 * @return presenter gracza
-	 */
-	private IShootingPresenterControll getPresenter(PlayerStatus player) {
-		if (player.equals(player1))
-			return pres1;
-		else if (player.equals(player2))
-			return pres2;
-		else
-			return null;
-	}
-
 	private PlayerStatus getOpposePlayer(PlayerStatus player) {
 		if (player == player1)
 			return player2;
@@ -210,51 +193,28 @@ public class ShootingControllerOnline implements IShootingController {
 			return null;
 	}
 
-	public void gameOver(PlayerStatus player) {
-		if (player.equals(player1)) {
-			drawLeftShips(player1);
-			pres1.gameOver(true);
-			pres2.gameOver(false);
-
-		} else if (player.equals(player2)) {
-			drawLeftShips(player2);
-			pres1.gameOver(false);
-			pres2.gameOver(true);
-		}
-
-		pres1.changeGiveUpButtonLabel();
-		pres2.changeGiveUpButtonLabel();
-
+	public void gameOver(PlayerStatus winner) {
+		supervisor.showWinMessage(winner);
+		supervisor.showLoseMessage(getOpposePlayer(winner));
+		drawLeftShips(winner);
 	}
 
 	@Override
 	public void resign(PlayerStatus player) {
-		if (player.equals(player2)) {
-			pres1.gameOver(true);
-			pres2.gameOver(false);
-
-		} else if (player.equals(player1)) {
-			pres1.gameOver(false);
-			pres2.gameOver(true);
-		}
+		gameOver(getOpposePlayer(player));
 
 		drawLeftShips(player1);
 		drawLeftShips(player2);
-		pres1.changeGiveUpButtonLabel();
-		pres2.changeGiveUpButtonLabel();
-	}
-
-	@Override
-	public void callMenu() {
-		pres1.closeFrame();
-		pres2.closeFrame();
-
-		supervisor.callMenu();
 	}
 
 	@Override
 	public void setHint() {
 		// brak tej opcji w tym trybie
+
+	}
+
+	@Override
+	public void endGame() {
 
 	}
 }
