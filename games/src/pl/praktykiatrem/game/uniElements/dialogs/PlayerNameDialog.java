@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.uniElements.dialogs;
 
+import javax.swing.JPanel;
+
 import pl.praktykiatrem.game.menu.MainMenu;
 
 /*
@@ -47,7 +49,7 @@ public class PlayerNameDialog extends javax.swing.JDialog {
 		getContentPane().add(infoLabel);
 		infoLabel.setBounds(23, 11, 269, 28);
 
-		nameField.setText("...");
+		nameField.setText("");
 		nameField.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +73,7 @@ public class PlayerNameDialog extends javax.swing.JDialog {
 	}// </editor-fold>
 
 	private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		okButtonActionPerformed(evt);
 	}
 
 	private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,5 +91,6 @@ public class PlayerNameDialog extends javax.swing.JDialog {
 	private javax.swing.JLabel infoLabel;
 	private javax.swing.JTextField nameField;
 	private javax.swing.JButton okButton;
+	private JPanel panel;
 	// End of variables declaration
 }
