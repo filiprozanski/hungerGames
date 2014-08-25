@@ -79,9 +79,9 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 			Difficulty difficultyLevel) {
 		this.player1 = player1;
 		this.player2 = player2;
-		hint = new HintController(g);
 		this.supervisor = supervisor;
 		this.g = g;
+		hint = new HintController(g);
 
 		setComputerOpponent(difficultyLevel);
 

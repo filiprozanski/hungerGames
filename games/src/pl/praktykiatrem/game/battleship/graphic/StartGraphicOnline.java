@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import pl.praktykiatrem.game.battleship.density.HintController;
 import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
 import pl.praktykiatrem.game.battleship.gameComponents.Place;
 import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
@@ -30,9 +32,12 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	private RMIClient client;
 
+	private HintController hint;
+
 	public StartGraphicOnline(String name, IMenuCallObserver menuObserver)
 			throws RemoteException {
 		this.menuObserver = menuObserver;
+		hint = new HintController(game);
 
 		try {
 			client = new RMIClient(this);
@@ -121,14 +126,14 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	@Override
 	public void setHint() {
-		// TODO Auto-generated method stub
+		hint.setHint(!hint.isHintOn());
 	}
 
 	public void hitSetting(int x, int y, int playerShips, int enemyShips,
 			int accuracy) {
 		shPresenter.setStats(playerShips, enemyShips, accuracy);
 		shPresenter.changeBattlePlaceIcon(x, y, 2);
-
+		hint.setHit(x, y);
 	}
 
 	public void losePoleSetting(int x, int y, int playerShips, int enemyShips) {
@@ -139,6 +144,7 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 	public void shipSunkSetting(Coordinates[] list, int id) {
 		shPresenter.changeShipState(id);
 		shPresenter.drawShip(list);
+		hint.setSink(id, new ArrayList<Coordinates>(Arrays.asList(list)));
 	}
 
 	public void missSetting(int playerShips, int x, int y, int enemyShips,
@@ -146,6 +152,7 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 		shPresenter.changeStatus(false);
 		shPresenter.changeBattlePlaceIcon(x, y, 1);
 		shPresenter.setStats(playerShips, enemyShips, accuracy);
+		hint.setMiss(x, y);
 
 	}
 
