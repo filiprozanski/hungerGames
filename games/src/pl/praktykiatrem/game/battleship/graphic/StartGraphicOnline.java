@@ -47,8 +47,8 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 		initialize(name);
 
-        hint = new HintController(game);
-		
+		hint = new HintController(game);
+
 		stageA();
 	}
 
@@ -142,7 +142,9 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 		shPresenter.changeStateIcon(x, y, 0);
 	}
 
-	public void shipSunkSetting(Coordinates[] list, int id) {
+	public void shipSunkSetting(Coordinates[] list, int id, int eNumber,
+			int pNumber, int accuracy) {
+		shPresenter.setStats(pNumber, eNumber, accuracy);
 		shPresenter.changeShipState(id);
 		shPresenter.drawShip(list);
 		hint.setSink(id, new ArrayList<Coordinates>(Arrays.asList(list)));
@@ -178,5 +180,9 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 			shPresenter.fchangeIcon(place.getX(), place.getY(),
 					place.getShipId() + 1);
 		}
+	}
+
+	public void errorOccured() {
+
 	}
 }

@@ -26,7 +26,7 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 
 		this.starter = starter;
 
-		r = LocateRegistry.getRegistry(IRMIServer.SERVER_IP,
+		r = LocateRegistry.getRegistry(IRMIServer.SERVER_LOCAL,
 				IRMIServer.PORTNUMBER);
 		server = (IRMIServer) r.lookup(IRMIServer.SERVICE_NAME);
 	}
@@ -74,9 +74,9 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 	}
 
 	@Override
-	public void shipSunkSetting(Coordinates[] list, int id)
-			throws RemoteException {
-		starter.shipSunkSetting(list, id);
+	public void shipSunkSetting(Coordinates[] list, int id, int eNumber,
+			int pNumber, int accuracy) throws RemoteException {
+		starter.shipSunkSetting(list, id, eNumber, pNumber, accuracy);
 	}
 
 	@Override
