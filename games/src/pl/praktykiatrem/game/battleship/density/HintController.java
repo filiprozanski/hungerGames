@@ -2,13 +2,12 @@ package pl.praktykiatrem.game.battleship.density;
 
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.ai.ComputerBoard;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public class HintController {
 	private ComputerBoard board;
-	private Game game;
 	private int[] shipTypes;
 	private int hitCounter = 0;
 	private DensityController den;
@@ -16,7 +15,6 @@ public class HintController {
 
 	public HintController(Game game) {
 		board = new ComputerBoard(game);
-		this.game = game;
 		shipTypes = game.getShipTypes();
 		den = new DensityController(game, board);
 		isHintOn = false;
@@ -34,7 +32,7 @@ public class HintController {
 
 	public void setSink(int id, ArrayList<Coordinates> arrayList) {
 		for (int i = 0; i < arrayList.size(); i++) {
-			board.setSunk(arrayList.get(i).getX(), arrayList.get(i).getY());
+			board.setSunk(arrayList.get(i));
 		}
 		shipTypes[id] = -1;
 		// dlaczego tu jest +1 ? bo nie wywy³ujemy setHit jak statek jest
@@ -43,14 +41,14 @@ public class HintController {
 		den.updateDensityBoard(hitCounter, board);
 	}
 
-	public void setHit(int x, int y) {
-		board.setHit(x, y);
+	public void setHit(Coordinates coords) {
+		board.setHit(coords);
 		this.hitCounter++;
 		den.updateDensityBoard(hitCounter, board);
 	}
 
-	public void setMiss(int x, int y) {
-		board.setMiss(x, y);
+	public void setMiss(Coordinates coords) {
+		board.setMiss(coords);
 		den.updateDensityBoard(hitCounter, board);
 	}
 }

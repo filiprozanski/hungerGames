@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import pl.praktykiatrem.game.battleship.files.ShipIcons;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 import pl.praktykiatrem.game.battleship.graphic.buttons.ShipButton;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
+import pl.praktykiatrem.game.battleship.resources.ShipIcons;
 
 /**
  * Panel zawieraj¹cy dostêpne statki

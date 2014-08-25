@@ -4,10 +4,10 @@ import javax.swing.DefaultButtonModel;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
-import pl.praktykiatrem.game.battleship.files.ShipIcons;
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.graphic.listeners.ShipChoiceDragListener;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
+import pl.praktykiatrem.game.battleship.resources.ShipIcons;
 
 /**
  * Klasa opisuje przycisk bêd¹cy graficzn¹ reprezentacj¹ pola gry na planszy

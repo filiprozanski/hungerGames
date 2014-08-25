@@ -11,8 +11,8 @@ import javax.swing.SwingUtilities;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.ISettingButtonsObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.IShipChoiceObserver;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingPresenter;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingView;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenter;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingView;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 /**

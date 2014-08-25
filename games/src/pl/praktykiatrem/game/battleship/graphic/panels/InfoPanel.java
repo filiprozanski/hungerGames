@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import pl.praktykiatrem.game.battleship.files.ShipIcons;
 import pl.praktykiatrem.game.battleship.graphic.observers.IShootingButtonsObserver;
+import pl.praktykiatrem.game.battleship.resources.ShipIcons;
 import pl.praktykiatrem.game.uniElements.buttons.StressButton;
 
 /**

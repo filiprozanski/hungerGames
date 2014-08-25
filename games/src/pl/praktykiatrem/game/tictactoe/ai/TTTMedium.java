@@ -4,7 +4,7 @@ package pl.praktykiatrem.game.tictactoe.ai;
 
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.tictactoe.gameComponents.Board;
 import pl.praktykiatrem.game.tictactoe.gameComponents.Place;
 import pl.praktykiatrem.game.tictactoe.gameComponents.PlayerStatus;

@@ -6,11 +6,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Place;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.density.HintController;
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.Place;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerOffline;
+import pl.praktykiatrem.game.battleship.graphic.setting.SettingControllerOffline;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.rmi.RMIClient;
@@ -105,9 +105,9 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 	}
 
 	@Override
-	public boolean makeMove(PlayerStatus player, int x, int y) {
+	public boolean makeMove(PlayerStatus player, Coordinates coords) {
 		try {
-			return client.makeMove(player, x, y);
+			return client.makeMove(player, coords);
 		} catch (RemoteException e) {
 			System.out.println("makeMove");
 			e.printStackTrace();
@@ -130,16 +130,17 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 		hint.setHint(!hint.isHintOn());
 	}
 
-	public void hitSetting(int x, int y, int playerShips, int enemyShips,
+	public void hitSetting(Coordinates coords, int playerShips, int enemyShips,
 			int accuracy) {
 		shPresenter.setStats(playerShips, enemyShips, accuracy);
-		shPresenter.changeBattlePlaceIcon(x, y, 2);
-		hint.setHit(x, y);
+		shPresenter.changeBattlePlaceIcon(coords, 2);
+		hint.setHit(coords);
 	}
 
-	public void losePoleSetting(int x, int y, int playerShips, int enemyShips) {
+	public void losePoleSetting(Coordinates coords, int playerShips,
+			int enemyShips) {
 		shPresenter.setStats(playerShips, enemyShips);
-		shPresenter.changeStateIcon(x, y, 0);
+		shPresenter.changeStateIcon(coords, 0);
 	}
 
 	public void shipSunkSetting(Coordinates[] list, int id, int eNumber,
@@ -150,12 +151,12 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 		hint.setSink(id, new ArrayList<Coordinates>(Arrays.asList(list)));
 	}
 
-	public void missSetting(int playerShips, int x, int y, int enemyShips,
-			int accuracy) {
+	public void missSetting(int playerShips, Coordinates coords,
+			int enemyShips, int accuracy) {
 		shPresenter.changeStatus(false);
-		shPresenter.changeBattlePlaceIcon(x, y, 1);
+		shPresenter.changeBattlePlaceIcon(coords, 1);
 		shPresenter.setStats(playerShips, enemyShips, accuracy);
-		hint.setMiss(x, y);
+		hint.setMiss(coords);
 
 	}
 
@@ -165,8 +166,8 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 		shPresenter.showFrame();
 	}
 
-	public void allowToMove(int x, int y) {
-		shPresenter.changeStateIcon(x, y, 1);
+	public void allowToMove(Coordinates coords) {
+		shPresenter.changeStateIcon(coords, 1);
 		shPresenter.changeStatus(true);
 	}
 
@@ -177,7 +178,8 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	public void drawLeftShips(ArrayList<Place> leftShips) {
 		for (Place place : leftShips) {
-			shPresenter.fchangeIcon(place.getX(), place.getY(),
+			shPresenter.fchangeIcon(
+					new Coordinates(place.getX(), place.getY()),
 					place.getShipId() + 1);
 		}
 	}

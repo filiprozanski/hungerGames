@@ -3,7 +3,8 @@ package pl.praktykiatrem.game.battleship.rmi;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
 public interface IRMIServer extends Remote {
@@ -17,7 +18,7 @@ public interface IRMIServer extends Remote {
 	public void setPlayer(PlayerStatus player, IRMIClient client)
 			throws RemoteException;
 
-	public boolean makeMove(PlayerStatus player, int x, int y)
+	public boolean makeMove(PlayerStatus player, Coordinates cords)
 			throws RemoteException;
 
 	public void resign(PlayerStatus player) throws RemoteException;

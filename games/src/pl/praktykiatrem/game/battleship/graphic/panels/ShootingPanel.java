@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.graphic.observers.IBoardPlaceObserver;
 import pl.praktykiatrem.game.battleship.graphic.observers.IShootingButtonsObserver;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
@@ -190,7 +190,7 @@ public class ShootingPanel extends JPanel implements IBoardPlaceObserver,
 
 	/**
 	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#drawShipLocation(pl.praktykiatrem.game.battleship.gameComponents.Coordinates[],
+	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView#drawShipLocation(pl.praktykiatrem.game.battleship.components.Coordinates[],
 	 *      int)
 	 */
 	@Override

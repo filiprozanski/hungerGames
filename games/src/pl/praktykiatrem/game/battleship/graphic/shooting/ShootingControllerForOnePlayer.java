@@ -1,14 +1,14 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Easy;
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Hard;
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.IComputer;
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Medium;
+import pl.praktykiatrem.game.battleship.ai.Easy;
+import pl.praktykiatrem.game.battleship.ai.Hard;
+import pl.praktykiatrem.game.battleship.ai.IComputer;
+import pl.praktykiatrem.game.battleship.ai.Medium;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Place;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
+import pl.praktykiatrem.game.battleship.components.ShootResult;
 import pl.praktykiatrem.game.battleship.density.HintController;
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.Place;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
@@ -109,41 +109,41 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	}
 
 	@Override
-	public boolean makeMove(PlayerStatus player, int x, int y) {
+	public boolean makeMove(PlayerStatus player, Coordinates coords) {
 		if (player.equals(player1)) {
-			ShootResult result = g.makeMove(player2, x, y);
+			ShootResult result = g.makeMove(player2, coords);
 			switch (result) {
 			case HIT:
-				boardSettingHit(player1, player2, x, y);
-				hint.setHit(x, y);
+				boardSettingHit(player1, player2, coords);
+				hint.setHit(coords);
 				return true;
 			case SINK:
-				int id = g.getShipID(player2, x, y);
+				int id = g.getShipID(player2, coords);
 				hint.setSink(id, g.getCoordsList(player2, id));
-				boardSettingSink(player1, player2, x, y, id);
+				boardSettingSink(player1, player2, coords, id);
 				if (player2.getShipsNumber() == 0) {
 					gameOver(player1);
 				}
 				return true;
 			case MISS:
-				boardSettingMiss(player1, player2, x, y);
-				hint.setMiss(x, y);
+				boardSettingMiss(player1, player2, coords);
+				hint.setMiss(coords);
 				makeComputedMove();
 				return false;
 			default:
 				return false;
 			}
 		} else {
-			ShootResult result = g.makeMove(player1, x, y);
+			ShootResult result = g.makeMove(player1, coords);
 			switch (result) {
 			case HIT:
-				boardSettingHit(player2, player1, x, y);
-				iComputer.setHit(x, y);
+				boardSettingHit(player2, player1, coords);
+				iComputer.setHit(coords);
 				makeComputedMove();
 				return true;
 			case SINK:
-				int id = g.getShipID(player1, x, y);
-				boardSettingHit(player2, player1, x, y);
+				int id = g.getShipID(player1, coords);
+				boardSettingHit(player2, player1, coords);
 				iComputer.setSink(id, g.getCoordsList(player1, id));
 				if (player1.getShipsNumber() == 0) {
 					gameOver(player2);
@@ -152,8 +152,8 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 				makeComputedMove();
 				return true;
 			case MISS:
-				iComputer.setMiss(x, y);
-				boardSettingMiss(player2, player1, x, y);
+				iComputer.setMiss(coords);
+				boardSettingMiss(player2, player1, coords);
 				return false;
 			default:
 				return false;
@@ -163,16 +163,18 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 
 	private void makeComputedMove() {
 		Coordinates coords = iComputer.getCords();
-		makeMove(player2, coords.getX(), coords.getY());
+		makeMove(player2, coords);
 	}
 
 	private void drawLeftShips() {
 		for (int i = 0; i < g.getBoardSizeV(); i++)
 			for (int j = 0; j < g.getBoardSizeH(); j++) {
-				Place place = player2.getPlace(i, j);
+				Place place = player2.getPlace(new Coordinates(i, j));
 				if (place.isShipOnPlace()
-						&& player2.getPlace(i, j).isPlaceInGame())
-					pres1.fchangeIcon(i, j, place.getShipId() + 1);
+						&& player2.getPlace(new Coordinates(i, j))
+								.isPlaceInGame())
+					pres1.fchangeIcon(new Coordinates(i, j),
+							place.getShipId() + 1);
 
 			}
 	}
@@ -189,11 +191,11 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	 * @param y
 	 */
 	private void boardSettingHit(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y) {
+			Coordinates coords) {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
-		vPres.changeStateIcon(x, y, 0);
-		sPres.changeBattlePlaceIcon(x, y, 2);
+		vPres.changeStateIcon(coords, 0);
+		sPres.changeBattlePlaceIcon(coords, 2);
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(true);
@@ -203,8 +205,8 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	}
 
 	private void boardSettingSink(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y, int id) {
-		boardSettingHit(shooter, victim, x, y);
+			Coordinates coords, int id) {
+		boardSettingHit(shooter, victim, coords);
 		pres1.changeShipState(id);
 		pres1.drawShip(g.getCoordsTable(player2, id));
 	}
@@ -221,14 +223,14 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	 * @param y
 	 */
 	private void boardSettingMiss(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y) {
+			Coordinates coords) {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
 
-		vPres.changeStateIcon(x, y, 1);
+		vPres.changeStateIcon(coords, 1);
 		vPres.changeStatus(true);
 		sPres.changeStatus(false);
-		sPres.changeBattlePlaceIcon(x, y, 1);
+		sPres.changeBattlePlaceIcon(coords, 1);
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(false);

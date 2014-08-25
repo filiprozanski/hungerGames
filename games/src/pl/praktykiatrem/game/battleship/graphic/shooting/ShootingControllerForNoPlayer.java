@@ -1,13 +1,13 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Easy;
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Hard;
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.IComputer;
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.Medium;
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.Place;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
+import pl.praktykiatrem.game.battleship.ai.Easy;
+import pl.praktykiatrem.game.battleship.ai.Hard;
+import pl.praktykiatrem.game.battleship.ai.IComputer;
+import pl.praktykiatrem.game.battleship.ai.Medium;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Place;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
+import pl.praktykiatrem.game.battleship.components.ShootResult;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
@@ -108,35 +108,35 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 	}
 
 	@Override
-	public boolean makeMove(PlayerStatus player, int x, int y) {
+	public boolean makeMove(PlayerStatus player, Coordinates coords) {
 		if (player.equals(player1)) {
-			return makeMove(player1, player2, x, y);
+			return makeMove(player1, player2, coords);
 		} else {
-			return makeMove(player2, player1, x, y);
+			return makeMove(player2, player1, coords);
 		}
 	}
 
-	private boolean makeMove(PlayerStatus shooter, PlayerStatus victim, int x,
-			int y) {
-		ShootResult result = g.makeMove(victim, x, y);
+	private boolean makeMove(PlayerStatus shooter, PlayerStatus victim,
+			Coordinates coords) {
+		ShootResult result = g.makeMove(victim, coords);
 		IComputer computer = getComputer(shooter);
 		switch (result) {
 		case HIT:
-			boardSettingHit(shooter, victim, x, y);
-			computer.setHit(x, y);
+			boardSettingHit(shooter, victim, coords);
+			computer.setHit(coords);
 			return makeComputedMove(computer);
 		case SINK:
-			int id = g.getShipID(victim, x, y);
+			int id = g.getShipID(victim, coords);
 			computer.setSink(id, g.getCoordsList(victim, id));
-			boardSettingSink(shooter, victim, x, y, id);
+			boardSettingSink(shooter, victim, coords, id);
 			if (victim.getShipsNumber() == 0) {
 				gameOver(shooter);
 				return true;
 			}
 			return makeComputedMove(computer);
 		case MISS:
-			computer.setMiss(x, y);
-			boardSettingMiss(shooter, victim, x, y);
+			computer.setMiss(coords);
+			boardSettingMiss(shooter, victim, coords);
 			return false;
 		default:
 			return false;
@@ -146,20 +146,22 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 	private boolean makeComputedMove(IComputer iComputer) {
 		Coordinates coords = iComputer.getCords();
 		if (iComputer == iComputer1)
-			return makeMove(player1, coords.getX(), coords.getY());
+			return makeMove(player1, coords);
 		else if (iComputer == iComputer2)
-			return makeMove(player2, coords.getX(), coords.getY());
+			return makeMove(player2, coords);
 		else
 			return false;
 	}
 
-	private void drawLeftShips2() {
+	private void drawLeftShips() {
 		for (int j = 0; j < g.getBoardSizeH(); j++)
 			for (int i = 0; i < g.getBoardSizeV(); i++) {
-				Place place = player2.getPlace(i, j);
+				Place place = player2.getPlace(new Coordinates(i, j));
 				if (place.isShipOnPlace()
-						&& player2.getPlace(i, j).isPlaceInGame())
-					pres1.fchangeIcon(i, j, place.getShipId() + 1);
+						&& player2.getPlace(new Coordinates(i, j))
+								.isPlaceInGame())
+					pres1.fchangeIcon(new Coordinates(i, j),
+							place.getShipId() + 1);
 			}
 	}
 
@@ -175,11 +177,11 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 	 * @param y
 	 */
 	private void boardSettingHit(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y) {
+			Coordinates coords) {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
-		vPres.changeStateIcon(x, y, 0);
-		sPres.changeBattlePlaceIcon(x, y, 2);
+		vPres.changeStateIcon(coords, 0);
+		sPres.changeBattlePlaceIcon(coords, 2);
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(true);
@@ -191,8 +193,8 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 	}
 
 	private void boardSettingSink(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y, int id) {
-		boardSettingHit(shooter, victim, x, y);
+			Coordinates coords, int id) {
+		boardSettingHit(shooter, victim, coords);
 		IShootingPresenterControll spress = getPresenter(shooter);
 		spress.changeShipState(id);
 		spress.drawShip(g.getCoordsTable(victim, id));
@@ -210,13 +212,13 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 	 * @param y
 	 */
 	private void boardSettingMiss(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y) {
+			Coordinates coords) {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
-		vPres.changeStateIcon(x, y, 1);
+		vPres.changeStateIcon(coords, 1);
 		vPres.changeStatus(true);
 		sPres.changeStatus(false);
-		sPres.changeBattlePlaceIcon(x, y, 1);
+		sPres.changeBattlePlaceIcon(coords, 1);
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(false);
@@ -256,7 +258,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 			pres1.gameOver(true);
 			pres2.gameOver(false);
 		} else if (player.equals(player2)) {
-			drawLeftShips2();
+			drawLeftShips();
 			pres1.gameOver(false);
 			pres2.gameOver(true);
 		}
@@ -273,7 +275,7 @@ public class ShootingControllerForNoPlayer implements IShootingController {
 			pres1.gameOver(false);
 			pres2.gameOver(true);
 		}
-		drawLeftShips2();
+		drawLeftShips();
 		pres1.changeGiveUpButtonLabel();
 		pres2.changeGiveUpButtonLabel();
 	}

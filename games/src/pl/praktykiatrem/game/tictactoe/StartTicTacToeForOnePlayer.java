@@ -2,7 +2,7 @@ package pl.praktykiatrem.game.tictactoe;
 
 import java.awt.Frame;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 import pl.praktykiatrem.game.tictactoe.ai.TTTDifficulty;
 import pl.praktykiatrem.game.tictactoe.ai.TTTEasy;

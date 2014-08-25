@@ -2,11 +2,11 @@ package pl.praktykiatrem.game.battleship.rules;
 
 import java.io.Serializable;
 
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.Board;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
+import pl.praktykiatrem.game.battleship.ai.ComputerBoard;
+import pl.praktykiatrem.game.battleship.components.Board;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
+import pl.praktykiatrem.game.battleship.components.ShootResult;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 /**
@@ -53,18 +53,18 @@ public class CustomRules extends Rules implements Serializable {
 		return constants;
 	}
 
-	private boolean putShipOnPlace(Board plansza, int id, int x, int y) {
-		if (!plansza.isShipOnPlace(x, y)) {
-			plansza.placeOnBoard(x, y, id);
+	private boolean putShipOnPlace(Board plansza, int id, Coordinates coords) {
+		if (!plansza.isShipOnPlace(coords)) {
+			plansza.placeOnBoard(coords, id);
 			return true;
 		} else
 			return false;
 
 	}
 
-	private boolean takeShipOfPlace(Board plansza, int id, int x, int y) {
-		if (plansza.getShipID(x, y) == id) {
-			plansza.resetPlace(x, y);
+	private boolean takeShipOfPlace(Board plansza, int id, Coordinates coords) {
+		if (plansza.getShipID(coords) == id) {
+			plansza.resetPlace(coords);
 			return true;
 		} else
 			return false;
@@ -72,7 +72,9 @@ public class CustomRules extends Rules implements Serializable {
 
 	@Override
 	public boolean shipPlacingValidation(Board plansza, int polesNumber,
-			Direction dir, int x, int y) {
+			Direction dir, Coordinates coords) {
+		int x = coords.getX();
+		int y = coords.getY();
 
 		if (dir == Direction.HORIZONTAL) {
 			if (y + polesNumber > BOARDSIZE_H)
@@ -83,12 +85,12 @@ public class CustomRules extends Rules implements Serializable {
 		}
 		if (dir == Direction.HORIZONTAL) {
 			for (int i = 0; i < polesNumber; i++) {
-				if (plansza.isShipOnPlace(x, y + i))
+				if (plansza.isShipOnPlace(new Coordinates(x, y + i)))
 					return false;
 			}
 		} else {
 			for (int i = 0; i < polesNumber; i++) {
-				if (plansza.isShipOnPlace(x + i, y))
+				if (plansza.isShipOnPlace(new Coordinates(x + i, y)))
 					return false;
 			}
 		}
@@ -97,7 +99,9 @@ public class CustomRules extends Rules implements Serializable {
 
 	@Override
 	public boolean shipPlacingValidation(ComputerBoard board, int polesNumber,
-			Direction dir, int x, int y) {
+			Direction dir, Coordinates coords) {
+		int x = coords.getX();
+		int y = coords.getY();
 
 		if (dir == Direction.HORIZONTAL) {
 			if (y + polesNumber > BOARDSIZE_H)
@@ -108,13 +112,15 @@ public class CustomRules extends Rules implements Serializable {
 		}
 		if (dir == Direction.HORIZONTAL) {
 			for (int i = 0; i < polesNumber; i++) {
-				if (board.isMiss(x, y + i) || board.isSunk(x, y + i)) {
+				if (board.isMiss(new Coordinates(x, y + i))
+						|| board.isSunk(new Coordinates(x, y + i))) {
 					return false;
 				}
 			}
 		} else {
 			for (int i = 0; i < polesNumber; i++) {
-				if (board.isMiss(x + i, y) || board.isSunk(x + i, y)) {
+				if (board.isMiss(new Coordinates(x + i, y))
+						|| board.isSunk(new Coordinates(x + i, y))) {
 					return false;
 				}
 			}
@@ -124,7 +130,10 @@ public class CustomRules extends Rules implements Serializable {
 
 	@Override
 	public boolean shipDisplacingValidation(Board plansza, int polesNumber,
-			Direction dir, int x, int y) {
+			Direction dir, Coordinates coords) {
+		int x = coords.getX();
+		int y = coords.getY();
+
 		if (dir == Direction.HORIZONTAL) {
 			if (y + polesNumber > BOARDSIZE_H)
 				return false;
@@ -134,12 +143,12 @@ public class CustomRules extends Rules implements Serializable {
 		}
 		if (dir == Direction.HORIZONTAL) {
 			for (int i = 0; i < polesNumber; i++) {
-				if (!plansza.isShipOnPlace(x, y + i))
+				if (!plansza.isShipOnPlace(new Coordinates(x, y + i)))
 					return false;
 			}
 		} else {
 			for (int i = 0; i < polesNumber; i++) {
-				if (!plansza.isShipOnPlace(x + i, y))
+				if (!plansza.isShipOnPlace(new Coordinates(x + i, y)))
 					return false;
 			}
 		}
@@ -148,13 +157,17 @@ public class CustomRules extends Rules implements Serializable {
 
 	@Override
 	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
-			Direction direction, int x, int y) {
+			Direction direction, Coordinates coords) {
 		Board plansza = player.getPlansza();
-		if (shipPlacingValidation(plansza, polesNumber, direction, x, y)
+		if (shipPlacingValidation(plansza, polesNumber, direction, coords)
 				&& !player.isShipSet(id)) {
 
-			int x_temp = x;
-			int y_temp = y;
+			int x = coords.getX();
+			int y = coords.getY();
+
+			int x_temp = coords.getX();
+			int y_temp = coords.getY();
+
 			player.getShip(id).setShipSet(true);
 			player.getShip(id).setDirection(direction);
 			player.increaseShipsNumber();
@@ -164,7 +177,8 @@ public class CustomRules extends Rules implements Serializable {
 					y_temp = y + i;
 				else if (direction == Direction.VERTICAL)
 					x_temp = x + i;
-				if (!putShipOnPlace(plansza, id, x_temp, y_temp))
+				if (!putShipOnPlace(plansza, id,
+						new Coordinates(x_temp, y_temp)))
 					return false;
 				else
 					player.addCoordinates(id, new Coordinates(x_temp, y_temp));
@@ -175,13 +189,17 @@ public class CustomRules extends Rules implements Serializable {
 	}
 
 	@Override
-	public boolean displaceShips(PlayerStatus player, int id,
-			int polesNumber, Direction direction, int x, int y) {
+	public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
+			Direction direction, Coordinates coords) {
 		Board plansza = player.getPlansza();
-		if (shipDisplacingValidation(plansza, polesNumber, direction, x, y)
+		if (shipDisplacingValidation(plansza, polesNumber, direction, coords)
 				&& player.isShipSet(id)) {
-			int x_temp = x;
-			int y_temp = y;
+			int x = coords.getX();
+			int y = coords.getY();
+
+			int x_temp = coords.getX();
+			int y_temp = coords.getY();
+
 			player.getShip(id).setShipSet(false);
 			player.getShip(id).setDirection(Direction.HORIZONTAL);
 			player.decreaseShipsNumber();
@@ -190,7 +208,8 @@ public class CustomRules extends Rules implements Serializable {
 					y_temp = y + i;
 				else if (direction == Direction.VERTICAL)
 					x_temp = x + i;
-				if (!takeShipOfPlace(plansza, id, x_temp, y_temp))
+				if (!takeShipOfPlace(plansza, id, new Coordinates(x_temp,
+						y_temp)))
 					return false;
 				else
 					player.removeCoordinate(id, new Coordinates(x_temp, y_temp));
@@ -201,15 +220,15 @@ public class CustomRules extends Rules implements Serializable {
 	}
 
 	@Override
-	public ShootResult makeMove(PlayerStatus enemy, int x, int y) {
+	public ShootResult makeMove(PlayerStatus enemy, Coordinates coords) {
 		Board board = enemy.getPlansza();
-		if (!board.isShipOnPlace(x, y)) {
-			enemy.getPlansza().takeOut(x, y);
+		if (!board.isShipOnPlace(coords)) {
+			enemy.getPlansza().takeOut(coords);
 			return ShootResult.MISS;
 		} else {
-			if (board.isShipOnPlaceAndActive(x, y)) {
-				enemy.takeOutShip(x, y);
-				if (enemy.reducePolesNumber(x, y) == 0) {
+			if (board.isShipOnPlaceAndActive(coords)) {
+				enemy.takeOutShip(coords);
+				if (enemy.reducePolesNumber(coords) == 0) {
 					enemy.reduceShipsNumber();
 					return ShootResult.SINK;
 				}

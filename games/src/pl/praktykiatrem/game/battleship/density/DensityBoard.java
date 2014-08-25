@@ -1,8 +1,8 @@
 package pl.praktykiatrem.game.battleship.density;
 
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.CoordsList;
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.ai.ComputerBoard;
+import pl.praktykiatrem.game.battleship.ai.CoordsList;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
@@ -68,10 +68,10 @@ public class DensityBoard {
 			Direction dir) {
 		for (int i = 0; i < polesNumber; i++) {
 			if (dir == Direction.HORIZONTAL) {
-				if (board.isBlank(x, y + i))
+				if (board.isBlank(new Coordinates(x, y + i)))
 					density[y + i][x]++;
 			} else {
-				if (board.isBlank(x + i, y))
+				if (board.isBlank(new Coordinates(x + i, y)))
 					density[y][x + i]++;
 			}
 		}

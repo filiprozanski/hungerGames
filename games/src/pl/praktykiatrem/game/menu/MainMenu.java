@@ -14,11 +14,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
-import pl.praktykiatrem.game.battleship.files.ShipIcons;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
+import pl.praktykiatrem.game.battleship.resources.ShipIcons;
 import pl.praktykiatrem.game.battleship.rmi.ServerApp;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForOnePlayer;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForTwoPlayers;

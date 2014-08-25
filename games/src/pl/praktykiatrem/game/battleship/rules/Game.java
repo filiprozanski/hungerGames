@@ -3,10 +3,10 @@ package pl.praktykiatrem.game.battleship.rules;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
+import pl.praktykiatrem.game.battleship.ai.ComputerBoard;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
+import pl.praktykiatrem.game.battleship.components.ShootResult;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
@@ -58,23 +58,23 @@ public class Game implements Serializable {
 		return rules.getShipTypes(id);
 	}
 
-	public ShootResult makeMove(PlayerStatus p, int x, int y) {
-		return rules.makeMove(p, x, y);
+	public ShootResult makeMove(PlayerStatus p, Coordinates coords) {
+		return rules.makeMove(p, coords);
 	}
 
 	public boolean shipPlacingValidation(ComputerBoard board, int polesNumber,
-			Direction dir, int x, int y) {
-		return rules.shipPlacingValidation(board, polesNumber, dir, x, y);
+			Direction dir, Coordinates coords) {
+		return rules.shipPlacingValidation(board, polesNumber, dir, coords);
 	}
 
 	public boolean placeShips(PlayerStatus p, int id, int polesNumber,
-			Direction direction, int x, int y) {
-		return rules.placeShips(p, id, polesNumber, direction, x, y);
+			Direction direction, Coordinates coords) {
+		return rules.placeShips(p, id, polesNumber, direction, coords);
 	}
 
 	public boolean displaceShips(PlayerStatus player, int id, int polesNumber,
-			Direction direction, int x, int y) {
-		return rules.displaceShips(player, id, polesNumber, direction, x, y);
+			Direction direction, Coordinates coords) {
+		return rules.displaceShips(player, id, polesNumber, direction, coords);
 	}
 
 	public boolean getIsGameOver() {
@@ -97,8 +97,8 @@ public class Game implements Serializable {
 		return rules.getAccuracy(player, hit);
 	}
 
-	public int getShipID(PlayerStatus p, int x, int y) {
-		return rules.getShipID(p, x, y);
+	public int getShipID(PlayerStatus p, Coordinates coords) {
+		return rules.getShipID(p, coords);
 	}
 
 	public void resetGame(PlayerStatus player) {

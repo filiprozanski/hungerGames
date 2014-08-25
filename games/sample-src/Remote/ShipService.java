@@ -3,7 +3,7 @@ package Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Ship;
+import pl.praktykiatrem.game.battleship.components.Ship;
 
 public class ShipService extends UnicastRemoteObject implements ShipInterface {
 

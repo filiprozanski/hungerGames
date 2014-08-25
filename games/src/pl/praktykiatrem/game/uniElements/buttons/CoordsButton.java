@@ -2,7 +2,7 @@ package pl.praktykiatrem.game.uniElements.buttons;
 
 import javax.swing.JButton;
 
-import pl.praktykiatrem.game.battleship.files.ShipIcons;
+import pl.praktykiatrem.game.battleship.resources.ShipIcons;
 
 public class CoordsButton extends JButton {
 	private static final long serialVersionUID = 4064035001395922627L;

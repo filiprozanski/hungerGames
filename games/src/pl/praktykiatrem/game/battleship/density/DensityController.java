@@ -1,7 +1,7 @@
 package pl.praktykiatrem.game.battleship.density;
 
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.ai.ComputerBoard;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
@@ -45,11 +45,13 @@ public class DensityController {
 			for (int i = 0; i < game.getBoardSizeV(); i++)
 				for (int j = 0; j < game.getBoardSizeH(); j++) {
 					if (game.shipPlacingValidation(computerBoard,
-							shipTypes[st], Direction.HORIZONTAL, i, j))
+							shipTypes[st], Direction.HORIZONTAL,
+							new Coordinates(i, j)))
 						density.increaseDensityBoard(i, j, shipTypes[st],
 								Direction.HORIZONTAL);
 					if (game.shipPlacingValidation(computerBoard,
-							shipTypes[st], Direction.VERTICAL, i, j))
+							shipTypes[st], Direction.VERTICAL, new Coordinates(
+									i, j)))
 						density.increaseDensityBoard(i, j, shipTypes[st],
 								Direction.VERTICAL);
 				}
@@ -58,7 +60,7 @@ public class DensityController {
 	private void fillHuntDensityBoard(ComputerBoard computerBoard) {
 		for (int i = 0; i < game.getBoardSizeV(); i++)
 			for (int j = 0; j < game.getBoardSizeH(); j++)
-				if (computerBoard.isHit(i, j)) {
+				if (computerBoard.isHit(new Coordinates(i, j))) {
 					fillHuntDensityBoardForPoint(i, j, computerBoard);
 				}
 	}
@@ -69,13 +71,15 @@ public class DensityController {
 			for (int i = 0; i < game.getBoardSizeV(); i++)
 				for (int j = 0; j < game.getBoardSizeH(); j++) {
 					if (game.shipPlacingValidation(computerBoard,
-							shipTypes[st], Direction.HORIZONTAL, i, j)
+							shipTypes[st], Direction.HORIZONTAL,
+							new Coordinates(i, j))
 							&& shipContainsPoint(x, y, shipTypes[st],
 									Direction.HORIZONTAL, i, j))
 						density.increaseDensityBoard(i, j, shipTypes[st],
 								Direction.HORIZONTAL);
 					if (game.shipPlacingValidation(computerBoard,
-							shipTypes[st], Direction.VERTICAL, i, j)
+							shipTypes[st], Direction.VERTICAL, new Coordinates(
+									i, j))
 							&& shipContainsPoint(x, y, shipTypes[st],
 									Direction.VERTICAL, i, j))
 						density.increaseDensityBoard(i, j, shipTypes[st],

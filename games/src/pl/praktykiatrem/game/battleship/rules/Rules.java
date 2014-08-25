@@ -1,9 +1,10 @@
 package pl.praktykiatrem.game.battleship.rules;
 
-import pl.praktykiatrem.game.battleship.ArtificialIntelligence.ComputerBoard;
-import pl.praktykiatrem.game.battleship.gameComponents.Board;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
+import pl.praktykiatrem.game.battleship.ai.ComputerBoard;
+import pl.praktykiatrem.game.battleship.components.Board;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
+import pl.praktykiatrem.game.battleship.components.ShootResult;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public abstract class Rules {
@@ -14,29 +15,29 @@ public abstract class Rules {
 	private final GameConstants constants = new GameConstants(BOARDSIZE_V,
 			BOARDSIZE_H, SHIPTYPES);
 
-	public abstract ShootResult makeMove(PlayerStatus enemy, int x, int y);
+	public abstract ShootResult makeMove(PlayerStatus enemy, Coordinates coords);
 
 	public abstract boolean displaceShips(PlayerStatus player, int id,
-			int polesNumber, Direction direction, int x, int y);
+			int polesNumber, Direction direction, Coordinates coords);
 
 	public abstract boolean placeShips(PlayerStatus player, int id,
-			int polesNumber, Direction direction, int x, int y);
+			int polesNumber, Direction direction, Coordinates coords);
 
 	public abstract boolean shipPlacingValidation(ComputerBoard board,
-			int polesNumber, Direction dir, int x, int y);
+			int polesNumber, Direction dir, Coordinates coords);
 
 	public abstract boolean shipDisplacingValidation(Board plansza,
-			int polesNumber, Direction dir, int x, int y);
+			int polesNumber, Direction dir, Coordinates coords);
 
 	public abstract boolean shipPlacingValidation(Board plansza,
-			int polesNumber, Direction dir, int x, int y);
+			int polesNumber, Direction dir, Coordinates coords);
 
 	public Rules() {
 		super();
 	}
 
-	public int getShipID(PlayerStatus player, int x, int y) {
-		return player.getShipID(x, y);
+	public int getShipID(PlayerStatus player, Coordinates coords) {
+		return player.getShipID(coords);
 	}
 
 	public boolean getCurrentPlayer() {

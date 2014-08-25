@@ -3,8 +3,10 @@ package pl.praktykiatrem.game.battleship.graphic.shooting;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import javax.swing.SwingUtilities;
+
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
@@ -67,11 +69,20 @@ public class ShootingPresenter implements IShootingPresenter,
 		this.lockedPlaces = new ArrayList<Coordinates>();
 		giveUpButtonCallNumber = 0;
 
-		view = new ShootingPanel(this);
-		view.initialize(gameRules.getShipTypes(), gameRules.getBoardSizeV(),
-				gameRules.getBoardSizeH());
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				view = new ShootingPanel(ShootingPresenter.this);
+				view.initialize(
+						ShootingPresenter.this.gameRules.getShipTypes(),
+						ShootingPresenter.this.gameRules.getBoardSizeV(),
+						ShootingPresenter.this.gameRules.getBoardSizeH());
+				view.disableAllPlayerBoardPlaces();
+			}
+		});
+
 		drawShips();
-		view.disableAllPlayerBoardPlaces();
+
 	}
 
 	/**
@@ -85,8 +96,17 @@ public class ShootingPresenter implements IShootingPresenter,
 	public ShootingPresenter(Game gameRules, PlayerStatus player,
 			IShootingController controll, boolean move) {
 		this(gameRules, player, controll);
-		view.changeStateAllEnemyBoardPlaces(move, lockedPlaces);
-		view.changeStatus(move);
+		final boolean m = move;
+
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				view.changeStateAllEnemyBoardPlaces(m, lockedPlaces);
+				view.changeStatus(m);
+			}
+		});
+
 	}
 
 	/**
@@ -97,8 +117,14 @@ public class ShootingPresenter implements IShootingPresenter,
 	 *
 	 */
 	private void drawShips() {
-		for (int i = 0; i < gameRules.getShipsNumber(); i++)
-			view.drawShipLocation(gameRules.getCoordsTable(player, i), i);
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				for (int i = 0; i < gameRules.getShipsNumber(); i++)
+					view.drawShipLocation(gameRules.getCoordsTable(player, i),
+							i);
+			}
+		});
 	}
 
 	/**
@@ -112,7 +138,7 @@ public class ShootingPresenter implements IShootingPresenter,
 		this.y = y;
 
 		try {
-			controll.makeMove(player, x, y);
+			controll.makeMove(player, new Coordinates(x, y));
 		} catch (RemoteException e) {
 			System.out.println("makeMove presenter");
 			e.printStackTrace();
@@ -120,30 +146,49 @@ public class ShootingPresenter implements IShootingPresenter,
 	}
 
 	@Override
-	public void changeBattlePlaceIcon(int x, int y, int type) {
-		view.changeBattlePlaceIcon(x, y, type);
-		view.disableBatlleBoardPlace(x, y);
-		lockedPlaces.add(new Coordinates(x, y));
-	}
+	public void changeBattlePlaceIcon(Coordinates coords, int type) {
+		final int x = coords.getX();
+		final int y = coords.getY();
+		final int typeInside = type;
 
-	/**
-	 * 
-	 * @see pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter#changeIcon(int,
-	 *      int, int)
-	 */
-	@Override
-	public void changeIcon(int x, int y, int type) {
-		view.changePlayerBattlePlaceIcon(x, y, type);
-	}
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				view.changeBattlePlaceIcon(x, y, typeInside);
+				view.disableBatlleBoardPlace(x, y);
+				lockedPlaces.add(new Coordinates(x, y));
 
-	@Override
-	public void fchangeIcon(int x, int y, int type) {
-		view.changeEnemyBattlePlaceIcon(x, y, type);
+			}
+		});
 	}
 
 	@Override
-	public void changeStateIcon(int x, int y, int type) {
-		view.changePlaceStateIcon(x, y, type);
+	public void fchangeIcon(Coordinates coords, int type) {
+		final int x = coords.getX();
+		final int y = coords.getY();
+		final int typeInside = type;
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				view.changeEnemyBattlePlaceIcon(x, y, typeInside);
+			}
+		});
+
+	}
+
+	@Override
+	public void changeStateIcon(Coordinates coords, int type) {
+		final int x = coords.getX();
+		final int y = coords.getY();
+		final int typeInside = type;
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				view.changePlaceStateIcon(x, y, typeInside);
+			}
+		});
 	}
 
 	/**
@@ -152,8 +197,16 @@ public class ShootingPresenter implements IShootingPresenter,
 	 */
 	@Override
 	public void changeStatus(boolean ableToMove) {
-		view.changeStateAllEnemyBoardPlaces(ableToMove, lockedPlaces);
-		view.changeStatus(ableToMove);
+		final boolean move = ableToMove;
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				view.changeStateAllEnemyBoardPlaces(move, lockedPlaces);
+				view.changeStatus(move);
+			}
+		});
+
 	}
 
 	/**
@@ -163,7 +216,16 @@ public class ShootingPresenter implements IShootingPresenter,
 	 */
 	@Override
 	public void setStats(int playerShips, int enemyShips, int accuracy) {
-		view.setStats(playerShips, enemyShips, accuracy);
+		final int player = playerShips;
+		final int enemy = enemyShips;
+		final int acc = accuracy;
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				view.setStats(player, enemy, acc);
+			}
+		});
 	}
 
 	/**
@@ -173,19 +235,42 @@ public class ShootingPresenter implements IShootingPresenter,
 	 */
 	@Override
 	public void setStats(int playerShips, int enemyShips) {
-		view.setStats(playerShips, enemyShips);
+		final int player = playerShips;
+		final int enemy = enemyShips;
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				view.setStats(player, enemy);
+			}
+		});
 	}
 
 	@Override
 	public void drawShip(Coordinates[] tab) {
-		for (Coordinates c : tab) {
-			view.changeBattlePlaceIcon(c.getX(), c.getY(), 0);
-		}
+		final Coordinates[] tabela = tab;
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				for (Coordinates c : tabela) {
+					view.changeBattlePlaceIcon(c.getX(), c.getY(), 0);
+				}
+			}
+		});
 	}
 
 	@Override
 	public void gameOver(boolean win) {
-		view.GameOver(win);
+		final boolean winner = win;
+
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				view.GameOver(winner);
+			}
+		});
 		this.gameOver = true;
 	}
 
@@ -205,23 +290,50 @@ public class ShootingPresenter implements IShootingPresenter,
 
 	@Override
 	public void changeGiveUpButtonLabel() {
-		view.changeGiveUpButtonLabel("PrzejdŸ do menu");
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				view.changeGiveUpButtonLabel("PrzejdŸ do menu");
+			}
+		});
+
 		giveUpButtonCallNumber = 1;
 	}
 
 	@Override
 	public void showFrame() {
-		view.showFrame(player.getName());
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				view.showFrame(player.getName());
+			}
+		});
 	}
 
 	@Override
 	public void closeFrame() {
-		view.closeFrame();
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				view.closeFrame();
+			}
+		});
 	}
 
 	@Override
 	public void changeShipState(int shipID) {
-		view.changeShipState(shipID);
+		final int id = shipID;
+
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				view.changeShipState(id);
+			}
+		});
 	}
 
 	@Override

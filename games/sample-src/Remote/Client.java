@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Ship;
+import pl.praktykiatrem.game.battleship.components.Ship;
 
 public class Client {
 	public static void main(String[] args) throws RemoteException,

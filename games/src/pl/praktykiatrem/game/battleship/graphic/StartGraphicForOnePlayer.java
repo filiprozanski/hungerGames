@@ -1,8 +1,8 @@
 package pl.praktykiatrem.game.battleship.graphic;
 
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.SettingControllerForOnePlayer;
-import pl.praktykiatrem.game.battleship.graphic.shipSetting.interfaces.ISettingController;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
+import pl.praktykiatrem.game.battleship.graphic.setting.SettingControllerForOnePlayer;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.rules.Game;

@@ -7,7 +7,7 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import pl.praktykiatrem.game.battleship.files.ShipIcons;
+import pl.praktykiatrem.game.battleship.resources.ShipIcons;
 
 /**
  * Panel zawieraj¹cy legendê

@@ -1,6 +1,6 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting.interfaces;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
 
 public interface IShootingPresenterControll {
 	public void changeStatus(boolean ableToMove);
@@ -9,13 +9,13 @@ public interface IShootingPresenterControll {
 
 	public void setStats(int playerShips, int enemyShips);
 
-	public void changeBattlePlaceIcon(int x, int y, int type);
+	public void changeBattlePlaceIcon(Coordinates coords, int type);
 
-	public void changeStateIcon(int x, int y, int type);
+	public void changeStateIcon(Coordinates coords, int type);
 
 	public void gameOver(boolean win);
 
-	public void fchangeIcon(int x, int y, int type);
+	public void fchangeIcon(Coordinates coords, int type);
 
 	public void changeGiveUpButtonLabel();
 

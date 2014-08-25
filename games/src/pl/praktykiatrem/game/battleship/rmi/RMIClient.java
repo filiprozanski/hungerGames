@@ -7,9 +7,9 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
-import pl.praktykiatrem.game.battleship.gameComponents.Place;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Place;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
 import pl.praktykiatrem.game.battleship.rules.Game;
 
@@ -26,14 +26,11 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 
 		this.starter = starter;
 
-		r = LocateRegistry.getRegistry(IRMIServer.SERVER_LOCAL,
+		r = LocateRegistry.getRegistry(IRMIServer.SERVER_IP,
 				IRMIServer.PORTNUMBER);
 		server = (IRMIServer) r.lookup(IRMIServer.SERVICE_NAME);
 	}
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1921402231416408470L;
 
 	@Override
@@ -45,9 +42,9 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 		return server.getGame();
 	}
 
-	public boolean makeMove(PlayerStatus player, int x, int y)
+	public boolean makeMove(PlayerStatus player, Coordinates coords)
 			throws RemoteException {
-		return server.makeMove(player, x, y);
+		return server.makeMove(player, coords);
 	}
 
 	public void setPlayer(PlayerStatus player) throws RemoteException {
@@ -56,21 +53,22 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 	}
 
 	@Override
-	public void hitSetting(int x, int y, int playerShipsNumber,
+	public void hitSetting(Coordinates coords, int playerShipsNumber,
 			int enemyShipsNumber, int accuracy) throws RemoteException {
-		starter.hitSetting(x, y, playerShipsNumber, enemyShipsNumber, accuracy);
+		starter.hitSetting(coords, playerShipsNumber, enemyShipsNumber,
+				accuracy);
 	}
 
 	@Override
-	public void missSetting(int playerShips, int x, int y, int enemyShips,
-			int accuracy) throws RemoteException {
-		starter.missSetting(playerShips, x, y, enemyShips, accuracy);
+	public void missSetting(int playerShips, Coordinates coords,
+			int enemyShips, int accuracy) throws RemoteException {
+		starter.missSetting(playerShips, coords, enemyShips, accuracy);
 	}
 
 	@Override
-	public void losePoleSetting(int x, int y, int pNumber, int eNumber)
+	public void losePoleSetting(Coordinates coords, int pNumber, int eNumber)
 			throws RemoteException {
-		starter.losePoleSetting(x, y, pNumber, eNumber);
+		starter.losePoleSetting(coords, pNumber, eNumber);
 	}
 
 	@Override
@@ -80,8 +78,8 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 	}
 
 	@Override
-	public void allowToMove(int x, int y) throws RemoteException {
-		starter.allowToMove(x, y);
+	public void allowToMove(Coordinates coords) throws RemoteException {
+		starter.allowToMove(coords);
 	}
 
 	@Override

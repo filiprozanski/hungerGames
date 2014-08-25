@@ -2,7 +2,7 @@ package pl.praktykiatrem.game.battleship.graphic.shooting.interfaces;
 
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
 
 /**
  * 

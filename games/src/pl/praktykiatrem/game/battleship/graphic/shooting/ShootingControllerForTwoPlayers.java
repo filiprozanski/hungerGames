@@ -1,8 +1,9 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Place;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Place;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
+import pl.praktykiatrem.game.battleship.components.ShootResult;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
@@ -97,30 +98,30 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	 * @return true je¶li trafiony, inaczej false
 	 */
 	@Override
-	public boolean makeMove(PlayerStatus player, int x, int y) {
+	public boolean makeMove(PlayerStatus player, Coordinates coords) {
 		if (player.equals(player1)) {
-			return makeMove(player1, player2, x, y);
+			return makeMove(player1, player2, coords);
 		} else {
-			return makeMove(player2, player1, x, y);
+			return makeMove(player2, player1, coords);
 		}
 	}
 
-	private boolean makeMove(PlayerStatus shooter, PlayerStatus victim, int x,
-			int y) {
-		ShootResult result = g.makeMove(victim, x, y);
+	private boolean makeMove(PlayerStatus shooter, PlayerStatus victim,
+			Coordinates coords) {
+		ShootResult result = g.makeMove(victim, coords);
 		switch (result) {
 		case HIT:
-			boardSettingHit(shooter, victim, x, y);
+			boardSettingHit(shooter, victim, coords);
 			return true;
 		case SINK:
-			int id = g.getShipID(victim, x, y);
-			boardSettingSink(shooter, victim, x, y, id);
+			int id = g.getShipID(victim, coords);
+			boardSettingSink(shooter, victim, coords, id);
 			if (victim.getShipsNumber() == 0) {
 				gameOver(shooter);
 			}
 			return true;
 		case MISS:
-			boardSettingMiss(shooter, victim, x, y);
+			boardSettingMiss(shooter, victim, coords);
 			return false;
 		default:
 			return false;
@@ -133,10 +134,12 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 
 		for (int j = 0; j < g.getBoardSizeH(); j++)
 			for (int i = 0; i < g.getBoardSizeV(); i++) {
-				Place place = opponent.getPlace(i, j);
+				Place place = opponent.getPlace(new Coordinates(i, j));
 				if (place.isShipOnPlace()
-						&& opponent.getPlace(i, j).isPlaceInGame())
-					playerPres.fchangeIcon(i, j, place.getShipId() + 1);
+						&& opponent.getPlace(new Coordinates(i, j))
+								.isPlaceInGame())
+					playerPres.fchangeIcon(new Coordinates(i, j),
+							place.getShipId() + 1);
 
 			}
 	}
@@ -153,12 +156,12 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	 * @param y
 	 */
 	private void boardSettingHit(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y) {
+			Coordinates coords) {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
 
-		vPres.changeStateIcon(x, y, 0);
-		sPres.changeBattlePlaceIcon(x, y, 2);
+		vPres.changeStateIcon(coords, 0);
+		sPres.changeBattlePlaceIcon(coords, 2);
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(true);
@@ -167,8 +170,8 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	}
 
 	private void boardSettingSink(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y, int id) {
-		boardSettingHit(shooter, victim, x, y);
+			Coordinates coords, int id) {
+		boardSettingHit(shooter, victim, coords);
 		IShootingPresenterControll spres = getPresenter(shooter);
 		spres.changeShipState(id);
 		spres.drawShip(g.getCoordsTable(victim, id));
@@ -186,14 +189,14 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	 * @param y
 	 */
 	private void boardSettingMiss(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y) {
+			Coordinates coords) {
 		IShootingPresenterControll sPres = getPresenter(shooter);
 		IShootingPresenterControll vPres = getPresenter(victim);
 
-		vPres.changeStateIcon(x, y, 1);
+		vPres.changeStateIcon(coords, 1);
 		vPres.changeStatus(true);
 		sPres.changeStatus(false);
-		sPres.changeBattlePlaceIcon(x, y, 1);
+		sPres.changeBattlePlaceIcon(coords, 1);
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(false);

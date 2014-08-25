@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.uniElements;
 
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+
 public abstract class Board {
 
 	protected int horizontalSize;
@@ -23,9 +25,9 @@ public abstract class Board {
 		return horizontalSize;
 	}
 
-	public abstract void takeOut(int x, int y);
+	public abstract void takeOut(Coordinates coords);
 
-	public abstract void resetPlace(int x, int y);
+	public abstract void resetPlace(Coordinates coords);
 
 	public abstract void clearBoard();
 }

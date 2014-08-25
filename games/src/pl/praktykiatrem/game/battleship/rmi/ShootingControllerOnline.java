@@ -3,9 +3,10 @@ package pl.praktykiatrem.game.battleship.rmi;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import pl.praktykiatrem.game.battleship.gameComponents.Place;
-import pl.praktykiatrem.game.battleship.gameComponents.PlayerStatus;
-import pl.praktykiatrem.game.battleship.gameComponents.ShootResult;
+import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.battleship.components.Place;
+import pl.praktykiatrem.game.battleship.components.PlayerStatus;
+import pl.praktykiatrem.game.battleship.components.ShootResult;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
@@ -90,31 +91,31 @@ public class ShootingControllerOnline implements IShootingController {
 	 * @throws RemoteException
 	 */
 	@Override
-	public boolean makeMove(PlayerStatus player, int x, int y)
+	public boolean makeMove(PlayerStatus player, Coordinates coords)
 			throws RemoteException {
 		if (player.equals(player1)) {
-			return makeMove(player1, player2, x, y);
+			return makeMove(player1, player2, coords);
 		} else {
-			return makeMove(player2, player1, x, y);
+			return makeMove(player2, player1, coords);
 		}
 	}
 
-	private boolean makeMove(PlayerStatus shooter, PlayerStatus victim, int x,
-			int y) throws RemoteException {
-		ShootResult result = g.makeMove(victim, x, y);
+	private boolean makeMove(PlayerStatus shooter, PlayerStatus victim,
+			Coordinates coords) throws RemoteException {
+		ShootResult result = g.makeMove(victim, coords);
 		switch (result) {
 		case HIT:
-			boardSettingHit(shooter, victim, x, y);
+			boardSettingHit(shooter, victim, coords);
 			return true;
 		case SINK:
-			int id = g.getShipID(victim, x, y);
-			boardSettingSink(shooter, victim, x, y, id);
+			int id = g.getShipID(victim, coords);
+			boardSettingSink(shooter, victim, coords, id);
 			if (victim.getShipsNumber() == 0) {
 				gameOver(shooter);
 			}
 			return true;
 		case MISS:
-			boardSettingMiss(shooter, victim, x, y);
+			boardSettingMiss(shooter, victim, coords);
 			return false;
 		default:
 			return false;
@@ -126,9 +127,10 @@ public class ShootingControllerOnline implements IShootingController {
 
 		for (int j = 0; j < g.getBoardSizeH(); j++)
 			for (int i = 0; i < g.getBoardSizeV(); i++) {
-				Place place = opponent.getPlace(i, j);
+				Place place = opponent.getPlace(new Coordinates(i, j));
 				if (place.isShipOnPlace()
-						&& opponent.getPlace(i, j).isPlaceInGame())
+						&& opponent.getPlace(new Coordinates(i, j))
+								.isPlaceInGame())
 					leftShips.add(place);
 			}
 
@@ -147,21 +149,21 @@ public class ShootingControllerOnline implements IShootingController {
 	 * @param y
 	 */
 	private void boardSettingHit(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y) throws RemoteException {
+			Coordinates coords) throws RemoteException {
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(true);
-		supervisor.setHitSetting(shooter, x, y, playerShips, enemyShips,
+		supervisor.setHitSetting(shooter, coords, playerShips, enemyShips,
 				accuracy);
-		supervisor.losePoleSetting(victim, x, y, enemyShips, playerShips);
+		supervisor.losePoleSetting(victim, coords, enemyShips, playerShips);
 	}
 
 	private void boardSettingSink(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y, int id) throws RemoteException {
+			Coordinates coords, int id) throws RemoteException {
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(true);
-		supervisor.losePoleSetting(victim, x, y, enemyShips, playerShips);
+		supervisor.losePoleSetting(victim, coords, enemyShips, playerShips);
 		supervisor.shipSunkSetting(shooter, id, playerShips, enemyShips,
 				accuracy);
 	}
@@ -178,13 +180,13 @@ public class ShootingControllerOnline implements IShootingController {
 	 * @param y
 	 */
 	private void boardSettingMiss(PlayerStatus shooter, PlayerStatus victim,
-			int x, int y) throws RemoteException {
+			Coordinates coords) throws RemoteException {
 		playerShips = g.getActiveShipsNumber(shooter);
 		enemyShips = g.getActiveShipsNumber(victim);
 		accuracy = shooter.getAccuracy(false);
-		supervisor
-				.missSetting(shooter, x, y, playerShips, enemyShips, accuracy);
-		supervisor.allowToMove(victim, x, y);
+		supervisor.missSetting(shooter, coords, playerShips, enemyShips,
+				accuracy);
+		supervisor.allowToMove(victim, coords);
 
 	}
 
