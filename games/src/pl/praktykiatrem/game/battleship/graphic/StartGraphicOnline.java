@@ -37,7 +37,6 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 	public StartGraphicOnline(String name, IMenuCallObserver menuObserver)
 			throws RemoteException {
 		this.menuObserver = menuObserver;
-		hint = new HintController(game);
 
 		try {
 			client = new RMIClient(this);
@@ -48,6 +47,8 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 		initialize(name);
 
+        hint = new HintController(game);
+		
 		stageA();
 	}
 
