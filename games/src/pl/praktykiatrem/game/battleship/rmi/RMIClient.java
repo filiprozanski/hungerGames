@@ -74,9 +74,9 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 	}
 
 	@Override
-	public void shipSunkSetting(Coordinates[] list, int id)
-			throws RemoteException {
-		starter.shipSunkSetting(list, id);
+	public void shipSunkSetting(Coordinates[] list, int id, int eNumber,
+			int pNumber, int accuracy) throws RemoteException {
+		starter.shipSunkSetting(list, id, eNumber, pNumber, accuracy);
 	}
 
 	@Override

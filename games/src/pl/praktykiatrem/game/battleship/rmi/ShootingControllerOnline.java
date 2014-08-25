@@ -158,8 +158,12 @@ public class ShootingControllerOnline implements IShootingController {
 
 	private void boardSettingSink(PlayerStatus shooter, PlayerStatus victim,
 			int x, int y, int id) throws RemoteException {
-		boardSettingHit(shooter, victim, x, y);
-		supervisor.shipSunkSetting(shooter, id);
+		playerShips = g.getActiveShipsNumber(shooter);
+		enemyShips = g.getActiveShipsNumber(victim);
+		accuracy = shooter.getAccuracy(true);
+		supervisor.losePoleSetting(victim, x, y, enemyShips, playerShips);
+		supervisor.shipSunkSetting(shooter, id, playerShips, enemyShips,
+				accuracy);
 	}
 
 	/**

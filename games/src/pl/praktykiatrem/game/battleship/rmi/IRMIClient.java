@@ -20,8 +20,8 @@ public interface IRMIClient extends Remote {
 	public void losePoleSetting(int x, int y, int pNumber, int eNumber)
 			throws RemoteException;
 
-	public void shipSunkSetting(Coordinates[] list, int id)
-			throws RemoteException;
+	public void shipSunkSetting(Coordinates[] list, int id, int eNumber,
+			int pNumber, int accuracy) throws RemoteException;
 
 	public void allowToMove(int x, int y) throws RemoteException;
 
