@@ -1,18 +1,17 @@
 package pl.praktykiatrem.game.battleship.graphic.setting;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IController;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
-public class SettingControllerForNoPlayer implements ISettingController {
+public class SettingControllerForNoPlayer implements IController {
 
 	private int readyPlayers;
 	private Game gameRules;
@@ -26,8 +25,8 @@ public class SettingControllerForNoPlayer implements ISettingController {
 		this.supervisor = supervisor;
 		this.gameRules = g;
 
-		pres1 = new SettingPresenter(g.getConstants(), player1, this, 1);
-		pres2 = new SettingPresenter(g.getConstants(), player2, this, 1);
+		pres1 = new SwingPresenter(g.getConstants(), player1, this, 1);
+		pres2 = new SwingPresenter(g.getConstants(), player2, this, 1);
 
 		supervisor.changeStage();
 	}
@@ -42,11 +41,6 @@ public class SettingControllerForNoPlayer implements ISettingController {
 	@Override
 	public void playerIsNotReady() {
 		readyPlayers = 0;
-	}
-
-	@Override
-	public ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id) {
-		return gameRules.getCoordsList(player, id);
 	}
 
 	@Override

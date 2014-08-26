@@ -1,18 +1,14 @@
 package pl.praktykiatrem.game.battleship.graphic.setting.interfaces;
 
-import java.util.ArrayList;
-
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
-public interface ISettingController {
+public interface IController {
 
 	void playerIsReady();
 
 	void playerIsNotReady();
-
-	ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id);
 
 	boolean placeShips(PlayerStatus player, int id, int polesNumber,
 			Direction dir, Coordinates coords);

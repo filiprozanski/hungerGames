@@ -3,6 +3,7 @@ package pl.praktykiatrem.game.tictactoe;
 import java.awt.Frame;
 
 import pl.praktykiatrem.game.battleship.components.Coordinates;
+import pl.praktykiatrem.game.menu.CloseStatus;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 import pl.praktykiatrem.game.tictactoe.ai.TTTDifficulty;
 import pl.praktykiatrem.game.tictactoe.ai.TTTEasy;
@@ -99,7 +100,7 @@ public class StartTicTacToeForOnePlayer implements IController, IDialogOwner {
 	@Override
 	public void clicked() {
 		pres.closeGame();
-		menuObserver.callMenu();
+		menuObserver.callMenu(CloseStatus.NORMAL);
 	}
 
 	@Override

@@ -5,7 +5,8 @@ import javax.swing.SwingUtilities;
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IController;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IPlayerController;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenterControll;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingView;
@@ -18,7 +19,7 @@ import pl.praktykiatrem.game.uniElements.enums.Direction;
  * @author Filip Ró¿añski
  *
  */
-public class SettingPresenter implements ISettingPresenter,
+public class SwingPresenter implements ISettingPresenter,
 		ISettingPresenterControll {
 	/**
 	 * 
@@ -40,20 +41,20 @@ public class SettingPresenter implements ISettingPresenter,
 	/**
 	 * obserwator zmiany etapu gry poprzez klikniêcie przycisku "ready"
 	 */
-	private ISettingController controller;
+	private IController controller;
 
 	private boolean ready;
 
 	/**
 	 * 
-	 * Tworzy nowy obiekt klasy <code>SettingPresenter</code>
+	 * Tworzy nowy obiekt klasy <code>SwingPresenter</code>
 	 *
 	 * @param gameConst
 	 * @param player
 	 * @param observer
 	 */
-	public SettingPresenter(GameConstants gameConst, PlayerStatus player,
-			ISettingController controller) {
+	public SwingPresenter(GameConstants gameConst, PlayerStatus player,
+			IController controller) {
 		this.gameConstants = gameConst;
 		this.player = player;
 		this.controller = controller;
@@ -61,18 +62,37 @@ public class SettingPresenter implements ISettingPresenter,
 
 			@Override
 			public void run() {
-				view = new ShipSettingPanel(SettingPresenter.this);
+				view = new ShipSettingPanel(SwingPresenter.this);
 				view.initialize(
-						SettingPresenter.this.gameConstants.getShipTypes(),
-						SettingPresenter.this.gameConstants.getBoardSizeV(),
-						SettingPresenter.this.gameConstants.getBoardSizeH());
+						SwingPresenter.this.gameConstants.getShipTypes(),
+						SwingPresenter.this.gameConstants.getBoardSizeV(),
+						SwingPresenter.this.gameConstants.getBoardSizeH());
 			}
 		});
 
 	}
 
-	public SettingPresenter(GameConstants gameConst, PlayerStatus player,
-			ISettingController controller, int mode) {
+	public SwingPresenter(GameConstants gameConst, PlayerStatus player,
+			IPlayerController controller) {
+		this.gameConstants = gameConst;
+		this.player = player;
+		this.controller = controller;
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				view = new ShipSettingPanel(SwingPresenter.this);
+				view.initialize(
+						SwingPresenter.this.gameConstants.getShipTypes(),
+						SwingPresenter.this.gameConstants.getBoardSizeV(),
+						SwingPresenter.this.gameConstants.getBoardSizeH());
+			}
+		});
+
+	}
+
+	public SwingPresenter(GameConstants gameConst, PlayerStatus player,
+			IController controller, int mode) {
 		this.gameConstants = gameConst;
 		this.player = player;
 		this.controller = controller;
@@ -81,11 +101,11 @@ public class SettingPresenter implements ISettingPresenter,
 
 			@Override
 			public void run() {
-				view = new ShipSettingPanel(SettingPresenter.this);
+				view = new ShipSettingPanel(SwingPresenter.this);
 				view.initialize(
-						SettingPresenter.this.gameConstants.getShipTypes(),
-						SettingPresenter.this.gameConstants.getBoardSizeV(),
-						SettingPresenter.this.gameConstants.getBoardSizeH());
+						SwingPresenter.this.gameConstants.getShipTypes(),
+						SwingPresenter.this.gameConstants.getBoardSizeV(),
+						SwingPresenter.this.gameConstants.getBoardSizeH());
 			}
 		});
 

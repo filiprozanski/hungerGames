@@ -23,6 +23,7 @@ public class MessageDialog extends javax.swing.JDialog {
 		super(parent, modal);
 		this.owner = owner;
 		initComponents(text);
+		setVisible(true);
 	}
 
 	/**
@@ -46,6 +47,7 @@ public class MessageDialog extends javax.swing.JDialog {
 
 		okButton.setText("OK");
 		okButton.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				okButtonActionPerformed(evt);
 			}

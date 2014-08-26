@@ -4,6 +4,7 @@ import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.setting.SettingControllerForTwoPlayers;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForTwoPlayers;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.menu.CloseStatus;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
@@ -56,6 +57,6 @@ public class StartGraphicForTwoPlayers {
 	}
 
 	public void callMenu() {
-		menuObserver.callMenu();
+		menuObserver.callMenu(CloseStatus.NORMAL);
 	}
 }

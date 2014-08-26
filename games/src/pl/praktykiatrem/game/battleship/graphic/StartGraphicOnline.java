@@ -15,6 +15,7 @@ import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.rmi.RMIClient;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.menu.CloseStatus;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 
 public class StartGraphicOnline implements Serializable, IShootingController {
@@ -34,15 +35,15 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	private HintController hint;
 
-	public StartGraphicOnline(String name, IMenuCallObserver menuObserver)
-			throws RemoteException {
+	public StartGraphicOnline(String name, IMenuCallObserver menuObserver) {
 		this.menuObserver = menuObserver;
 
 		try {
 			client = new RMIClient(this);
-		} catch (NotBoundException e) {
+		} catch (NotBoundException | RemoteException e) {
 			System.out.println("Client creating");
-			e.printStackTrace();
+			connectionErrorOccured();
+			return;
 		}
 
 		initialize(name);
@@ -57,6 +58,7 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 			game = client.getGame();
 		} catch (RemoteException e) {
 			System.out.println("getGame");
+			connectionErrorOccured();
 			e.printStackTrace();
 		}
 
@@ -72,23 +74,24 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 		seController = new SettingControllerOffline(game, player, this);
 	}
 
-	public void stageB() {
-		// shController = new ShootingController(player, game, this);
-	}
-
 	public void changeStage(boolean start) {
 		try {
 			seController.closeSettingStage();
 			startShootingStage(start);
 		} catch (RemoteException e) {
 			System.out.println("closeSetting");
+			connectionErrorOccured();
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void endGame() {
-		menuObserver.callMenu();
+		menuObserver.callMenu(CloseStatus.NORMAL);
+	}
+
+	public void connectionErrorOccured() {
+		menuObserver.callMenu(CloseStatus.CONNECTION_ERROR);
 	}
 
 	public void playerIsReady() {
@@ -96,6 +99,7 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 			client.setPlayer(player);
 		} catch (RemoteException e) {
 			System.out.println("setReady");
+			connectionErrorOccured();
 			e.printStackTrace();
 		}
 	}
@@ -110,6 +114,7 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 			return client.makeMove(player, coords);
 		} catch (RemoteException e) {
 			System.out.println("makeMove");
+			connectionErrorOccured();
 			e.printStackTrace();
 			return false;
 		}
@@ -120,7 +125,8 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 		try {
 			client.resign(player);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			System.out.println("resign");
+			connectionErrorOccured();
 			e.printStackTrace();
 		}
 	}
@@ -182,9 +188,5 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 					new Coordinates(place.getX(), place.getY()),
 					place.getShipId() + 1);
 		}
-	}
-
-	public void errorOccured() {
-
 	}
 }

@@ -2,10 +2,11 @@ package pl.praktykiatrem.game.battleship.graphic;
 
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.setting.SettingControllerForNoPlayer;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.menu.CloseStatus;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 import pl.praktykiatrem.game.uniElements.enums.Difficulty;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
@@ -19,7 +20,7 @@ public class StartGraphicForNoPlayer {
 
 	private IShootingController shController;
 
-	private ISettingController seController;
+	private IController seController;
 
 	private IMenuCallObserver menuObserver;
 
@@ -67,6 +68,6 @@ public class StartGraphicForNoPlayer {
 	}
 
 	public void callMenu() {
-		menuObserver.callMenu();
+		menuObserver.callMenu(CloseStatus.NORMAL);
 	}
 }

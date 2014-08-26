@@ -6,6 +6,7 @@
 
 package pl.praktykiatrem.game.menu;
 
+import java.awt.Frame;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
@@ -13,6 +14,7 @@ import java.rmi.registry.Registry;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
@@ -22,6 +24,8 @@ import pl.praktykiatrem.game.battleship.resources.ShipIcons;
 import pl.praktykiatrem.game.battleship.rmi.ServerApp;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForOnePlayer;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForTwoPlayers;
+import pl.praktykiatrem.game.tictactoe.graphic.interfaces.IDialogOwner;
+import pl.praktykiatrem.game.uniElements.dialogs.MessageDialog;
 import pl.praktykiatrem.game.uniElements.dialogs.PlayerNameDialog;
 import pl.praktykiatrem.game.uniElements.enums.Difficulty;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
@@ -30,7 +34,7 @@ import pl.praktykiatrem.game.uniElements.enums.RulesType;
  *
  * @author Filip Ró¿añski
  */
-public class MainMenu extends JFrame implements IMenuCallObserver {
+public class MainMenu extends JFrame implements IMenuCallObserver, IDialogOwner {
 
 	/**
 	 * Creates new form MainMenu
@@ -313,38 +317,56 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		JDialog dialog = new PlayerNameDialog(this, "Gracz 1", true);
 		new StartGraphicForOnePlayer(name1, "Komputer", this,
 				getShipsRulesChoice(), getDifficultyChoice());
-		setVisible(false);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				setVisible(false);
+			}
+		});
 	}
 
 	private void bsPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		JDialog dialog = new PlayerNameDialog(this, "Gracz 1", true);
 		dialog = new PlayerNameDialog(this, "Gracz 2", true);
 		new StartGraphicForTwoPlayers(name1, name2, this, getShipsRulesChoice());
-		setVisible(false);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				setVisible(false);
+			}
+		});
 	}
 
 	private void bsOnlineButtonActionPerformed(java.awt.event.ActionEvent evt)
 			throws InterruptedException {
 		JDialog dialog = new PlayerNameDialog(this, "Gracz 1", true);
-		try {
-			new StartGraphicOnline(name1, this);
-		} catch (RemoteException e) {
-			System.out.println("StartGraphic");
-			e.printStackTrace();
-		}
-		dispose();
+		new StartGraphicOnline(name1, this);
 	}
 
 	private void tttPCButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		new StartTicTacToeForOnePlayer("Filip", this, getTTTRulesChoice(),
 				getDifficultyChoice());
-		setVisible(false);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				setVisible(false);
+			}
+		});
 	}
 
 	private void tttPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		new StartTicTacToeForTwoPlayers("Filip", "Wiktor", this,
 				getTTTRulesChoice());
-		setVisible(false);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				setVisible(false);
+			}
+		});
 	}
 
 	private void tttOnlineButtonActionPerformed(java.awt.event.ActionEvent evt)
@@ -353,47 +375,89 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	}
 
 	private void customRulesFieldActionPerformed(java.awt.event.ActionEvent evt) {
-		bsOriginalRulesField.setSelected(false);
-		bsOriginalRulesField.setSelectedIcon(null);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				bsOriginalRulesField.setSelected(false);
+				bsOriginalRulesField.setSelectedIcon(null);
+			}
+		});
 	}
 
 	private void tttCustomRulesFieldActionPerformed(
 			java.awt.event.ActionEvent evt) {
-		tttOriginalRulesField.setSelected(false);
-		tttOriginalRulesField.setSelectedIcon(null);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				tttOriginalRulesField.setSelected(false);
+				tttOriginalRulesField.setSelectedIcon(null);
+			}
+		});
 	}
 
 	private void originalRulesFieldActionPerformed(
 			java.awt.event.ActionEvent evt) {
-		bsCustomRulesField.setSelected(false);
-		bsCustomRulesField.setSelectedIcon(null);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				bsCustomRulesField.setSelected(false);
+				bsCustomRulesField.setSelectedIcon(null);
+			}
+		});
 	}
 
 	private void tttOriginalRulesFieldActionPerformed(
 			java.awt.event.ActionEvent evt) {
-		tttCustomRulesField.setSelected(false);
-		tttCustomRulesField.setSelectedIcon(null);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				tttCustomRulesField.setSelected(false);
+				tttCustomRulesField.setSelectedIcon(null);
+			}
+		});
 	}
 
 	private void easyRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		mediumRadioButton.setSelected(false);
-		mediumRadioButton.setSelectedIcon(null);
-		hardRadioButton.setSelected(false);
-		hardRadioButton.setSelectedIcon(null);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				mediumRadioButton.setSelected(false);
+				mediumRadioButton.setSelectedIcon(null);
+				hardRadioButton.setSelected(false);
+				hardRadioButton.setSelectedIcon(null);
+			}
+		});
 	}
 
 	private void mediumRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		easyRadioButton.setSelected(false);
-		easyRadioButton.setSelectedIcon(null);
-		hardRadioButton.setSelected(false);
-		hardRadioButton.setSelectedIcon(null);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				easyRadioButton.setSelected(false);
+				easyRadioButton.setSelectedIcon(null);
+				hardRadioButton.setSelected(false);
+				hardRadioButton.setSelectedIcon(null);
+			}
+		});
 	}
 
 	private void hardRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		mediumRadioButton.setSelected(false);
-		mediumRadioButton.setSelectedIcon(null);
-		easyRadioButton.setSelected(false);
-		easyRadioButton.setSelectedIcon(null);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				mediumRadioButton.setSelected(false);
+				mediumRadioButton.setSelectedIcon(null);
+				easyRadioButton.setSelected(false);
+				easyRadioButton.setSelectedIcon(null);
+			}
+		});
 	}
 
 	private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -403,7 +467,13 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private void pcOnlyButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		new StartGraphicForNoPlayer("COM1", "COM2", this,
 				getShipsRulesChoice(), getDifficultyChoice());
-		setVisible(false);
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				setVisible(false);
+			}
+		});
 	}
 
 	public void setPlayerName(String name) {
@@ -444,11 +514,40 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	private String name1;
 	private String name2;
 	private Registry r;
+	private JDialog dialog;
 
 	// End of variables declaration
 	@Override
-	public void callMenu() {
-		setVisible(true);
+	public void callMenu(CloseStatus status) {
+		switch (status) {
+		case NORMAL:
+			setVisible(true);
+			break;
+		case CONNECTION_ERROR:
+			SwingUtilities.invokeLater(new Runnable() {
+
+				@Override
+				public void run() {
+					dialog = new MessageDialog(new Frame(), "B³±d po³±czenia!",
+							MainMenu.this, true);
+
+					MainMenu.this.setVisible(true);
+				}
+			});
+			break;
+		case ERROR:
+			SwingUtilities.invokeLater(new Runnable() {
+
+				@Override
+				public void run() {
+					dialog = new MessageDialog(new Frame(), "B³±d!",
+							MainMenu.this, true);
+
+					MainMenu.this.setVisible(true);
+				}
+			});
+			break;
+		}
 	}
 
 	private RulesType getShipsRulesChoice() {
@@ -478,5 +577,16 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 			return Difficulty.HARD;
 		else
 			return Difficulty.MEDIUM;
+	}
+
+	@Override
+	public void clicked() {
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				dialog.dispose();
+			}
+		});
 	}
 }

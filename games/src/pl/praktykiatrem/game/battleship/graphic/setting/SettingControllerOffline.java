@@ -1,18 +1,17 @@
 package pl.praktykiatrem.game.battleship.graphic.setting;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IController;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenterControll;
 import pl.praktykiatrem.game.battleship.rules.Game;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
-public class SettingControllerOffline implements ISettingController {
+public class SettingControllerOffline implements IController {
 	private int readyPlayers;
 	private Game gameRules;
 	private StartGraphicOnline supervisor;
@@ -23,7 +22,7 @@ public class SettingControllerOffline implements ISettingController {
 		this.supervisor = supervisor;
 		this.gameRules = g;
 
-		pres = new SettingPresenter(g.getConstants(), player, this);
+		pres = new SwingPresenter(g.getConstants(), player, this);
 		pres.showFrame();
 
 		readyPlayers = 0;
@@ -41,11 +40,6 @@ public class SettingControllerOffline implements ISettingController {
 	@Override
 	public void playerIsNotReady() {
 		readyPlayers = 0;
-	}
-
-	@Override
-	public ArrayList<Coordinates> getCoordsList(PlayerStatus player, int id) {
-		return gameRules.getCoordsList(player, id);
 	}
 
 	@Override
