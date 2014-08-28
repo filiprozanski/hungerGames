@@ -5,11 +5,10 @@ import javax.swing.SwingUtilities;
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IController;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IPlayerController;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenterControll;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingView;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.interfaces.IPlayerSettingController;
 import pl.praktykiatrem.game.battleship.rules.GameConstants;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
@@ -31,19 +30,17 @@ public class SwingPresenter implements ISettingPresenter,
 	 */
 	private GameConstants gameConstants;
 	/**
-	 * reprezentacja gracza, który wykonuje swoje ruchy poprzez dany interfejs
-	 */
-	private PlayerStatus player;
-	/**
 	 * interfejs graficzny etapu ustawiania statków
 	 */
 	private ISettingView view;
 	/**
 	 * obserwator zmiany etapu gry poprzez klikniêcie przycisku "ready"
 	 */
-	private IController controller;
+	private IPlayerSettingController controller;
 
 	private boolean ready;
+
+	private PlayerStatus player; // DO WYWALENIA!!!
 
 	/**
 	 * 
@@ -53,11 +50,12 @@ public class SwingPresenter implements ISettingPresenter,
 	 * @param player
 	 * @param observer
 	 */
-	public SwingPresenter(GameConstants gameConst, PlayerStatus player,
-			IController controller) {
+	public SwingPresenter(GameConstants gameConst,
+			IPlayerSettingController controller, PlayerStatus player) {
 		this.gameConstants = gameConst;
-		this.player = player;
 		this.controller = controller;
+		this.player = player;
+
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
@@ -73,29 +71,10 @@ public class SwingPresenter implements ISettingPresenter,
 	}
 
 	public SwingPresenter(GameConstants gameConst, PlayerStatus player,
-			IPlayerController controller) {
+			IPlayerSettingController controller, int mode) {
 		this.gameConstants = gameConst;
-		this.player = player;
 		this.controller = controller;
-		SwingUtilities.invokeLater(new Runnable() {
-
-			@Override
-			public void run() {
-				view = new ShipSettingPanel(SwingPresenter.this);
-				view.initialize(
-						SwingPresenter.this.gameConstants.getShipTypes(),
-						SwingPresenter.this.gameConstants.getBoardSizeV(),
-						SwingPresenter.this.gameConstants.getBoardSizeH());
-			}
-		});
-
-	}
-
-	public SwingPresenter(GameConstants gameConst, PlayerStatus player,
-			IController controller, int mode) {
-		this.gameConstants = gameConst;
 		this.player = player;
-		this.controller = controller;
 
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -109,7 +88,7 @@ public class SwingPresenter implements ISettingPresenter,
 			}
 		});
 
-		controller.placeShipAtRandom(this, player);
+		controller.placeShipAtRandom();
 	}
 
 	@Override
@@ -125,7 +104,7 @@ public class SwingPresenter implements ISettingPresenter,
 			public void run() {
 				view.setOkIconShipButton(ID, true);
 				view.setReadyButtonState(gameConstants.getShipsNumber()
-						- controller.getActiveShipsNumber(player));
+						- controller.getActiveShipsNumber());
 			}
 		});
 
@@ -137,7 +116,7 @@ public class SwingPresenter implements ISettingPresenter,
 
 	@Override
 	public void resetBoard() {
-		controller.resetGame(player);
+		controller.resetGame();
 		clearBoardView();
 		if (ready)
 			controller.playerIsNotReady();
@@ -157,7 +136,7 @@ public class SwingPresenter implements ISettingPresenter,
 					view.setOkIconShipButton(i, false);
 
 				view.setReadyButtonState(gameConstants.getShipsNumber()
-						- controller.getActiveShipsNumber(player));
+						- controller.getActiveShipsNumber());
 			}
 		});
 
@@ -240,7 +219,7 @@ public class SwingPresenter implements ISettingPresenter,
 
 	@Override
 	public void placeShipAtRandom() {
-		controller.placeShipAtRandom(this, player);
+		controller.placeShipAtRandom();
 	}
 
 	@Override
@@ -254,20 +233,18 @@ public class SwingPresenter implements ISettingPresenter,
 			temp_y = player.getShip(id).getInitialCoords().getY();
 			displaceShip(id);
 		}
-		if (controller.placeShips(player, id, gameConstants.getShipTypes()[id],
-				dir, new Coordinates(x, y)))
+		if (controller.placeShips(id, gameConstants.getShipTypes()[id], dir,
+				new Coordinates(x, y)))
 			placeShipsOnView(x, y, dir, id, gameConstants.getShipTypes()[id]);
 
-		else if (controller.placeShips(player, id,
-				gameConstants.getShipTypes()[id], Direction.getOpposite(dir),
-				new Coordinates(x, y)))
+		else if (controller.placeShips(id, gameConstants.getShipTypes()[id],
+				Direction.getOpposite(dir), new Coordinates(x, y)))
 			placeShipsOnView(x, y, Direction.getOpposite(dir), id,
 					gameConstants.getShipTypes()[id]);
 
 		else if (wasSet
-				&& controller.placeShips(player, id, gameConstants
-						.getShipTypes()[id], dir, new Coordinates(temp_x,
-						temp_y)))
+				&& controller.placeShips(id, gameConstants.getShipTypes()[id],
+						dir, new Coordinates(temp_x, temp_y)))
 			placeShipsOnView(temp_x, temp_y, dir, id,
 					gameConstants.getShipTypes()[id]);
 	}
@@ -278,8 +255,8 @@ public class SwingPresenter implements ISettingPresenter,
 		int y = player.getShip(id).getInitialCoords().getY();
 		int polesNumber = gameConstants.getShipTypes()[id];
 		final int ID = id;
-		if (controller.displaceShip(player, id, polesNumber, dir,
-				new Coordinates(x, y))) {
+		if (controller
+				.displaceShip(id, polesNumber, dir, new Coordinates(x, y))) {
 			drawOnBoard(x, y, dir, 0, polesNumber);
 			SwingUtilities.invokeLater(new Runnable() {
 
@@ -287,7 +264,7 @@ public class SwingPresenter implements ISettingPresenter,
 				public void run() {
 					view.setOkIconShipButton(ID, false);
 					view.setReadyButtonState(gameConstants.getShipsNumber()
-							- controller.getActiveShipsNumber(player));
+							- controller.getActiveShipsNumber());
 				}
 			});
 			return true;
@@ -311,12 +288,11 @@ public class SwingPresenter implements ISettingPresenter,
 			Direction dir = Direction.getOpposite(getDirection(id));
 			if (player.isShipSet(id))
 				displaceShip(id);
-			if (controller.placeShips(player, id,
-					gameConstants.getShipTypes()[id], dir,
-					new Coordinates(x, y)))
+			if (controller.placeShips(id, gameConstants.getShipTypes()[id],
+					dir, new Coordinates(x, y)))
 				placeShipsOnView(x, y, dir, id,
 						gameConstants.getShipTypes()[id]);
-			else if (controller.placeShips(player, id,
+			else if (controller.placeShips(id,
 					gameConstants.getShipTypes()[id],
 					Direction.getOpposite(dir), new Coordinates(x, y)))
 				placeShipsOnView(x, y, Direction.getOpposite(dir), id,

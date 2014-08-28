@@ -12,7 +12,7 @@ import pl.praktykiatrem.game.battleship.density.HintController;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.uniElements.enums.Difficulty;
 
 /**
@@ -46,7 +46,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	/**
 	 * obiekt, który udostêpnia akcje wykonywane w grze
 	 */
-	private Game g;
+	private GameRules g;
 	/**
 	 * liczba statków gracza
 	 */
@@ -75,7 +75,7 @@ public class ShootingControllerForOnePlayer implements IShootingController {
 	 * @param g
 	 */
 	public ShootingControllerForOnePlayer(PlayerStatus player1,
-			PlayerStatus player2, Game g, StartGraphicForOnePlayer supervisor,
+			PlayerStatus player2, GameRules g, StartGraphicForOnePlayer supervisor,
 			Difficulty difficultyLevel) {
 		this.player1 = player1;
 		this.player2 = player2;

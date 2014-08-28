@@ -1,13 +1,13 @@
 package pl.praktykiatrem.game.battleship.ai;
 
 import pl.praktykiatrem.game.battleship.components.Coordinates;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 
 public class ComputerBoard {
-	private Game gameRules;
+	private GameRules gameRules;
 	private int board[][];
 
-	public ComputerBoard(Game gameRules) {
+	public ComputerBoard(GameRules gameRules) {
 		this.gameRules = gameRules;
 		this.board = new int[gameRules.getBoardSizeH()][gameRules
 				.getBoardSizeV()];

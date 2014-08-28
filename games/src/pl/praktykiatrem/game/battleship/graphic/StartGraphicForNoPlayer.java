@@ -2,10 +2,10 @@ package pl.praktykiatrem.game.battleship.graphic;
 
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.setting.SettingControllerForNoPlayer;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IController;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.menu.CloseStatus;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 import pl.praktykiatrem.game.uniElements.enums.Difficulty;
@@ -16,11 +16,11 @@ public class StartGraphicForNoPlayer {
 
 	private PlayerStatus player2;
 
-	private Game game;
+	private GameRules game;
 
 	private IShootingController shController;
 
-	private IController seController;
+	private ISettingController seController;
 
 	private IMenuCallObserver menuObserver;
 
@@ -31,7 +31,7 @@ public class StartGraphicForNoPlayer {
 			Difficulty difficulty) {
 		this.menuObserver = menuObserver;
 		this.difficultyLevel = difficulty;
-		game = new Game(rulesType);
+		game = new GameRules(rulesType);
 		initialize(name1, name2);
 		stageA();
 	}

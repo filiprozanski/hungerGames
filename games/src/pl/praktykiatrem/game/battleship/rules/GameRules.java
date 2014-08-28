@@ -16,14 +16,14 @@ import pl.praktykiatrem.game.uniElements.enums.RulesType;
  * @author Filip Ró¿añski
  *
  */
-public class Game implements Serializable {
+public class GameRules implements Serializable {
 	private static final long serialVersionUID = 9219908609794206521L;
 
 	private Rules rules;
 
 	private boolean isGameOver;
 
-	public Game(RulesType rulesType) {
+	public GameRules(RulesType rulesType) {
 		switch (rulesType) {
 		case CUSTOMRULES:
 			rules = new CustomRules();

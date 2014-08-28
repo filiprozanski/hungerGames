@@ -3,7 +3,7 @@ package pl.praktykiatrem.game.battleship.graphic;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.setting.SettingControllerForTwoPlayers;
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingControllerForTwoPlayers;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.menu.CloseStatus;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
@@ -14,7 +14,7 @@ public class StartGraphicForTwoPlayers {
 
 	private PlayerStatus player2;
 
-	private Game game;
+	private GameRules game;
 
 	private ShootingControllerForTwoPlayers shController;
 
@@ -25,7 +25,7 @@ public class StartGraphicForTwoPlayers {
 	public StartGraphicForTwoPlayers(String name1, String name2,
 			IMenuCallObserver menuObserver, RulesType rulesType) {
 		this.menuObserver = menuObserver;
-		game = new Game(rulesType);
+		game = new GameRules(rulesType);
 		initialize(name1, name2);
 		stageA();
 	}

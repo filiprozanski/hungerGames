@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.ai.ComputerBoard;
 import pl.praktykiatrem.game.battleship.components.Coordinates;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 
 public class HintController {
 	private ComputerBoard board;
@@ -13,7 +13,7 @@ public class HintController {
 	private DensityController den;
 	private boolean isHintOn;
 
-	public HintController(Game game) {
+	public HintController(GameRules game) {
 		board = new ComputerBoard(game);
 		shipTypes = game.getShipTypes();
 		den = new DensityController(game, board);

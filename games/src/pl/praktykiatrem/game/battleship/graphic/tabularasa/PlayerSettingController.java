@@ -1,40 +1,46 @@
-package pl.praktykiatrem.game.battleship.graphic.setting;
+package pl.praktykiatrem.game.battleship.graphic.tabularasa;
 
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IController;
+import pl.praktykiatrem.game.battleship.graphic.setting.SwingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IPlayerController;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenterControll;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.interfaces.IPlayerSettingController;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
-public class PlayerController implements IPlayerController {
-	private Game gameRules;
+public class PlayerSettingController implements IPlayerSettingController,
+		IPlayerController {
+	private GameRules gameRules;
 	private PlayerStatus player;
 	private ISettingPresenterControll presenter;
-	private IController controller;
+	private ISettingController controller;
 
-	public PlayerController(Game gameRules, PlayerStatus player,
-			SettingController controller) {
+	public PlayerSettingController(GameRules gameRules, PlayerStatus player,
+			ISettingController controller) {
 		this.gameRules = gameRules;
 		this.player = player;
 		this.controller = controller;
 
-		presenter = new SwingPresenter(gameRules.getConstants(), player, this);
+		presenter = new SwingPresenter(gameRules.getConstants(), this, player);
 	}
 
+	@Override
 	public boolean placeShips(int id, int polesNumber, Direction dir,
 			Coordinates coords) {
 		return gameRules.placeShips(player, id, polesNumber, dir, coords);
 	}
 
-	public void placeShipAtRandom(ISettingPresenterControll presenter) {
+	@Override
+	public void placeShipAtRandom() {
 		Direction rand_dir;
 		int randX;
 		int randY;
 		int polesNumber;
 		presenter.resetBoard();
+		resetGame();
 
 		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
 			polesNumber = gameRules.getShipTypes()[i];
@@ -56,46 +62,37 @@ public class PlayerController implements IPlayerController {
 
 	@Override
 	public void playerIsReady() {
-		// TODO Auto-generated method stub
-
+		controller.playerIsReady();
 	}
 
 	@Override
 	public void playerIsNotReady() {
-		// TODO Auto-generated method stub
-
+		controller.playerIsNotReady();
 	}
 
 	@Override
-	public boolean placeShips(PlayerStatus player, int id, int polesNumber,
-			Direction dir, Coordinates coords) {
-		// TODO Auto-generated method stub
-		return false;
+	public int getActiveShipsNumber() {
+		return gameRules.getActiveShipsNumber(player);
 	}
 
 	@Override
-	public int getActiveShipsNumber(PlayerStatus player) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean displaceShip(int id, int polesNumber, Direction dir,
+			Coordinates coords) {
+		return gameRules.displaceShips(player, id, polesNumber, dir, coords);
 	}
 
 	@Override
-	public boolean displaceShip(PlayerStatus player, int id, int polesNumber,
-			Direction dir, Coordinates coords) {
-		// TODO Auto-generated method stub
-		return false;
+	public void resetGame() {
+		gameRules.resetGame(player);
 	}
 
 	@Override
-	public void resetGame(PlayerStatus player) {
-		// TODO Auto-generated method stub
-
+	public void startStage() {
+		presenter.showFrame();
 	}
 
 	@Override
-	public void placeShipAtRandom(ISettingPresenterControll presenter,
-			PlayerStatus player) {
-		// TODO Auto-generated method stub
-
+	public void endStage() {
+		presenter.closeFrame();
 	}
 }

@@ -5,20 +5,20 @@ import java.rmi.RemoteException;
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IController;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenterControll;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
-public class SettingControllerForOnePlayer implements IController {
+public class SettingControllerForOnePlayer implements ISettingController {
 	private int readyPlayers;
-	private Game gameRules;
+	private GameRules gameRules;
 	private StartGraphicForOnePlayer supervisor;
 	private ISettingPresenterControll pres1;
 	private ISettingPresenterControll pres2;
 
-	public SettingControllerForOnePlayer(Game g, PlayerStatus player1,
+	public SettingControllerForOnePlayer(GameRules g, PlayerStatus player1,
 			PlayerStatus player2, StartGraphicForOnePlayer supervisor)
 			throws RemoteException {
 		this.supervisor = supervisor;

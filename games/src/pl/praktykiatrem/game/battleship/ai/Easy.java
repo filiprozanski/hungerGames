@@ -3,15 +3,15 @@ package pl.praktykiatrem.game.battleship.ai;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.components.Coordinates;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 
 public class Easy implements IComputer {
 	private ComputerBoard board;
-	private Game game;
+	private GameRules game;
 	private Coordinates coords;
 
-	public Easy(Game game) {
+	public Easy(GameRules game) {
 		this.game = game;
 		this.board = new ComputerBoard(game);
 	}

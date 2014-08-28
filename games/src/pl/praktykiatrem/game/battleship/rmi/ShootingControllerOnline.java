@@ -9,7 +9,7 @@ import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.components.ShootResult;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 
 /**
  * 
@@ -42,7 +42,7 @@ public class ShootingControllerOnline implements IShootingController {
 	/**
 	 * obiekt, który udostêpnia akcje wykonywane w grze
 	 */
-	private Game g;
+	private GameRules g;
 	/**
 	 * liczba statków gracza
 	 */
@@ -67,7 +67,7 @@ public class ShootingControllerOnline implements IShootingController {
 	 * @param g
 	 */
 	public ShootingControllerOnline(PlayerStatus player1, PlayerStatus player2,
-			Game g, RMIServer supervisor) {
+			GameRules g, RMIServer supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;

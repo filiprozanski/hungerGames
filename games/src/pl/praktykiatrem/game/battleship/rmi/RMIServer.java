@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.Place;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.uniElements.enums.RulesType;
 
 public class RMIServer extends UnicastRemoteObject implements IRMIServer {
@@ -15,18 +15,18 @@ public class RMIServer extends UnicastRemoteObject implements IRMIServer {
 	private ShootingControllerOnline shController;
 	private PlayerStatus player1;
 	private PlayerStatus player2;
-	private Game game;
+	private GameRules game;
 	private IRMIClient client1;
 	private IRMIClient client2;
 
 	public RMIServer() throws RemoteException {
 		super();
 		System.out.println("Server start");
-		game = new Game(RulesType.CUSTOMRULES);
+		game = new GameRules(RulesType.CUSTOMRULES);
 	}
 
 	@Override
-	public Game getGame() throws RemoteException {
+	public GameRules getGame() throws RemoteException {
 		return game;
 	}
 

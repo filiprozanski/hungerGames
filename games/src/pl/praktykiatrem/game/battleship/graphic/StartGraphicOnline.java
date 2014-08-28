@@ -14,7 +14,7 @@ import pl.praktykiatrem.game.battleship.graphic.setting.SettingControllerOffline
 import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.rmi.RMIClient;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.menu.CloseStatus;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 
@@ -23,7 +23,7 @@ public class StartGraphicOnline implements Serializable, IShootingController {
 
 	private PlayerStatus player;
 
-	private Game game;
+	private GameRules game;
 
 	private ShootingPresenter shPresenter;
 

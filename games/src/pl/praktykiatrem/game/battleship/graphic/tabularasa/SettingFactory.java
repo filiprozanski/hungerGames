@@ -1,7 +1,7 @@
-package pl.praktykiatrem.game.battleship.graphic.setting;
+package pl.praktykiatrem.game.battleship.graphic.tabularasa;
 
-import pl.praktykiatrem.game.battleship.graphic.GameType;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IPlayer;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.enums.GameType;
 
 public class SettingFactory {
 	private IPlayer[] players;

@@ -3,16 +3,16 @@ package pl.praktykiatrem.game.battleship.ai;
 import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.components.Coordinates;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 
 public class Medium implements IComputer {
 	private ComputerBoard board;
-	private Game game;
+	private GameRules game;
 	private Coordinates coords;
 	private CoordsList list;
 
-	public Medium(Game game) {
+	public Medium(GameRules game) {
 		this.game = game;
 		this.board = new ComputerBoard(game);
 		this.list = new CoordsList(board, game);

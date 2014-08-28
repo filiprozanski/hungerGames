@@ -2,16 +2,16 @@ package pl.praktykiatrem.game.battleship.density;
 
 import pl.praktykiatrem.game.battleship.ai.ComputerBoard;
 import pl.praktykiatrem.game.battleship.components.Coordinates;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public class DensityController {
 	private DensityBoard density;
 	private DensityView densityView;
-	private Game game;
+	private GameRules game;
 	private int[] shipTypes;
 
-	public DensityController(Game g, ComputerBoard board) {
+	public DensityController(GameRules g, ComputerBoard board) {
 		this.game = g;
 		this.shipTypes = game.getShipTypes();
 		this.density = new DensityBoard(board, game);

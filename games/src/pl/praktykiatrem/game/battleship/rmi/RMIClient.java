@@ -11,7 +11,7 @@ import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.Place;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 
 public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 	private Registry r;
@@ -26,7 +26,7 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 
 		this.starter = starter;
 
-		r = LocateRegistry.getRegistry(IRMIServer.SERVER_IP,
+		r = LocateRegistry.getRegistry(IRMIServer.SERVER_LOCAL,
 				IRMIServer.PORTNUMBER);
 		server = (IRMIServer) r.lookup(IRMIServer.SERVICE_NAME);
 	}
@@ -38,7 +38,7 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 		starter.changeStage(start);
 	}
 
-	public Game getGame() throws RemoteException {
+	public GameRules getGame() throws RemoteException {
 		return server.getGame();
 	}
 

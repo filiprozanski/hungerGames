@@ -3,20 +3,20 @@ package pl.praktykiatrem.game.battleship.graphic.setting;
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IController;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenterControll;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
-public class SettingControllerForTwoPlayers implements IController {
+public class SettingControllerForTwoPlayers implements ISettingController {
 	private int readyPlayers;
-	private Game gameRules;
+	private GameRules gameRules;
 	private StartGraphicForTwoPlayers supervisor;
 	private ISettingPresenterControll pres1;
 	private ISettingPresenterControll pres2;
 
-	public SettingControllerForTwoPlayers(Game g, PlayerStatus player1,
+	public SettingControllerForTwoPlayers(GameRules g, PlayerStatus player1,
 			PlayerStatus player2, StartGraphicForTwoPlayers supervisor) {
 		this.supervisor = supervisor;
 		this.gameRules = g;

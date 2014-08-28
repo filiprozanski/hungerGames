@@ -5,19 +5,19 @@ import java.rmi.RemoteException;
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IController;
+import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenterControll;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
-public class SettingControllerOffline implements IController {
+public class SettingControllerOffline implements ISettingController {
 	private int readyPlayers;
-	private Game gameRules;
+	private GameRules gameRules;
 	private StartGraphicOnline supervisor;
 	private ISettingPresenterControll pres;
 
-	public SettingControllerOffline(Game g, PlayerStatus player,
+	public SettingControllerOffline(GameRules g, PlayerStatus player,
 			StartGraphicOnline supervisor) {
 		this.supervisor = supervisor;
 		this.gameRules = g;

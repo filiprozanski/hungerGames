@@ -12,7 +12,7 @@ import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingCon
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameConstants;
 
 /**
  * 
@@ -31,10 +31,6 @@ public class ShootingPresenter implements IShootingPresenter,
 	 */
 	private static final long serialVersionUID = -3263489986702278924L;
 	/**
-	 * obiekt udostêpniaj±cy akcje wykonywane w trakcie gry
-	 */
-	private Game gameRules;
-	/**
 	 * obiekt reprezentuj±cy gracza, który korzysta ze sterowanego interfejsu
 	 */
 	private PlayerStatus player;
@@ -45,7 +41,7 @@ public class ShootingPresenter implements IShootingPresenter,
 	/**
 	 * obiekt reprezentuj±cy controller nadzoruj±cy fazê strzelania
 	 */
-	private IShootingController controll;
+	private IShootingController controller;
 	/**
 	 * lista miejsc, które zawsze pozostaj± zablokowane
 	 */
@@ -58,14 +54,16 @@ public class ShootingPresenter implements IShootingPresenter,
 
 	private int giveUpButtonCallNumber;
 
+	private GameConstants gameConstants;
+
 	private int x = -1;
 	private int y = -1;
 
-	public ShootingPresenter(Game gameRules, PlayerStatus player,
+	public ShootingPresenter(GameConstants constants,
 			IShootingController controll) {
-		this.gameRules = gameRules;
+		this.gameConstants = constants;
 		this.player = player;
-		this.controll = controll;
+		this.controller = controll;
 		this.lockedPlaces = new ArrayList<Coordinates>();
 		giveUpButtonCallNumber = 0;
 
@@ -74,9 +72,9 @@ public class ShootingPresenter implements IShootingPresenter,
 			public void run() {
 				view = new ShootingPanel(ShootingPresenter.this);
 				view.initialize(
-						ShootingPresenter.this.gameRules.getShipTypes(),
-						ShootingPresenter.this.gameRules.getBoardSizeV(),
-						ShootingPresenter.this.gameRules.getBoardSizeH());
+						ShootingPresenter.this.gameConstants.getShipTypes(),
+						ShootingPresenter.this.gameConstants.getBoardSizeV(),
+						ShootingPresenter.this.gameConstants.getBoardSizeH());
 				view.disableAllPlayerBoardPlaces();
 			}
 		});
@@ -91,11 +89,11 @@ public class ShootingPresenter implements IShootingPresenter,
 	 *
 	 * @param gameRules
 	 * @param player
-	 * @param controll
+	 * @param controller
 	 */
-	public ShootingPresenter(Game gameRules, PlayerStatus player,
+	public ShootingPresenter(GameConstants gameConstants,
 			IShootingController controll, boolean move) {
-		this(gameRules, player, controll);
+		this(gameConstants, controll);
 		final boolean m = move;
 
 		SwingUtilities.invokeLater(new Runnable() {
@@ -117,12 +115,13 @@ public class ShootingPresenter implements IShootingPresenter,
 	 *
 	 */
 	private void drawShips() {
+		final int shipsNumber = gameConstants.getShipsNumber();
+
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				for (int i = 0; i < gameRules.getShipsNumber(); i++)
-					view.drawShipLocation(gameRules.getCoordsTable(player, i),
-							i);
+				for (int i = 0; i < shipsNumber; i++)
+					view.drawShipLocation(controller.getCoordsTable(i), i);
 			}
 		});
 	}
@@ -138,7 +137,7 @@ public class ShootingPresenter implements IShootingPresenter,
 		this.y = y;
 
 		try {
-			controll.makeMove(player, new Coordinates(x, y));
+			controller.makeMove(player, new Coordinates(x, y));
 		} catch (RemoteException e) {
 			System.out.println("makeMove presenter");
 			e.printStackTrace();
@@ -279,11 +278,11 @@ public class ShootingPresenter implements IShootingPresenter,
 		giveUpButtonCallNumber++;
 
 		if (giveUpButtonCallNumber == 1) {
-			controll.resign(player);
+			controller.resign(player);
 			changeGiveUpButtonLabel();
 		} else if (giveUpButtonCallNumber == 2) {
-			controll.endGame();
-			controll.setHint();
+			controller.endGame();
+			controller.setHint();
 			closeFrame();
 		}
 	}
@@ -338,6 +337,6 @@ public class ShootingPresenter implements IShootingPresenter,
 
 	@Override
 	public void showHint() {
-		controll.setHint();
+		controller.setHint();
 	}
 }

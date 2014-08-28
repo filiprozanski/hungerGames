@@ -15,4 +15,6 @@ public interface IShootingController {
 	void endGame();
 
 	void setHint();
+
+	Coordinates[] getCoordsTable(int i);
 }

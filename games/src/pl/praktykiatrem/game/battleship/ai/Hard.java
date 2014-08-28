@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.density.DensityController;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 
 public class Hard implements IComputer {
 	private ComputerBoard board;
-	private Game game;
+	private GameRules game;
 	private int shotCounter = 0;
 	private int BoardH;
 	private int BoardV;
@@ -16,7 +16,7 @@ public class Hard implements IComputer {
 	private int hitCounter = 0;
 	private DensityController den;
 
-	public Hard(Game game) {
+	public Hard(GameRules game) {
 		this.board = new ComputerBoard(game);
 		this.game = game;
 		this.BoardH = game.getBoardSizeH();

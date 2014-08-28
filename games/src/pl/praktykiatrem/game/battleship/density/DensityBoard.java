@@ -3,12 +3,12 @@ package pl.praktykiatrem.game.battleship.density;
 import pl.praktykiatrem.game.battleship.ai.ComputerBoard;
 import pl.praktykiatrem.game.battleship.ai.CoordsList;
 import pl.praktykiatrem.game.battleship.components.Coordinates;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
 public class DensityBoard {
-	private Game game;
+	private GameRules game;
 	private int[][] density;
 	private int BoardH;
 	private int BoardV;
@@ -17,7 +17,7 @@ public class DensityBoard {
 
 	Coordinates coords = new Coordinates(0, 0);
 
-	public DensityBoard(ComputerBoard board, Game game) {
+	public DensityBoard(ComputerBoard board, GameRules game) {
 		this.game = game;
 		this.BoardH = game.getBoardSizeH();
 		this.BoardV = game.getBoardSizeV();

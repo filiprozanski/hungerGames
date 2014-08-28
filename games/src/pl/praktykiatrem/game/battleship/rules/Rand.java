@@ -20,11 +20,11 @@ public class Rand {
 		return generator.nextInt(b);
 	}
 
-	public static int getRandX(Game gameRules) {
+	public static int getRandX(GameRules gameRules) {
 		return generator.nextInt(gameRules.getBoardSizeV());
 	}
 
-	public static int getRandY(Game gameRules) {
+	public static int getRandY(GameRules gameRules) {
 		return generator.nextInt(gameRules.getBoardSizeH());
 	}
 

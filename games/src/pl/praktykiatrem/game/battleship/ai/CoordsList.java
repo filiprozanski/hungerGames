@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.praktykiatrem.game.battleship.components.Coordinates;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 
 public class CoordsList {
 	private List<Coordinates> list;
-	private Game game;
+	private GameRules game;
 	private ComputerBoard board;
 
-	public CoordsList(ComputerBoard board, Game game) {
+	public CoordsList(ComputerBoard board, GameRules game) {
 		this.list = new ArrayList<Coordinates>();
 		this.game = game;
 		this.board = board;

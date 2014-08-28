@@ -7,7 +7,7 @@ import pl.praktykiatrem.game.battleship.components.ShootResult;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
-import pl.praktykiatrem.game.battleship.rules.Game;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
 
 /**
  * 
@@ -40,7 +40,7 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	/**
 	 * obiekt, który udostêpnia akcje wykonywane w grze
 	 */
-	private Game g;
+	private GameRules g;
 	/**
 	 * liczba statków gracza
 	 */
@@ -65,7 +65,7 @@ public class ShootingControllerForTwoPlayers implements IShootingController {
 	 * @param g
 	 */
 	public ShootingControllerForTwoPlayers(PlayerStatus player1,
-			PlayerStatus player2, Game g, StartGraphicForTwoPlayers supervisor) {
+			PlayerStatus player2, GameRules g, StartGraphicForTwoPlayers supervisor) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.supervisor = supervisor;
