@@ -18,7 +18,6 @@ import pl.praktykiatrem.game.battleship.graphic.StartGraphicForNoPlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForOnePlayer;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicForTwoPlayers;
 import pl.praktykiatrem.game.battleship.graphic.StartGraphicOnline;
-import pl.praktykiatrem.game.battleship.resources.ShipIcons;
 import pl.praktykiatrem.game.battleship.rmi.ServerApp;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForOnePlayer;
 import pl.praktykiatrem.game.tictactoe.StartTicTacToeForTwoPlayers;
@@ -54,8 +53,8 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
-		jLabel4 = new javax.swing.JLabel();
-		jLabel6 = new javax.swing.JLabel();
+		// jLabel4 = new javax.swing.JLabel();
+		// jLabel6 = new javax.swing.JLabel();
 		bsPCButton = new javax.swing.JButton();
 		bsPlayerButton = new javax.swing.JButton();
 		tttPlayerButton = new javax.swing.JButton();
@@ -81,12 +80,6 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		mediumRadioButton = new javax.swing.JRadioButtonMenuItem();
 		hardRadioButton = new javax.swing.JRadioButtonMenuItem();
 		pcOnlyButton = new javax.swing.JMenuItem();
-
-		jLabel4.setIcon(new ImageIcon(ShipIcons.class
-				.getResource("\\backgroundMenu.jpg"))); // NOI18N
-
-		jLabel6.setIcon(new ImageIcon(ShipIcons.class
-				.getResource("\\backgroundMenu.jpg"))); // NOI18N
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -189,8 +182,10 @@ public class MainMenu extends JFrame implements IMenuCallObserver {
 		getContentPane().add(tttLabel);
 		tttLabel.setBounds(360, 120, 136, 26);
 
-		backgroundLabel.setIcon(new ImageIcon(ShipIcons.class
-				.getResource("\\backgroundMenu.jpg"))); // NOI18N
+		backgroundLabel
+				.setIcon(new ImageIcon(
+						MainMenu.class
+								.getResource("/pl/praktykiatrem/game/menu/backgroundMenu.jpg"))); // NOI18N
 		getContentPane().add(backgroundLabel);
 		backgroundLabel.setBounds(0, 0, 640, 400);
 

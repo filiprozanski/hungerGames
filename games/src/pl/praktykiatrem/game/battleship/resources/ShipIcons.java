@@ -74,14 +74,17 @@ public class ShipIcons {
 	public static final void createImages() {
 		try {
 			stateIcons[0] = new ImageIcon(
-					ShipIcons.class.getResource("\\stateIcons\\8.png"));// statek
-																		// zatopiony
+					ShipIcons.class
+							.getResource("/pl/praktykiatrem/game/battleship/resources/stateIcons/8.png"));// statek
+			// zatopiony
 			stateIcons[1] = new ImageIcon(
-					ShipIcons.class.getResource("\\stateIcons\\9.png"));// pud³o
+					ShipIcons.class
+							.getResource("/pl/praktykiatrem/game/battleship/resources/stateIcons/9.png"));// pud³o
 			stateIcons[2] = new ImageIcon(
-					ShipIcons.class.getResource("\\stateIcons\\10.png"));// statek
-																			// w
-																			// ogniu
+					ShipIcons.class
+							.getResource("/pl/praktykiatrem/game/battleship/resources/stateIcons/10.png"));// statek
+			// w
+			// ogniu
 			okIcon = new ImageIcon(ShipIcons.class.getResource("ok.png"));// zielone
 																			// kó³ko
 																			// OK

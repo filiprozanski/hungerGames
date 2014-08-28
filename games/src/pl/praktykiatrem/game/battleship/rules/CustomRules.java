@@ -17,9 +17,9 @@ import pl.praktykiatrem.game.uniElements.enums.Direction;
  */
 public class CustomRules extends Rules implements Serializable {
 	private static final long serialVersionUID = -2745861399581281629L;
-	private final int BOARDSIZE_H = 11;
-	private final int BOARDSIZE_V = 12;
-	private final int SHIPTYPES[] = { 5, 5, 5 };
+	private final int BOARDSIZE_H = 10;
+	private final int BOARDSIZE_V = 10;
+	private final int SHIPTYPES[] = { 6, 5, 5, 4, 4, 3, 3, 2, 2 };
 	private final GameConstants constants = new GameConstants(BOARDSIZE_V,
 			BOARDSIZE_H, SHIPTYPES);
 

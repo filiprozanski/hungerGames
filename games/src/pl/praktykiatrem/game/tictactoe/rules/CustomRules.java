@@ -2,6 +2,7 @@ package pl.praktykiatrem.game.tictactoe.rules;
 
 import java.util.ArrayList;
 
+import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.tictactoe.gameComponents.Board;
 import pl.praktykiatrem.game.tictactoe.gameComponents.PlayerStatus;
 import pl.praktykiatrem.game.uniElements.enums.GameState;
@@ -35,7 +36,7 @@ public class CustomRules extends Rules implements Cloneable {
 	public GameState makeMove(PlayerStatus player, int x, int y) {
 		Sign playerSign = player.getSign();
 		board.setSign(playerSign, x, y);
-		board.takeOut(x, y);
+		board.takeOut(new Coordinates(x, y));
 		moves++;
 
 		if (checkHorizontal(x, y, playerSign)

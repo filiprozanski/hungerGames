@@ -62,7 +62,6 @@ public class GamePresenter implements IGameObserver {
 	@Override
 	public void buttonClicked(int x, int y) {
 		// TODO Auto-generated method stub
-
 	}
 
 }

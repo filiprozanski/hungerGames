@@ -6,6 +6,7 @@ import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.menu.IMenuCallObserver;
 import pl.praktykiatrem.game.tictactoe.ai.TTTDifficulty;
 import pl.praktykiatrem.game.tictactoe.ai.TTTEasy;
+import pl.praktykiatrem.game.tictactoe.ai.TTTHard;
 import pl.praktykiatrem.game.tictactoe.ai.TTTMedium;
 import pl.praktykiatrem.game.tictactoe.files.Icons;
 import pl.praktykiatrem.game.tictactoe.gameComponents.PlayerStatus;
@@ -46,6 +47,9 @@ public class StartTicTacToeForOnePlayer implements IController, IDialogOwner {
 			break;
 		case MEDIUM:
 			dummy = new TTTMedium(g.getRules(), player2);
+			break;
+		case HARD:
+			dummy = new TTTHard(g.getRules(), player2);
 			break;
 		}
 

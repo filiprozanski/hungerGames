@@ -26,7 +26,7 @@ public class RMIClient extends UnicastRemoteObject implements IRMIClient {
 
 		this.starter = starter;
 
-		r = LocateRegistry.getRegistry(IRMIServer.SERVER_IP,
+		r = LocateRegistry.getRegistry(IRMIServer.SERVER_LOCAL,
 				IRMIServer.PORTNUMBER);
 		server = (IRMIServer) r.lookup(IRMIServer.SERVICE_NAME);
 	}

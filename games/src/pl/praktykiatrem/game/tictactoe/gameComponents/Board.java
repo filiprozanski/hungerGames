@@ -1,5 +1,6 @@
 package pl.praktykiatrem.game.tictactoe.gameComponents;
 
+import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.tictactoe.rules.Sign;
 
 public class Board extends pl.praktykiatrem.game.uniElements.Board {
@@ -34,14 +35,14 @@ public class Board extends pl.praktykiatrem.game.uniElements.Board {
 	}
 
 	@Override
-	public void takeOut(int x, int y) {
-		gameBoard[x][y].takeOut();
+	public void takeOut(Coordinates coords) {
+		gameBoard[coords.getX()][coords.getY()].takeOut();
 
 	}
 
 	@Override
-	public void resetPlace(int x, int y) {
-		gameBoard[x][y].resetPlace();
+	public void resetPlace(Coordinates coords) {
+		gameBoard[coords.getX()][coords.getY()].resetPlace();
 
 	}
 
