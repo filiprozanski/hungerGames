@@ -1,5 +1,7 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting.interfaces;
 
+import java.util.ArrayList;
+
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 
 public interface IShootingPresenterControll {
@@ -19,11 +21,13 @@ public interface IShootingPresenterControll {
 
 	public void changeGiveUpButtonLabel();
 
-	public void showFrame();
+	public void showFrame(String name);
 
 	public void closeFrame();
 
 	public void drawShip(Coordinates[] tab);
 
 	public void changeShipState(int id);
+
+	public void drawLeftShips(ArrayList<Coordinates> leftShips);
 }

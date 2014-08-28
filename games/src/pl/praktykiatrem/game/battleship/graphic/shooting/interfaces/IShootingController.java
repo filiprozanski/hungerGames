@@ -1,20 +1,13 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting.interfaces;
 
-import java.rmi.RemoteException;
-
 import pl.praktykiatrem.game.battleship.components.Coordinates;
-import pl.praktykiatrem.game.battleship.components.PlayerStatus;
+import pl.praktykiatrem.game.uniElements.Player;
 
 public interface IShootingController {
 
-	boolean makeMove(PlayerStatus player, Coordinates coords)
-			throws RemoteException;
+	void makeMove(Coordinates coords, Player player);
 
-	void resign(PlayerStatus player);
+	void resign(Player player);
 
 	void endGame();
-
-	void setHint();
-
-	Coordinates[] getCoordsTable(int i);
 }

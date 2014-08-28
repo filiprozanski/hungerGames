@@ -27,4 +27,16 @@ public class Player implements Serializable {
 	public int getID() {
 		return playerID;
 	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof Player))
+			return false;
+		Player otherPlayer = (Player) other;
+		if (otherPlayer.name.equals(this.name)
+				&& (otherPlayer.playerID == this.playerID))
+			return true;
+		else
+			return false;
+	}
 }

@@ -1,8 +1,12 @@
 package pl.praktykiatrem.game.battleship.graphic.tabularasa;
 
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.tabularasa.enums.GameType;
-import pl.praktykiatrem.game.battleship.graphic.tabularasa.interfaces.IStartGame;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.setting.ComputerSettingController;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.setting.PlayerSettingController;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.setting.SettingController;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.shooting.ComputerShootingController;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.shooting.PlayerShootingController;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.shooting.ShootingController;
 import pl.praktykiatrem.game.battleship.rules.GameConstants;
 import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.uniElements.enums.Difficulty;

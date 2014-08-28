@@ -5,12 +5,9 @@ import java.io.Serializable;
 public abstract class PlayerStatus implements Serializable {
 
 	protected Player gamer;
-	protected int playerID;
-	private static int counter = 100001;
 
 	public PlayerStatus() {
 		gamer = new Player();
-		playerID = counter++;
 	}
 
 	/**
@@ -22,7 +19,7 @@ public abstract class PlayerStatus implements Serializable {
 			return false;
 
 		PlayerStatus other2 = (PlayerStatus) other;
-		if (this.getName().equals(other2.getName()))
+		if (this.gamer.equals(other2.gamer))
 			return true;
 		else
 			return false;
@@ -45,8 +42,8 @@ public abstract class PlayerStatus implements Serializable {
 		gamer.setName(name);
 	}
 
-	public int getID() {
-		return playerID;
+	public Player getPlayer() {
+		return gamer;
 	}
 
 	public abstract void resetStatus();

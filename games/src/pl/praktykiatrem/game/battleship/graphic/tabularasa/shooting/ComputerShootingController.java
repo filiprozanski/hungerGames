@@ -1,25 +1,42 @@
-package pl.praktykiatrem.game.battleship.graphic.tabularasa;
+package pl.praktykiatrem.game.battleship.graphic.tabularasa.shooting;
 
 import java.rmi.RemoteException;
 
+import pl.praktykiatrem.game.battleship.ai.Easy;
+import pl.praktykiatrem.game.battleship.ai.Hard;
+import pl.praktykiatrem.game.battleship.ai.IComputer;
+import pl.praktykiatrem.game.battleship.ai.Medium;
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.shooting.ShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
-import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
-import pl.praktykiatrem.game.battleship.rules.GameConstants;
+import pl.praktykiatrem.game.battleship.rules.GameRules;
+import pl.praktykiatrem.game.uniElements.enums.Difficulty;
 
-public class PlayerShootingController implements IShootingController {
+public class ComputerShootingController implements IShootingController {
+	private IComputer computer;
 	private PlayerStatus playerStatus;
 	private IShootingController controller;
-	private IShootingPresenterControll presenter;
 
-	public PlayerShootingController(PlayerStatus playerStatus,
-			IShootingController controller, GameConstants gameConstants) {
+	public ComputerShootingController(PlayerStatus playerStatus,
+			IShootingController controller, Difficulty difficulty,
+			GameRules gameRules) {
 		this.playerStatus = playerStatus;
 		this.controller = controller;
 
-		presenter = new ShootingPresenter(gameConstants, this);
+		switch (difficulty) {
+		case EASY:
+			computer = new Easy(gameRules);
+			break;
+		case MEDIUM:
+			computer = new Medium(gameRules);
+			break;
+		case HARD:
+			computer = new Hard(gameRules);
+			break;
+		default:
+			computer = new Medium(gameRules);
+			break;
+		}
 	}
 
 	@Override

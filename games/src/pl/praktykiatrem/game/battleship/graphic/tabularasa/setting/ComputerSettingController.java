@@ -1,10 +1,8 @@
-package pl.praktykiatrem.game.battleship.graphic.tabularasa;
+package pl.praktykiatrem.game.battleship.graphic.tabularasa.setting;
 
 import pl.praktykiatrem.game.battleship.components.Coordinates;
 import pl.praktykiatrem.game.battleship.components.PlayerStatus;
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IPlayerController;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
-import pl.praktykiatrem.game.battleship.graphic.tabularasa.interfaces.IPlayerSettingController;
 import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 import pl.praktykiatrem.game.uniElements.enums.Direction;

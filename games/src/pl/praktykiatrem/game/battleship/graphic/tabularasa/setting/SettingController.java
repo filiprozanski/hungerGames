@@ -1,9 +1,8 @@
-package pl.praktykiatrem.game.battleship.graphic.tabularasa;
+package pl.praktykiatrem.game.battleship.graphic.tabularasa.setting;
 
-import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.IPlayerController;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingController;
-import pl.praktykiatrem.game.battleship.graphic.tabularasa.interfaces.IStage;
-import pl.praktykiatrem.game.battleship.graphic.tabularasa.interfaces.IStartGame;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.IStage;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.IStartGame;
 
 public class SettingController implements ISettingController, IStage {
 	private IStartGame supervisor;

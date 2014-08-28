@@ -226,4 +226,17 @@ public class PlayerStatus extends
 		shipsNumber = 0;
 	}
 
+	public ArrayList<Coordinates> getLeftShips() {
+		ArrayList<Coordinates> coords = new ArrayList<Coordinates>();
+
+		for (int j = 0; j < board.getHorizontalSize(); j++)
+			for (int i = 0; i < board.getVerticalSize(); i++) {
+				Place place = getPlace(new Coordinates(i, j));
+				if (place.isShipOnPlace() && place.isPlaceInGame())
+					coords.add(new Coordinates(i, j));
+			}
+
+		return coords;
+	}
+
 }

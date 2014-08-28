@@ -8,7 +8,7 @@ import pl.praktykiatrem.game.battleship.graphic.panels.ShipSettingPanel;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingPresenterControll;
 import pl.praktykiatrem.game.battleship.graphic.setting.interfaces.ISettingView;
-import pl.praktykiatrem.game.battleship.graphic.tabularasa.interfaces.IPlayerSettingController;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.setting.IPlayerSettingController;
 import pl.praktykiatrem.game.battleship.rules.GameConstants;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 

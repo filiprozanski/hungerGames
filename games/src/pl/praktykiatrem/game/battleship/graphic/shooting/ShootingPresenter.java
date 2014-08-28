@@ -1,17 +1,15 @@
 package pl.praktykiatrem.game.battleship.graphic.shooting;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
 
 import pl.praktykiatrem.game.battleship.components.Coordinates;
-import pl.praktykiatrem.game.battleship.components.PlayerStatus;
 import pl.praktykiatrem.game.battleship.graphic.panels.ShootingPanel;
-import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingController;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenter;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingPresenterControll;
 import pl.praktykiatrem.game.battleship.graphic.shooting.interfaces.IShootingView;
+import pl.praktykiatrem.game.battleship.graphic.tabularasa.shooting.IShootingPlayerController;
 import pl.praktykiatrem.game.battleship.rules.GameConstants;
 
 /**
@@ -31,22 +29,17 @@ public class ShootingPresenter implements IShootingPresenter,
 	 */
 	private static final long serialVersionUID = -3263489986702278924L;
 	/**
-	 * obiekt reprezentuj±cy gracza, który korzysta ze sterowanego interfejsu
-	 */
-	private PlayerStatus player;
-	/**
 	 * obiekt przechowuj±cy interfejs graficzny
 	 */
 	private IShootingView view;
 	/**
 	 * obiekt reprezentuj±cy controller nadzoruj±cy fazê strzelania
 	 */
-	private IShootingController controller;
+	private IShootingPlayerController controller;
 	/**
 	 * lista miejsc, które zawsze pozostaj± zablokowane
 	 */
 	private ArrayList<Coordinates> lockedPlaces;
-
 	/**
 	 * przechowuje status gry (T/F)
 	 */
@@ -60,9 +53,8 @@ public class ShootingPresenter implements IShootingPresenter,
 	private int y = -1;
 
 	public ShootingPresenter(GameConstants constants,
-			IShootingController controll) {
+			IShootingPlayerController controll) {
 		this.gameConstants = constants;
-		this.player = player;
 		this.controller = controll;
 		this.lockedPlaces = new ArrayList<Coordinates>();
 		giveUpButtonCallNumber = 0;
@@ -92,7 +84,7 @@ public class ShootingPresenter implements IShootingPresenter,
 	 * @param controller
 	 */
 	public ShootingPresenter(GameConstants gameConstants,
-			IShootingController controll, boolean move) {
+			IShootingPlayerController controll, boolean move) {
 		this(gameConstants, controll);
 		final boolean m = move;
 
@@ -136,12 +128,7 @@ public class ShootingPresenter implements IShootingPresenter,
 		this.x = x;
 		this.y = y;
 
-		try {
-			controller.makeMove(player, new Coordinates(x, y));
-		} catch (RemoteException e) {
-			System.out.println("makeMove presenter");
-			e.printStackTrace();
-		}
+		controller.makeMove(new Coordinates(x, y));
 	}
 
 	@Override
@@ -278,7 +265,7 @@ public class ShootingPresenter implements IShootingPresenter,
 		giveUpButtonCallNumber++;
 
 		if (giveUpButtonCallNumber == 1) {
-			controller.resign(player);
+			controller.resign();
 			changeGiveUpButtonLabel();
 		} else if (giveUpButtonCallNumber == 2) {
 			controller.endGame();
@@ -301,12 +288,14 @@ public class ShootingPresenter implements IShootingPresenter,
 	}
 
 	@Override
-	public void showFrame() {
+	public void showFrame(String name) {
+		final String n = name;
+
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
-				view.showFrame(player.getName());
+				view.showFrame(n);
 			}
 		});
 	}
@@ -338,5 +327,12 @@ public class ShootingPresenter implements IShootingPresenter,
 	@Override
 	public void showHint() {
 		controller.setHint();
+	}
+
+	@Override
+	public void drawLeftShips(ArrayList<Coordinates> leftShips) {
+		for (Coordinates coord : leftShips) {
+			view.changeBattlePlaceIcon(coord.getX(), coord.getY(), 1);
+		}
 	}
 }

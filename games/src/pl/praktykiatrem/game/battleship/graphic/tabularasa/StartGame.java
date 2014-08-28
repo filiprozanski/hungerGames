@@ -1,8 +1,5 @@
 package pl.praktykiatrem.game.battleship.graphic.tabularasa;
 
-import pl.praktykiatrem.game.battleship.graphic.tabularasa.enums.GameType;
-import pl.praktykiatrem.game.battleship.graphic.tabularasa.interfaces.IStage;
-import pl.praktykiatrem.game.battleship.graphic.tabularasa.interfaces.IStartGame;
 import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.uniElements.enums.Difficulty;
 
