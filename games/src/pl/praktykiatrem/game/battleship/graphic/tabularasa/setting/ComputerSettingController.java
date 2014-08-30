@@ -7,8 +7,7 @@ import pl.praktykiatrem.game.battleship.rules.GameRules;
 import pl.praktykiatrem.game.battleship.rules.Rand;
 import pl.praktykiatrem.game.uniElements.enums.Direction;
 
-public class ComputerSettingController implements IPlayerSettingController,
-		IPlayerController {
+public class ComputerSettingController implements IPlayerController {
 	private GameRules gameRules;
 	private PlayerStatus player;
 	private ISettingController controller;
@@ -20,47 +19,20 @@ public class ComputerSettingController implements IPlayerSettingController,
 		this.controller = controller;
 	}
 
-	@Override
 	public void playerIsReady() {
 		controller.playerIsReady();
 	}
 
-	@Override
-	public void playerIsNotReady() {
-		controller.playerIsNotReady();
-	}
-
-	@Override
 	public boolean placeShips(int id, int polesNumber, Direction dir,
 			Coordinates coords) {
 		return gameRules.placeShips(player, id, polesNumber, dir, coords);
 	}
 
-	@Override
-	public int getActiveShipsNumber() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean displaceShip(int id, int polesNumber, Direction dir,
-			Coordinates coords) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void resetGame() {
-		gameRules.resetGame(player);
-	}
-
-	@Override
 	public void placeShipAtRandom() {
 		Direction rand_dir;
 		int randX;
 		int randY;
 		int polesNumber;
-		resetGame();
 
 		for (int i = 0; i < gameRules.getShipsNumber(); i++) {
 			polesNumber = gameRules.getShipTypes()[i];
@@ -83,8 +55,6 @@ public class ComputerSettingController implements IPlayerSettingController,
 
 	@Override
 	public void endStage() {
-		// TODO Auto-generated method stub
 
 	}
-
 }
